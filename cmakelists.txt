@@ -1,0 +1,25 @@
+cmake_minimum_required(VERSION 3.12)
+
+project(itmda_webserver)
+
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+
+add_executable (itmda_webserver entrypoint.cpp
+ webserver.cpp
+ c:/se/personal/lib_cpp/net/socket.cpp
+ c:/se/personal/lib_cpp/net/http_socket.cpp
+)
+target_link_libraries(itmda_webserver
+ ws2_32.lib
+ kernel32.lib
+)
+include_directories(itmda_webserver
+ c:/se/personal/lib_cpp/
+ c:/se/personal/lib_cpp/common/
+ c:/se/libraries/c++/spdlog/include/
+)
+target_compile_definitions(itmda_webserver PRIVATE
+ _DEBUG
+ /W3
+)
