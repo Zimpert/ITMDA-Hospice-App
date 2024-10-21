@@ -9,6 +9,9 @@ add_executable (itmda_webserver entrypoint.cpp
  webserver.cpp
  c:/se/personal/lib_cpp/net/socket.cpp
  c:/se/personal/lib_cpp/net/http_socket.cpp
+ c:/se/personal/lib_cpp/net/http_header.cpp
+ c:/se/personal/lib_cpp/net/http_content.cpp
+ c:/se/personal/lib_cpp/net/http_request.cpp
 )
 target_link_libraries(itmda_webserver
  ws2_32.lib
@@ -18,6 +21,7 @@ include_directories(itmda_webserver
  c:/se/personal/lib_cpp/
  c:/se/personal/lib_cpp/common/
  c:/se/libraries/c++/spdlog/include/
+ c:/se/libraries/c++/json/
 )
 target_compile_definitions(itmda_webserver PRIVATE
  _DEBUG

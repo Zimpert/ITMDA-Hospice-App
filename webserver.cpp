@@ -1,6 +1,7 @@
 #include "webserver.hpp"
 #include "net/socket_error_code.hpp"
 #include "net/address_conversion.hpp"
+#include "net/http_header.hpp"
 #include <span>
 #include <format>
 #include <string>
@@ -50,7 +51,7 @@ void webserver::accept_incoming_connections() noexcept {
  } 
 }
 stl::status_type<net::socket_error_code, bool> webserver::has_incoming_connection() const noexcept {
- static constexpr ::TIMEVAL timeout{ 0, 8000 };
+ static constexpr ::TIMEVAL timeout{ 0, 2000 };
  ::fd_set server_socket { .fd_count = 1 };
  server_socket.fd_array[0] = this->m_server.socket().socket_handle;
  if (::select(NULL, &server_socket, nullptr, nullptr, &timeout) == SOCKET_ERROR) [[unlikely]] {
@@ -106,12 +107,11 @@ void webserver::distribute_jobs() noexcept {
     std::cout << "Socket Handle Returned from \"select\" Not Valid\n";
     return;
    }
-   auto [get_request_status, get_request] = it->receive_get_request();
-   if (get_request_status != net::socket_error_code::success) [[unlikely]] {
-    std::cout << "Failed to Receive GET Request\n";
-    return;
+   auto [request_status, request] = it->receive_request();
+   std::cout << std::format("Request Header:\n- Resource: {}\n- Fields:\n", request.header().resource);
+   for (auto const& [key, val] : request.header().headers) {
+    std::cout << std::format("-- {}: {}\n", key, val);
    }
-   std::cout << std::format("Client GET Request:\n{}\n", get_request);
   }
   if (client_sockets.fd_count != 64) {
    return;
