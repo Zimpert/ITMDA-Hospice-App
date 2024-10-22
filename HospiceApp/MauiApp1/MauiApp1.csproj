@@ -68,4 +68,9 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Models\CaregiverModels\" />
+	  <Folder Include="Models\BridgeModels\" />
+	</ItemGroup>
+
 </Project>
