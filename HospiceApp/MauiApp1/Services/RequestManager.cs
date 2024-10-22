@@ -1,4 +1,4 @@
-﻿using MauiApp1.Models;
+﻿using MauiApp1.Models.PatientModels;
 using System;
 using System.Net.Http;
 using System.Text;
@@ -31,7 +31,6 @@ namespace MauiApp1.Services
                 // Create an empty JSON object (if needed, populate with necessary data)
                 JsonObject jObject = new JsonObject();
 
-
                 var jsonResponse = await AbstractRequestAsync("/patient", jObject);
                 var data = JsonSerializer.Deserialize<Patient>(jsonResponse);
 
@@ -54,6 +53,8 @@ namespace MauiApp1.Services
                 return null;
             }
         }
+
+        /*public async Task<>*/
 
         public async Task<string> AbstractRequestAsync(string method, JsonObject parameters)
         {
