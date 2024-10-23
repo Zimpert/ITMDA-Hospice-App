@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MauiApp1.Models.Enums
 {
-    internal enum PriorityEnum
+    public enum PriorityEnum
     {
         Low = 0, Medium = 1, High = 2, Emergency = 3
     }
