@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace MauiApp1.Models
 {
-    public class Frequency
+    class Admin
     {
-        public string FrequencyID { get; set; }
-        public string FrequencyAmount { get; set; }
+        public string AdminID { get; set; }
 
     }
 }

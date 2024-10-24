@@ -158,3 +158,17 @@ Microsoft.Maui.aar
 Microsoft.Maui.Essentials.aar
 Xamarin.Google.Crypto.Tink.Android.aar
 Xamarin.Google.ErrorProne.Annotations.aar
+Xamarin.AndroidX.Camera.Camera2.dll
+Xamarin.AndroidX.Camera.Core.dll
+Xamarin.AndroidX.Camera.Lifecycle.dll
+Xamarin.AndroidX.Camera.View.dll
+Xamarin.Google.AutoValue.Annotations.dll
+ZXing.Net.MAUI.Controls.dll
+ZXing.Net.MAUI.dll
+androidx.camera.camera-core.aar
+androidx.camera.camera-lifecycle.aar
+androidx.camera.camera-view.aar
+androidx.camera.camera-camera2.aar
+Xamarin.Google.AutoValue.Annotations.aar
+ZXing.Net.MAUI.Controls.aar
+ZXing.Net.MAUI.aar

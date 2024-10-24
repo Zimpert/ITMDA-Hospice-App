@@ -57,20 +57,39 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Models\BridgeModels\**" />
+	  <AndroidResource Remove="Models\CaregiverModels\**" />
+	  <Compile Remove="Models\BridgeModels\**" />
+	  <Compile Remove="Models\CaregiverModels\**" />
+	  <EmbeddedResource Remove="Models\BridgeModels\**" />
+	  <EmbeddedResource Remove="Models\CaregiverModels\**" />
+	  <MauiCss Remove="Models\BridgeModels\**" />
+	  <MauiCss Remove="Models\CaregiverModels\**" />
+	  <MauiXaml Remove="Models\BridgeModels\**" />
+	  <MauiXaml Remove="Models\CaregiverModels\**" />
+	  <None Remove="Models\BridgeModels\**" />
+	  <None Remove="Models\CaregiverModels\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Models\Admin.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="Models\Admin.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\NewPage1.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Models\CaregiverModels\" />
-	  <Folder Include="Models\BridgeModels\" />
 	</ItemGroup>
 
 </Project>
