@@ -1,28 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\models\\assignedpatient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\models\\assignedpatient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\models\\patientmodels\\patient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\models\\patientmodels\\patient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\models\\caregiver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\models\\caregiver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\models\\caregivershifts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\models\\caregivershifts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\models\\logs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\models\\logs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -30,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -43,67 +22,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AssignedPatient.cs",
-              "DocumentMoniker": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\Models\\AssignedPatient.cs",
-              "RelativeDocumentMoniker": "MauiApp1\\Models\\AssignedPatient.cs",
-              "ToolTip": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\Models\\AssignedPatient.cs",
-              "RelativeToolTip": "MauiApp1\\Models\\AssignedPatient.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T15:54:12.98Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Patient.cs",
-              "DocumentMoniker": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\Models\\PatientModels\\Patient.cs",
-              "RelativeDocumentMoniker": "MauiApp1\\Models\\PatientModels\\Patient.cs",
-              "ToolTip": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\Models\\PatientModels\\Patient.cs",
-              "RelativeToolTip": "MauiApp1\\Models\\PatientModels\\Patient.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T15:54:13.011Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CaregiverShifts.cs",
-              "DocumentMoniker": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\Models\\CaregiverShifts.cs",
-              "RelativeDocumentMoniker": "MauiApp1\\Models\\CaregiverShifts.cs",
-              "ToolTip": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\Models\\CaregiverShifts.cs",
-              "RelativeToolTip": "MauiApp1\\Models\\CaregiverShifts.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T15:54:13.016Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Logs.cs",
-              "DocumentMoniker": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\Models\\Logs.cs",
-              "RelativeDocumentMoniker": "MauiApp1\\Models\\Logs.cs",
-              "ToolTip": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\Models\\Logs.cs",
-              "RelativeToolTip": "MauiApp1\\Models\\Logs.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T15:54:13.021Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Caregiver.cs",
-              "DocumentMoniker": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\Models\\Caregiver.cs",
-              "RelativeDocumentMoniker": "MauiApp1\\Models\\Caregiver.cs",
-              "ToolTip": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\Models\\Caregiver.cs",
-              "RelativeToolTip": "MauiApp1\\Models\\Caregiver.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAoAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T15:54:13.028Z"
             }
           ]
         }

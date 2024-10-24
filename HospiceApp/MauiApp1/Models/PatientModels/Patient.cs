@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace MauiApp1.Models.PatientModels
 {
-    public class Patient
+    public class Patient : User
     {
         public int PatientID { get; set; }
-        public string PatientName { get; set; }
-        public string PatientSurname { get; set; }
-        public string PatientPhoneNo { get; set; }
-        public string? PatientEmail { get; set; }
-        public string PatientAddress { get; set; }
 
         public ContactBook ContactBook { get; set; }
         public List<PatientMedication>? PatientMedications { get; set; }
