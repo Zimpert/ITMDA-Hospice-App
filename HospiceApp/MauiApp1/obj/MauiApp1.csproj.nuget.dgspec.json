@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\janol\\Source\\Repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\MauiApp1.csproj": {}
+    "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\MauiApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\janol\\Source\\Repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\MauiApp1.csproj": {
+    "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\MauiApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\janol\\Source\\Repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\MauiApp1.csproj",
+        "projectUniqueName": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\MauiApp1.csproj",
         "projectName": "MauiApp1",
-        "projectPath": "C:\\Users\\janol\\Source\\Repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\MauiApp1.csproj",
+        "projectPath": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\MauiApp1.csproj",
         "packagesPath": "C:\\Users\\janol\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\janol\\Source\\Repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\obj\\",
+        "outputPath": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
