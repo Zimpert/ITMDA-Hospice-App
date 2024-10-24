@@ -18,6 +18,7 @@ namespace MauiApp1.Services
 
         public void GetShifts(string CaregiverID)
         {
+            
             // return the data from their schedule from the database 
             // need to get shifts by the caregiver ID to group it
 
