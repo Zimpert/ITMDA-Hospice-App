@@ -1,29 +1,40 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.16)
 
 project(itmda_webserver)
 
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreadedDLL$<$<CONFIG:Release>:Release>")
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+set(CMAKE_GENERATOR "Visual Studio 17 2022")
 
-add_executable (itmda_webserver entrypoint.cpp
- webserver.cpp
- c:/se/personal/lib_cpp/net/socket.cpp
- c:/se/personal/lib_cpp/net/http_socket.cpp
- c:/se/personal/lib_cpp/net/http_header.cpp
- c:/se/personal/lib_cpp/net/http_content.cpp
- c:/se/personal/lib_cpp/net/http_request.cpp
+
+#set(BUILD_SHARED_LIBS OFF)
+
+add_executable(itmda_webserver entrypoint.cpp
+ #webserver.cpp
+ #c:/se/personal/lib_cpp/net/socket.cpp
+ #c:/se/personal/lib_cpp/net/http_socket.cpp
+ #c:/se/personal/lib_cpp/net/http_header.cpp
+ #c:/se/personal/lib_cpp/net/http_content.cpp
+ #c:/se/personal/lib_cpp/net/http_request.cpp
 )
-target_link_libraries(itmda_webserver
- ws2_32.lib
- kernel32.lib
+target_link_libraries(itmda_webserver PRIVATE
+ #ws2_32.lib
+ c:/se/libraries/c++/mysql-connector/lib64/vs14/mysqlcppconn-static.lib
 )
 include_directories(itmda_webserver
  c:/se/personal/lib_cpp/
  c:/se/personal/lib_cpp/common/
  c:/se/libraries/c++/spdlog/include/
- c:/se/libraries/c++/json/
+ c:/se/libraries/c++/json/single_include/
+ c:/se/libraries/c++/mysql-connector/include/jdbc/
 )
 target_compile_definitions(itmda_webserver PRIVATE
- _DEBUG
+ #_DEBUG
  /W3
+ _SILENCE_ALL_MS_EXT_DEPRECATION_WARNINGS
+ STATIC_CONCPP
 )
+
+ # set_property(TARGET itmda_webserver PROPERTY
+ #        MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
