@@ -22,26 +22,28 @@ using namespace std;
 i32 main() {
  using namespace std::chrono_literals;
 
- //net::socket::init_backend();
+ net::socket::init_backend();
 
- auto data = net::db_fetch<int, net::get_field_type<net::mysql_field_type::str>>(
-  crd::host_port,
-  crd::username,
-  crd::password,
-  "DB_Testing",
-  "SELECT * FROM TB_Testing"
- );
- std::cout << "Testing:\n";
- for (auto const& entry : data) {
-  std::cout << std::format("- {}: {}\n", std::get<0>(entry), (std::string)std::get<1>(entry));
+ if constexpr (false) {
+  auto data = net::db_fetch<int, net::get_field_type<net::mysql_field_type::str>>(
+   crd::host_port,
+   crd::username,
+   crd::password, 
+   "DB_Testing",
+   "SELECT * FROM TB_Testing"
+  );
+  std::cout << "Testing:\n";
+  for (auto const& entry : data) {
+   std::cout << std::format("- {}: {}\n", std::get<0>(entry), (std::string)std::get<1>(entry));
+  }
+ } else {
+  webserver server;
+  std::thread server_thread(&webserver::run, std::ref(server));
+  std::this_thread::sleep_for(10000ms);
+  
+  server.stop();
+  server_thread.join();
  }
- 
 
- // webserver server;
- // std::thread server_thread(&webserver::run, std::ref(server));
- // std::this_thread::sleep_for(30000ms);
- // server.stop();
- // server_thread.join();
-
- //net::socket::deinit_backend();
+ net::socket::deinit_backend();
 }

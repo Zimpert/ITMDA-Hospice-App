@@ -70,7 +70,6 @@ void webserver::accept_client() noexcept {
  if (maybe_client.status != net::socket_error_code::success) [[unlikely]] {
   std::cout << "Failed to Connect New Client\n";
  }
- std::cout << "New Client\n";
  *it = std::move(maybe_client.value);
 }
 void webserver::distribute_jobs() noexcept {
@@ -108,10 +107,39 @@ void webserver::distribute_jobs() noexcept {
     return;
    }
    auto [request_status, request] = it->receive_request();
-   std::cout << std::format("Request Header:\n- Resource: {}\n- Fields:\n", request.header().resource);
-   for (auto const& [key, val] : request.header().headers) {
+   if (request_status != net::socket_error_code::success) [[unlikely]] {
+    std::cout << std::format("Failed HTTP Request Receival: {}\n", net::lookup_enum(request_status));
+    (void)it->close();
+    continue;
+   }
+   std::cout << std::format("Request Header:\n- Resource: {}\n- Fields ({}):\n", request.header().resource, std::size(request.header().header_fields));
+   for (auto const& [key, val] : request.header().header_fields) {
     std::cout << std::format("-- {}: {}\n", key, val);
    }
+   std::cout << std::format("- Variables ({}): \n", std::size(request.header().header_variables));
+   for (auto const& [key, val] : request.header().header_variables) {
+    std::cout << std::format("-- {}: {}\n", key, val);
+   }
+   if (request.content().type == net::http_content_type::json) {
+    std::cout << "- Data: \n";
+    auto const& json = request.content().get_json_content();
+    std::cout << json.dump(1) << '\n';
+   }
+
+   std::cout << "Sending Response...\n";
+   nlohmann::json response_json;
+   response_json["url"] = std::format("You requested {}", request.header().resource);
+   auto const content_length_it = request.header().header_fields.find("Content-Length");
+   if (content_length_it == std::cend(request.header().header_fields)) {
+    response_json["response"] = "You sent me 0 bytes of content.";
+   } else {
+    response_json["response"] = std::format("You sent me {} bytes of content.", content_length_it->second);
+   }
+   response_json["num"] = std::format("Your URL had {} parameters in it.", std::size(request.header().header_variables));
+   
+   it->send_response(response_json);
+
+   it->close();
   }
   if (client_sockets.fd_count != 64) {
    return;

@@ -11,15 +11,15 @@ set(CMAKE_GENERATOR "Visual Studio 17 2022")
 #set(BUILD_SHARED_LIBS OFF)
 
 add_executable(itmda_webserver entrypoint.cpp
- #webserver.cpp
- #c:/se/personal/lib_cpp/net/socket.cpp
- #c:/se/personal/lib_cpp/net/http_socket.cpp
- #c:/se/personal/lib_cpp/net/http_header.cpp
- #c:/se/personal/lib_cpp/net/http_content.cpp
- #c:/se/personal/lib_cpp/net/http_request.cpp
+ webserver.cpp
+ c:/se/personal/lib_cpp/net/socket.cpp
+ c:/se/personal/lib_cpp/net/http_socket.cpp
+ c:/se/personal/lib_cpp/net/http_header.cpp
+ c:/se/personal/lib_cpp/net/http_content.cpp
+ c:/se/personal/lib_cpp/net/http_request.cpp
 )
 target_link_libraries(itmda_webserver PRIVATE
- #ws2_32.lib
+ ws2_32.lib
  c:/se/libraries/c++/mysql-connector/lib64/vs14/mysqlcppconn-static.lib
 )
 include_directories(itmda_webserver
