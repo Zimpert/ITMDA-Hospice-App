@@ -3,24 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\services\\caregivermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\services\\caregivermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\services\\generalmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\services\\generalmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\services\\requestmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\services\\requestmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\services\\generalmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\services\\generalmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\services\\caregivermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\services\\caregivermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\viewmodels\\caregivershiftviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\viewmodels\\caregivershiftviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\models\\shift.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\models\\shift.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,7 +54,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
+              "Title": "Shift.cs",
+              "DocumentMoniker": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\Models\\Shift.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\Models\\Shift.cs",
+              "ToolTip": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\Models\\Shift.cs",
+              "RelativeToolTip": "MauiApp1\\Models\\Shift.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T16:25:16.857Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CaregiverShiftViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\ViewModels\\CaregiverShiftViewModel.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\ViewModels\\CaregiverShiftViewModel.cs",
+              "ToolTip": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\ViewModels\\CaregiverShiftViewModel.cs",
+              "RelativeToolTip": "MauiApp1\\ViewModels\\CaregiverShiftViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-24T16:24:19.687Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "CareGiverManager.cs",
               "DocumentMoniker": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\Services\\CareGiverManager.cs",
               "RelativeDocumentMoniker": "MauiApp1\\Services\\CareGiverManager.cs",
@@ -54,8 +86,7 @@
               "RelativeToolTip": "MauiApp1\\Services\\CareGiverManager.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T16:10:27.4Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-24T16:10:27.4Z"
             },
             {
               "$type": "Document",
@@ -65,14 +96,13 @@
               "RelativeDocumentMoniker": "MauiApp1\\Services\\RequestManager.cs",
               "ToolTip": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\Services\\RequestManager.cs",
               "RelativeToolTip": "MauiApp1\\Services\\RequestManager.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwCkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAA5wGwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T16:04:58.993Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-24T16:04:58.993Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "MainPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\MainPage.xaml.cs",
               "RelativeDocumentMoniker": "MauiApp1\\MainPage.xaml.cs",
@@ -80,12 +110,11 @@
               "RelativeToolTip": "MauiApp1\\MainPage.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T15:58:21.022Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-24T15:58:21.022Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "MauiProgram.cs",
               "DocumentMoniker": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\MauiProgram.cs",
               "RelativeDocumentMoniker": "MauiApp1\\MauiProgram.cs",
@@ -93,18 +122,17 @@
               "RelativeToolTip": "MauiApp1\\MauiProgram.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T15:58:11.978Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-24T15:58:11.978Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "GeneralManager.cs",
               "DocumentMoniker": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\Services\\GeneralManager.cs",
               "RelativeDocumentMoniker": "MauiApp1\\Services\\GeneralManager.cs",
               "ToolTip": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\Services\\GeneralManager.cs",
               "RelativeToolTip": "MauiApp1\\Services\\GeneralManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAABQAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-24T15:55:49.331Z",
               "EditorCaption": ""
