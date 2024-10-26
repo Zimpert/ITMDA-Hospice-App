@@ -39,7 +39,7 @@ i32 main() {
  } else {
   webserver server;
   std::thread server_thread(&webserver::run, std::ref(server));
-  std::this_thread::sleep_for(10000ms);
+  std::this_thread::sleep_for(30000ms);
   
   server.stop();
   server_thread.join();

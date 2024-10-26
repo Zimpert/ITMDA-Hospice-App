@@ -9,7 +9,7 @@
 #include <winsock2.h>
 
 webserver::webserver() noexcept : m_server{std::invoke([]{
- auto maybe_server = net::http_socket::create_server(net::convert_ipv4_string_to_u32("127.0.0.1"), 81);
+ auto maybe_server = net::http_socket::create_server(net::convert_ipv4_string_to_u32("192.168.110.108"), 80);
  if (maybe_server.status != net::socket_error_code::success) [[unlikely]] {
   std::cout << std::format("Failed to Create Server\n{}\n", net::lookup_enum_verbose(maybe_server.status));
  }
@@ -108,8 +108,11 @@ void webserver::distribute_jobs() noexcept {
    }
    auto [request_status, request] = it->receive_request();
    if (request_status != net::socket_error_code::success) [[unlikely]] {
-    std::cout << std::format("Failed HTTP Request Receival: {}\n", net::lookup_enum(request_status));
-    (void)it->close();
+    std::cout << std::format("Failed HTTP Request Receival: {}\n", net::lookup_enum_verbose(request_status));
+    auto const close_result = it->close();
+    if (close_result.status != net::socket_error_code::success) [[unlikely]] {
+     std::cout << std::format("Failed to Close Socket: {}\n", net::lookup_enum_verbose(close_result.status));
+    }
     continue;
    }
    std::cout << std::format("Request Header:\n- Resource: {}\n- Fields ({}):\n", request.header().resource, std::size(request.header().header_fields));
@@ -128,17 +131,24 @@ void webserver::distribute_jobs() noexcept {
 
    std::cout << "Sending Response...\n";
    nlohmann::json response_json;
-   response_json["url"] = std::format("You requested {}", request.header().resource);
-   auto const content_length_it = request.header().header_fields.find("Content-Length");
-   if (content_length_it == std::cend(request.header().header_fields)) {
-    response_json["response"] = "You sent me 0 bytes of content.";
+   if constexpr (false) {
+    response_json["url"] = std::format("You requested {}", request.header().resource);
+    auto const content_length_it = request.header().header_fields.find("Content-Length");
+    if (content_length_it == std::cend(request.header().header_fields)) {
+     response_json["response"] = "You sent me 0 bytes of content.";
+    } else {
+     response_json["response"] = std::format("You sent me {} bytes of content.", content_length_it->second);
+    }
+    response_json["num"] = std::format("Your URL had {} parameters in it.", std::size(request.header().header_variables));
    } else {
-    response_json["response"] = std::format("You sent me {} bytes of content.", content_length_it->second);
+    if (request.header().resource == "/test") {
+     response_json["message"] = "success";
+    } else {
+     response_json["message"] = std::format("Unsupported Endpoint: \"{}\"", request.header().resource);
+    }
    }
-   response_json["num"] = std::format("Your URL had {} parameters in it.", std::size(request.header().header_variables));
    
    it->send_response(response_json);
-
    it->close();
   }
   if (client_sockets.fd_count != 64) {
