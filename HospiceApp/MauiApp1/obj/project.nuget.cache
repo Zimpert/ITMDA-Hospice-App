@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "+NsRw/G7XPE=",
+  "dgSpecHash": "k52/koBYDN8=",
   "success": true,
   "projectFilePath": "C:\\Users\\janol\\Source\\Repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\MauiApp1.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\janol\\.nuget\\packages\\communitytoolkit.mvvm\\8.3.2\\communitytoolkit.mvvm.8.3.2.nupkg.sha512",
     "C:\\Users\\janol\\.nuget\\packages\\googlegson\\2.10.1.4\\googlegson.2.10.1.4.nupkg.sha512",
     "C:\\Users\\janol\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",
     "C:\\Users\\janol\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
@@ -26,7 +27,7 @@
     "C:\\Users\\janol\\.nuget\\packages\\microsoft.maui.graphics\\8.0.82\\microsoft.maui.graphics.8.0.82.nupkg.sha512",
     "C:\\Users\\janol\\.nuget\\packages\\microsoft.maui.graphics.win2d.winui.desktop\\8.0.82\\microsoft.maui.graphics.win2d.winui.desktop.8.0.82.nupkg.sha512",
     "C:\\Users\\janol\\.nuget\\packages\\microsoft.maui.resizetizer\\8.0.82\\microsoft.maui.resizetizer.8.0.82.nupkg.sha512",
-    "C:\\Users\\janol\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.8\\microsoft.net.illink.tasks.8.0.8.nupkg.sha512",
+    "C:\\Users\\janol\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.10\\microsoft.net.illink.tasks.8.0.10.nupkg.sha512",
     "C:\\Users\\janol\\.nuget\\packages\\microsoft.windows.sdk.buildtools\\10.0.22621.756\\microsoft.windows.sdk.buildtools.10.0.22621.756.nupkg.sha512",
     "C:\\Users\\janol\\.nuget\\packages\\microsoft.windowsappsdk\\1.5.240627000\\microsoft.windowsappsdk.1.5.240627000.nupkg.sha512",
     "C:\\Users\\janol\\.nuget\\packages\\xamarin.android.glide\\4.15.1.2\\xamarin.android.glide.4.15.1.2.nupkg.sha512",
@@ -120,7 +121,7 @@
     "C:\\Users\\janol\\.nuget\\packages\\zxing.net\\0.16.9\\zxing.net.0.16.9.nupkg.sha512",
     "C:\\Users\\janol\\.nuget\\packages\\zxing.net.maui\\0.4.0\\zxing.net.maui.0.4.0.nupkg.sha512",
     "C:\\Users\\janol\\.nuget\\packages\\zxing.net.maui.controls\\0.4.0\\zxing.net.maui.controls.0.4.0.nupkg.sha512",
-    "C:\\Users\\janol\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.34\\microsoft.windows.sdk.net.ref.10.0.19041.34.nupkg.sha512"
+    "C:\\Users\\janol\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.44\\microsoft.windows.sdk.net.ref.10.0.19041.44.nupkg.sha512"
   ],
   "logs": []
 }

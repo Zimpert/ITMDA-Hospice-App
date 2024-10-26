@@ -4,5 +4,50 @@
         <name>MauiApp1</name>
     </assembly>
     <members>
+        <member name="T:MauiApp1.Services.RequestManager">
+            <summary>
+            Manages requests to the server.
+            </summary>
+        </member>
+        <member name="T:MauiApp1.ViewModels.LoginViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:MauiApp1.ViewModels.LoginViewModel.LoginText">
+            <inheritdoc cref="F:MauiApp1.ViewModels.LoginViewModel.loginText"/>
+        </member>
+        <member name="P:MauiApp1.ViewModels.LoginViewModel.PasswordText">
+            <inheritdoc cref="F:MauiApp1.ViewModels.LoginViewModel.passwordText"/>
+        </member>
+        <member name="F:MauiApp1.ViewModels.LoginViewModel.loginCommand">
+            <summary>The backing field for <see cref="P:MauiApp1.ViewModels.LoginViewModel.LoginCommand"/>.</summary>
+        </member>
+        <member name="P:MauiApp1.ViewModels.LoginViewModel.LoginCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:MauiApp1.ViewModels.LoginViewModel.Login"/>.</summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.LoginText">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "LoginText" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.PasswordText">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "PasswordText" generated properties.</summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.LoginText">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "LoginText" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.PasswordText">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "PasswordText" generated properties.</summary>
+        </member>
     </members>
 </doc>
