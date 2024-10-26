@@ -11,9 +11,9 @@ embedassembliesintoapk=false
 androidlinkmode=none
 androidlinkskip=
 androidsdkbuildtoolsversion=34.0.0
-androidsdkpath=c:\program files (x86)\android\android-sdk\
+androidsdkpath=d:\android\android-sdk\
 androidndkpath=
-javasdkpath=c:\program files (x86)\android\openjdk\jdk-17.0.8.101-hotspot\
+javasdkpath=c:\program files\microsoft\jdk-17.0.12.7-hotspot\
 androidsequencepointsmode=none
 androidnetsdkversion=34.0.113
 monosymbolarchive=false
@@ -24,8 +24,12 @@ androidgeneratejnimarshalmethods=false
 os=windows_nt
 androidincludedebugsymbols=true
 androidpackagenamingpolicy=lowercasecrc64
+<<<<<<< HEAD
 _nugetassetstimestamp=638655650312267389
+=======
+_nugetassetstimestamp=638655611024715801
+>>>>>>> main
 typemapkind=strings-asm
 androidmanifestplaceholders=
-projectfullpath=c:\users\janol\source\repos\itmda-hospice-app\hospiceapp\mauiapp1\mauiapp1.csproj
+projectfullpath=c:\users\local-dan\source\repos\itmda-hospice-app\hospiceapp\mauiapp1\mauiapp1.csproj
 androidusedesignerassembly=true
