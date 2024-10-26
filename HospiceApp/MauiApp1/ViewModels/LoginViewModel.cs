@@ -22,6 +22,7 @@ namespace MauiApp1.ViewModels
         [RelayCommand]
         public async Task Login()
         {
+            Console.WriteLine("LOGIN CODE RAN");
             var loginResult = await _requestManager.Login("/login", loginText, passwordText);
             if (true)
             {
