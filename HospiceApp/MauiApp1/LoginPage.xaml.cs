@@ -1,23 +1,18 @@
+using MauiApp1.Classes;
 using MauiApp1.Interfaces;
+using MauiApp1.Services;
 using MauiApp1.ViewModels;
 
-namespace MauiApp1;
-
-public partial class LoginPage : ContentPage
+namespace MauiApp1
 {
-    private readonly IRequestManager _requestManager;
-
-    // Parameterless constructor for the framework
-    public LoginPage()
+    public partial class LoginPage : ContentPage
     {
-        InitializeComponent();
+        public LoginPage(LoginViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
     }
 
-    // Constructor with dependency injection
-    public LoginPage(IRequestManager requestManager)
-        : this() // Call the parameterless constructor
-    {
-        _requestManager = requestManager;
-        BindingContext = new LoginViewModel(_requestManager);
-    }
 }
+

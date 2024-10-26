@@ -18,6 +18,43 @@ namespace MauiApp1.Services
             _abstractRequest = abstractRequest;
         }
 
+        public async Task<Caregiver?> GetCaregiverByIdAsync(int userId)
+        {
+            try
+            {
+                var jsonResponse = await _abstractRequest.AbstractRequestAsync($"/caregivers/{userId}", string.Empty);
+                return JsonSerializer.Deserialize<Caregiver>(jsonResponse);
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine($"Request error: {e.Message}");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected error: {ex.Message}");
+                return null;
+            }
+        }
+
+        public async Task<Patient?> GetPatientByIdAsync(int userId)
+        {
+            try
+            {
+                var jsonResponse = await _abstractRequest.AbstractRequestAsync($"/patients/{userId}", string.Empty);
+                return JsonSerializer.Deserialize<Patient>(jsonResponse);
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine($"Request error: {e.Message}");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected error: {ex.Message}");
+                return null;
+            }
+        }
 
         public async Task<User?> Login(string method, string email, string password)
         {
@@ -31,14 +68,23 @@ namespace MauiApp1.Services
                 string json = JsonSerializer.Serialize(jObject);
 
                 var jsonResponse = await _abstractRequest.AbstractRequestAsync("/login", json);
-                var data = JsonSerializer.Deserialize<User>(jsonResponse);
+                var user = JsonSerializer.Deserialize<User>(jsonResponse);
 
-                if (data == null)
+                if (user == null)
                 {
                     Console.WriteLine("Failed to deserialize the response.");
                     return null;
                 }
-                return data;
+                // Fetch additional details based on the role
+                if (user.Role == "Patient")
+                {
+                    return await GetPatientByIdAsync(user.UserID);
+                }
+                else if (user.Role == "Caregiver")
+                {
+                    return await GetCaregiverByIdAsync(user.UserID);
+                }
+                return user;
             }
             catch (HttpRequestException e)
             {
