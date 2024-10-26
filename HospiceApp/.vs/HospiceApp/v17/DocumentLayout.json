@@ -7,6 +7,7 @@
   "WorkspaceRootPath": "C:\\Users\\local-dan\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\",
   "Documents": [
     {
+<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\local-dan\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -20,18 +21,39 @@
     {
       "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\local-dan\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> Login-Branch
     },
     {
       "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\local-dan\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\local-dan\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\services\\requestmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\services\\requestmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\local-dan\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\interfaces\\irequestmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\interfaces\\irequestmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\viewmodels\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|c:\\users\\janol\\source\\repos\\itmda-hospice-app\\hospiceapp\\mauiapp1\\homepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{D0C58329-C686-43D7-B8FD-64D67B2EA458}|MauiApp1\\MauiApp1.csproj|solutionrelative:mauiapp1\\homepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+>>>>>>> Login-Branch
     }
   ],
 >>>>>>> main
@@ -43,10 +65,14 @@
         {
           "DockedWidth": 200,
 <<<<<<< HEAD
+<<<<<<< HEAD
           "SelectedChildIndex": -1,
 =======
           "SelectedChildIndex": 8,
 >>>>>>> main
+=======
+          "SelectedChildIndex": 4,
+>>>>>>> Login-Branch
           "Children": [
             {
               "$type": "Bookmark",
@@ -68,6 +94,7 @@
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 2,
               "Title": "MauiApp1.csproj",
               "DocumentMoniker": "C:\\Users\\local-dan\\Source\\Repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\MauiApp1.csproj",
@@ -125,12 +152,22 @@
               "ToolTip": "C:\\Users\\local-dan\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\ViewModels\\LoginViewModel.cs*",
               "RelativeToolTip": "MauiApp1\\ViewModels\\LoginViewModel.cs*",
               "ViewState": "AgIAABAAAAAAAAAAAAAgwBkAAAAzAAAAAAAAAA==",
+=======
+              "DocumentIndex": 0,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\MauiProgram.cs",
+              "ToolTip": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\MauiProgram.cs",
+              "RelativeToolTip": "MauiApp1\\MauiProgram.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABQAAAA8AAAAAAAAAA==",
+>>>>>>> Login-Branch
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-26T12:29:01.576Z",
+              "WhenOpened": "2024-10-26T16:03:17.638Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 6,
               "Title": "IRequestManager.cs",
               "DocumentMoniker": "C:\\Users\\local-dan\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\Interfaces\\IRequestManager.cs",
@@ -153,6 +190,70 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-26T12:28:03.111Z"
 >>>>>>> main
+=======
+              "DocumentIndex": 4,
+              "Title": "LoginViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\ViewModels\\LoginViewModel.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\ViewModels\\LoginViewModel.cs",
+              "ToolTip": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\ViewModels\\LoginViewModel.cs",
+              "RelativeToolTip": "MauiApp1\\ViewModels\\LoginViewModel.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-26T16:02:16.07Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\LoginPage.xaml.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\LoginPage.xaml.cs",
+              "ToolTip": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\LoginPage.xaml.cs",
+              "RelativeToolTip": "MauiApp1\\LoginPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-26T16:01:44.691Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "HomePage.xaml",
+              "DocumentMoniker": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\HomePage.xaml",
+              "RelativeDocumentMoniker": "MauiApp1\\HomePage.xaml",
+              "ToolTip": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\HomePage.xaml",
+              "RelativeToolTip": "MauiApp1\\HomePage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-10-26T16:01:19.701Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\App.xaml.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\App.xaml.cs",
+              "RelativeToolTip": "MauiApp1\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-26T15:59:54.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AppShell.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\AppShell.xaml.cs",
+              "RelativeDocumentMoniker": "MauiApp1\\AppShell.xaml.cs",
+              "ToolTip": "C:\\Users\\janol\\source\\repos\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\AppShell.xaml.cs",
+              "RelativeToolTip": "MauiApp1\\AppShell.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-26T15:59:53.203Z",
+              "EditorCaption": ""
+>>>>>>> Login-Branch
             }
           ]
         }

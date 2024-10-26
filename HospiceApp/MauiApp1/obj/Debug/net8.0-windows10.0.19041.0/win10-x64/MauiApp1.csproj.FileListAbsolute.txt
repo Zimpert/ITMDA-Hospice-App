@@ -11,6 +11,7 @@ C:\Users\Dyl\Documents\Programming Repo\C#\School Proj\ITMDA-Hospice-App\Hospice
 C:\Users\Dyl\Documents\Programming Repo\C#\School Proj\ITMDA-Hospice-App\HospiceApp\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\XamlSaveStateFile.xml
 C:\Users\Dyl\Documents\Programming Repo\C#\School Proj\ITMDA-Hospice-App\HospiceApp\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\MauiApp1.GeneratedMSBuildEditorConfig.editorconfig
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 C:\Users\janol\Source\Repos\ITMDA-Hospice-App\HospiceApp\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\MauiApp1.csproj.AssemblyReference.cache
 C:\Users\janol\Source\Repos\ITMDA-Hospice-App\HospiceApp\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\mauiimage.inputs
@@ -277,3 +278,5 @@ C:\Users\local-dan\Source\Repos\ITMDA-Hospice-App\HospiceApp\MauiApp1\obj\Debug\
 C:\Users\local-dan\Source\Repos\ITMDA-Hospice-App\HospiceApp\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
 C:\Users\local-dan\Source\Repos\ITMDA-Hospice-App\HospiceApp\MauiApp1\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\ProjectArchitectures.txt
 >>>>>>> main
+=======
+>>>>>>> Login-Branch
