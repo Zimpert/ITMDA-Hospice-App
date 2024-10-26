@@ -24,7 +24,11 @@ androidgeneratejnimarshalmethods=false
 os=windows_nt
 androidincludedebugsymbols=true
 androidpackagenamingpolicy=lowercasecrc64
+<<<<<<< HEAD
+_nugetassetstimestamp=638655650312267389
+=======
 _nugetassetstimestamp=638655611024715801
+>>>>>>> main
 typemapkind=strings-asm
 androidmanifestplaceholders=
 projectfullpath=c:\users\local-dan\source\repos\itmda-hospice-app\hospiceapp\mauiapp1\mauiapp1.csproj
