@@ -15,6 +15,7 @@ namespace MauiApp1.ViewModels
         public LoginViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
+            // Test to see if working
         }
 
         [ObservableProperty]
