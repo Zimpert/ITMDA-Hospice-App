@@ -9,12 +9,11 @@ using System.Threading.Tasks;
 
 namespace MauiApp1.Interfaces
 {
-    public  interface IRequestManager
+    public interface IRequestManager
     {
         Task<Patient?> PostPatientAsync(string method);
-
-         Task<User?> Login(string method, string email, string password);
-
-
+        Task<User?> Login(string method, string email, string password);
+        Task<Patient?> GetPatientByIdAsync(int userId);
+        Task<Caregiver?> GetCaregiverByIdAsync(int userId);
     }
 }

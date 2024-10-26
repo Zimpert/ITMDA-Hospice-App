@@ -10,12 +10,14 @@ namespace MauiApp1
 
     public static class MauiProgram
     {
+
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
-            builder.Services.AddSingleton<AbstractRequest>();
             builder.Services.AddSingleton<HttpClient>();
+            builder.Services.AddSingleton<AbstractRequest>();
             builder.Services.AddSingleton<IRequestManager, RequestManager>();
+            builder.Services.AddTransient<LoginPage>(); // Register LoginPage with DI
             builder.Services.AddTransient<LoginViewModel>();
 
             builder
