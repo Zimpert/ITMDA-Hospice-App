@@ -3,6 +3,7 @@ build_property.EnableAotAnalyzer =
 build_property.EnableSingleFileAnalyzer = 
 build_property.EnableTrimAnalyzer = false
 build_property.IncludeAllContentForSelfExtract = 
+build_property.MvvmToolkitEnableINotifyPropertyChangingSupport = true
 build_property.TargetFramework = net8.0-maccatalyst
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = 
@@ -15,51 +16,3 @@ build_property.RootNamespace = MauiApp1
 build_property.ProjectDir = C:\Users\Dyl\Documents\Programming Repo\C#\School Proj\ITMDA-Hospice-App\HospiceApp\MauiApp1\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
-
-[C:/Users/Dyl/Documents/Programming Repo/C\#/School Proj/ITMDA-Hospice-App/HospiceApp/MauiApp1/App.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.App.xaml
-build_metadata.AdditionalFiles.TargetPath = App.xaml
-build_metadata.AdditionalFiles.RelativePath = App.xaml
-
-[C:/Users/Dyl/Documents/Programming Repo/C\#/School Proj/ITMDA-Hospice-App/HospiceApp/MauiApp1/AppShell.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.AppShell.xaml
-build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
-build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
-
-[C:/Users/Dyl/Documents/Programming Repo/C\#/School Proj/ITMDA-Hospice-App/HospiceApp/MauiApp1/HomePage.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.HomePage.xaml
-build_metadata.AdditionalFiles.TargetPath = HomePage.xaml
-build_metadata.AdditionalFiles.RelativePath = HomePage.xaml
-
-[C:/Users/Dyl/Documents/Programming Repo/C\#/School Proj/ITMDA-Hospice-App/HospiceApp/MauiApp1/LoginPage.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.LoginPage.xaml
-build_metadata.AdditionalFiles.TargetPath = LoginPage.xaml
-build_metadata.AdditionalFiles.RelativePath = LoginPage.xaml
-
-[C:/Users/Dyl/Documents/Programming Repo/C\#/School Proj/ITMDA-Hospice-App/HospiceApp/MauiApp1/MainPage.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.MainPage.xaml
-build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
-build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
-
-[C:/Users/Dyl/Documents/Programming Repo/C\#/School Proj/ITMDA-Hospice-App/HospiceApp/MauiApp1/Resources/Styles/Colors.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.Resources.Styles.Colors.xaml
-build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
-build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
-
-[C:/Users/Dyl/Documents/Programming Repo/C\#/School Proj/ITMDA-Hospice-App/HospiceApp/MauiApp1/Resources/Styles/Styles.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.Resources.Styles.Styles.xaml
-build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
-build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
-
-[C:/Users/Dyl/Documents/Programming Repo/C\#/School Proj/ITMDA-Hospice-App/HospiceApp/MauiApp1/Views/NewPage1.xaml]
-build_metadata.AdditionalFiles.GenKind = Xaml
-build_metadata.AdditionalFiles.ManifestResourceName = MauiApp1.Views.NewPage1.xaml
-build_metadata.AdditionalFiles.TargetPath = Views\NewPage1.xaml
-build_metadata.AdditionalFiles.RelativePath = Views\NewPage1.xaml

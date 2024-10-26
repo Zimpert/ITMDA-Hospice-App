@@ -15,10 +15,10 @@ namespace MauiApp1.Models
         public Caregiver Caregiver { get; set; }
         public string PatientID { get; set; }
         public Patient Patient { get; set; }
-        public CaregiverRoleEnum CaregiverRole { get; set; }
         public string ReminderID { get; set; }
         public Reminders Reminders { get; set; }
-        public string ShiftID { get; set; }
-        public Shift Shift { get; set; }
+        
+        public DateTime ShiftStart { get; set; }
+        public DateTime ShiftEnd { get; set; }
     }
 }

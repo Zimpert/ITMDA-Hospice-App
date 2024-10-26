@@ -12,7 +12,7 @@ namespace MauiApp1.ViewModels
     {
         public DateTime ShiftStart { get; set; }
         public DateTime ShiftEnd { get; set; }
-        public Days Day { get; set; }
+        
         public Patient Patient { get; set; }
 
         //public User User { get; set; }

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "0+LcdzfgDMoWGpfayvKFxYwgcJbwejl2pykGp/MdhCa5D1hc5IpiJb9bYtalH6ZHCBcv5eDmeUcRgujfr/kxJQ==",
+  "dgSpecHash": "eV6Gzm/F5Wbu+xPknjaM2Y7VPPwLiUn7M0PFRpzZfSBYiKmAk7B5V5jUHnnOz9iRhqvdOtoJrHmAKfz07fo0Iw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Dyl\\Documents\\Programming Repo\\C#\\School Proj\\ITMDA-Hospice-App\\HospiceApp\\MauiApp1\\MauiApp1.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Dyl\\.nuget\\packages\\communitytoolkit.mvvm\\8.3.2\\communitytoolkit.mvvm.8.3.2.nupkg.sha512",
     "C:\\Users\\Dyl\\.nuget\\packages\\googlegson\\2.10.1.4\\googlegson.2.10.1.4.nupkg.sha512",
     "C:\\Users\\Dyl\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",
     "C:\\Users\\Dyl\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
