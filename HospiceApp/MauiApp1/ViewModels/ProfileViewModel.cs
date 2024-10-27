@@ -6,23 +6,20 @@ using MauiApp1.Interfaces;
 namespace MauiApp1.ViewModels
 {
     
-    public partial class ProfileViewModel : ObservableObject
+public partial class ProfileViewModel : ObservableObject
     {
         private readonly IRequestManager _requestManager;
 
+        // Backing field for the User property to store the user data
         [ObservableProperty]
-        private User _user;
-
-        public User User // Public property exposing user data
-        {
-            get => _user;
-            private set => SetProperty(ref _user, value);
-        }
+        private User user;
 
         public ProfileViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
-            _user = new User();
+
+            // Initialize the User property to avoid null reference issues
+            User = new User();
         }
 
         /// <summary>
@@ -42,10 +39,10 @@ namespace MauiApp1.ViewModels
             }
             else
             {
-                var userData = await _requestManager.GetUserDataAsync(userID, token);
+                User userData = await _requestManager.GetUserDataAsync(userID, token);
                 if (userData != null)
                 {
-                    _user = userData;
+                    User = userData;
                 }
             }
         }
