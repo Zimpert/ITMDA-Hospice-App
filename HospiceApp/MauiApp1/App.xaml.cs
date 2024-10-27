@@ -25,7 +25,7 @@ namespace MauiApp1
         /// <param name="serviceProvider">The service provider.</param>
         private async void CheckLoginStatus(IServiceProvider serviceProvider)
         {
-            var authToken = await SecureStorage.GetAsync("authToken");
+            var authToken = await SecureStorage.GetAsync("Token");
             if (!await _requestManager.ValidateToken())
             {
                 await Shell.Current.GoToAsync("///LoginPage");
