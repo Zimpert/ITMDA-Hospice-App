@@ -107,7 +107,7 @@ namespace MauiApp1.Services
 
         public async Task<bool> ValidateToken()
         {
-            var token = await SecureStorage.GetAsync("token");
+            var token = await SecureStorage.GetAsync("Token");
             if (string.IsNullOrEmpty(token))
             {
                 return false; // token missing 
