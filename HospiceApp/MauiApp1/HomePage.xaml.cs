@@ -12,7 +12,7 @@ public partial class HomePage : ContentPage
     private async void OnViewCarerClicked(object sender, EventArgs e)
     {
         // Navigate to View Carer page 
-        await DisplayAlert("Navigation", "View Carer button clicked", "OK");
+        await Shell.Current.GoToAsync("///ProfilePage"); // Navigate to the ProfilePage
     }
 
     private async void OnShiftPageClicked(object sender, EventArgs e)
