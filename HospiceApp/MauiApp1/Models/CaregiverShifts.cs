@@ -12,9 +12,9 @@ namespace MauiApp1.Models
     {
         public string CaregiverShiftID { get; set; }
         public string CaregiverID { get; set; }
-        public Caregiver Caregiver { get; set; }
+        public User Caregiver { get; set; }
         public string PatientID { get; set; }
-        public Patient Patient { get; set; }
+        public User Patient { get; set; }
         public string ReminderID { get; set; }
         public Reminders Reminders { get; set; }
         
