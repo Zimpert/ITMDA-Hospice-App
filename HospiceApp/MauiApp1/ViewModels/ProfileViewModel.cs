@@ -11,15 +11,19 @@ namespace MauiApp1.ViewModels
         private readonly IRequestManager _requestManager;
 
         [ObservableProperty]
-        private User user;
+        private User _user;
+
+        public User User // Public property exposing user data
+        {
+            get => _user;
+            private set => SetProperty(ref _user, value);
+        }
 
         public ProfileViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
-            User = new User();
+            _user = new User();
         }
-
-
 
         /// <summary>
         /// This method is called OnAppearing because it is intended to be invoked when the view associated with this ViewModel appears on the screen.
@@ -38,10 +42,10 @@ namespace MauiApp1.ViewModels
             }
             else
             {
-                User userData = await _requestManager.GetUserDataAsync(userID, token);
+                var userData = await _requestManager.GetUserDataAsync(userID, token);
                 if (userData != null)
                 {
-                    User = userData;
+                    _user = userData;
                 }
             }
         }
