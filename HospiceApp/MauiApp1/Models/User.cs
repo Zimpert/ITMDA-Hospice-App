@@ -8,7 +8,7 @@ namespace MauiApp1.Models
 {
     public class User
     {
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public string Role { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -18,6 +18,7 @@ namespace MauiApp1.Models
         public string Password { get; set; }
         public string? Token { get; set; }
         
+
 
     }
 }

@@ -16,10 +16,10 @@ namespace MauiApp1.Classes
             _httpClient = httpClient;
         }
 
-        public async Task<string> AbstractRequestAsync(string method, string parameters)
+        public async Task<string> AbstractRequestAsync(string endpoint, string parameters)
         {
             var stringC = new StringContent(parameters, Encoding.UTF8, "application/json"); // Specify content-type
-            HttpResponseMessage response = await _httpClient.PostAsync(baseURL + method, stringC);
+            HttpResponseMessage response = await _httpClient.PostAsync(baseURL + endpoint, stringC);
             response.EnsureSuccessStatusCode(); // Throws exception if not 2xx success code
             var jsonResponse = await response.Content.ReadAsStringAsync();
             return jsonResponse;

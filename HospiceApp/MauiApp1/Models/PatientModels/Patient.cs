@@ -8,9 +8,9 @@ namespace MauiApp1.Models.PatientModels
 {
     public class Patient : User
     {
-        public int PatientID { get; set; }
+        public string PatientID { get; set; }
 
-        public ContactBook ContactBook { get; set; }
+        public ContactBook? ContactBook { get; set; }
         public List<PatientMedication>? PatientMedications { get; set; }
         public List<Condition>? PatientConditions { get; set; }
 
