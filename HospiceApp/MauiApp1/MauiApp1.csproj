@@ -72,14 +72,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Models\Admin.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Include="Models\Admin.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.92" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.92" />

@@ -15,7 +15,7 @@ namespace MauiApp1.Models.PatientModels
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        public Patient Patient { get; set; }
+        public User Patient { get; set; }
         public Medication Medication { get; set; }
         public ICollection<PatientMedicationSchedule> MedicationSchedules { get; set; }
 

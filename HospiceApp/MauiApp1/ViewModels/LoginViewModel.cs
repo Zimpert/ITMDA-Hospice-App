@@ -15,7 +15,8 @@ namespace MauiApp1.ViewModels
         public LoginViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
-
+            loginText = string.Empty; // Initialize loginText
+            passwordText = string.Empty; // Initialize passwordText
         }
 
         [ObservableProperty]
@@ -28,83 +29,51 @@ namespace MauiApp1.ViewModels
         public async Task Login()
         {
             Debug.WriteLine("Login method called."); // Add this line to verify the method is called
-            //var loginResult = await _requestManager.LoginAsync(loginText, passwordText);
-            var loginResult = new Patient
+            var loginResult = await _requestManager.LoginAsync(LoginText, PasswordText);
+
+
+            //uncomment the following line to test the login page
+            loginResult = new User
             {
-                UserID = "1211",
+                UserID = "wqw",
                 Role = "Patient",
                 Name = "John",
                 Surname = "Doe",
                 PhoneNo = "123456789",
-                Email = "pete@gg.com",
-                Address = "1234 Main St",
-                PatientID = "211"
+                Email = "dasdsadsad",
+                Address = "dasdsadsad",
+                Token = "dasdsadsad"
             };
 
-            if (loginResult != null)//loginResult != null // Replace true with the condition to check if the login was successful
+            if (loginResult != null)
             {
                 Debug.WriteLine("Login successful."); // Add this line to verify the login was successful
 
-                if (loginResult is Patient patient)
+                var navigationParams = new User
                 {
-                    var navigationParams = new Patient
-                    {
-                        UserID = patient.UserID,
-                        Role = patient.Role,
-                        Name = patient.Name,
-                        Surname = patient.Surname,
-                        PhoneNo = patient.PhoneNo,
-                        Email = patient.Email,
-                        Address = patient.Address,
-                        Token = patient.Token,
-                        PatientID = patient.PatientID,
+                    UserID = loginResult.UserID,
+                    Role = loginResult.Role,
+                    Name = loginResult.Name,
+                    Surname = loginResult.Surname,
+                    PhoneNo = loginResult.PhoneNo,
+                    Email = loginResult.Email,
+                    Address = loginResult.Address,
+                    Token = loginResult.Token
+                };
 
-                    };
-                    // Navigate to the appropriate page for patients
-                    await Shell.Current.GoToAsync("//ProfilePage", true, new Dictionary<string, object>
+                if (Shell.Current != null)
+                {
+                    await Shell.Current.GoToAsync("///ProfilePage", true, new Dictionary<string, object>
                     {
                         { "User", navigationParams }
                     });
                 }
-                //else if (loginResult is Caregiver caregiver)
-                //{
-                //    var navigationParams = new Caregiver
-                //    {
-                //        UserID = caregiver.UserID,
-                //        Role = caregiver.Role,
-                //        Name = caregiver.Name,
-                //        Surname = caregiver.Surname,
-                //        PhoneNo = caregiver.PhoneNo,
-                //        Email = caregiver.Email,
-                //        Address = caregiver.Address,
-                //        Token = caregiver.Token,
-                //        CaregiverID = caregiver.CaregiverID
-                //    };
-                //    // Navigate to the appropriate page for caregivers
-                //    await Shell.Current.GoToAsync("//ProfilePage", true, new Dictionary<string, object>
-                //    {
-                //        { "User", navigationParams }
-                //    });
-                //}
                 else
                 {
-                    // Handle general user logic if needed( can become admin or familyMember)
-                    var navigationParams = new User
-                    {
-                        UserID = loginResult.UserID,
-                        Role = loginResult.Role,
-                        Name = loginResult.Name,
-                        Surname = loginResult.Surname,
-                        PhoneNo = loginResult.PhoneNo,
-                        Email = loginResult.Email,
-                        Address = loginResult.Address,
-                        Token = loginResult.Token
-                    };
-                    await Shell.Current.GoToAsync("//ProfilePage", true, new Dictionary<string, object>
-                    {
-                        { "User", navigationParams }
-                    });
+                    Debug.WriteLine("Shell.Current is null.");
                 }
+
+
             }
             else
             {
