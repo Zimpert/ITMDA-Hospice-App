@@ -12,5 +12,11 @@ namespace MauiApp1.Interfaces
     public interface IRequestManager
     {
         Task<User?> LoginAsync(string email, string password);
+
+        Task<User?> GetUserDataAsync(string userID, string token);
+
+        Task<bool> ValidateToken();
+
+
     }
 }
