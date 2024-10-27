@@ -4,6 +4,7 @@ using MauiApp1.Models;
 using MauiApp1.Models.PatientModels;
 using MauiApp1.ViewModels;
 using Microsoft.Maui.ApplicationModel.Communication;
+using System.Text;
 using System.Text.Json;
 
 namespace MauiApp1.Services
@@ -69,6 +70,12 @@ namespace MauiApp1.Services
             
             try
             {
+                // Hash the password using SHA256
+                using (var sha256 = System.Security.Cryptography.SHA256.Create())
+                {
+                    var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                    password = BitConverter.ToString(bytes).Replace("-", "").ToLower();
+                }
                 var jObject = new
                 {
                     Email = email,
@@ -84,6 +91,7 @@ namespace MauiApp1.Services
                     Console.WriteLine("Failed to deserialize the response.");
                     return null;
                 }
+                return user;
                 
             }
             catch (HttpRequestException e)

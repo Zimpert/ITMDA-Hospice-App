@@ -38,7 +38,7 @@ namespace MauiApp1.ViewModels
             }
             else
             {
-                var userData = await _requestManager.GetUserDataAsync(userID, token);
+                User userData = await _requestManager.GetUserDataAsync(userID, token);
                 if (userData != null)
                 {
                     User = userData;
