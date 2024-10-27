@@ -19,6 +19,9 @@ namespace MauiApp1
             builder.Services.AddSingleton<IRequestManager, RequestManager>();
             builder.Services.AddTransient<LoginPage>(); // Register LoginPage with DI
             builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<ProfilePage>(); // Register ProfilePage with DI
+            builder.Services.AddTransient<ProfileViewModel>();
+
 
             builder
                 .UseMauiApp<App>()

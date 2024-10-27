@@ -18,7 +18,7 @@ namespace MauiApp1.Services
             _abstractRequest = abstractRequest;
         }
 
-        public async Task<Caregiver?> GetCaregiverByIdAsync(int userId)
+        public async Task<Caregiver?> GetCaregiverByIdAsync(string userId)
         {
             try
             {
@@ -28,16 +28,15 @@ namespace MauiApp1.Services
             catch (HttpRequestException e)
             {
                 Console.WriteLine($"Request error: {e.Message}");
-                return null;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Unexpected error: {ex.Message}");
-                return null;
             }
+            return null;
         }
 
-        public async Task<Patient?> GetPatientByIdAsync(int userId)
+        public async Task<Patient?> GetPatientByIdAsync(string userId)
         {
             try
             {
@@ -47,17 +46,17 @@ namespace MauiApp1.Services
             catch (HttpRequestException e)
             {
                 Console.WriteLine($"Request error: {e.Message}");
-                return null;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Unexpected error: {ex.Message}");
-                return null;
             }
+            return null;
         }
 
-        public async Task<User?> Login(string method, string email, string password)
+        public async Task<User?> LoginAsync (string email, string password)
         {
+            
             try
             {
                 var jObject = new
@@ -76,29 +75,26 @@ namespace MauiApp1.Services
                     return null;
                 }
                 // Fetch additional details based on the role
-                if (user.Role == "Patient")
+                return user.Role switch
                 {
-                    return await GetPatientByIdAsync(user.UserID);
-                }
-                else if (user.Role == "Caregiver")
-                {
-                    return await GetCaregiverByIdAsync(user.UserID);
-                }
-                return user;
+                    // e.g. if the user is a patient, fetch the patient details
+                    "Patient" => await GetPatientByIdAsync(user.UserID),
+                    "Caregiver" => await GetCaregiverByIdAsync(user.UserID),
+                    _ => user
+                };
             }
             catch (HttpRequestException e)
             {
                 Console.WriteLine($"Request error: {e.Message}");
-                return null;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Unexpected error: {ex.Message}");
-                return null;
             }
+            return null;
         }
 
-        public Task<Patient?> PostPatientAsync(string method)
+        public Task<Patient?> PostPatientAsync(string param)
         {
             throw new NotImplementedException();
         }

@@ -11,7 +11,7 @@ namespace MauiApp1
         {
             InitializeComponent();
             BindingContext = viewModel;
-            //big fat penis
+            
         }
     }
 

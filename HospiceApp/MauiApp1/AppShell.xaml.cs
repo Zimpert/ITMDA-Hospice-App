@@ -10,7 +10,7 @@
 
             if (isLoggedIn)
             {
-                GoToAsync("//HomePage");
+                GoToAsync("//ProfilePage"); // change to homepage later
             }
             else
             {

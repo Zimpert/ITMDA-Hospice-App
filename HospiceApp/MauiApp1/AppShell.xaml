@@ -10,5 +10,6 @@
     <!-- Define routes for navigation -->
     <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate views:LoginPage}" />
     <ShellContent Route="HomePage" ContentTemplate="{DataTemplate views:HomePage}" />
+    <ShellContent Route="ProfilePage" ContentTemplate="{DataTemplate views:ProfilePage}" />
 
 </Shell>
