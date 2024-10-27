@@ -11,9 +11,6 @@ namespace MauiApp1.Interfaces
 {
     public interface IRequestManager
     {
-        Task<Patient?> PostPatientAsync(string param);
         Task<User?> LoginAsync(string email, string password);
-        Task<Patient?> GetPatientByIdAsync(string userId);
-        Task<Caregiver?> GetCaregiverByIdAsync(string userId);
     }
 }
