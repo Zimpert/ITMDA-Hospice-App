@@ -3,19 +3,63 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.ProfilePage"
              Title="Profile">
-    <StackLayout Padding="10">
-        <Label Text="User Profile" FontSize="Large" HorizontalOptions="Center" />
-        <Label Text="Name:" />
-        <Label Text="{Binding User.Name}" />
-        <Label Text="Surname:"  />
-        <Label Text="{Binding User.Surname}" />
-        <Label Text="Email:"  />
-        <Label Text="{Binding User.Email}" />
-        <Label Text="Phone Number:"  />
-        <Label Text="{Binding User.PhoneNo}" />
-        <Label Text="Address:"  />
-        <Label Text="{Binding User.Address}" />
-        <Label Text="Role:"  />
-        <Label Text="{Binding User.Role}" />
+    <StackLayout Padding="10" Spacing="15">
+        <!-- Navbar with Profile Icon, Title, and Settings Icon -->
+        <Grid Grid.Row="0" BackgroundColor="#EAEAEA" Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Back Button (Clickable) on the left -->
+            <ImageButton Grid.Column="0"
+             Source="back_icon.png"
+             BackgroundColor="Black"
+             WidthRequest="30"
+             HeightRequest="30"
+             VerticalOptions="Center"
+             Clicked="OnBackButtonTapped" />
+
+            <!-- Home Title in the center -->
+            <Label Grid.Column="1"
+            Text="Profile"
+            FontAttributes="Bold"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            FontSize="Title" />
+
+            <!-- Settings Icon (Clickable) on the right -->
+            <ImageButton Grid.Column="2"
+                  Source="settings_icon.png"
+                  BackgroundColor="Black"
+                  WidthRequest="30"
+                  HeightRequest="30"
+                  VerticalOptions="Center"
+                  Clicked="OnSettingsIconTapped" />
+        </Grid>
+
+        <!-- Input Fields -->
+        <StackLayout Spacing="10">
+            <Label Text="First name" />
+            <Entry Text="{Binding User.FirstName}" Placeholder="First name" BackgroundColor="#9b59b6" />
+
+            <Label Text="Last name" />
+            <Entry Text="{Binding User.LastName}" Placeholder="Last name" BackgroundColor="#9b59b6" />
+
+            <Label Text="Email" />
+            <Entry Text="{Binding User.Email}" Placeholder="Email" BackgroundColor="#9b59b6" />
+                          
+            <Label Text="Phone number" />
+            <Entry Text="{Binding User.PhoneNo}" Placeholder="Phone number" BackgroundColor="#9b59b6" />
+                         
+            <Label Text="Emergency contact" />
+            <Entry Text="{Binding User.EmergencyContact}" Placeholder="Not provided" BackgroundColor="#9b59b6" />
+                
+        </StackLayout>
+
+        <!-- Update Information Button -->
+        <Button Text="Update Information" BackgroundColor="Green" TextColor="White" 
+                HeightRequest="50" HorizontalOptions="FillAndExpand" />
     </StackLayout>
 </ContentPage>

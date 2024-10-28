@@ -7,4 +7,11 @@
     <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate views:LoginPage}" />
     <ShellContent Route="HomePage" ContentTemplate="{DataTemplate views:HomePage}" />
     <ShellContent Route="ProfilePage" ContentTemplate="{DataTemplate views:ProfilePage}" />
+    <ShellContent Route="SettingsPage" ContentTemplate="{DataTemplate views:SettingsPage}" />
+    <ShellContent Route="ViewCarerPage" ContentTemplate="{DataTemplate views:ViewCarerPage}" />
+    <ShellContent Route="ShiftPage" ContentTemplate="{DataTemplate views:ShiftPage}" />
+    <ShellContent Route="NotificationPage" ContentTemplate="{DataTemplate views:NotificationPage}" />
+    <ShellContent Route="QRScanPage" ContentTemplate="{DataTemplate views:QRScanPage}" />
+    <ShellContent Route="MedicationListPage" ContentTemplate="{DataTemplate views:MedicationListPage}" />
+    <ShellContent Route="MedicationTrackerPage" ContentTemplate="{DataTemplate views:MedicationTrackerPage}" />
 </Shell>

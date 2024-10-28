@@ -3,45 +3,123 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.HomePage"
              Title="HomePage">
-    
-    <Grid Padding="20" RowSpacing="20" ColumnSpacing="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        <!-- Top section with Profile Icon and Settings -->
-        <StackLayout Orientation="Horizontal" Grid.Row="0" HorizontalOptions="Center">
-            <Image Source="profile_icon.png" WidthRequest="30" HeightRequest="30"/>
-            <Label Text="Home" FontAttributes="Bold" VerticalOptions="Center"/>
-            <Image Source="settings_icon.png" WidthRequest="30" HeightRequest="30" HorizontalOptions="EndAndExpand"/>
-        </StackLayout>
-
-        <!-- Button Grid -->
-        <Grid Grid.Row="1" RowSpacing="15" ColumnSpacing="15">
+    <ContentPage.Content>
+        <Grid Padding="20" RowSpacing="20" ColumnSpacing="20">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
 
-            <!-- Navigation Buttons -->
-            <Button Grid.Row="0" Grid.Column="0" Text="View Carer" BackgroundColor="#9b59b6" TextColor="White" Clicked="OnViewCarerClicked"/>
-            <Button Grid.Row="0" Grid.Column="1" Text="Shift Page" BackgroundColor="#9b59b6" TextColor="White" Clicked="OnShiftPageClicked"/>
-            <Button Grid.Row="1" Grid.Column="0" Text="Notification Page" BackgroundColor="#9b59b6" TextColor="White" Clicked="OnNotificationPageClicked"/>
-            <Button Grid.Row="1" Grid.Column="1" Text="QR Scan Page" BackgroundColor="#9b59b6" TextColor="White" Clicked="OnQRScanPageClicked"/>
-            <Button Grid.Row="2" Grid.Column="0" Text="Medication List" BackgroundColor="#9b59b6" TextColor="White" Clicked="OnMedicationListClicked"/>
-            <Button Grid.Row="2" Grid.Column="1" Text="Medication Tracker" BackgroundColor="#9b59b6" TextColor="White" Clicked="OnMedicationTrackerClicked"/>
-            
+            <!-- Navbar with Profile Icon, Title, and Settings Icon -->
+            <Grid Grid.Row="0" BackgroundColor="#EAEAEA" Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Profile Icon (Clickable) on the left -->
+                <ImageButton Grid.Column="0"
+                             Source="profile_icon.png"
+                             BackgroundColor="Black"
+                             WidthRequest="30"
+                             HeightRequest="30"
+                             VerticalOptions="Center"
+                             Clicked="OnProfileIconTapped" />
+
+                <!-- Home Title in the center -->
+                <Label Grid.Column="1"
+                       Text="Home"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       FontSize="Title" />
+
+                <!-- Settings Icon (Clickable) on the right -->
+                <ImageButton Grid.Column="2"
+                             Source="settings_icon.png"
+                             BackgroundColor="Black"
+                             WidthRequest="30"
+                             HeightRequest="30"
+                             VerticalOptions="Center"
+                             Clicked="OnSettingsIconTapped" />
+            </Grid>
+
+            <!-- Button Grid with Icons and Text -->
+            <Grid Grid.Row="1" RowSpacing="15" ColumnSpacing="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Button-like Frames with Icons and Labels -->
+                <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#9b59b6" CornerRadius="10" HasShadow="False">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Padding="10">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnViewCarerClicked" />
+                        </StackLayout.GestureRecognizers>
+                        <Image Source="view_carer_icon.png" WidthRequest="30" HeightRequest="30"/>
+                        <Label Text="View Carer" TextColor="White" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="#9b59b6" CornerRadius="10" HasShadow="False">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Padding="10">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnShiftPageClicked" />
+                        </StackLayout.GestureRecognizers>
+                        <Image Source="shift_page_icon.png" WidthRequest="30" HeightRequest="30"/>
+                        <Label Text="Shift Page" TextColor="White" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="#9b59b6" CornerRadius="10" HasShadow="False">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Padding="10">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnNotificationPageClicked" />
+                        </StackLayout.GestureRecognizers>
+                        <Image Source="notification_icon.png" WidthRequest="30" HeightRequest="30"/>
+                        <Label Text="Notification Page" TextColor="White" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="#9b59b6" CornerRadius="10" HasShadow="False">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Padding="10">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnQRScanPageClicked" />
+                        </StackLayout.GestureRecognizers>
+                        <Image Source="qr_scan_icon.png" WidthRequest="30" HeightRequest="30"/>
+                        <Label Text="QR Scan Page" TextColor="White" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Grid.Row="2" Grid.Column="0" BackgroundColor="#9b59b6" CornerRadius="10" HasShadow="False">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Padding="10">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMedicationListClicked" />
+                        </StackLayout.GestureRecognizers>
+                        <Image Source="medication_list_icon.png" WidthRequest="30" HeightRequest="30"/>
+                        <Label Text="Medication List" TextColor="White" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Grid.Row="2" Grid.Column="1" BackgroundColor="#9b59b6" CornerRadius="10" HasShadow="False">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center" Padding="10">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMedicationTrackerClicked" />
+                        </StackLayout.GestureRecognizers>
+                        <Image Source="medication_tracker_icon.png" WidthRequest="30" HeightRequest="30"/>
+                        <Label Text="Medication Tracker" TextColor="White" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+            </Grid>
         </Grid>
-    </Grid>
+    </ContentPage.Content>
 
 </ContentPage>
