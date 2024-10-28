@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.PatientQR">
+
+    <StackLayout Padding="20" BackgroundColor="White">
+
+        <!-- Header with title and settings icon -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Back Arrow -->
+            <Image Source="arrow_left.png" 
+                   VerticalOptions="Center"  
+                   HeightRequest="40"
+                   WidthRequest="40"/>
+
+            <!-- Title -->
+            <Label Text="QR Code" 
+                   Grid.Column="1" 
+                   FontSize="Title" 
+                   TextColor="Black"
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center" />
+
+            <!-- Settings Icon -->
+            <Image Source="settings.png" 
+                   Grid.Column="2" 
+                   VerticalOptions="Center" 
+                   HeightRequest="40"
+                   WidthRequest="40" />
+        </Grid>
+
+        <!-- Main Heading -->
+        <Label Text="Scan QR Code" 
+               FontSize="Large" 
+               FontAttributes="Bold"
+               TextColor="Black"
+               HorizontalOptions="Start"
+               Margin="0,20,0,10"/>
+
+        <!-- Instructional Text -->
+        <Label Text="Scan the QR code to clock in your carer!"
+               FontSize="Medium"
+               TextColor="Gray"
+               HorizontalOptions="Start" />
+
+        <Label Text="Click the “Start Scanning” Button"
+               FontSize="Small"
+               TextColor="Gray"
+               HorizontalOptions="Start"
+               Margin="0,0,0,20" />
+
+        <!-- Camera Icon and Instructions -->
+        <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="0,0,0,20">
+            <Image Source="placeholder.png" 
+                   HeightRequest="100" 
+                   WidthRequest="100" 
+                   VerticalOptions="Center" 
+                   Margin="0,0,10,0"/>
+            <StackLayout>
+                <Label Text="Use the camera to scan" 
+                       FontSize="Medium"
+                       TextColor="Black" />
+                <Label Text="Give access to your camera when prompted."
+                       FontSize="Small"
+                       TextColor="Gray" />
+            </StackLayout>
+        </StackLayout>
+
+        <!-- Start Scanning Button -->
+        <Button Text="Start Scanning" 
+                BackgroundColor="Green" 
+                TextColor="White" 
+                FontSize="Medium"
+                CornerRadius="10"
+                VerticalOptions="End" 
+                HorizontalOptions="FillAndExpand"
+                Margin="0,20,0,0">
+        </Button>
+
+    </StackLayout>
+
+</ContentPage>
