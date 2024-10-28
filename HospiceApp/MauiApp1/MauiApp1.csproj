@@ -83,6 +83,30 @@
 	  <MauiXaml Update="CaretakerQR.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <Compile Update="ViewCarerPage.xaml.cs">
+	    <DependentUpon>ViewCarerPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="ShiftPage.xaml.cs">
+	    <DependentUpon>ShiftPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="NotificationPage.xaml.cs">
+	    <DependentUpon>NotificationPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="QRScanPage.xaml.cs">
+	    <DependentUpon>QRScanPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="MedicationListPage.xaml.cs">
+	    <DependentUpon>MedicationListPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="MedicationTrackerPage.xaml.cs">
+	    <DependentUpon>MedicationTrackerPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="SettingsPage.xaml.cs">
+	    <DependentUpon>SettingsPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -90,6 +114,27 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="PatientQR.xaml">
+		<Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewCarerPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ShiftPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="NotificationPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="QRScanPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MedicationListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MedicationTrackerPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="ProfilePage.xaml">
