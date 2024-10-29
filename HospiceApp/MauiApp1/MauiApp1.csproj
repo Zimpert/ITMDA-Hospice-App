@@ -72,19 +72,38 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Models\Admin.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Include="Models\Admin.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.92" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.92" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
 		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="CaretakerQR.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <Compile Update="ViewCarerPage.xaml.cs">
+	    <DependentUpon>ViewCarerPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="ShiftPage.xaml.cs">
+	    <DependentUpon>ShiftPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="NotificationPage.xaml.cs">
+	    <DependentUpon>NotificationPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="QRScanPage.xaml.cs">
+	    <DependentUpon>QRScanPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="MedicationListPage.xaml.cs">
+	    <DependentUpon>MedicationListPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="MedicationTrackerPage.xaml.cs">
+	    <DependentUpon>MedicationTrackerPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="SettingsPage.xaml.cs">
+	    <DependentUpon>SettingsPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -92,6 +111,33 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="PatientQR.xaml">
+		<Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewCarerPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ShiftPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="NotificationPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="QRScanPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MedicationListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MedicationTrackerPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ProfilePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

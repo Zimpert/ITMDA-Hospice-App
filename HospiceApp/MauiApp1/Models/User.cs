@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MauiApp1.Models.PatientModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,16 +9,19 @@ namespace MauiApp1.Models
 {
     public class User
     {
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public string Role { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string? PhoneNo { get; set; }
         public string Email { get; set; }
-        public string Address { get; set; }
-        public string Password { get; set; }
+        public string? Address { get; set; }
         public string? Token { get; set; }
-        
+        public ContactBook? ContactBook { get; set; }
+        public List<PatientMedication>? PatientMedications { get; set; }
+        public List<Condition>? PatientConditions { get; set; }
+
+
 
     }
 }

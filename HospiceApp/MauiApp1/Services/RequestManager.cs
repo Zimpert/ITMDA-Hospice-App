@@ -3,6 +3,8 @@ using MauiApp1.Interfaces;
 using MauiApp1.Models;
 using MauiApp1.Models.PatientModels;
 using MauiApp1.ViewModels;
+using Microsoft.Maui.ApplicationModel.Communication;
+using System.Text;
 using System.Text.Json;
 
 namespace MauiApp1.Services
@@ -18,48 +20,62 @@ namespace MauiApp1.Services
             _abstractRequest = abstractRequest;
         }
 
-        public async Task<Caregiver?> GetCaregiverByIdAsync(int userId)
+        public async Task<User?> GetUserDataAsync(string userID, string token)
         {
             try
             {
-                var jsonResponse = await _abstractRequest.AbstractRequestAsync($"/caregivers/{userId}", string.Empty);
-                return JsonSerializer.Deserialize<Caregiver>(jsonResponse);
+                // Create an anonymous object with userID and token
+                var jObject = new
+                {
+                    UserID = userID,
+                    Token = token
+                };
+
+                // Serialize the object to JSON
+                string json = JsonSerializer.Serialize(jObject);
+
+                // Send the JSON to the server and get the response
+                var jsonResponse = await _abstractRequest.AbstractRequestAsync("/userinfo", json);
+
+                // Deserialize the JSON response to a User object
+                var user = JsonSerializer.Deserialize<User>(jsonResponse);
+
+                // Check if deserialization was successful
+                if (user == null)
+                {
+                    Console.WriteLine("Failed to deserialize the response.");
+                    return null;
+                }
+
+                // Return the user object
+                return user;
             }
             catch (HttpRequestException e)
             {
+                // Handle HTTP request errors
                 Console.WriteLine($"Request error: {e.Message}");
-                return null;
             }
             catch (Exception ex)
             {
+                // Handle any other errors
                 Console.WriteLine($"Unexpected error: {ex.Message}");
-                return null;
             }
+
+            // Return null if an error occurred
+            return null;
         }
 
-        public async Task<Patient?> GetPatientByIdAsync(int userId)
+        public async Task<User?> LoginAsync (string email, string password)
         {
+            
             try
             {
-                var jsonResponse = await _abstractRequest.AbstractRequestAsync($"/patients/{userId}", string.Empty);
-                return JsonSerializer.Deserialize<Patient>(jsonResponse);
-            }
-            catch (HttpRequestException e)
-            {
-                Console.WriteLine($"Request error: {e.Message}");
-                return null;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Unexpected error: {ex.Message}");
-                return null;
-            }
-        }
-
-        public async Task<User?> Login(string method, string email, string password)
-        {
-            try
-            {
+                // Hash the password using SHA256
+                using (var sha256 = System.Security.Cryptography.SHA256.Create())
+                {
+                    var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                    password = BitConverter.ToString(bytes).Replace("-", "").ToLower();
+                }
                 var jObject = new
                 {
                     Email = email,
@@ -75,32 +91,51 @@ namespace MauiApp1.Services
                     Console.WriteLine("Failed to deserialize the response.");
                     return null;
                 }
-                // Fetch additional details based on the role
-                if (user.Role == "Patient")
-                {
-                    return await GetPatientByIdAsync(user.UserID);
-                }
-                else if (user.Role == "Caregiver")
-                {
-                    return await GetCaregiverByIdAsync(user.UserID);
-                }
                 return user;
+                
             }
             catch (HttpRequestException e)
             {
                 Console.WriteLine($"Request error: {e.Message}");
-                return null;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Unexpected error: {ex.Message}");
-                return null;
             }
+            return null;
         }
 
-        public Task<Patient?> PostPatientAsync(string method)
+        public async Task<bool> ValidateToken()
         {
-            throw new NotImplementedException();
+            var token = await SecureStorage.GetAsync("Token");
+            if (string.IsNullOrEmpty(token))
+            {
+                return false; // token missing 
+            }
+
+            try
+            {
+                var jObject = new
+                {
+                    Token = token
+                };
+                string json = JsonSerializer.Serialize(jObject);
+
+                var jsonResponse = await _abstractRequest.AbstractRequestAsync("/prelogin", json);
+                var result = JsonSerializer.Deserialize<bool>(jsonResponse);
+
+                return result;
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine($"Request error: {e.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Unexpected error: {ex.Message}");
+            }
+            return false;
+
         }
     }
 

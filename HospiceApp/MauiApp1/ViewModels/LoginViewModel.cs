@@ -15,7 +15,8 @@ namespace MauiApp1.ViewModels
         public LoginViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
-            // AWESOME NEW FEATURE
+            loginText = string.Empty; // Initialize loginText
+            passwordText = string.Empty; // Initialize passwordText
         }
 
         [ObservableProperty]
@@ -27,17 +28,32 @@ namespace MauiApp1.ViewModels
         [RelayCommand]
         public async Task Login()
         {
-            Debug.WriteLine("Login method called."); // Add this line to verify the method is called
-            var loginResult = await _requestManager.Login("/login", loginText, passwordText);
+            Debug.WriteLine("Login method called.");
+            var loginResult = await _requestManager.LoginAsync(LoginText, PasswordText);
+
             if (loginResult != null)
             {
-                Debug.WriteLine("Login successful."); // Add this line to verify the login was successful
-                                                      // Navigate to the appropriate page based on the user's role
-                await Shell.Current.GoToAsync("//HomePage");
+                Debug.WriteLine("Login successful."); 
+                var navigationParams = new User
+                {
+                    UserID = loginResult.UserID,
+                    Token = loginResult.Token
+                };
+
+                if (Shell.Current != null)
+                {
+                    await SecureStorage.SetAsync("Token", loginResult.Token);
+                    await SecureStorage.SetAsync("UserID", loginResult.UserID);
+                    await Shell.Current.GoToAsync("///HomePage"); // Navigate to the HomePage
+                }
+                else
+                {
+                    Debug.WriteLine("Shell.Current is null.");
+                }
             }
             else
             {
-                Debug.WriteLine("Login failed."); // Add this line to verify the login failed
+                Debug.WriteLine("Login failed.");
             }
         }
     }
