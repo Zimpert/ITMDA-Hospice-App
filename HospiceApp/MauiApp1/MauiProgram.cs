@@ -1,4 +1,5 @@
-﻿using MauiApp1.Classes;
+﻿using CommunityToolkit.Maui;
+using MauiApp1.Classes;
 using MauiApp1.Interfaces;
 using MauiApp1.Services;
 using MauiApp1.ViewModels;
@@ -31,6 +32,7 @@ namespace MauiApp1
             // Configure the Maui application  
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     // Register fonts with the application  
