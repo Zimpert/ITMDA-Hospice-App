@@ -20,7 +20,6 @@ namespace MauiApp1.ViewModels
         }
 
 
-
         /// <summary>
         /// This method is called OnAppearing because it is intended to be invoked when the view associated with this ViewModel appears on the screen.
         /// In a .NET MAUI application, this typically corresponds to the lifecycle event when a page becomes visible to the user.
