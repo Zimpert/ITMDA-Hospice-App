@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.SettingsPage"
+             Title="SettingsPage">
+    <StackLayout Padding="10" Spacing="15">
+        <!-- Navbar with Profile Icon, Title, and Settings Icon -->
+        <Grid Grid.Row="0" BackgroundColor="#EAEAEA" Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Back Button (Clickable) on the left -->
+            <ImageButton Grid.Column="0"
+      Source="back_icon.png"
+      BackgroundColor="Black"
+      WidthRequest="30"
+      HeightRequest="30"
+      VerticalOptions="Center"
+      Clicked="OnBackButtonTapped" />
+
+            <!-- Home Title in the center -->
+            <Label Grid.Column="1"
+     Text="Settings"
+     FontAttributes="Bold"
+     VerticalOptions="Center"
+     HorizontalOptions="Center"
+     FontSize="Title" />
+
+            <!-- Settings Icon (Clickable) on the right -->
+            <ImageButton Grid.Column="2"
+           Source="settings_icon.png"
+           BackgroundColor="Black"
+           WidthRequest="30"
+           HeightRequest="30"
+           VerticalOptions="Center"
+           Clicked="OnSettingsIconTapped" />
+        </Grid>
+    </StackLayout>
+</ContentPage>

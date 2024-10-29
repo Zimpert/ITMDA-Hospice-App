@@ -6,19 +6,21 @@ using MauiApp1.Interfaces;
 namespace MauiApp1.ViewModels
 {
     
-    public partial class ProfileViewModel : ObservableObject
+public partial class ProfileViewModel : ObservableObject
     {
         private readonly IRequestManager _requestManager;
 
+        // Backing field for the User property to store the user data
         [ObservableProperty]
         private User user;
 
         public ProfileViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
+
+            // Initialize the User property to avoid null reference issues
             User = new User();
         }
-
 
         /// <summary>
         /// This method is called OnAppearing because it is intended to be invoked when the view associated with this ViewModel appears on the screen.

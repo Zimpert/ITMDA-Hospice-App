@@ -4,12 +4,51 @@
              x:Class="MauiApp1.LoginPage"
              xmlns:viewModels="clr-namespace:MauiApp1.ViewModels"
              x:DataType="viewModels:LoginViewModel"
-             Title="LoginPage">
-    
-    <StackLayout Padding="30">
-        <Label Text="Login" FontSize="24" HorizontalOptions="Center" />
-        <Entry Placeholder="Email" Text="{Binding LoginText}"/>
-        <Entry Placeholder="Password" IsPassword="True" Text="{Binding PasswordText}"/>
-        <Button Text="Login" Command="{Binding LoginCommand}"/>
-    </StackLayout>
+             Title="LoginPage"
+             BackgroundColor="#f5f5f5">
+
+    <VerticalStackLayout Padding="40" Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
+        <!-- Title -->
+        <Label Text="Welcome!"
+               FontSize="32"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="#333" />
+
+        <!-- Subtitle -->
+        <Label Text="Please login to continue"
+               FontSize="16"
+               HorizontalOptions="Center"
+               TextColor="#888" />
+
+        <!-- Email Entry -->
+        <Frame BackgroundColor="White" CornerRadius="10" HasShadow="True" Padding="10">
+            <Entry Placeholder="Email"
+                   Text="{Binding LoginText}"
+                   Keyboard="Email"
+                   PlaceholderColor="#aaa"
+                   TextColor="#333"
+                   FontSize="16" />
+        </Frame>
+
+        <!-- Password Entry -->
+        <Frame BackgroundColor="White" CornerRadius="10" HasShadow="True" Padding="10">
+            <Entry Placeholder="Password"
+                   IsPassword="True"
+                   Text="{Binding PasswordText}"
+                   PlaceholderColor="#aaa"
+                   TextColor="#333"
+                   FontSize="16" />
+        </Frame>
+
+        <!-- Login Button -->
+        <Button Text="Login"
+                Command="{Binding LoginCommand}"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                CornerRadius="10"
+                FontSize="18"
+                HeightRequest="50"
+                HorizontalOptions="FillAndExpand" />
+    </VerticalStackLayout>
 </ContentPage>
