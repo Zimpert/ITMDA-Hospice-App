@@ -14,5 +14,5 @@
     <ShellContent Route="CaretakerQR" ContentTemplate="{DataTemplate views:CaretakerQR}" />
     <ShellContent Route="MedicationListPage" ContentTemplate="{DataTemplate views:MedicationListPage}" />
     <ShellContent Route="MedicationTrackerPage" ContentTemplate="{DataTemplate views:MedicationTrackerPage}" />
-    
+    <ShellContent Route="TaskPage" ContentTemplate="{DataTemplate views:TaskPage}" />
 </Shell>
