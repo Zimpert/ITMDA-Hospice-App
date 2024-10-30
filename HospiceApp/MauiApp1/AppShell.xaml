@@ -9,9 +9,9 @@
     <ShellContent Route="ProfilePage" ContentTemplate="{DataTemplate views:ProfilePage}" />
     <ShellContent Route="SettingsPage" ContentTemplate="{DataTemplate views:SettingsPage}" />
     <ShellContent Route="ViewCarerPage" ContentTemplate="{DataTemplate views:ViewCarerPage}" />
-    <ShellContent Route="ShiftPage" ContentTemplate="{DataTemplate views:ShiftPage}" />
+    <ShellContent Route="ShiftsPage" ContentTemplate="{DataTemplate views:ShiftsPage}" />
     <ShellContent Route="NotificationPage" ContentTemplate="{DataTemplate views:NotificationPage}" />
-    <ShellContent Route="QRScanPage" ContentTemplate="{DataTemplate views:QRScanPage}" />
+    <ShellContent Route="CaretakerQR" ContentTemplate="{DataTemplate views:CaretakerQR}" />
     <ShellContent Route="MedicationListPage" ContentTemplate="{DataTemplate views:MedicationListPage}" />
     <ShellContent Route="MedicationTrackerPage" ContentTemplate="{DataTemplate views:MedicationTrackerPage}" />
     <ShellContent Route="TaskPage" ContentTemplate="{DataTemplate views:TaskPage}" />
