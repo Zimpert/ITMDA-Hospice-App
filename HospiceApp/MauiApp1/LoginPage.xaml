@@ -2,53 +2,54 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.LoginPage"
-             xmlns:viewModels="clr-namespace:MauiApp1.ViewModels"
-             x:DataType="viewModels:LoginViewModel"
-             Title="LoginPage"
-             BackgroundColor="#f5f5f5">
+             Shell.NavBarIsVisible="False"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#9b59b6"
+             xmlns:fontawesome="clr-namespace:MauiApp1.ViewModels">
 
-    <VerticalStackLayout Padding="40" Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
-        <!-- Title -->
-        <Label Text="Welcome!"
-               FontSize="32"
-               FontAttributes="Bold"
-               HorizontalOptions="Center"
-               TextColor="#333" />
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <!-- Subtitle -->
-        <Label Text="Please login to continue"
-               FontSize="16"
-               HorizontalOptions="Center"
-               TextColor="#888" />
+            <!-- Logo Image -->
+            <Image Grid.Row="0" Margin="0,30" Source="hospice.png" Aspect="AspectFit" HeightRequest="180" WidthRequest="80" />
 
-        <!-- Email Entry -->
-        <Frame BackgroundColor="White" CornerRadius="10" HasShadow="True" Padding="10">
-            <Entry Placeholder="Email"
-                   Text="{Binding LoginText}"
-                   Keyboard="Email"
-                   PlaceholderColor="#aaa"
-                   TextColor="#333"
-                   FontSize="16" />
-        </Frame>
+            <!-- Login Form Frame -->
+            <Frame Grid.Row="1" Margin="20,0,20,-40" BorderColor="Transparent" BackgroundColor="#FFFFFF" HasShadow="True" CornerRadius="30" HeightRequest="650">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="24" Padding="25,50,25,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-        <!-- Password Entry -->
-        <Frame BackgroundColor="White" CornerRadius="10" HasShadow="True" Padding="10">
-            <Entry Placeholder="Password"
-                   IsPassword="True"
-                   Text="{Binding PasswordText}"
-                   PlaceholderColor="#aaa"
-                   TextColor="#333"
-                   FontSize="16" />
-        </Frame>
+                    <!-- Welcome Text -->
+                    <Label Grid.Row="0" Text="Welcome Back!" FontSize="24" FontAttributes="Bold" TextColor="#9b59b6" HorizontalOptions="Center" />
+                    <Label Grid.Row="1" Margin="0,-15,0,0" Text="Login to your account" FontSize="16" TextColor="#1C375C" HorizontalOptions="Center" />
 
-        <!-- Login Button -->
-        <Button Text="Login"
-                Command="{Binding LoginCommand}"
-                BackgroundColor="#4CAF50"
-                TextColor="White"
-                CornerRadius="10"
-                FontSize="18"
-                HeightRequest="50"
-                HorizontalOptions="FillAndExpand" />
-    </VerticalStackLayout>
+                    <!-- Username Entry with Padding -->
+                    <Frame Grid.Row="2" BackgroundColor="#F0F0F0" CornerRadius="10" Padding="10" Margin="0,20,0,0" HasShadow="False">
+                        <Entry Placeholder="Username" PlaceholderColor="#AAAAAA" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="#333333" />
+                    </Frame>
+
+                    <!-- Password Entry with Padding -->
+                    <Frame Grid.Row="3" BackgroundColor="#F0F0F0" CornerRadius="10" Padding="10" HasShadow="False">
+                        <Entry Placeholder="Password" PlaceholderColor="#AAAAAA" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="#333333" />
+                    </Frame>
+
+                    <!-- Login Button -->
+                    <Button Grid.Row="4" Text="Login" BackgroundColor="#9b59b6" TextColor="White" CornerRadius="20" FontSize="18" HeightRequest="50" HorizontalOptions="FillAndExpand" />
+
+                    <!-- Forget Password Link -->
+                    <Label Grid.Row="5" Text="Forgot Password" FontAttributes="Bold" TextColor="#4CAF50" TextDecorations="Underline" HorizontalOptions="Center" />
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>

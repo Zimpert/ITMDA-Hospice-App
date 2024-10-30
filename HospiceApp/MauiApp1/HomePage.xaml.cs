@@ -18,7 +18,7 @@ public partial class HomePage : ContentPage
     private async void OnShiftPageClicked(object sender, EventArgs e)
     {
         // Navigate to Shift Page 
-        await Shell.Current.GoToAsync("///ShiftPage");
+        await Shell.Current.GoToAsync("///ShiftsPage");
     }
 
     private async void OnNotificationPageClicked(object sender, EventArgs e)
@@ -30,13 +30,13 @@ public partial class HomePage : ContentPage
     private async void OnQRScanPageClicked(object sender, EventArgs e)
     {
         // Navigate to QR Scan Page or perform 
-        await Shell.Current.GoToAsync("///QRScanPage");
+        await Shell.Current.GoToAsync("///CaretakerQR");
     }
 
     private async void OnMedicationListClicked(object sender, EventArgs e)
     {
         // Navigate to Medication List or perform 
-        await Shell.Current.GoToAsync("///MedicationListTracker");
+        await Shell.Current.GoToAsync("///MedicationListPage");
     }
 
     private async void OnMedicationTrackerClicked(object sender, EventArgs e)
