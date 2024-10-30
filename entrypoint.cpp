@@ -1,7 +1,7 @@
 #include "types.hpp"
 #include "webserver.hpp"
 #include "net/db_fetch.hpp"
-#include "login_credentials.hpp"
+#include "remote_db_credentials.hpp"
 #include <chrono>
 #include <thread>
 #include <tuple>
@@ -11,6 +11,7 @@
 #include <cppconn/exception.h>
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
+#include <atomic>
 #include <utility>
 
 /* Reminder:
@@ -25,11 +26,11 @@ i32 main() {
  net::socket::init_backend();
 
  if constexpr (false) {
-  auto data = net::db_fetch<int, net::get_field_type<net::mysql_field_type::str>>(
-   crd::host_port,
-   crd::username,
-   crd::password, 
-   "DB_Testing",
+  auto data = net::db_fetch<net::mysql_field_type::i32, net::mysql_field_type::str>(
+   credentials::remote::hostport,
+   credentials::remote::username,
+   credentials::remote::password, 
+   credentials::remote::database,
    "SELECT * FROM TB_Testing"
   );
   std::cout << "Testing:\n";
@@ -39,10 +40,11 @@ i32 main() {
  } else {
   webserver server;
   std::thread server_thread(&webserver::run, std::ref(server));
-  std::this_thread::sleep_for(30000ms);
+  //std::this_thread::sleep_for(30000ms);
   
-  server.stop();
+  //server.stop();
   server_thread.join();
+  std::cout << "Why...\n";
  }
 
  net::socket::deinit_backend();

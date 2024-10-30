@@ -1,0 +1,10 @@
+USE DB_HospiceSessions;
+
+CREATE TABLE TB_HospiceSession (
+ sToken VARCHAR(36) NOT NULL DEFAULT (UUID()),
+ sUserID VARCHAR(36) NOT NULL,
+ sCreated DATETIME NOT NULL DEFAULT NOW(),
+ 
+ CONSTRAINT HospiceSession_PK PRIMARY KEY (sToken),
+ CONSTRAINT HospiceSession_sUserID_UK UNIQUE (sUserID)
+);

@@ -13,6 +13,7 @@ set(CMAKE_GENERATOR "Visual Studio 17 2022")
 add_executable(itmda_webserver entrypoint.cpp
  webserver.cpp
  c:/se/personal/lib_cpp/net/socket.cpp
+ c:/se/personal/lib_cpp/net/db_exec.cpp
  c:/se/personal/lib_cpp/net/http_socket.cpp
  c:/se/personal/lib_cpp/net/http_header.cpp
  c:/se/personal/lib_cpp/net/http_content.cpp
@@ -28,6 +29,7 @@ include_directories(itmda_webserver
  c:/se/libraries/c++/spdlog/include/
  c:/se/libraries/c++/json/single_include/
  c:/se/libraries/c++/mysql-connector/include/jdbc/
+ c:/se/libraries/c++/stduuid/include/
 )
 target_compile_definitions(itmda_webserver PRIVATE
  #_DEBUG

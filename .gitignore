@@ -1,4 +1,7 @@
 bin
 build
 .vscode
-login_credentials.hpp
+.vs
+
+local_db_credentials.hpp
+remote_db_credentials.hpp
