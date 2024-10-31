@@ -4,6 +4,7 @@ using MauiApp1.Models;
 using MauiApp1.Models.PatientModels;
 using MauiApp1.ViewModels;
 using Microsoft.Maui.ApplicationModel.Communication;
+using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 
@@ -79,7 +80,7 @@ namespace MauiApp1.Services
                 var jObject = new
                 {
                     Email = email,
-                    Password = password
+                    PasswordHash = password
                 };
                 string json = JsonSerializer.Serialize(jObject);
 
@@ -91,6 +92,7 @@ namespace MauiApp1.Services
                     Console.WriteLine("Failed to deserialize the response.");
                     return null;
                 }
+                Debug.WriteLine(user.UserID);
                 return user;
                 
             }

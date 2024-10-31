@@ -9,7 +9,7 @@ namespace MauiApp1.Classes
     public class AbstractRequest
     {
         private readonly HttpClient _httpClient; // HttpClient instance for making HTTP requests
-        private readonly string baseURL = "http://ddnd.crabdance.com:80"; // Base URL for the API
+        private readonly string baseURL = "http://ddnd.crabdance.com"; // Base URL for the API
 
         public AbstractRequest(HttpClient httpClient)
         {
