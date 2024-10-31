@@ -6,55 +6,73 @@ using MauiApp1.Models.PatientModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MauiApp1.ViewModels
 {
-    public class CaregiverShiftViewModel :ObservableObject
+    public class CaregiverShiftViewModel : ObservableObject
     {
         private readonly IRequestManager _requestManager;
-        private DateTime _selectedDate = DateTime.Now;
+        private DateTime _selectedDate;
+        public DateTime SelectedDate
+        {
+            get { return _selectedDate; }
+            set
+            {
+                _selectedDate = value;
+                OnPropertyChanged(nameof(SelectedDate));
+                OnSelectChange();
+            }
+        }
 
-        private ObservableCollection<CaregiverShifts> _shifts;
+        private List<CaregiverShifts> _shifts;
         public ObservableCollection<CaregiverShifts> FilteredShifts { get; private set; }
-        public ObservableCollection<DateTime> DaysInWeek { get; private set; }
 
         public CaregiverShiftViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
-            _shifts = new ObservableCollection<CaregiverShifts>();
+            _shifts = new List<CaregiverShifts>();
             FilteredShifts = new ObservableCollection<CaregiverShifts>();
-            LoadDaysOfWeek();
+            // need to call API here
+            GetData();
         }
 
-        // need a method to load the dates for the week
-        public void LoadDaysOfWeek()
+        public async void GetData()
         {
-            var startDay = DateTime.Now;
-            
-            while (startDay.DayOfWeek != DayOfWeek.Sunday)
+            //string userID = await SecureStorage.GetAsync("UserID");
+            //string token = await SecureStorage.GetAsync("Token");
+            //_shifts = await _requestManager.GetCaregiverShiftsAsync(userID, token);
+
+            // Dummy Data for testing purpose, API above
+            _shifts = new List<CaregiverShifts>
             {
-                DaysInWeek.Add(startDay.Date);
-                startDay.AddDays(1);
-            }
+                new CaregiverShifts { ShiftStart = new DateTime(2024, 10, 30), PatientName = "Shift 1" },
+                new CaregiverShifts { ShiftStart = new DateTime(2024, 10, 31), PatientName = "Shift 2" },
+                new CaregiverShifts { ShiftStart = new DateTime(2024, 10, 29), PatientName = "Shift 3" }
+            };
+
+
+            // _shifts now have the shifts for the week
         }
 
-        public void onSelectChange()
+        public void OnSelectChange()
         {
-
-        }
-
-        public void FilterDate()
-        {
-            var Filtered = _shifts.Where(item => item.ShiftStart.Date == _selectedDate);
+            FilteredShifts.Clear();
+            var Filtered = _shifts.Where(item => item.ShiftStart.Date.Equals(SelectedDate)).ToList();
             foreach (var item in Filtered)
             {
                 FilteredShifts.Add(item);
             }
             OnPropertyChanged(nameof(FilteredShifts));
+            // we only actually want to change when the date changes 
         }
 
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

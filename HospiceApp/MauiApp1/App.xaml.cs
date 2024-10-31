@@ -28,7 +28,7 @@ namespace MauiApp1
             var authToken = await SecureStorage.GetAsync("Token");
             if (!await _requestManager.ValidateToken())
             {
-                await Shell.Current.GoToAsync("///ScheduleViewer");
+                await Shell.Current.GoToAsync("///LoginPage");
             }
             else
             {
