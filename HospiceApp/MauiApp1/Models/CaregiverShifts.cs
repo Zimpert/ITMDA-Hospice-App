@@ -12,6 +12,8 @@ namespace MauiApp1.Models
     {
         public DateTime ShiftStart { get; set; }
         public DateTime ShiftEnd { get; set; }
+
+        public string Time { get; set; }
         public string PatientName { get; set; }
         public string PatientSurname { get; set; }
         public string PatientAddress { get; set; }

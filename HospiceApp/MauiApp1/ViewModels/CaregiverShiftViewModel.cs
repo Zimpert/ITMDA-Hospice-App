@@ -15,6 +15,48 @@ namespace MauiApp1.ViewModels
 {
     public class CaregiverShiftViewModel : ObservableObject
     {
+        // need to set min and max date 
+        private string _selectedDateString;
+        public string SelectedDateString {
+            get => _selectedDateString;
+            set 
+            {
+                if (_selectedDateString != value)
+                {
+                    _selectedDateString = value;
+                    OnPropertyChanged(nameof(SelectedDateString));
+                }
+            }
+            
+        }
+        private DateTime _maximumDate;
+
+        public DateTime MaximumDate
+        {
+            get => _maximumDate;
+            set
+            {
+                if (_maximumDate != value)
+                {
+                    _maximumDate = value;
+                    OnPropertyChanged(nameof(MaximumDate));
+                }
+            }
+        }
+        private DateTime _minimumDate;
+
+        public DateTime MinimumDate
+        {
+            get => _minimumDate;
+            set
+            {
+                if (_minimumDate != value)
+                {
+                    _minimumDate = value;
+                    OnPropertyChanged(nameof(MinimumDate));
+                }
+            }
+        }
         private readonly IRequestManager _requestManager;
         private DateTime _selectedDate;
         public DateTime SelectedDate
@@ -35,6 +77,9 @@ namespace MauiApp1.ViewModels
         {
             _requestManager = requestManager;
             _shifts = new List<CaregiverShifts>();
+            _minimumDate = DateTime.Now;
+            _maximumDate = DateTime.Now.AddDays(6);
+            _selectedDateString = $"Shifts for {SelectedDate:MMMM dd, yyyy}";
             FilteredShifts = new ObservableCollection<CaregiverShifts>();
             // need to call API here
             GetData();
@@ -51,15 +96,22 @@ namespace MauiApp1.ViewModels
             {
                 new CaregiverShifts { ShiftStart = new DateTime(2024, 10, 30), PatientName = "Shift 1" },
                 new CaregiverShifts { ShiftStart = new DateTime(2024, 10, 31), PatientName = "Shift 2" },
-                new CaregiverShifts { ShiftStart = new DateTime(2024, 10, 29), PatientName = "Shift 3" }
+                new CaregiverShifts { ShiftStart = new DateTime(2024, 10, 29), PatientName = "Shift 3" },
+                new CaregiverShifts { ShiftStart = new DateTime(2024, 10, 29), PatientName = "Shift 4" }
             };
 
+            foreach (var item in _shifts)
+            {
+                item.Time = item.ShiftStart.ToString("HH:mm") + " - " + item.ShiftEnd.ToString("HH:mm");
+            }
 
             // _shifts now have the shifts for the week
         }
 
         public void OnSelectChange()
         {
+            // need to fix selected date string
+            SelectedDateString = $"Shifts for {SelectedDate:MMMM dd, yyyy}";
             FilteredShifts.Clear();
             var Filtered = _shifts.Where(item => item.ShiftStart.Date.Equals(SelectedDate)).ToList();
             foreach (var item in Filtered)
