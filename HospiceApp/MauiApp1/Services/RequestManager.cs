@@ -4,6 +4,7 @@ using MauiApp1.Models;
 using MauiApp1.Models.PatientModels;
 using MauiApp1.ViewModels;
 using Microsoft.Maui.ApplicationModel.Communication;
+using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 
@@ -67,7 +68,6 @@ namespace MauiApp1.Services
 
         public async Task<User?> LoginAsync (string email, string password)
         {
-            
             try
             {
                 // Hash the password using SHA256
@@ -79,16 +79,17 @@ namespace MauiApp1.Services
                 var jObject = new
                 {
                     Email = email,
-                    Password = password
+                    PasswordHash = password
                 };
                 string json = JsonSerializer.Serialize(jObject);
 
                 var jsonResponse = await _abstractRequest.AbstractRequestAsync("/login", json);
                 var user = JsonSerializer.Deserialize<User>(jsonResponse);
+                Debug.WriteLine("Json Deseralize is over");
 
                 if (user == null)
                 {
-                    Console.WriteLine("Failed to deserialize the response.");
+                    Debug.WriteLine("Failed to deserialize the response.");
                     return null;
                 }
                 return user;
