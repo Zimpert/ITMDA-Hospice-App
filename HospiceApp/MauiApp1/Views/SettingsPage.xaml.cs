@@ -17,4 +17,5 @@ public partial class SettingsPage : ContentPage
         // Navigate to the Settings page 
         await Shell.Current.GoToAsync("///SettingsPage"); // Navigate to the SettingsPage
     }
+
 }
