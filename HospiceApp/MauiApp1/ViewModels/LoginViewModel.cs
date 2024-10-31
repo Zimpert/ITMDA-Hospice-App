@@ -54,7 +54,7 @@ namespace MauiApp1.ViewModels
             else
             {
                 Console.WriteLine("Login failed.");
-                Debug.WriteLine(loginResult + "penis");
+                
             }
         }
     }
