@@ -15,8 +15,7 @@ namespace MauiApp1.ViewModels
         public LoginViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
-            loginText = string.Empty; // Initialize loginText
-            passwordText = string.Empty; // Initialize passwordText
+           
         }
 
         [ObservableProperty]
@@ -34,11 +33,7 @@ namespace MauiApp1.ViewModels
             if (loginResult != null)
             {
                 Console.WriteLine("Login successful."); 
-                var navigationParams = new User
-                {
-                    UserID = loginResult.UserID,
-                    Token = loginResult.Token
-                };
+
 
                 if (Shell.Current != null)
                 {
