@@ -73,6 +73,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\hospice.png" />
+	  <None Remove="Resources\Images\profile.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -85,6 +86,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="PartialViews\NotificationItemView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="PartialViews\TaskItemView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

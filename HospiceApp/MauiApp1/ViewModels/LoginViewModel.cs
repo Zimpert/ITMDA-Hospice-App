@@ -1,46 +1,56 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiApp1.Interfaces;
+using MauiApp1.Models;
+using MauiApp1.Models.PatientModels;
 using System.Diagnostics;
 
-public partial class LoginViewModel : ObservableObject
+
+namespace MauiApp1.ViewModels
 {
-    private readonly IRequestManager _requestManager;
-
-    [ObservableProperty]
-    private string loginText;
-
-    [ObservableProperty]
-    private string passwordText;
-
-    public LoginViewModel(IRequestManager requestManager)
+    public partial class LoginViewModel : ObservableObject
     {
-        _requestManager = requestManager;
-    }
+        private readonly IRequestManager _requestManager;
 
-    [RelayCommand]
-    public async Task Login()
-    {
-        Debug.WriteLine("Login method called.");
-        var loginResult = await _requestManager.LoginAsync(LoginText, PasswordText);
-
-        if (loginResult != null)
+        public LoginViewModel(IRequestManager requestManager)
         {
-            if (Shell.Current != null)
+            _requestManager = requestManager;
+           
+        }
+
+        [ObservableProperty]
+        string loginText;
+
+        [ObservableProperty]
+        string passwordText;
+
+        [RelayCommand]
+        public async Task Login()
+        {
+            Console.WriteLine("Login method called.");
+            var loginResult = await _requestManager.LoginAsync(LoginText, PasswordText);
+
+            if (loginResult != null)
             {
-                await SecureStorage.SetAsync("Token", loginResult.Token);
-                Debug.WriteLine(await SecureStorage.GetAsync("Token"));
-                await SecureStorage.SetAsync("UserID", loginResult.UserID);
-                await Shell.Current.GoToAsync("///HomePage");
+                Console.WriteLine("Login successful."); 
+
+
+                if (Shell.Current != null)
+                {
+                    await SecureStorage.SetAsync("Token", loginResult.Token);
+                    await SecureStorage.SetAsync("UserID", loginResult.UserID);
+                    await Shell.Current.GoToAsync("///HomePage"); // Navigate to the HomePage
+                }
+                else
+                {
+                    Console.WriteLine("Shell.Current is null.");
+                }
             }
             else
             {
-                Debug.WriteLine("Shell.Current is null.");
+                Console.WriteLine("Login failed.");
+                
             }
-        }
-        else
-        {
-            Debug.WriteLine("Login failed.");
         }
     }
 }

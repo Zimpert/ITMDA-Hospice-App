@@ -25,7 +25,7 @@ namespace MauiApp1
 
         private async void OnSettingsIconTapped(object sender, EventArgs e)
         {
-            // Navigate to the Settings page 
+             
             await Shell.Current.GoToAsync("///SettingsPage"); // Navigate to the SettingsPage
         }
     }

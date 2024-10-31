@@ -1,39 +1,53 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.CaretakerQR">
-    
-    <StackLayout Padding="20" BackgroundColor="White">
+             x:Class="MauiApp1.CaretakerQR"
+             Shell.NavBarIsVisible="False"
+             Title="CaretakerQR">
 
-        <!-- Header with title and settings icon -->
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+    <StackLayout Padding="0" BackgroundColor="White">
 
-            <!-- Back Arrow -->
-            <Image Source="arrow_left.png" 
-                   VerticalOptions="Center" 
-                   HeightRequest="40"
-                   WidthRequest="40"/>
+        <!-- Navbar with Title and Settings Icon -->
+        <Frame Grid.Row="0" BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
+               HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-            <!-- Title -->
-            <Label Text="QR Code" 
-               Grid.Column="1" 
-               FontSize="Title" 
-               TextColor="Black"
-               HorizontalOptions="Center" 
-               VerticalOptions="Center" />
+                <!-- Back button on the left -->
+                <ImageButton Grid.Column="0"
+                             Source="arrow_left.png"
+                             BackgroundColor="Transparent"
+                             WidthRequest="30"
+                             HeightRequest="30"
+                             VerticalOptions="Center"
+                             Aspect="AspectFit"
+                             Clicked="OnBackButtonTapped" />   
 
-            <!-- Settings Icon -->
-            <Image Source="settings.png" 
-               Grid.Column="2" 
-               VerticalOptions="Center" 
-               HeightRequest="40"
-               WidthRequest="40"/>
-        </Grid>
+                <!-- Home Title in the center -->
+                <Label Grid.Column="1"
+                       Text="QR Page"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       FontSize="18"
+                       TextColor="White" />    
+
+                <!-- Settings Icon on the right -->
+                <ImageButton Grid.Column="2"
+                             Source="settings.png"
+                             BackgroundColor="Transparent"
+                             WidthRequest="30"
+                             HeightRequest="30"
+                             VerticalOptions="Center"
+                             Aspect="AspectFit"
+                             Clicked="OnSettingsIconTapped" />
+            </Grid>
+        </Frame>
+
 
         <!-- Profile Picture -->
         <Frame HeightRequest="100" WidthRequest="100"

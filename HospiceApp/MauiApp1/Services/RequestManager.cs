@@ -15,10 +15,10 @@ namespace MauiApp1.Services
     /// </summary>
     public class RequestManager : IRequestManager
     {
-        private readonly AbstractRequest _abstractRequest;
-        public RequestManager(AbstractRequest abstractRequest)
+        private readonly ApiRequest _apiRequest;
+        public RequestManager(ApiRequest apiRequest)
         {
-            _abstractRequest = abstractRequest;
+            _apiRequest = apiRequest;
         }
 
         public async Task<User?> GetUserDataAsync(string userID, string token)
@@ -36,7 +36,7 @@ namespace MauiApp1.Services
                 string json = JsonSerializer.Serialize(jObject);
 
                 // Send the JSON to the server and get the response
-                var jsonResponse = await _abstractRequest.AbstractRequestAsync("/userinfo", json);
+                var jsonResponse = await _apiRequest.SendRequestAsync("/userinfo", json);
 
                 // Deserialize the JSON response to a User object
                 var user = JsonSerializer.Deserialize<User>(jsonResponse);
@@ -66,8 +66,9 @@ namespace MauiApp1.Services
             return null;
         }
 
-        public async Task<User?> LoginAsync (string email, string password)
+        public async Task<User?> LoginAsync(string email, string password)
         {
+
             try
             {
                 // Hash the password using SHA256
@@ -81,19 +82,33 @@ namespace MauiApp1.Services
                     Email = email,
                     PasswordHash = password
                 };
+
+                Debug.WriteLine("Details:");
+                Debug.WriteLine(jObject.Email);
+                Debug.WriteLine(jObject.PasswordHash);
                 string json = JsonSerializer.Serialize(jObject);
 
-                var jsonResponse = await _abstractRequest.AbstractRequestAsync("/login", json);
+                var jsonResponse = await _apiRequest.SendRequestAsync("/login", json);
+
+                if (string.IsNullOrEmpty(jsonResponse))
+                {
+                    Console.WriteLine("No data returned from the server.");
+                    return null;
+                }
+
+                // Write the response to the console
+                Console.WriteLine($"Response: {jsonResponse}");
+
                 var user = JsonSerializer.Deserialize<User>(jsonResponse);
-                Debug.WriteLine("Json Deseralize is over");
 
                 if (user == null)
                 {
-                    Debug.WriteLine("Failed to deserialize the response.");
+                    Console.WriteLine("Failed to deserialize the response.");
                     return null;
                 }
+                Debug.WriteLine($"UserID: {user.UserID}, Token: {user.Token}");
                 return user;
-                
+
             }
             catch (HttpRequestException e)
             {
@@ -122,7 +137,7 @@ namespace MauiApp1.Services
                 };
                 string json = JsonSerializer.Serialize(jObject);
 
-                var jsonResponse = await _abstractRequest.AbstractRequestAsync("/prelogin", json);
+                var jsonResponse = await _apiRequest.SendRequestAsync("/prelogin", json);
                 var result = JsonSerializer.Deserialize<bool>(jsonResponse);
 
                 return result;
@@ -149,7 +164,7 @@ namespace MauiApp1.Services
             };
             string json = JsonSerializer.Serialize(jObject);
 
-            var jsonResponse = await _abstractRequest.AbstractRequestAsync("/shifts", json);
+            var jsonResponse = await _apiRequest.SendRequestAsync("/shifts", json);
             var result = JsonSerializer.Deserialize<List<CaregiverShifts?>>(jsonResponse);
 
             return result;
