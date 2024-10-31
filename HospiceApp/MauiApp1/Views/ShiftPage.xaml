@@ -67,7 +67,6 @@
                     <DatePicker Date="{Binding SelectedDate, Mode=TwoWay}" 
                                 MinimumDate="{Binding MinimumDate}"
                                 MaximumDate="{Binding MaximumDate}"
-                                DateSelected="OnDateChanged"
                                 HorizontalOptions="Center"
                                 FontSize="16"
                                 TextColor="#333" />
@@ -80,14 +79,14 @@
                 <Label Text="Upcoming Shifts" FontAttributes="Bold" FontSize="24" TextColor="#333" HorizontalOptions="Start" Margin="0,20,0,10" />
 
                 <!-- Shifts List for Selected Date -->
-                <CollectionView ItemsSource="{Binding ShiftsForSelectedDate}" ItemsLayout="VerticalListLayout">
+                <CollectionView ItemsSource="{Binding FilteredShifts}" ItemsLayout="VerticalListLayout">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Frame Padding="15" CornerRadius="15" Margin="0,5,0,0" BackgroundColor="#F3F0FF" HasShadow="True">
-                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                <StackLayout Orientation="Horizontal" Spacing="10" >
                                     <Image Source="shift_icon.png" WidthRequest="35" HeightRequest="35" VerticalOptions="Center" />
                                     <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Spacing="2">
-                                        <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="18" TextColor="#333" />
+                                        <Label Text="{Binding PatientName}" FontAttributes="Bold" FontSize="18" TextColor="#333" />
                                         <Label Text="{Binding Time}" FontSize="14" TextColor="#666" />
                                     </StackLayout>
                                     <Label Text="Today" FontSize="14" TextColor="#666" HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>

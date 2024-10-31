@@ -8,17 +8,14 @@ using MauiApp1.Models.PatientModels;
 
 namespace MauiApp1.Models
 {
-    class CaregiverShifts
+    public class CaregiverShifts
     {
-        public string CaregiverShiftID { get; set; }
-        public string CaregiverID { get; set; }
-        public User Caregiver { get; set; }
-        public string PatientID { get; set; }
-        public User Patient { get; set; }
-        public string ReminderID { get; set; }
-        public Reminders Reminders { get; set; }
-        
         public DateTime ShiftStart { get; set; }
         public DateTime ShiftEnd { get; set; }
+
+        public string Time { get; set; }
+        public string PatientName { get; set; }
+        public string PatientSurname { get; set; }
+        public string PatientAddress { get; set; }
     }
 }

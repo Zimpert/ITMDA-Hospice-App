@@ -11,6 +11,7 @@ namespace MauiApp1
 
     public static class MauiProgram
     {
+        public static IServiceProvider ServiceProvider { get; private set; }
         /// <summary>  
         /// Creates and configures the Maui application.  
         /// </summary>  
@@ -28,6 +29,7 @@ namespace MauiApp1
             builder.Services.AddTransient<ProfilePage>(); // Register ProfilePage with DI  
             builder.Services.AddTransient<ProfileViewModel>();
             builder.Services.AddSingleton<HomePage>();
+            
 
             // Configure the Maui application  
             builder
@@ -47,7 +49,9 @@ namespace MauiApp1
 #endif
 
             // Build and return the configured Maui application  
-            return builder.Build();
+            var app = builder.Build();
+            ServiceProvider = app.Services;
+            return app;
         }
     }
 }
