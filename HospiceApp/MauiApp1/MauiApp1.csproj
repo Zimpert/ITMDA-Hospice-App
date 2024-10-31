@@ -85,6 +85,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="PartialViews\NotificationItemView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="PartialViews\TaskItemView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
