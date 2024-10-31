@@ -12,7 +12,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <!-- Back Button (Clickable) on the left -->
+            <!-- Back Button  on the left -->
             <ImageButton Grid.Column="0"
              Source="back_icon.png"
              BackgroundColor="Black"
@@ -29,7 +29,7 @@
             HorizontalOptions="Center"
             FontSize="Title" />
 
-            <!-- Settings Icon (Clickable) on the right -->
+            <!-- Settings Icon  on the right -->
             <ImageButton Grid.Column="2"
                   Source="settings_icon.png"
                   BackgroundColor="Black"

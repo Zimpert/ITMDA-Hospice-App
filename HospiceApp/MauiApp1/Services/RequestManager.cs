@@ -139,6 +139,24 @@ namespace MauiApp1.Services
             return false;
 
         }
+
+        public async Task<List<CaregiverShifts?>> GetCaregiverShiftsAsync(string userID, string token)
+        {
+
+            var jObject = new
+            {
+                UserID = userID,
+                Token = token
+            };
+            string json = JsonSerializer.Serialize(jObject);
+
+            var jsonResponse = await _abstractRequest.AbstractRequestAsync("/shifts", json);
+            var result = JsonSerializer.Deserialize<List<CaregiverShifts?>>(jsonResponse);
+
+            return result;
+
+        }
+
     }
 
 
