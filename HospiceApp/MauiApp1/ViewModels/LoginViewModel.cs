@@ -28,12 +28,12 @@ namespace MauiApp1.ViewModels
         [RelayCommand]
         public async Task Login()
         {
-            Debug.WriteLine("Login method called.");
+            Console.WriteLine("Login method called.");
             var loginResult = await _requestManager.LoginAsync(LoginText, PasswordText);
 
             if (loginResult != null)
             {
-                Debug.WriteLine("Login successful."); 
+                Console.WriteLine("Login successful."); 
                 var navigationParams = new User
                 {
                     UserID = loginResult.UserID,
@@ -48,12 +48,13 @@ namespace MauiApp1.ViewModels
                 }
                 else
                 {
-                    Debug.WriteLine("Shell.Current is null.");
+                    Console.WriteLine("Shell.Current is null.");
                 }
             }
             else
             {
-                Debug.WriteLine("Login failed.");
+                Console.WriteLine("Login failed.");
+                
             }
         }
     }

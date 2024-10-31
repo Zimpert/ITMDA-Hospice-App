@@ -11,7 +11,8 @@ namespace MauiApp1
 
     public static class MauiProgram
     {
-        public static IServiceProvider ServiceProvider { get; private set; }
+        public static IServiceProvider? ServiceProvider { get; private set; }
+
         /// <summary>  
         /// Creates and configures the Maui application.  
         /// </summary>  
@@ -22,14 +23,13 @@ namespace MauiApp1
 
             // Register services with the dependency injection container  
             builder.Services.AddSingleton<HttpClient>();
-            builder.Services.AddSingleton<AbstractRequest>();
+            builder.Services.AddSingleton<ApiRequest>();
             builder.Services.AddSingleton<IRequestManager, RequestManager>();
             builder.Services.AddTransient<LoginPage>(); // Register LoginPage with DI  
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<ProfilePage>(); // Register ProfilePage with DI  
             builder.Services.AddTransient<ProfileViewModel>();
             builder.Services.AddSingleton<HomePage>();
-            
 
             // Configure the Maui application  
             builder

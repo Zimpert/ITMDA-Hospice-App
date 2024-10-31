@@ -2,10 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.LoginPage"
+             xmlns:vm ="clr-namespace:MauiApp1.ViewModels"
+                x:DataType="vm:LoginViewModel"
              Shell.NavBarIsVisible="False"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#9b59b6"
+             
              xmlns:fontawesome="clr-namespace:MauiApp1.ViewModels">
+        
 
     <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -35,16 +39,16 @@
 
                     <!-- Username Entry with Padding -->
                     <Frame Grid.Row="2" BackgroundColor="#F0F0F0" CornerRadius="10" Padding="10" Margin="0,20,0,0" HasShadow="False">
-                        <Entry Placeholder="Username" PlaceholderColor="#AAAAAA" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="#333333" />
+                        <Entry Placeholder="Username" PlaceholderColor="#AAAAAA" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="#333333" Text="{Binding LoginText}"/>
                     </Frame>
 
                     <!-- Password Entry with Padding -->
                     <Frame Grid.Row="3" BackgroundColor="#F0F0F0" CornerRadius="10" Padding="10" HasShadow="False">
-                        <Entry Placeholder="Password" PlaceholderColor="#AAAAAA" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="#333333" />
+                        <Entry Placeholder="Password" PlaceholderColor="#AAAAAA" IsPassword="True" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="#333333" Text="{Binding PasswordText}"/>
                     </Frame>
 
                     <!-- Login Button -->
-                    <Button Grid.Row="4" Text="Login" BackgroundColor="#9b59b6" TextColor="White" CornerRadius="20" FontSize="18" HeightRequest="50" HorizontalOptions="FillAndExpand" />
+                    <Button Grid.Row="4" Text="Login" BackgroundColor="#9b59b6" TextColor="White" CornerRadius="20" FontSize="18" HeightRequest="50" HorizontalOptions="FillAndExpand" Command="{Binding LoginCommand}" />
 
                     <!-- Forget Password Link -->
                     <Label Grid.Row="5" Text="Forgot Password" FontAttributes="Bold" TextColor="#4CAF50" TextDecorations="Underline" HorizontalOptions="Center" />
