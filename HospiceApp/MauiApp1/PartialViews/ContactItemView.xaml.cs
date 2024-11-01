@@ -22,5 +22,6 @@ namespace MauiApp1.PartialViews
             get => DetailsLabel.Text;
             set => DetailsLabel.Text = value;
         }
+
     }
 }
