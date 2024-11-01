@@ -3,6 +3,7 @@ using MauiApp1.Classes;
 using MauiApp1.Interfaces;
 using MauiApp1.Services;
 using MauiApp1.ViewModels;
+
 using Microsoft.Extensions.Logging;
 using ZXing.Net.Maui.Controls;
 
@@ -22,7 +23,7 @@ namespace MauiApp1
             var builder = MauiApp.CreateBuilder();
 
             // Register services with the dependency injection container  
-            builder.Services.AddSingleton<HttpClient>();
+            builder.Services.AddTransient<HttpClient>();
             builder.Services.AddSingleton<ApiRequest>();
             builder.Services.AddSingleton<IRequestManager, RequestManager>();
             builder.Services.AddTransient<LoginPage>(); // Register LoginPage with DI  

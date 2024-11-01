@@ -126,9 +126,10 @@ namespace MauiApp1.Services
             var token = await SecureStorage.GetAsync("Token");
             if (string.IsNullOrEmpty(token))
             {
+                Debug.WriteLine("Token missing.");
                 return false; // token missing 
             }
-
+            Debug.WriteLine($"Token: {token}");
             try
             {
                 var jObject = new
@@ -136,22 +137,47 @@ namespace MauiApp1.Services
                     Token = token
                 };
                 string json = JsonSerializer.Serialize(jObject);
+                Debug.WriteLine($"Serialized JSON: {json}");
 
                 var jsonResponse = await _apiRequest.SendRequestAsync("/prelogin", json);
-                var result = JsonSerializer.Deserialize<bool>(jsonResponse);
+                Debug.WriteLine($"Server response: {jsonResponse}");
 
-                return result;
+                if (string.IsNullOrEmpty(jsonResponse))
+                {
+                    Debug.WriteLine("No response from server.");
+                    return false;
+                }
+
+                // Log the JSON response for debugging
+                Debug.WriteLine($"JSON Response: {jsonResponse}");
+
+                // Attempt to deserialize the response to a boolean
+                try
+                {
+                    var result = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(jsonResponse);
+                    if (result != null && result.ContainsKey("Success"))
+                    {
+                        return result["Success"].GetBoolean();
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Response does not contain 'Success' key.");
+                    }
+                }
+                catch (JsonException ex)
+                {
+                    Debug.WriteLine($"Deserialization error: {ex.Message}");
+                }
             }
             catch (HttpRequestException e)
             {
-                Console.WriteLine($"Request error: {e.Message}");
+                Debug.WriteLine($"Request error: {e.Message}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Unexpected error: {ex.Message}");
+                Debug.WriteLine($"Unexpected error: {ex.Message}");
             }
             return false;
-
         }
 
         public async Task<List<CaregiverShifts?>> GetCaregiverShiftsAsync(string userID, string token)
@@ -171,6 +197,20 @@ namespace MauiApp1.Services
 
         }
 
+        //public async Task<List<PatientMedication>> GetPatientMedicationsAsync(string userID, string token)
+        //{
+        //    var jObject = new
+        //    {
+        //        UserID = userID,
+        //        Token = token
+        //    };
+        //    string json = JsonSerializer.Serialize(jObject);
+
+        //    var jsonResponse = await _apiRequest.SendRequestAsync("/", json);
+        //    var result = JsonSerializer.Deserialize<List<CaregiverShifts?>>(jsonResponse);
+
+        //    return result;
+        //}
     }
 
 

@@ -6,6 +6,7 @@
     xmlns:views="clr-namespace:MauiApp1">
     <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate views:LoginPage}"/>
     <ShellContent Route="HomePage" ContentTemplate="{DataTemplate views:HomePage}" />
+
     <ShellContent Route="ProfilePage" ContentTemplate="{DataTemplate views:ProfilePage}" />
     <ShellContent Route="SettingsPage" ContentTemplate="{DataTemplate views:SettingsPage}" />
     <ShellContent Route="ViewCarerPage" ContentTemplate="{DataTemplate views:ViewCarerPage}" />
