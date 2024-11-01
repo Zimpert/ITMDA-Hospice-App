@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,12 +21,11 @@ namespace MauiApp1.Classes
         {
             // Create a StringContent object with the parameters, specifying UTF-8 encoding and JSON content type
             var stringC = new StringContent(parameters, Encoding.UTF8, "application/json");
-
+            Debug.WriteLine(stringC);
             // Send a POST request to the specified endpoint with the provided parameters
             HttpResponseMessage response = await _httpClient.PostAsync(baseURL + endpoint, stringC);
 
             // Ensure the response indicates success (status code 2xx), otherwise throw an exception
-            response.EnsureSuccessStatusCode();
 
             // Read the response content as a string
             var jsonResponse = await response.Content.ReadAsStringAsync();

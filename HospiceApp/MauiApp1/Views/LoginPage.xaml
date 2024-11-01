@@ -44,7 +44,7 @@
                     </Frame>
 
                     <!-- Login Button -->
-                    <Button Grid.Row="4" Text="Login" BackgroundColor="#9b59b6" TextColor="White" CornerRadius="20" FontSize="18" HeightRequest="50" HorizontalOptions="FillAndExpand" />
+                    <Button Grid.Row="4" Text="Login" BackgroundColor="#9b59b6" TextColor="White" CornerRadius="20" FontSize="18" HeightRequest="50" HorizontalOptions="FillAndExpand" Command="{Binding LoginCommand}"/>
 
                     <!-- Forget Password Link -->
                     <Label Grid.Row="5" Text="Forgot Password" FontAttributes="Bold" TextColor="#4CAF50" TextDecorations="Underline" HorizontalOptions="Center" />

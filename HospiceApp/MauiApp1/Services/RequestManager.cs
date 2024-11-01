@@ -4,6 +4,7 @@ using MauiApp1.Models;
 using MauiApp1.Models.PatientModels;
 using MauiApp1.ViewModels;
 using Microsoft.Maui.ApplicationModel.Communication;
+using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 
@@ -79,10 +80,10 @@ namespace MauiApp1.Services
                 var jObject = new
                 {
                     Email = email,
-                    Password = password
+                    PasswordHash = password
                 };
                 string json = JsonSerializer.Serialize(jObject);
-
+                Debug.WriteLine(json);
                 var jsonResponse = await _abstractRequest.AbstractRequestAsync("/login", json);
                 var user = JsonSerializer.Deserialize<User>(jsonResponse);
 
