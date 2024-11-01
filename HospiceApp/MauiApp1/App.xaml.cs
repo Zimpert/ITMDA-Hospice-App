@@ -11,7 +11,6 @@ namespace MauiApp1
         {
             InitializeComponent();
             _requestManager = requestManager;
-            
             MainPage = new AppShell();
             Debug.WriteLine("App initialized.");
         }
@@ -75,13 +74,13 @@ namespace MauiApp1
     //    /// <summary>
     //    /// Checks the login status and navigates to the appropriate page.
     //    /// </summary>
-    //    /// <param name="serviceProvider">The service provider.</param>
+    //    /// <param name = "serviceProvider" > The service provider.</param>
     //    private async Task CheckLoginStatusAsync(IServiceProvider serviceProvider)
     //    {
     //        using (var client = new HttpClient())
     //        {
     //            Debug.WriteLine("Making GET request to http://example.com/");
-    //            var response = await client.GetStringAsync("http://ddnd.crabdance.com/prelogin/");
+    //            var response = await client.GetStringAsync("http://ddnd.crabdance.com/prelogin");
     //            Debug.WriteLine($"Response from http://example.com/: {response}");
     //        }
 

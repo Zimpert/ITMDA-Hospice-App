@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using System.Threading.Tasks;
 using MauiApp1.Interfaces;
 using System.Diagnostics;
+using CommunityToolkit.Mvvm.Input;
 
 namespace MauiApp1.ViewModels
 {
@@ -22,6 +23,33 @@ public partial class ProfileViewModel : ObservableObject
             // Initialize the User property to avoid null reference issues
             User = new User();
         }
+
+
+        [RelayCommand]
+        public async Task<User?> GetUserData()
+        {
+            var userID = await SecureStorage.GetAsync("userID");
+            var token = await SecureStorage.GetAsync("Token");
+            var userResult = await _requestManager.GetUserDataAsync(userID, token);
+
+            if (userResult != null)
+            {
+                Debug.WriteLine("User data retrieved successfully.");
+                return userResult;
+            }
+            else
+            {
+                Debug.WriteLine("Failed to retrieve user data.");
+                return null;
+            }
+
+        }
+
+
+
+
+
+
 
         /// <summary>
         /// This method is called OnAppearing because it is intended to be invoked when the view associated with this ViewModel appears on the screen.

@@ -12,10 +12,12 @@ namespace MauiApp1.ViewModels
     {
         private readonly IRequestManager _requestManager;
 
-        public LoginViewModel(IRequestManager requestManager)
+        public LoginViewModel(IServiceProvider serviceProvider, IRequestManager requestManager)
         {
             _requestManager = requestManager;
-           
+            
+
+
         }
 
         [ObservableProperty]
@@ -28,6 +30,7 @@ namespace MauiApp1.ViewModels
         public async Task Login()
         {
             Console.WriteLine("Login method called.");
+
             var loginResult = await _requestManager.LoginAsync(LoginText, PasswordText);
 
             if (loginResult != null)
@@ -49,7 +52,7 @@ namespace MauiApp1.ViewModels
             else
             {
                 Console.WriteLine("Login failed.");
-                
+
             }
         }
     }
