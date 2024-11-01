@@ -16,8 +16,7 @@
             <!-- Details Button -->
             <Button Text="Request Contact Removal" BackgroundColor="Red" TextColor="White" CornerRadius="10"
                     FontSize="Small" HeightRequest="40" 
-                    VerticalOptions="Center" Grid.Column="2"
-                    Clicked="OnRequestRemovalClicked" />
+                    VerticalOptions="Center" Grid.Column="2" />
         </Grid>
     </Frame>
 </ContentView>
