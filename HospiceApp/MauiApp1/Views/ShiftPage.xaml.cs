@@ -16,15 +16,14 @@ namespace MauiApp1
         //public DateTime MinimumDate { get; set; } = new DateTime(2024, 1, 1);
         //public DateTime MaximumDate { get; set; } = new DateTime(2024, 12, 31);
 
-        public ShiftsPage()
+        public ShiftsPage(CaregiverShiftViewModel cvm)
         {
             InitializeComponent();
             //SelectedDate = DateTime.Today;
             //ShiftsForSelectedDate = new ObservableCollection<Shift>();
             //UpdateShiftsForSelectedDate();
-            var requestManager = MauiProgram.ServiceProvider.GetService<IRequestManager>();
 
-            BindingContext = new CaregiverShiftViewModel(requestManager);
+            BindingContext = cvm;
         }
 
         //private void UpdateShiftsForSelectedDate()

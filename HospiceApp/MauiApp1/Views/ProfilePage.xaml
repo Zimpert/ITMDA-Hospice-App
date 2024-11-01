@@ -3,9 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.ProfilePage"
              Shell.NavBarIsVisible="False"
-             Title="Profile"
-             xmlns:vm="clr-namespace:MauiApp1.ViewModels"
-             x:DataType="vm:ProfileViewModel">
+             Title="Profile">
     <StackLayout Padding="0" Spacing="15">
         <!-- Navbar with Title and Settings Icon -->
         <Frame Grid.Row="0" BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
@@ -44,7 +42,7 @@
                               HeightRequest="30"
                               VerticalOptions="Center"
                               Aspect="AspectFit"
-                              Clicked="OnSettingsIconTapped" />      
+                              Clicked="OnSettingsIconTapped" />     
             </Grid>
         </Frame>
 
@@ -62,8 +60,8 @@
             <Label Text="Phone number" TextColor="White"/>
             <Entry Text="{Binding User.PhoneNo}" Placeholder="Phone number" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
 
-            <Label Text="Emergency contact" TextColor="White"/>
-            <Entry Text="{}" Placeholder="Not provided" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
+            <Label Text="Address" TextColor="White"/>
+            <Entry Text="{Binding User.Address}" Placeholder="Not provided" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
                 
         </StackLayout>
 
