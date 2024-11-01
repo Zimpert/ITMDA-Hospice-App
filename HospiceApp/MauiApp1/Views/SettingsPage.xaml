@@ -3,14 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.SettingsPage"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="white">
+             BackgroundColor="{DynamicResource BackgroundColor}">
 
     <!-- Use a StackLayout to wrap all content -->
-    <StackLayout BackgroundColor="White">
+    <StackLayout BackgroundColor="{DynamicResource BackgroundColor}">
 
         <!-- Navbar with Title and Settings Icon -->
-        <Frame BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
-               HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+        <Frame Grid.Row="0" BackgroundColor="#9b59b6" Padding="10" CornerRadius="0" HasShadow="True">
             <Grid Padding="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -50,45 +49,46 @@
         </Frame>
 
         <!-- Settings Options -->
-        <StackLayout Padding="20" Spacing="20">
+        <StackLayout Padding="10" Spacing="20">
 
-            <!-- Dark/Light Mode Toggle -->
+            <!-- Theme Label, Icon, and Toggle -->
             <Frame Padding="0" BackgroundColor="#D18EF6" CornerRadius="8" HasShadow="False">
                 <Grid Padding="10">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <!-- Icon Column -->
-                    <Image Source="placeholder.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Grid.Column="0"/>
+                    <Image Source="placeholder.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Grid.Column="0" />
 
-                    <!-- Description Column -->
-                    <Label Text="Dark/Light Mode" FontSize="Medium" TextColor="Black" VerticalOptions="Center" Padding="10,0,0,0" Grid.Column="1"/>
+                    <!-- Theme Label -->
+                    <Label Text="Light/Dark Mode" FontSize="Medium" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Padding="10,0,0,0" Grid.Column="1" />
 
-                    <!-- Action Text Column -->
-                    <Label Text="Change" FontSize="Small" TextColor="Black" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2"/>
+                    <!-- Toggle Switch -->
+                    <Switch x:Name="ThemeSwitch" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2"   Toggled="OnThemeSwitchToggled" />
                 </Grid>
             </Frame>
+
 
             <!-- Contact Support -->
             <Frame Padding="0" BackgroundColor="#D18EF6" CornerRadius="8" HasShadow="False">
                 <Grid Padding="10">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <!-- Icon Column -->
-                    <Image Source="placeholder.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Grid.Column="0"/>
+                    <Image Source="placeholder.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Grid.Column="0" />
 
                     <!-- Description Column -->
-                    <Label Text="Contact Support" FontSize="Medium" TextColor="Black" VerticalOptions="Center" Padding="10,0,0,0" Grid.Column="1"/>
+                    <Label Text="Contact Support" FontSize="Medium" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Padding="10,0,0,0" Grid.Column="1" />
 
                     <!-- Action Text Column -->
-                    <Label Text="Get Help" FontSize="Small" TextColor="Black" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2"/>
+                    <Label Text="Get Help" FontSize="Small" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2" />
                 </Grid>
             </Frame>
 
@@ -96,19 +96,19 @@
             <Frame Padding="0" BackgroundColor="#D18EF6" CornerRadius="8" HasShadow="False">
                 <Grid Padding="10">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <!-- Icon Column -->
-                    <Image Source="placeholder.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Grid.Column="0"/>
+                    <Image Source="placeholder.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Grid.Column="0" />
 
                     <!-- Description Column -->
-                    <Label Text="Logout" FontSize="Medium" TextColor="Black" VerticalOptions="Center" Padding="10,0,0,0" Grid.Column="1"/>
+                    <Label Text="Logout" FontSize="Medium" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Padding="10,0,0,0" Grid.Column="1" />
 
                     <!-- Action Text Column -->
-                    <Label Text="Sign out" FontSize="Small" TextColor="Black" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2"/>
+                    <Label Text="Sign out" FontSize="Small" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2" />
                 </Grid>
             </Frame>
         </StackLayout>
