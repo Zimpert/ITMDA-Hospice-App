@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\HospiceApp"
   ],
-  "SelectedNode": "\\HospiceApp.sln",
+  "SelectedNode": "\\HospiceApp\\HospiceApp.sln",
   "PreviewInSolutionExplorer": false
 }

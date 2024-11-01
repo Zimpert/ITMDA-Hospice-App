@@ -7,13 +7,13 @@ namespace MauiApp1
 {
     public partial class LoginPage : ContentPage
     {
-        public LoginPage(LoginViewModel viewModel)
+        public LoginPage(LoginViewModel loginViewModel)
         {
             InitializeComponent();
-            BindingContext = viewModel;
-            
+            BindingContext = loginViewModel;
         }
     }
+
 
 }
 

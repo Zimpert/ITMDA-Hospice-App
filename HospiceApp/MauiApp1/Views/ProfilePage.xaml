@@ -2,59 +2,66 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.ProfilePage"
+             Shell.NavBarIsVisible="False"
              Title="Profile">
-    <StackLayout Padding="10" Spacing="15">
-        <!-- Navbar with Profile Icon, Title, and Settings Icon -->
-        <Grid Grid.Row="0" BackgroundColor="#EAEAEA" Padding="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+    <StackLayout Padding="0" Spacing="15">
+        <!-- Navbar with Title and Settings Icon -->
+        <Frame Grid.Row="0" BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
+                            HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-            <!-- Back Button  on the left -->
-            <ImageButton Grid.Column="0"
-             Source="back_icon.png"
-             BackgroundColor="Black"
-             WidthRequest="30"
-             HeightRequest="30"
-             VerticalOptions="Center"
-             Clicked="OnBackButtonTapped" />
+                <!-- Back button on the left -->
+                <ImageButton Grid.Column="0"
+                                Source="arrow_left.png"
+                                BackgroundColor="Transparent"
+                                WidthRequest="30"
+                                HeightRequest="30"
+                                VerticalOptions="Center"
+                                Aspect="AspectFit"
+                                Clicked="OnBackButtonTapped" />   
 
-            <!-- Home Title in the center -->
-            <Label Grid.Column="1"
-            Text="Profile"
-            FontAttributes="Bold"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            FontSize="Title" />
+                <!-- Home Title in the center -->
+                <Label Grid.Column="1"
+                        Text="Profile"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        FontSize="18"
+                        TextColor="White" />
 
-            <!-- Settings Icon  on the right -->
-            <ImageButton Grid.Column="2"
-                  Source="settings_icon.png"
-                  BackgroundColor="Black"
-                  WidthRequest="30"
-                  HeightRequest="30"
-                  VerticalOptions="Center"
-                  Clicked="OnSettingsIconTapped" />
-        </Grid>
+                <!-- Settings Icon on the right -->
+                <ImageButton Grid.Column="2"
+                              Source="settings.png"
+                              BackgroundColor="Transparent"
+                              WidthRequest="30"
+                              HeightRequest="30"
+                              VerticalOptions="Center"
+                              Aspect="AspectFit"
+                              Clicked="OnSettingsIconTapped" />     
+            </Grid>
+        </Frame>
 
         <!-- Input Fields -->
         <StackLayout Spacing="10">
-            <Label Text="First name" />
-            <Entry Text="{Binding User.FirstName}" Placeholder="First name" BackgroundColor="#9b59b6" />
+            <Label Text="First name" TextColor="White"/>
+            <Entry Text="{Binding User.FirstName}" Placeholder="First name" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
 
-            <Label Text="Last name" />
-            <Entry Text="{Binding User.LastName}" Placeholder="Last name" BackgroundColor="#9b59b6" />
+            <Label Text="Last name" TextColor="White"/>
+            <Entry Text="{Binding User.LastName}" Placeholder="Last name" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
 
-            <Label Text="Email" />
-            <Entry Text="{Binding User.Email}" Placeholder="Email" BackgroundColor="#9b59b6" />
-                          
-            <Label Text="Phone number" />
-            <Entry Text="{Binding User.PhoneNo}" Placeholder="Phone number" BackgroundColor="#9b59b6" />
-                         
-            <Label Text="Emergency contact" />
-            <Entry Text="{Binding User.EmergencyContact}" Placeholder="Not provided" BackgroundColor="#9b59b6" />
+            <Label Text="Email" TextColor="White"/>
+            <Entry Text="{Binding User.Email}" Placeholder="Email" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
+
+            <Label Text="Phone number" TextColor="White"/>
+            <Entry Text="{Binding User.PhoneNo}" Placeholder="Phone number" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
+
+            <Label Text="Emergency contact" TextColor="White"/>
+            <Entry Text="{Binding User.EmergencyContact}" Placeholder="Not provided" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
                 
         </StackLayout>
 
