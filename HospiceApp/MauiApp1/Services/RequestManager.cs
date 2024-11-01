@@ -143,7 +143,17 @@ namespace MauiApp1.Services
         public async Task<bool> ValidateToken()
         {
             // Get the token from secure storage
-            var token = await SecureStorage.GetAsync("Token");
+            string? token = null;
+
+            try
+            {
+                token = await SecureStorage.GetAsync("Token");
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine($"SecureStorage error: {e.Message}");
+            }
+            
 
             // Check if the token is missing
             if (string.IsNullOrEmpty(token))
@@ -158,10 +168,7 @@ namespace MauiApp1.Services
             try
             {
                 // Create an anonymous object with the token
-                var jObject = new
-                {
-                    Token = token
-                };
+                var jObject = new{ Token = token};
 
                 // Serialize the object to JSON
                 string json = JsonSerializer.Serialize(jObject);
