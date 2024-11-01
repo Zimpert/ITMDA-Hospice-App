@@ -4,19 +4,18 @@ namespace MauiApp1
 {
     public partial class ProfilePage : ContentPage
     {
+        private ProfileViewModel _viewModel;
         public ProfilePage(ProfileViewModel viewModel)
         {
             InitializeComponent();
             BindingContext = viewModel;
+            _viewModel = viewModel;
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
-            if (BindingContext is ProfileViewModel vm)
-            {
-                vm.OnAppearing(); // Call the method on ViewModel
-            }
+            await _viewModel.OnAppearingAsync();
         }
 
         private async void OnBackButtonTapped(object sender, EventArgs e)

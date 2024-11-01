@@ -1,17 +1,22 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Android.App;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiApp1.Interfaces;
+using MauiApp1.Models;
+using MauiApp1.Models.PatientModels;
 using System.Diagnostics;
 
-public partial class LoginViewModel : ObservableObject
+
+namespace MauiApp1.ViewModels
 {
-    private readonly IRequestManager _requestManager;
+    public partial class LoginViewModel : ObservableObject
+    {
+        private readonly IRequestManager _requestManager;
 
         public LoginViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
-            loginText = string.Empty; // Initialize loginText
-            passwordText = string.Empty; // Initialize passwordText
+           
         }
 
         [ObservableProperty]
@@ -23,32 +28,36 @@ public partial class LoginViewModel : ObservableObject
         [RelayCommand]
         public async Task Login()
         {
-            Debug.WriteLine("Login method called.");
+            Console.WriteLine("Login method called.");
             var loginResult = await _requestManager.LoginAsync(LoginText, PasswordText);
-
+            await SecureStorage.SetAsync("TEST_STUFF", "TEST VALUE OUTPUT");
+            var contentString = await SecureStorage.GetAsync("TEST_STUFF");
+            await Shell.Current.DisplayAlert("Alert Title", contentString, "OK");
             if (loginResult != null)
             {
-                Debug.WriteLine("Login successful."); 
-                var navigationParams = new 
-                {
-                    UserID = loginResult.UserID,
-                    Token = loginResult.Token
-                };
+                Console.WriteLine("Login successful."); 
 
                 if (Shell.Current != null)
                 {
                     await SecureStorage.SetAsync("Token", loginResult.Token);
                     await SecureStorage.SetAsync("UserID", loginResult.UserID);
+                    contentString = await SecureStorage.GetAsync("Token");
+                    await Shell.Current.DisplayAlert("Alert Title", contentString, "OK");
                     await Shell.Current.GoToAsync("///HomePage"); // Navigate to the HomePage
+                    Debug.WriteLine(await SecureStorage.GetAsync("TEST_STUFF"));
+                    Debug.WriteLine(await SecureStorage.GetAsync("UserID"));
+                    Debug.WriteLine(await SecureStorage.GetAsync("Token"));
                 }
                 else
                 {
-                    Debug.WriteLine("Shell.Current is null.");
+                    Console.WriteLine("Shell.Current is null.");
                 }
             }
             else
             {
-                Debug.WriteLine("Login failed.");
+                Console.WriteLine("Login failed.");
+                
             }
         }
     }
+}

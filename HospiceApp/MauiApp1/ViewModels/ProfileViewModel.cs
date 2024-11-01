@@ -22,15 +22,11 @@ public partial class ProfileViewModel : ObservableObject
             User = new User();
         }
 
-        /// <summary>
-        /// This method is called OnAppearing because it is intended to be invoked when the view associated with this ViewModel appears on the screen.
-        /// In a .NET MAUI application, this typically corresponds to the lifecycle event when a page becomes visible to the user.
-        /// It is a common practice to load or refresh data in such methods to ensure the UI is up-to-date with the latest information.
-        /// </summary>
-        public async void OnAppearing()
+
+        public async Task OnAppearingAsync()
         {
-            var userID = await SecureStorage.GetAsync("userID");
-            var token = await SecureStorage.GetAsync("authToken");
+            var userID = await SecureStorage.GetAsync("UserID");
+            var token = await SecureStorage.GetAsync("Token");
 
             if (string.IsNullOrEmpty(userID) || string.IsNullOrEmpty(token))
             {
