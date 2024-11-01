@@ -68,7 +68,7 @@ namespace MauiApp1.Services
 
         public async Task<User?> LoginAsync(string email, string password)
         {
-
+            
             try
             {
                 // Hash the password using SHA256
@@ -100,10 +100,11 @@ namespace MauiApp1.Services
                 Console.WriteLine($"Response: {jsonResponse}");
 
                 var user = JsonSerializer.Deserialize<User>(jsonResponse);
+                Debug.WriteLine("Json Deseralize is over");
 
                 if (user == null)
                 {
-                    Console.WriteLine("Failed to deserialize the response.");
+                    Debug.WriteLine("Failed to deserialize the response.");
                     return null;
                 }
                 Debug.WriteLine($"UserID: {user.UserID}, Token: {user.Token}");

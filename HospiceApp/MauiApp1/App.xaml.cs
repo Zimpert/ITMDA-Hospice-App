@@ -21,7 +21,7 @@ namespace MauiApp1
 
         private async Task CheckLoginStatus()
         {
-            var authToken = await SecureStorage.GetAsync("Token");
+            var authToken = "dac36fac-635c-40ef-95c9-0abce7ac7ac4";
             if (!await _requestManager.ValidateToken())
             {
                 await Shell.Current.GoToAsync("///LoginPage");
@@ -32,5 +32,4 @@ namespace MauiApp1
             }
         }
     }
-
 }

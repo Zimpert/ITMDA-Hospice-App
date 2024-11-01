@@ -1,21 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiApp1.Interfaces;
-using MauiApp1.Models;
-using MauiApp1.Models.PatientModels;
 using System.Diagnostics;
 
-
-namespace MauiApp1.ViewModels
+public partial class LoginViewModel : ObservableObject
 {
-    public partial class LoginViewModel : ObservableObject
-    {
-        private readonly IRequestManager _requestManager;
+    private readonly IRequestManager _requestManager;
 
         public LoginViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
-           
+            loginText = string.Empty; // Initialize loginText
+            passwordText = string.Empty; // Initialize passwordText
         }
 
         [ObservableProperty]
@@ -27,13 +23,17 @@ namespace MauiApp1.ViewModels
         [RelayCommand]
         public async Task Login()
         {
-            Console.WriteLine("Login method called.");
+            Debug.WriteLine("Login method called.");
             var loginResult = await _requestManager.LoginAsync(LoginText, PasswordText);
 
             if (loginResult != null)
             {
-                Console.WriteLine("Login successful."); 
-
+                Debug.WriteLine("Login successful."); 
+                var navigationParams = new 
+                {
+                    UserID = loginResult.UserID,
+                    Token = loginResult.Token
+                };
 
                 if (Shell.Current != null)
                 {
@@ -43,14 +43,12 @@ namespace MauiApp1.ViewModels
                 }
                 else
                 {
-                    Console.WriteLine("Shell.Current is null.");
+                    Debug.WriteLine("Shell.Current is null.");
                 }
             }
             else
             {
-                Console.WriteLine("Login failed.");
-                
+                Debug.WriteLine("Login failed.");
             }
         }
     }
-}
