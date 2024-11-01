@@ -12,7 +12,7 @@ namespace MauiApp1.ViewModels
     public partial class CaregiverShiftViewModel : ObservableObject
     {
         private readonly IRequestManager _requestManager;
-        private List<CaregiverShifts> _shifts;
+        private List<CaregiverShifts?> _shifts;
 
         [ObservableProperty]
         private string selectedDateString;
@@ -31,7 +31,7 @@ namespace MauiApp1.ViewModels
         public CaregiverShiftViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
-            _shifts = new List<CaregiverShifts>();
+            _shifts = new List<CaregiverShifts?>();
             MinimumDate = DateTime.Now;
             MaximumDate = DateTime.Now.AddDays(6);
             SelectedDateString = $"Shifts for {SelectedDate:MMMM dd, yyyy}";
@@ -43,18 +43,9 @@ namespace MauiApp1.ViewModels
         public async Task GetDataAsync()
         {
             // Example of fetching from API; replace with actual API call
-            //string userID = await SecureStorage.GetAsync("UserID");
-            //string token = await SecureStorage.GetAsync("Token");
-            //_shifts = await _requestManager.GetCaregiverShiftsAsync(userID, token);
-
-            // Dummy data for testing
-            _shifts = new List<CaregiverShifts>
-            {
-                new CaregiverShifts { ShiftStart = new DateTime(2024, 10, 30), PatientName = "Shift 1" },
-                new CaregiverShifts { ShiftStart = new DateTime(2024, 10, 31), PatientName = "Shift 2" },
-                new CaregiverShifts { ShiftStart = new DateTime(2024, 10, 29), PatientName = "Shift 3" },
-                new CaregiverShifts { ShiftStart = new DateTime(2024, 10, 29), PatientName = "Shift 4" }
-            };
+            string userID = await SecureStorage.GetAsync("UserID");
+            string token = await SecureStorage.GetAsync("Token");
+            _shifts = await _requestManager.GetCaregiverShiftsAsync(userID, token);
 
             foreach (var item in _shifts)
             {
@@ -66,7 +57,7 @@ namespace MauiApp1.ViewModels
         {
             SelectedDateString = $"Shifts for {value:MMMM dd, yyyy}";
             FilteredShifts.Clear();
-            var filtered = _shifts.Where(item => item.ShiftStart.Date.Equals(SelectedDate)).ToList();
+            var filtered = _shifts.Where(item => item.ShiftStart.Date.Equals(value.Date)).ToList();
             foreach (var item in filtered)
             {
                 FilteredShifts.Add(item);
