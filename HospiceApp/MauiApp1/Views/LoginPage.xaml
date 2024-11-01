@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.LoginPage"
              xmlns:vm ="clr-namespace:MauiApp1.ViewModels"
+             x:DataType="vm:LoginViewModel"
              Shell.NavBarIsVisible="False"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#9b59b6"
