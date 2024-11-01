@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.ShiftsPage"
+             Shell.NavBarIsVisible="False" 
+             BackgroundColor="#9b59b6">
+
+    <Grid Padding="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Navbar with Profile Icon, Title, and Settings Icon -->
+        <Frame Grid.Row="0" BackgroundColor="White" Padding="15" CornerRadius="0" HasShadow="True">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Back Button on the left -->
+                <ImageButton Grid.Column="0"
+                                Source="arrow_left.png"
+                                BackgroundColor="Transparent"
+                                WidthRequest="30"
+                                HeightRequest="30"
+                                VerticalOptions="Center"
+                                Clicked="OnBackButtonTapped" />
+
+                <!-- Shifts Title in the center -->
+                <Label Grid.Column="1"
+                       Text="Shifts"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       FontSize="22"
+                       TextColor="#9b59b6" />
+
+                <!-- Settings Icon on the right -->
+                <ImageButton Grid.Column="2"
+                             Source="settings.png"
+                             BackgroundColor="Transparent"
+                             WidthRequest="30"
+                             HeightRequest="30"
+                             VerticalOptions="Center"
+                             Aspect="AspectFit"
+                             Clicked="OnSettingsIconTapped" />
+            </Grid>
+        </Frame>
+
+        <!-- Main Content  -->
+        <Frame Grid.Row="1" Padding="20" CornerRadius="30" HasShadow="True" Margin="20,10,20,0">
+            <Frame.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="#FFFFFF" Offset="0.0" />
+                    <GradientStop Color="#F5F3FF" Offset="1.0" />
+                </LinearGradientBrush>
+            </Frame.Background>
+            <StackLayout Orientation="Vertical" Spacing="20">
+
+                <!-- Date Picker Section -->
+                <Label Text="Select Date" FontAttributes="Bold" FontSize="20" TextColor="#9b59b6" HorizontalOptions="Center"/>
+                <Frame BackgroundColor="#F3F0FF" CornerRadius="10" Padding="10" Margin="0,0,0,20" HasShadow="True">
+                    <DatePicker Date="{Binding SelectedDate, Mode=TwoWay}" 
+                                MinimumDate="{Binding MinimumDate}"
+                                MaximumDate="{Binding MaximumDate}"
+                                HorizontalOptions="Center"
+                                FontSize="16"
+                                TextColor="#333" />
+                </Frame>
+
+                <!-- Selected Date Display -->
+                <Label Text="{Binding SelectedDateString}" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" TextColor="#9b59b6" />
+
+                <!-- Upcoming Shifts Section -->
+                <Label Text="Upcoming Shifts" FontAttributes="Bold" FontSize="24" TextColor="#333" HorizontalOptions="Start" Margin="0,20,0,10" />
+
+                <!-- Shifts List for Selected Date -->
+                <CollectionView ItemsSource="{Binding FilteredShifts}" ItemsLayout="VerticalListLayout">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="15" CornerRadius="15" Margin="0,5,0,0" BackgroundColor="#F3F0FF" HasShadow="True">
+                                <StackLayout Orientation="Horizontal" Spacing="10" >
+                                    <Image Source="shift_icon.png" WidthRequest="35" HeightRequest="35" VerticalOptions="Center" />
+                                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Spacing="2">
+                                        <Label Text="{Binding PatientName}" FontAttributes="Bold" FontSize="18" TextColor="#333" />
+                                        <Label Text="{Binding Time}" FontSize="14" TextColor="#666" />
+                                    </StackLayout>
+                                    <Label Text="Today" FontSize="14" TextColor="#666" HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </StackLayout>
+        </Frame>
+
+        <!-- Action Buttons -->
+        <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="Center" Spacing="15" Margin="0,30,0,30">
+            <Button Text="Request Shift" BackgroundColor="#4CAF50" TextColor="White" CornerRadius="25" WidthRequest="220" HeightRequest="50"
+                    FontAttributes="Bold" FontSize="18"/>
+            <Button Text="Request Cancel" BackgroundColor="#F44336" TextColor="White" CornerRadius="25" WidthRequest="220" HeightRequest="50"
+                    FontAttributes="Bold" FontSize="18"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

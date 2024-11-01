@@ -17,6 +17,8 @@ namespace MauiApp1.Interfaces
 
         Task<bool> ValidateToken();
 
+        Task<List<CaregiverShifts?>> GetCaregiverShiftsAsync(string userID, string token);
 
+        //Task<List<PatientMedication>> GetPatientMedicationsAsync(string userID, string token);
     }
 }

@@ -2,6 +2,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Threading.Tasks;
 using MauiApp1.Interfaces;
+using System.Diagnostics;
+using CommunityToolkit.Mvvm.Input;
 
 namespace MauiApp1.ViewModels
 {
@@ -12,14 +14,12 @@ public partial class ProfileViewModel : ObservableObject
 
         // Backing field for the User property to store the user data
         [ObservableProperty]
-        private User user;
+        private User? user; // Marked as nullable
 
         public ProfileViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
-
-            // Initialize the User property to avoid null reference issues
-            User = new User();
+            user = new User(); // Initialize the user field
         }
 
         /// <summary>
@@ -34,15 +34,19 @@ public partial class ProfileViewModel : ObservableObject
 
             if (string.IsNullOrEmpty(userID) || string.IsNullOrEmpty(token))
             {
-                Console.WriteLine("User ID or token is missing.");
+                Debug.WriteLine("User ID or token is missing.");
                 return;
             }
             else
             {
-                User userData = await _requestManager.GetUserDataAsync(userID, token);
+                User? userData = await _requestManager.GetUserDataAsync(userID, token);
                 if (userData != null)
                 {
                     User = userData;
+                }
+                else
+                {
+                    Debug.WriteLine("Failed to retrieve user data.");
                 }
             }
         }

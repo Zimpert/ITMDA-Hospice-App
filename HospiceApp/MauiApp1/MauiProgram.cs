@@ -1,7 +1,9 @@
-﻿using MauiApp1.Classes;
+﻿using CommunityToolkit.Maui;
+using MauiApp1.Classes;
 using MauiApp1.Interfaces;
 using MauiApp1.Services;
 using MauiApp1.ViewModels;
+
 using Microsoft.Extensions.Logging;
 using ZXing.Net.Maui.Controls;
 
@@ -10,6 +12,8 @@ namespace MauiApp1
 
     public static class MauiProgram
     {
+        public static IServiceProvider? ServiceProvider { get; private set; }
+
         /// <summary>  
         /// Creates and configures the Maui application.  
         /// </summary>  
@@ -19,8 +23,8 @@ namespace MauiApp1
             var builder = MauiApp.CreateBuilder();
 
             // Register services with the dependency injection container  
-            builder.Services.AddSingleton<HttpClient>();
-            builder.Services.AddSingleton<AbstractRequest>();
+            builder.Services.AddTransient<HttpClient>();
+            builder.Services.AddSingleton<ApiRequest>();
             builder.Services.AddSingleton<IRequestManager, RequestManager>();
             builder.Services.AddTransient<LoginPage>(); // Register LoginPage with DI  
             builder.Services.AddTransient<LoginViewModel>();
@@ -31,6 +35,7 @@ namespace MauiApp1
             // Configure the Maui application  
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     // Register fonts with the application  
@@ -45,7 +50,9 @@ namespace MauiApp1
 #endif
 
             // Build and return the configured Maui application  
-            return builder.Build();
+            var app = builder.Build();
+            ServiceProvider = app.Services;
+            return app;
         }
     }
 }

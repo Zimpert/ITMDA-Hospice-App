@@ -4,6 +4,7 @@ using MauiApp1.Models;
 using MauiApp1.Models.PatientModels;
 using MauiApp1.ViewModels;
 using Microsoft.Maui.ApplicationModel.Communication;
+using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 
@@ -14,10 +15,10 @@ namespace MauiApp1.Services
     /// </summary>
     public class RequestManager : IRequestManager
     {
-        private readonly AbstractRequest _abstractRequest;
-        public RequestManager(AbstractRequest abstractRequest)
+        private readonly ApiRequest _apiRequest;
+        public RequestManager(ApiRequest apiRequest)
         {
-            _abstractRequest = abstractRequest;
+            _apiRequest = apiRequest;
         }
 
         public async Task<User?> GetUserDataAsync(string userID, string token)
@@ -35,7 +36,7 @@ namespace MauiApp1.Services
                 string json = JsonSerializer.Serialize(jObject);
 
                 // Send the JSON to the server and get the response
-                var jsonResponse = await _abstractRequest.AbstractRequestAsync("/userinfo", json);
+                var jsonResponse = await _apiRequest.SendRequestAsync("/userinfo", json);
 
                 // Deserialize the JSON response to a User object
                 var user = JsonSerializer.Deserialize<User>(jsonResponse);
@@ -65,9 +66,9 @@ namespace MauiApp1.Services
             return null;
         }
 
-        public async Task<User?> LoginAsync (string email, string password)
+        public async Task<User?> LoginAsync(string email, string password)
         {
-            
+
             try
             {
                 // Hash the password using SHA256
@@ -79,11 +80,25 @@ namespace MauiApp1.Services
                 var jObject = new
                 {
                     Email = email,
-                    Password = password
+                    PasswordHash = password
                 };
+
+                Debug.WriteLine("Details:");
+                Debug.WriteLine(jObject.Email);
+                Debug.WriteLine(jObject.PasswordHash);
                 string json = JsonSerializer.Serialize(jObject);
 
-                var jsonResponse = await _abstractRequest.AbstractRequestAsync("/login", json);
+                var jsonResponse = await _apiRequest.SendRequestAsync("/login", json);
+
+                if (string.IsNullOrEmpty(jsonResponse))
+                {
+                    Console.WriteLine("No data returned from the server.");
+                    return null;
+                }
+
+                // Write the response to the console
+                Console.WriteLine($"Response: {jsonResponse}");
+
                 var user = JsonSerializer.Deserialize<User>(jsonResponse);
 
                 if (user == null)
@@ -91,8 +106,9 @@ namespace MauiApp1.Services
                     Console.WriteLine("Failed to deserialize the response.");
                     return null;
                 }
+                Debug.WriteLine($"UserID: {user.UserID}, Token: {user.Token}");
                 return user;
-                
+
             }
             catch (HttpRequestException e)
             {
@@ -110,9 +126,10 @@ namespace MauiApp1.Services
             var token = await SecureStorage.GetAsync("Token");
             if (string.IsNullOrEmpty(token))
             {
+                Debug.WriteLine("Token missing.");
                 return false; // token missing 
             }
-
+            Debug.WriteLine($"Token: {token}");
             try
             {
                 var jObject = new
@@ -120,23 +137,80 @@ namespace MauiApp1.Services
                     Token = token
                 };
                 string json = JsonSerializer.Serialize(jObject);
+                Debug.WriteLine($"Serialized JSON: {json}");
 
-                var jsonResponse = await _abstractRequest.AbstractRequestAsync("/prelogin", json);
-                var result = JsonSerializer.Deserialize<bool>(jsonResponse);
+                var jsonResponse = await _apiRequest.SendRequestAsync("/prelogin", json);
+                Debug.WriteLine($"Server response: {jsonResponse}");
 
-                return result;
+                if (string.IsNullOrEmpty(jsonResponse))
+                {
+                    Debug.WriteLine("No response from server.");
+                    return false;
+                }
+
+                // Log the JSON response for debugging
+                Debug.WriteLine($"JSON Response: {jsonResponse}");
+
+                // Attempt to deserialize the response to a boolean
+                try
+                {
+                    var result = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(jsonResponse);
+                    if (result != null && result.ContainsKey("Success"))
+                    {
+                        return result["Success"].GetBoolean();
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Response does not contain 'Success' key.");
+                    }
+                }
+                catch (JsonException ex)
+                {
+                    Debug.WriteLine($"Deserialization error: {ex.Message}");
+                }
             }
             catch (HttpRequestException e)
             {
-                Console.WriteLine($"Request error: {e.Message}");
+                Debug.WriteLine($"Request error: {e.Message}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Unexpected error: {ex.Message}");
+                Debug.WriteLine($"Unexpected error: {ex.Message}");
             }
             return false;
+        }
+
+        public async Task<List<CaregiverShifts?>> GetCaregiverShiftsAsync(string userID, string token)
+        {
+
+            var jObject = new
+            {
+                UserID = userID,
+                Token = token
+            };
+            string json = JsonSerializer.Serialize(jObject);
+
+            var jsonResponse = await _apiRequest.SendRequestAsync("/shifts", json);
+            var result = JsonSerializer.Deserialize<List<CaregiverShifts?>>(jsonResponse);
+
+            return result;
 
         }
+
+        //public async Task<List<PatientMedication>> GetPatientMedicationsAsync(string userID, string token)
+        //{
+        //    var jObject = new
+        //    {
+        //        UserID = userID,
+        //        Token = token
+        //    };
+        //    string json = JsonSerializer.Serialize(jObject);
+
+        //    var jsonResponse = await _apiRequest.SendRequestAsync("/", json);
+        //    var result = JsonSerializer.Deserialize<List<CaregiverShifts?>>(jsonResponse);
+
+        //    return result;
+        //}
     }
 
 
