@@ -54,23 +54,15 @@ CREATE TABLE `PatientMedications` (
   FOREIGN KEY (`PatientID`) REFERENCES `Users`(`UserID`)
 );
 
-CREATE TABLE `PatientMedicationSchedule` (
-  `PatientMedicationScheduleID` varchar(36),
-  `PatientMedicationID` varchar(36),
-  PRIMARY KEY (`PatientMedicationScheduleID`),
-  FOREIGN KEY (`PatientMedicationID`) REFERENCES `PatientMedications` (`PatientMedicationID`)
-);
-
-
 
 CREATE TABLE `MedicationDays` (
   `PatientMedicationDayID` varchar(36),
-  `PatientMedicationScheduleID` Varchar(36),
+  `PatientMedicationID` Varchar(36),
   `Day` enum('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'),
   `ReminderID` varchar(36),
   `Frequency` enum('Hourly', '2 Hourly', '3 Hourly', '4 Hourly', '6 Hourly', '8 Hourly', '12 Hourly'),
   PRIMARY KEY (`PatientMedicationDayID`),
-FOREIGN KEY (`PatientMedicationScheduleID`) REFERENCES `PatientMedicationSchedule` (`PatientMedicationScheduleID`),
+FOREIGN KEY (`PatientMedicationID`) REFERENCES `PatientMedications` (`PatientMedicationID`),
   FOREIGN KEY (`ReminderID`) REFERENCES `Reminders`(`ReminderID`)
 
 );
@@ -147,6 +139,8 @@ CREATE TABLE `CaregiverShifts` (
   `CaregiverID` varchar(36),
   `PatientID` varchar(36),
   `ReminderID` varchar(36),
+  `ShiftStart` DateTime,
+  `ShiftEnd` DateTime,
   PRIMARY KEY (`CaregiverShiftID`),
   FOREIGN KEY (`PatientID`) REFERENCES `Users`(`UserID`),
 FOREIGN KEY (`CaregiverID`) REFERENCES `Users`(`UserID`),

@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.ProfilePage"
              Shell.NavBarIsVisible="False"
-             Title="Profile">
+             Title="Profile"
+             xmlns:vm="clr-namespace:MauiApp1.ViewModels"
+             x:DataType="vm:ProfileViewModel">
     <StackLayout Padding="0" Spacing="15">
         <!-- Navbar with Title and Settings Icon -->
         <Frame Grid.Row="0" BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
@@ -42,17 +44,17 @@
                               HeightRequest="30"
                               VerticalOptions="Center"
                               Aspect="AspectFit"
-                              Clicked="OnSettingsIconTapped" />     
+                              Clicked="OnSettingsIconTapped" />      
             </Grid>
         </Frame>
 
         <!-- Input Fields -->
         <StackLayout Spacing="10">
             <Label Text="First name" TextColor="White"/>
-            <Entry Text="{Binding User.FirstName}" Placeholder="First name" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
+            <Entry Text="{Binding User.Name}" Placeholder="First name" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
 
             <Label Text="Last name" TextColor="White"/>
-            <Entry Text="{Binding User.LastName}" Placeholder="Last name" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
+            <Entry Text="{Binding User.Surname}" Placeholder="Last name" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
 
             <Label Text="Email" TextColor="White"/>
             <Entry Text="{Binding User.Email}" Placeholder="Email" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
@@ -61,7 +63,7 @@
             <Entry Text="{Binding User.PhoneNo}" Placeholder="Phone number" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
 
             <Label Text="Emergency contact" TextColor="White"/>
-            <Entry Text="{Binding User.EmergencyContact}" Placeholder="Not provided" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
+            <Entry Text="{}" Placeholder="Not provided" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
                 
         </StackLayout>
 

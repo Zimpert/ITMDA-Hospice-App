@@ -32,8 +32,8 @@ namespace MauiApp1.ViewModels
 
             if (loginResult != null)
             {
-                Console.WriteLine("Login successful."); 
-
+                Console.WriteLine("Login successful.");
+                Debug.WriteLine(loginResult.Token);
 
                 if (Shell.Current != null)
                 {

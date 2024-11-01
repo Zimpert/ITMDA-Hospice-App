@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Threading.Tasks;
 using MauiApp1.Interfaces;
+using System.Diagnostics;
 
 namespace MauiApp1.ViewModels
 {
@@ -34,7 +35,7 @@ public partial class ProfileViewModel : ObservableObject
 
             if (string.IsNullOrEmpty(userID) || string.IsNullOrEmpty(token))
             {
-                Console.WriteLine("User ID or token is missing.");
+                Debug.WriteLine("User ID or token is missing.");
                 return;
             }
             else
