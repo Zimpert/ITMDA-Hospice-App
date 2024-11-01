@@ -49,10 +49,10 @@
         <!-- Input Fields -->
         <StackLayout Spacing="10">
             <Label Text="First name" TextColor="White"/>
-            <Entry Text="{Binding User.FirstName}" Placeholder="First name" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
+            <Entry Text="{Binding User.Name}" Placeholder="First name" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
 
             <Label Text="Last name" TextColor="White"/>
-            <Entry Text="{Binding User.LastName}" Placeholder="Last name" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
+            <Entry Text="{Binding User.Surname}" Placeholder="Last name" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
 
             <Label Text="Email" TextColor="White"/>
             <Entry Text="{Binding User.Email}" Placeholder="Email" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
@@ -60,8 +60,8 @@
             <Label Text="Phone number" TextColor="White"/>
             <Entry Text="{Binding User.PhoneNo}" Placeholder="Phone number" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
 
-            <Label Text="Emergency contact" TextColor="White"/>
-            <Entry Text="{Binding User.EmergencyContact}" Placeholder="Not provided" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
+            <Label Text="Address" TextColor="White"/>
+            <Entry Text="{Binding User.Address}" Placeholder="Not provided" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
                 
         </StackLayout>
 

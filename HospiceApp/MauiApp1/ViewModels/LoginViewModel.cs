@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Android.App;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiApp1.Interfaces;
 using MauiApp1.Models;
@@ -29,17 +30,23 @@ namespace MauiApp1.ViewModels
         {
             Console.WriteLine("Login method called.");
             var loginResult = await _requestManager.LoginAsync(LoginText, PasswordText);
-
+            await SecureStorage.SetAsync("TEST_STUFF", "TEST VALUE OUTPUT");
+            var contentString = await SecureStorage.GetAsync("TEST_STUFF");
+            await Shell.Current.DisplayAlert("Alert Title", contentString, "OK");
             if (loginResult != null)
             {
                 Console.WriteLine("Login successful."); 
-
 
                 if (Shell.Current != null)
                 {
                     await SecureStorage.SetAsync("Token", loginResult.Token);
                     await SecureStorage.SetAsync("UserID", loginResult.UserID);
+                    contentString = await SecureStorage.GetAsync("Token");
+                    await Shell.Current.DisplayAlert("Alert Title", contentString, "OK");
                     await Shell.Current.GoToAsync("///HomePage"); // Navigate to the HomePage
+                    Debug.WriteLine(await SecureStorage.GetAsync("TEST_STUFF"));
+                    Debug.WriteLine(await SecureStorage.GetAsync("UserID"));
+                    Debug.WriteLine(await SecureStorage.GetAsync("Token"));
                 }
                 else
                 {
