@@ -14,42 +14,13 @@ public partial class ProfileViewModel : ObservableObject
 
         // Backing field for the User property to store the user data
         [ObservableProperty]
-        private User user;
+        private User? user; // Marked as nullable
 
         public ProfileViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
-
-            // Initialize the User property to avoid null reference issues
-            User = new User();
+            user = new User(); // Initialize the user field
         }
-
-
-        [RelayCommand]
-        public async Task<User?> GetUserData()
-        {
-            var userID = await SecureStorage.GetAsync("userID");
-            var token = await SecureStorage.GetAsync("Token");
-            var userResult = await _requestManager.GetUserDataAsync(userID, token);
-
-            if (userResult != null)
-            {
-                Debug.WriteLine("User data retrieved successfully.");
-                return userResult;
-            }
-            else
-            {
-                Debug.WriteLine("Failed to retrieve user data.");
-                return null;
-            }
-
-        }
-
-
-
-
-
-
 
         /// <summary>
         /// This method is called OnAppearing because it is intended to be invoked when the view associated with this ViewModel appears on the screen.
@@ -68,10 +39,14 @@ public partial class ProfileViewModel : ObservableObject
             }
             else
             {
-                User userData = await _requestManager.GetUserDataAsync(userID, token);
+                User? userData = await _requestManager.GetUserDataAsync(userID, token);
                 if (userData != null)
                 {
                     User = userData;
+                }
+                else
+                {
+                    Debug.WriteLine("Failed to retrieve user data.");
                 }
             }
         }
