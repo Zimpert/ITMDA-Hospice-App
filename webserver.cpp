@@ -127,8 +127,6 @@ std::string fetch_session_userid(webserver_resource* webserver_resource, std::st
  } else [[likely]] { return std::move(user_id); }
 }
 std::string fetch_session_token(webserver_resource* webserver_resource, std::string_view const user_id) noexcept {
- SPDLOG_INFO("fetch_session_token");
- 
  using namespace std::chrono_literals;
 
  auto const query = std::format(
@@ -158,20 +156,12 @@ void update_session(webserver_resource* webserver_resource, std::string_view con
  net::db_exec(connection.connection(), local::database, query);
 }
 void create_session(webserver_resource* webserver_resource, std::string_view const token, std::string_view const user_id) noexcept {
- SPDLOG_INFO("create_session");
  auto const query = std::format(
   "INSERT INTO TB_HospiceSession (sToken, sUserID) "
   "VALUES ('{}', '{}')",
   token, user_id);
- SPDLOG_INFO("create_session 2");
-
  auto connection = webserver_resource->get_local_connection();
- SPDLOG_INFO("create_session 3");
-
- if (connection.connection() == nullptr) [[unlikely]] { 
-  SPDLOG_INFO("connection is null! why!!!!");
-  return; 
-  }
+ if (connection.connection() == nullptr) [[unlikely]] { return; }
  net::db_exec(connection.connection(), local::database, query);
 }
 
@@ -200,9 +190,6 @@ webserver::user_info_type fetch_userinfo(webserver_resource* webserver_resource,
  }
 }
 webserver::user_info_type fetch_userinfo(webserver_resource* webserver_resource, std::string_view const email, std::string_view const passwordhash) noexcept {
- SPDLOG_INFO("fetch_userinfo");
- 
-
  static constexpr auto str = net::mysql_field_type::str;
  auto const query = std::format(
   "SELECT UserID, Role, Name, Surname, Phone, Email, Address "
@@ -327,6 +314,10 @@ void webserver::run() noexcept {
  }
  this->m_server.close();
 }
+
+[[nodiscard]] std::span<net::http_socket const> webserver::clients() const noexcept { return this->m_clients; }
+[[nodiscard]] std::span<webserver::ddct::wthread_t const> webserver::wthreads() const noexcept { return this->m_threadpool.wthreads(); }
+
 void webserver::accept_incoming_connections() noexcept {
  while (true) {
   auto [status, has_incoming_connection] = this->has_incoming_connection();
@@ -413,7 +404,6 @@ void webserver::distribute_jobs() noexcept {
    auto socket_handle_it = std::find(std::begin(client_sockets_copy.fd_array), std::end(client_sockets_copy.fd_array), socket_handle);
    if (socket_handle_it == std::end(client_sockets_copy.fd_array)) {
     mutex->unlock();
-    std::cout << std::format("Unlocked Unused Mutex #{}\n", std::find_if(std::begin(this->m_client_mutices), std::end(this->m_client_mutices), [&](auto const& client_mutex) noexcept { return &client_mutex == mutex; }) - std::begin(this->m_client_mutices));
    } else {
     mutices[i++] = mutex;
    }
@@ -423,17 +413,13 @@ void webserver::distribute_jobs() noexcept {
    auto it = std::find_if(std::begin(this->m_clients), std::end(this->m_clients), [&](auto const& client) noexcept { return client.socket().socket_handle == socket_handle; });
    if (it == std::end(this->m_clients)) [[unlikely]] {
     SPDLOG_ERROR("Socket Handle Returned from \"select\" Not Valid\n");
-    for (std::size_t i = mutex_idx; i < client_sockets_copy.fd_count; ++i) {
-     mutices[i]->unlock();
-     std::cout << std::format("Unlocked Failed Socket's Mutex #{}\n", std::find_if(std::begin(this->m_client_mutices), std::end(this->m_client_mutices), [&](auto const& client_mutex) noexcept { return &client_mutex == mutices[mutex_idx]; }) - std::begin(this->m_client_mutices));
-    }
+    for (std::size_t i = mutex_idx; i < client_sockets_copy.fd_count; ++i) { mutices[i]->unlock(); }
     return;
    }
 
    auto& is_assigned = this->m_clients_assigned[it - std::begin(this->m_clients)];
    if (is_assigned) /* Already Assigned */ {
     mutices[mutex_idx++]->unlock();
-    std::cout << std::format("Unlocked Already-Assigned Socket's Mutex #{}\n", std::find_if(std::begin(this->m_client_mutices), std::end(this->m_client_mutices), [&](auto const& client_mutex) noexcept { return &client_mutex == mutices[mutex_idx-1]; }) - std::begin(this->m_client_mutices));
     continue;
    }
    is_assigned = true;
@@ -491,8 +477,6 @@ void webserver::handle_client_callable(::webserver_resource* webserver_resource,
  }
  if (resource == "/login") {
   auto const user_details = webserver::process_login(webserver_resource, request);
-  SPDLOG_INFO("Completed Process Login");
-
   nlohmann::json response;
   if (std::size(std::get<7>(user_details)) == 0) [[unlikely]] {
    SPDLOG_INFO("Client ({}:{}): Invalid Login", net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port);
@@ -672,8 +656,6 @@ webserver::login_return_type webserver::process_login(::webserver_resource* webs
   SPDLOG_ERROR("Failed to Fetch User Info");
   return {};
  }
-
- SPDLOG_INFO("{}", std::get<3>(userinfo));
 
  auto token = std::invoke([&]() noexcept {
   auto token = fetch_session_token(webserver_resource, std::get<0>(userinfo));

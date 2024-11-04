@@ -3,12 +3,12 @@
 #include "webserver_resource.hpp"
 #include "stl/threadpool/dynamic_decaying_centralised_threadpool.hpp"
 #include "net/http_socket.hpp"
-#include <mutex>
 #include <cppconn/exception.h>
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
-
 #include <spdlog/spdlog.h>
+#include <span>
+#include <mutex>
 
 class webserver {
 public:
@@ -23,6 +23,10 @@ public:
 
  void stop() noexcept;
  void run() noexcept;
+
+ std::span<net::http_socket const> clients() const noexcept;
+ std::span<ddct::wthread_t const> wthreads() const noexcept;
+ auto const& thread_resource() const noexcept { return this->m_threadpool.resource(); }
  
 private:
  void accept_incoming_connections() noexcept;

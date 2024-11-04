@@ -7,19 +7,32 @@
 #include <vector>
 
 struct webserver_resource {
- net::connection_pool<4> remote_connection_pool{ remote::credentials };
+ net::connection_pool<64> remote_connection_pool{ remote::credentials };
  net::connection_pool<128> local_connection_pool{ local::credentials };
 
  webserver_resource() = default;
  webserver_resource(webserver_resource const&) = delete;
+ ~webserver_resource() noexcept {
+  SPDLOG_WARN("Webserver Resource Destructor Called...");
+ }
 
  void startup() noexcept;
  void shutdown() noexcept;
 
  [[nodiscard]] auto get_remote_connection() noexcept {
-  return this->remote_connection_pool.get();
+  while (true) {
+   auto connection = this->remote_connection_pool.get();
+   if (connection.connection() != nullptr) {
+    return std::move(connection);
+   }
+  }
  }
  [[nodiscard]] auto get_local_connection() noexcept {
-  return this->local_connection_pool.get();
+  while (true) {
+   auto connection = this->local_connection_pool.get();
+   if (connection.connection() != nullptr) {
+    return std::move(connection);
+   }
+  }
  }
 };

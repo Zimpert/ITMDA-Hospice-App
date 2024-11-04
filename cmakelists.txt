@@ -1,18 +1,20 @@
 cmake_minimum_required(VERSION 3.16)
 
+cmake_policy(SET CMP0091 NEW)
+
 project(itmda_webserver)
 
-set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreadedDLL$<$<CONFIG:Release>:Release>")
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_GENERATOR "Visual Studio 17 2022")
-
+set(BUILD_SHARED_LIBS OFF)
 
 #set(BUILD_SHARED_LIBS OFF)
 
 add_executable(itmda_webserver entrypoint.cpp
  webserver.cpp
  webserver_resource.cpp
+ webserver_terminal.cpp
  c:/se/personal/lib_cpp/net/socket.cpp
  c:/se/personal/lib_cpp/net/db_exec.cpp
  c:/se/personal/lib_cpp/net/http_socket.cpp
@@ -20,10 +22,21 @@ add_executable(itmda_webserver entrypoint.cpp
  c:/se/personal/lib_cpp/net/http_content.cpp
  c:/se/personal/lib_cpp/net/http_request.cpp
  c:/se/personal/lib_cpp/timing/scoped_timer.cpp
+ c:/se/libraries/c++/imgui/imgui.cpp
+ c:/se/libraries/c++/imgui/imgui_draw.cpp
+ c:/se/libraries/c++/imgui/imgui_tables.cpp
+ c:/se/libraries/c++/imgui/imgui_widgets.cpp
+ c:/se/libraries/c++/imgui/imgui_demo.cpp
+ c:/se/libraries/c++/imgui/backends/imgui_impl_glfw.cpp
+ c:/se/libraries/c++/imgui/backends/imgui_impl_opengl3.cpp
 )
+set_property(TARGET itmda_webserver PROPERTY CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreadedDLL$<$<CONFIG:Debug>:Debug>")
 target_link_libraries(itmda_webserver PRIVATE
  ws2_32.lib
- c:/se/libraries/c++/mysql-connector/lib64/vs14/mysqlcppconn-static.lib
+ opengl32.lib
+ c:/se/libraries/c++/mysql-connector-debug/lib64/debug/vs14/mysqlcppconn-static.lib
+ C:/SE/Libraries/c++/glew/lib/Release/x64/glew32s.lib
+ C:/SE/Libraries/C++/glfw/lib-vc2022/glfw3_mt.lib
 )
 include_directories(itmda_webserver
  c:/se/personal/lib_cpp/
@@ -32,6 +45,9 @@ include_directories(itmda_webserver
  c:/se/libraries/c++/json/single_include/
  c:/se/libraries/c++/mysql-connector/include/jdbc/
  c:/se/libraries/c++/stduuid/include/
+ c:/se/libraries/c++/imgui/
+ c:/se/libraries/c++/glfw/include
+ c:/se/libraries/c++/glew/include
 )
 target_compile_definitions(itmda_webserver PRIVATE
  #_DEBUG

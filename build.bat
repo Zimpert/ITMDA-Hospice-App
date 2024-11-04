@@ -1,7 +1,7 @@
 @echo off
 
-REM rd /q /s build
-REM md build
+rd /q /s build
+md build
 cd build
 cmake -S ..
 cmake --build . -j
