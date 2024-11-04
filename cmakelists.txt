@@ -12,12 +12,14 @@ set(CMAKE_GENERATOR "Visual Studio 17 2022")
 
 add_executable(itmda_webserver entrypoint.cpp
  webserver.cpp
+ webserver_resource.cpp
  c:/se/personal/lib_cpp/net/socket.cpp
  c:/se/personal/lib_cpp/net/db_exec.cpp
  c:/se/personal/lib_cpp/net/http_socket.cpp
  c:/se/personal/lib_cpp/net/http_header.cpp
  c:/se/personal/lib_cpp/net/http_content.cpp
  c:/se/personal/lib_cpp/net/http_request.cpp
+ c:/se/personal/lib_cpp/timing/scoped_timer.cpp
 )
 target_link_libraries(itmda_webserver PRIVATE
  ws2_32.lib

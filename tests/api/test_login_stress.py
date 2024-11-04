@@ -1,8 +1,10 @@
 import urllib.request
 import json
+import time
 import threading
 
 def run(i):
+ time.sleep(i / 100)
  response = urllib.request.urlopen(urllib.request.Request(
   "http://ddnd.crabdance.com/login",
   data=json.dumps({
@@ -14,7 +16,7 @@ def run(i):
  ))
  print(f"Response #{i}: {response.read()}")
 
-threads = [threading.Thread(target=run, args=(i,)) for i in range(20)]
+threads = [threading.Thread(target=run, args=(i,)) for i in range(50)]
 for thread in threads:
  thread.start()
 for thread in threads:
