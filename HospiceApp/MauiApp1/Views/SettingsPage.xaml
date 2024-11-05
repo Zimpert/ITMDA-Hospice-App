@@ -67,7 +67,7 @@
                     <Label Text="Light/Dark Mode" FontSize="Medium" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Padding="10,0,0,0" Grid.Column="1" />
 
                     <!-- Toggle Switch -->
-                    <Switch x:Name="ThemeSwitch" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2"   Toggled="OnThemeSwitchToggled" />
+                    <Switch x:Name="ThemeSwitch" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2" />
                 </Grid>
             </Frame>
 

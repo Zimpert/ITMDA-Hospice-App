@@ -11,8 +11,8 @@ namespace MauiApp1.Models
 {
     public class CaregiverShifts
     {
-        public DateTime ShiftStart { get; set; }
-        public DateTime ShiftEnd { get; set; }
+        public string ShiftStart { get; set; }
+        public string ShiftEnd { get; set; }
 
         [JsonIgnore]
         public string Time { get; set; }

@@ -25,7 +25,7 @@ namespace MauiApp1.Views
         }
         private async Task CheckLoginStatus()
         {
-            await Task.Delay(1000);
+            await Task.Delay(2000);
             Debug.WriteLine("Checking login status...");
             try
             {

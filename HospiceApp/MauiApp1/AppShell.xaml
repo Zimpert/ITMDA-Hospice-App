@@ -8,4 +8,7 @@
     <ShellContent Route="HomePage" ContentTemplate="{DataTemplate v:HomePage}" />
     <ShellContent Route="ShiftPage" ContentTemplate="{DataTemplate v:ShiftPage}" />
 
+
+    <!--Need to implement pages and shift them to .view.page-->
+
 </Shell>

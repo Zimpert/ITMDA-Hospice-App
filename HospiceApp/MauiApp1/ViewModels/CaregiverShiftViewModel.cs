@@ -86,17 +86,13 @@ namespace MauiApp1.ViewModels
             _selectedDateString = $"Shifts for {SelectedDate:MMMM dd, yyyy}";
             FilteredShifts = new ObservableCollection<CaregiverShifts>();
 
-            Task.Run(async () => await GetData());
+            GetData();
         }
 
         public async Task GetData()
         {
             try
             {
-                // Uncomment below when using the API call
-                //string userID = await SecureStorage.GetAsync("UserID");
-                //string token = await SecureStorage.GetAsync("Token");
-                //_shifts = await _requestManager.GetCaregiverShiftsAsync(userID, token);
 
                 // Dummy data for testing purposes
                 await Task.Run(async () =>
@@ -105,14 +101,6 @@ namespace MauiApp1.ViewModels
                     var userID = await SecureStorage.GetAsync("UserID");
                     var token = await SecureStorage.GetAsync("Token");
                     _shifts = await _requestManager.GetCaregiverShiftsAsync(userID, token);
-
-                    //_shifts = new List<CaregiverShifts>
-                    //{
-                    //    new CaregiverShifts { ShiftStart = new DateTime(2024, 11, 5), PatientName = "Shift 1", ShiftEnd = new DateTime(2024, 10, 30, 14, 0, 0) },
-                    //    new CaregiverShifts { ShiftStart = new DateTime(2024, 11, 6), PatientName = "Shift 2", ShiftEnd = new DateTime(2024, 10, 31, 16, 0, 0) },
-                    //    new CaregiverShifts { ShiftStart = new DateTime(2024, 11, 7), PatientName = "Shift 3", ShiftEnd = new DateTime(2024, 10, 29, 12, 0, 0) },
-                    //    new CaregiverShifts { ShiftStart = new DateTime(2024, 11, 8), PatientName = "Shift 4", ShiftEnd = new DateTime(2024, 10, 29, 18, 0, 0) }
-                    //};
 
                     foreach (var item in _shifts)
                     {
@@ -136,16 +124,22 @@ namespace MauiApp1.ViewModels
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 FilteredShifts.Clear();
-                var filteredItems = _shifts.Where(item => item.ShiftStart.Date == SelectedDate).ToList();
+                var filteredItems = _shifts
+                    .Where(item => DateTime.TryParse(item.ShiftStart, out var shiftStartDate) && shiftStartDate.Date == SelectedDate.Date)
+                    .ToList();
+
                 foreach (var item in filteredItems)
                 {
+                    Debug.WriteLine("FOREACH RAN");
                     FilteredShifts.Add(item);
                 }
+
                 Debug.WriteLine($"FilteredShifts count after update: {FilteredShifts.Count}");
             });
 
             OnPropertyChanged(nameof(FilteredShifts));
         }
+
 
         public void OnSelectChange()
         {

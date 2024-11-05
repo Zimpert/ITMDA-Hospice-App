@@ -7,6 +7,7 @@ using Microsoft.Maui.ApplicationModel.Communication;
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace MauiApp1.Services
 {
@@ -229,6 +230,12 @@ namespace MauiApp1.Services
             return false;
         }
 
+        public class Root
+        {
+            [JsonPropertyName("data")]
+            public List<CaregiverShifts?> Data { get; set; }
+        }
+
         public async Task<List<CaregiverShifts?>> GetCaregiverShiftsAsync(string userID, string token)
         {
             // Create an anonymous object with userID and token
@@ -244,12 +251,40 @@ namespace MauiApp1.Services
             // Send the JSON to the server and get the response
             var jsonResponse = await _apiRequest.SendRequestAsync("/shifts", json);
 
-            // Deserialize the JSON response to a list of CaregiverShifts objects
-            var result = JsonSerializer.Deserialize<List<CaregiverShifts?>>(jsonResponse);
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            // Deserialize the JSON response
+            var root = JsonSerializer.Deserialize<Root>(jsonResponse, options);
+
+            // Check if data is null
+            if (root?.Data == null)
+            {
+                Debug.WriteLine("No data returned from the server.");
+                return new List<CaregiverShifts?>();
+            }
+
+            // Iterate through each shift and parse ShiftStart and ShiftEnd
+            foreach (var shift in root.Data)
+            {
+                if (DateTime.TryParse(shift?.ShiftStart, out var shiftStart))
+                {
+                    Debug.WriteLine($"Shift Start: {shiftStart}");
+                }
+                if (DateTime.TryParse(shift?.ShiftEnd, out var shiftEnd))
+                {
+                    Debug.WriteLine($"Shift End: {shiftEnd}");
+                }
+            }
 
             // Return the list of CaregiverShifts objects
-            return result;
+            return root.Data;
         }
+
+
+
 
         //public async Task<List<PatientMedication>> GetPatientMedicationsAsync(string userID, string token)
         //{
