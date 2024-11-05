@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,17 @@ namespace MauiApp1.Models
 {
     public class Medication
     {
-        public string MedicationID { get; set; }
-        public string MedicationName { get; set; }
-        public string Description { get; set; }
-        public string Interactions { get; set; }
+        [ObservableProperty]
+        public string medicationID;
+
+        [ObservableProperty]
+        public string medicationName;
+
+        [ObservableProperty]
+        public string description;
+
+        [ObservableProperty]
+        public string interactions;
 
     }
 }
