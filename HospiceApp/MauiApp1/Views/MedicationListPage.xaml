@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.MedicationListPage"
+             xmlns:vm ="clr-namespace:MauiApp1.ViewModels"
+                x:DataType="vm:MedicationListViewModel"
              Shell.NavBarIsVisible="False"
              BackgroundColor="#FAFAFA">
 
@@ -68,6 +70,20 @@
         </Frame>
 
         <!-- Medication List -->
+        <CollectionView ItemsSource="{Binding MedicationDays}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding MedicationName}" FontSize="20" />
+                        <Label Text="{Binding Day}" FontSize="16" />
+                        <Label Text="{Binding Dosage}" FontSize="16" />
+                        <Label Text="{Binding StartDate, StringFormat='Start Date: {0:MM/dd/yyyy}'}" FontSize="14" />
+                        <Label Text="{Binding EndDate, StringFormat='End Date: {0:MM/dd/yyyy}'}" FontSize="14" />
+                        <Label Text="{Binding Inderactions}" FontSize="14" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
 
         <!-- Action Button -->
