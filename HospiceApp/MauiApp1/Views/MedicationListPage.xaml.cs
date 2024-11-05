@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using Microsoft.Maui.Controls;
 
-namespace MauiApp1
+namespace MauiApp1.Views
 {
     public partial class MedicationListPage : ContentPage
     {

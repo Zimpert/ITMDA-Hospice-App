@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using MauiApp1;
 
-namespace MauiApp1
+namespace MauiApp1.Views
 {
     public partial class ContactsPage : ContentPage
     {

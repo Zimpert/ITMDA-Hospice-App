@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MauiApp1
+namespace MauiApp1.Views
 {
     public partial class NotificationPage : ContentPage
     {

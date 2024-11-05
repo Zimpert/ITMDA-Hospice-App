@@ -1,4 +1,4 @@
-namespace MauiApp1;
+namespace MauiApp1.Views;
 
 public partial class ViewCarerPage : ContentPage
 {

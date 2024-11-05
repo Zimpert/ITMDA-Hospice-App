@@ -3,7 +3,7 @@ using Microsoft.Maui.Controls;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace MauiApp1
+namespace MauiApp1.Views
 {
     public partial class TaskPage : ContentPage
     {
