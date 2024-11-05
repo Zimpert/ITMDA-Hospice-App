@@ -3,12 +3,17 @@
     x:Class="MauiApp1.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:v="clr-namespace:MauiApp1.Views">
-    <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate v:LoginPage}"/>
-    <ShellContent Route="HomePage" ContentTemplate="{DataTemplate v:HomePage}" />
-    <ShellContent Route="ShiftPage" ContentTemplate="{DataTemplate v:ShiftPage}" />
-
-
-    <!--Need to implement pages and shift them to .view.page-->
-
+    xmlns:views="clr-namespace:MauiApp1">
+    <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate views:LoginPage}"/>
+    <ShellContent Route="HomePage" ContentTemplate="{DataTemplate views:HomePage}" />
+    <ShellContent Route="ProfilePage" ContentTemplate="{DataTemplate views:ProfilePage}" />
+    <ShellContent Route="SettingsPage" ContentTemplate="{DataTemplate views:SettingsPage}" />
+    <ShellContent Route="ViewCarerPage" ContentTemplate="{DataTemplate views:ViewCarerPage}" />
+    <ShellContent Route="ShiftsPage" ContentTemplate="{DataTemplate views:ShiftsPage}" />
+    <ShellContent Route="CaretakerQR" ContentTemplate="{DataTemplate views:CaretakerQR}" />
+    <ShellContent Route="MedicationListPage" ContentTemplate="{DataTemplate views:MedicationListPage}" />
+    <ShellContent Route="MedicationTrackerPage" ContentTemplate="{DataTemplate views:MedicationTrackerPage}" />
+    <ShellContent Route="TaskPage" ContentTemplate="{DataTemplate views:TaskPage}" />
+    <ShellContent Route="NotificationPage" ContentTemplate="{DataTemplate views:NotificationPage}" />
+    <ShellContent Route="ContactsPage" ContentTemplate="{DataTemplate views:ContactsPage}"/>
 </Shell>
