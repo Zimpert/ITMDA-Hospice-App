@@ -1,58 +1,60 @@
 ﻿using MauiApp1.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics;
 
 namespace MauiApp1
 {
     public partial class App : Application
     {
-        private readonly IRequestManager _requestManager;
 
-        public App(IServiceProvider serviceProvider, IRequestManager requestManager)
+        public App(IServiceProvider serviceProvider)
         {
             InitializeComponent();
-            _requestManager = requestManager;
-            MainPage = new AppShell();
+            MainPage = new AppShell(serviceProvider.GetService<IRequestManager>());
             Debug.WriteLine("App initialized.");
         }
 
-        protected override async void OnStart()
-        {
-            base.OnStart();
-            Debug.WriteLine("App started.");
-            try
-            {
-                await CheckLoginStatus();
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Error in OnStart: {ex.Message}");
-            }
-        }
+        //protected override async void OnStart()
+        //{
+        //    base.OnStart();
+        //    Debug.WriteLine("App started.");
+        //    try
+        //    {
+        //        await CheckLoginStatus();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine($"Error in OnStart: {ex.Message}");
+        //    }
+        //}
 
-        private async Task CheckLoginStatus()
-        {
-            Debug.WriteLine("Checking login status...");
-            try
-            {
-                var authToken = await SecureStorage.GetAsync("Token");
-                Debug.WriteLine($"Auth token retrieved: {authToken}");
 
-                if (!await _requestManager.ValidateToken())
-                {
-                    Debug.WriteLine("Token validation failed. Navigating to LoginPage.");
-                    await Shell.Current.GoToAsync("///LoginPage");
-                }
-                else
-                {
-                    Debug.WriteLine("Token validated successfully. Navigating to HomePage.");
-                    await Shell.Current.GoToAsync("///HomePage");
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Error in CheckLoginStatus: {ex.Message}");
-            }
-        }
+
+
+        //private async Task CheckLoginStatus()
+        //{
+        //    Debug.WriteLine("Checking login status...");
+        //    try
+        //    {
+        //        var authToken = await SecureStorage.GetAsync("Token");
+        //        Debug.WriteLine($"Auth token retrieved: {authToken}");
+
+        //        if (!await _requestManager.ValidateToken())
+        //        {
+        //            Debug.WriteLine("Token validation failed. Navigating to LoginPage.");
+        //            await Shell.Current.GoToAsync("///LoginPage");
+        //        }
+        //        else
+        //        {
+        //            Debug.WriteLine("Token validated successfully. Navigating to HomePage.");
+        //            await Shell.Current.GoToAsync("///HomePage");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine($"Error in CheckLoginStatus: {ex.Message}");
+        //    }
+        //}
     }
     //public partial class App : Application
     //{

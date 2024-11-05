@@ -6,9 +6,13 @@ namespace MauiApp1.Classes
     public class ApiRequest
     {
 
-        //protected static readonly HttpClient client = new HttpClient();
-        protected static readonly HttpClient client = new HttpClient(new HttpClientHandler());
+        private readonly HttpClient _client;
         protected readonly string baseURL = "http://ddnd.crabdance.com"; // Base URL for the API
+
+        public ApiRequest(HttpClient client)
+        {
+            _client = client;
+        }
 
         public async Task<string> SendRequestAsync(string endpoint, string jsonContent)
         {
@@ -28,7 +32,7 @@ namespace MauiApp1.Classes
             try
             {
             
-                HttpResponseMessage response = await client.SendAsync(request);
+                HttpResponseMessage response = await _client.SendAsync(request);
                 Debug.WriteLine("SendRequestEnd");
 
                 response.EnsureSuccessStatusCode();

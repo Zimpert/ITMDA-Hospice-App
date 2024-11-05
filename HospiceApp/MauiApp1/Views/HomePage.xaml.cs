@@ -1,4 +1,4 @@
-namespace MauiApp1;
+namespace MauiApp1.Views;
 using Microsoft.Maui.Controls;
 using System;
 
@@ -12,13 +12,7 @@ public partial class HomePage : ContentPage
     private async void OnViewCarerClicked(object sender, EventArgs e)
     {
         // Navigate to View Carer page 
-        await Shell.Current.GoToAsync("///ViewCarerPage"); 
-    }
-
-    private async void OnShiftPageClicked(object sender, EventArgs e)
-    {
-        // Navigate to Shift Page 
-        await Shell.Current.GoToAsync("///ShiftsPage");
+        await Shell.Current.GoToAsync("///ViewCarerPage");
     }
 
     private async void OnNotificationPageClicked(object sender, EventArgs e)
@@ -54,7 +48,11 @@ public partial class HomePage : ContentPage
     private async void OnSettingsIconTapped(object sender, EventArgs e)
     {
         // Navigate to the Settings page 
-            await Shell.Current.GoToAsync("///SettingsPage"); // Navigate to the SettingsPage
+        await Shell.Current.GoToAsync("///SettingsPage"); // Navigate to the SettingsPage
     }
 
+    private async void OnShiftPageClicked(object sender, TappedEventArgs e)
+    {
+        await Shell.Current.GoToAsync("///ShiftPage");
+    }
 }
