@@ -1,9 +1,6 @@
-﻿
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiApp1.Interfaces;
-using MauiApp1.Models;
-using MauiApp1.Models.PatientModels;
 using System.Diagnostics;
 
 
