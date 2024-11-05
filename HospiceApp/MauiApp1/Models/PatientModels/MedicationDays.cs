@@ -14,7 +14,6 @@ namespace MauiApp1.Models.PatientModels
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string? Dosage { get; set; }
-        public string Inderactions { get; set; }
-
+        public string Interactions { get; set; }
     }
 }

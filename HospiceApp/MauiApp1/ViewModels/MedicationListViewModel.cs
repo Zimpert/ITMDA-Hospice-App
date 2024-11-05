@@ -13,6 +13,7 @@ namespace MauiApp1.ViewModels
     public partial class MedicationListViewModel : ObservableObject
     {
         private readonly IRequestManager _requestManager;
+
         [ObservableProperty]
         private ObservableCollection<MedicationDays> _medicationDays;
 
@@ -24,11 +25,11 @@ namespace MauiApp1.ViewModels
 
         public async Task LoadMedication()
         {
-            await SecureStorage.GetAsync("Token");
-            await SecureStorage.GetAsync("UserID");
-            var medicationResult = await _requestManager.GetPatientMedicationsAsync("UserId", "Token");
+            var token = await SecureStorage.GetAsync("Token");
+            var userId = await SecureStorage.GetAsync("UserID");
+            var medicationResult = await _requestManager.GetPatientMedicationsAsync(userId, token);
 
-            if(medicationResult != null)
+            if (medicationResult != null)
             {
                 MedicationDays = new ObservableCollection<MedicationDays>(medicationResult);
             }
@@ -37,6 +38,5 @@ namespace MauiApp1.ViewModels
                 MedicationDays = new ObservableCollection<MedicationDays>();
             }
         }
-
     }
 }

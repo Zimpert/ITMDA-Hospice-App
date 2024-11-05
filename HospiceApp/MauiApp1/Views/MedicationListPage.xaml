@@ -79,7 +79,7 @@
                         <Label Text="{Binding Dosage}" FontSize="16" />
                         <Label Text="{Binding StartDate, StringFormat='Start Date: {0:MM/dd/yyyy}'}" FontSize="14" />
                         <Label Text="{Binding EndDate, StringFormat='End Date: {0:MM/dd/yyyy}'}" FontSize="14" />
-                        <Label Text="{Binding Inderactions}" FontSize="14" />
+                        <Label Text="{Binding Interactions}" FontSize="14" />
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
