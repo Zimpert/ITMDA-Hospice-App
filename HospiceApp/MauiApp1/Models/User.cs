@@ -10,17 +10,17 @@ namespace MauiApp1.Models
 {
     public partial class User : ObservableObject
     {
-        required public string UserID { get; set; }
-        required public string Role { get; set; }
+        public string UserID { get; set; }
+        public string Role { get; set; }
         [ObservableProperty]
-        required public string name;
+        public string name;
         [ObservableProperty]
-        required public string surname;
+        public string surname;
         [ObservableProperty]
         public string? phoneNo;
         [ObservableProperty]
         
-        required public string email;
+        public string email;
         [ObservableProperty]
         public string? address;
         public string? Token { get; set; }
