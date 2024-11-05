@@ -79,7 +79,7 @@
                 <Label Text="Upcoming Shifts" FontAttributes="Bold" FontSize="24" TextColor="#333" HorizontalOptions="Start" Margin="0,20,0,10" />
 
                 <!-- Shifts List for Selected Date -->
-                <CollectionView ItemsSource="{Binding FilteredShifts}" ItemsLayout="VerticalListLayout">
+                <CollectionView ItemsSource="{Binding FilteredShifts}" ItemsLayout="VerticalList">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Frame Padding="15" CornerRadius="15" Margin="0,5,0,0" BackgroundColor="#F3F0FF" HasShadow="True">
