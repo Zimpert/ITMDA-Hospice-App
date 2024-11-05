@@ -124,9 +124,6 @@
 	  <Compile Update="Views\ViewCarerPage.xaml.cs">
 	    <DependentUpon>ViewCarerPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\ShiftPage.xaml.cs">
-	    <DependentUpon>ShiftPage.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Views\NotificationPage.xaml.cs">
 	    <DependentUpon>NotificationPage.xaml</DependentUpon>
 	  </Compile>
@@ -157,13 +154,13 @@
 	  <MauiXaml Update="Views\PatientQR.xaml">
 		<Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\ShiftPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\TaskPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ViewCarerPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ShiftPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\NotificationPage.xaml">
