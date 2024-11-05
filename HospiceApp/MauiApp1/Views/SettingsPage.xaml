@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.SettingsPage"
+             x:Class="MauiApp1.Views.SettingsPage"
              Shell.NavBarIsVisible="False"
              BackgroundColor="{DynamicResource BackgroundColor}">
 
@@ -67,7 +67,7 @@
                     <Label Text="Light/Dark Mode" FontSize="Medium" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Padding="10,0,0,0" Grid.Column="1" />
 
                     <!-- Toggle Switch -->
-                    <Switch x:Name="ThemeSwitch" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2"   Toggled="OnThemeSwitchToggled" />
+                    <Switch x:Name="ThemeSwitch" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2" />
                 </Grid>
             </Frame>
 

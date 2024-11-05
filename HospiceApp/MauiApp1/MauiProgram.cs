@@ -3,7 +3,7 @@ using MauiApp1.Classes;
 using MauiApp1.Interfaces;
 using MauiApp1.Services;
 using MauiApp1.ViewModels;
-
+using MauiApp1.Views;
 using Microsoft.Extensions.Logging;
 using ZXing.Net.Maui.Controls;
 
@@ -30,10 +30,10 @@ namespace MauiApp1
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<ProfilePage>(); // Register ProfilePage with DI  
             builder.Services.AddTransient<ProfileViewModel>();
-            builder.Services.AddSingleton<HomePage>();
-            builder.Services.AddTransient<ShiftsPage>();
+            builder.Services.AddTransient<HomePage>();
             builder.Services.AddTransient<CaregiverShiftViewModel>();
-
+            builder.Services.AddTransient<ShiftPage>();
+            builder.Services.AddTransient<AppShell>();
             // Configure the Maui application  
             builder
                 .UseMauiApp<App>()

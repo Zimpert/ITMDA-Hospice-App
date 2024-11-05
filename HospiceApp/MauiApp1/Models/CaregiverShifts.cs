@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using MauiApp1.Models.Enums;
 using MauiApp1.Models.PatientModels;
@@ -10,12 +11,13 @@ namespace MauiApp1.Models
 {
     public class CaregiverShifts
     {
-        public DateTime ShiftStart { get; set; }
-        public DateTime ShiftEnd { get; set; }
+        public string ShiftStart { get; set; }
+        public string ShiftEnd { get; set; }
 
+        [JsonIgnore]
         public string Time { get; set; }
-        public string PatientName { get; set; }
-        public string PatientSurname { get; set; }
-        public string PatientAddress { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Address { get; set; }
     }
 }
