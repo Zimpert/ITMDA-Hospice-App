@@ -286,20 +286,20 @@ namespace MauiApp1.Services
 
 
 
-        //public async Task<List<PatientMedication>> GetPatientMedicationsAsync(string userID, string token)
-        //{
-        //    var jObject = new
-        //    {
-        //        UserID = userID,
-        //        Token = token
-        //    };
-        //    string json = JsonSerializer.Serialize(jObject);
+        public async Task<List<MedicationDays>> GetPatientMedicationsAsync(string userID, string token)
+        {
+            var jObject = new
+            {
+                UserID = userID,
+                Token = token
+            };
+            string json = JsonSerializer.Serialize(jObject);
 
-        //    var jsonResponse = await _apiRequest.SendRequestAsync("/", json);
-        //    var result = JsonSerializer.Deserialize<List<CaregiverShifts?>>(jsonResponse);
+            var jsonResponse = await _apiRequest.SendRequestAsync("/medicine", json);
+            var result = JsonSerializer.Deserialize<List<MedicationDays?>>(jsonResponse);
 
-        //    return result;
-        //}
+            return result;
+        }
 
 
     }

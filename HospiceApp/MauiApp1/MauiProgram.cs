@@ -32,6 +32,8 @@ namespace MauiApp1
             builder.Services.AddTransient<ProfileViewModel>();
             builder.Services.AddTransient<HomePage>();
             builder.Services.AddTransient<CaregiverShiftViewModel>();
+            builder.Services.AddTransient<MedicationListViewModel>();
+            builder.Services.AddTransient<MedicationListPage>();
             builder.Services.AddTransient<ShiftPage>();
             builder.Services.AddTransient<AppShell>();
             // Configure the Maui application  

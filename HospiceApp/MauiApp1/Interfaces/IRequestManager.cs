@@ -19,6 +19,6 @@ namespace MauiApp1.Interfaces
 
         Task<List<CaregiverShifts?>> GetCaregiverShiftsAsync(string userID, string token);
 
-        //Task<List<PatientMedication>> GetPatientMedicationsAsync(string userID, string token);
+        Task<List<MedicationDays>> GetPatientMedicationsAsync(string userID, string token);
     }
 }
