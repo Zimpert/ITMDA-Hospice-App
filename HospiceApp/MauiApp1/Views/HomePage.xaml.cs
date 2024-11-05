@@ -1,12 +1,17 @@
 namespace MauiApp1.Views;
 using Microsoft.Maui.Controls;
+using MauiApp1.Services;
 using System;
+using System.Windows.Input;
 
 public partial class HomePage : ContentPage
 {
+
     public HomePage()
     {
         InitializeComponent();
+        BindingContext = this;
+
     }
     // Event handlers 
     private async void OnViewCarerClicked(object sender, EventArgs e)
