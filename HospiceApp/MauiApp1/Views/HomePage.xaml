@@ -70,7 +70,7 @@
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnViewCarerClicked" />
                         </StackLayout.GestureRecognizers>
-                        <Image Source="placeholder.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
+                        <Image Source="care.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
                         <Label Text="View Carer" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,10,0,0"/>
                     </StackLayout>
                 </Frame>
@@ -80,7 +80,7 @@
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnShiftPageClicked" />
                         </StackLayout.GestureRecognizers>
-                        <Image Source="placeholder.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
+                        <Image Source="calendar_lines.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
                         <Label Text="Shift Page" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,10,0,0"/>
                     </StackLayout>
                 </Frame>
@@ -90,7 +90,7 @@
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnNotificationPageClicked" />
                         </StackLayout.GestureRecognizers>
-                        <Image Source="placeholder.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
+                        <Image Source="bell.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
                         <Label Text="Notification Page" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,10,0,0"/>
                     </StackLayout>
                 </Frame>
@@ -100,7 +100,7 @@
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnQRScanPageClicked" />
                         </StackLayout.GestureRecognizers>
-                        <Image Source="placeholder.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
+                        <Image Source="qr.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
                         <Label Text="QR Scan Page" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,10,0,0"/>
                     </StackLayout>
                 </Frame>
@@ -110,7 +110,7 @@
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnMedicationListClicked" />
                         </StackLayout.GestureRecognizers>
-                        <Image Source="placeholder.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
+                        <Image Source="book_medical.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
                         <Label Text="Medication List" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,10,0,0"/>
                     </StackLayout>
                 </Frame>
@@ -120,7 +120,7 @@
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnMedicationTrackerClicked" />
                         </StackLayout.GestureRecognizers>
-                        <Image Source="placeholder.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
+                        <Image Source="capsules.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
                         <Label Text="Medication Tracker" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,10,0,0"/>
                     </StackLayout>
                 </Frame>
