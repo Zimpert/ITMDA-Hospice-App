@@ -36,7 +36,6 @@ namespace MauiApp1.ViewModels
                 {
                     await SecureStorage.SetAsync("Token", loginResult.Token);
                     await SecureStorage.SetAsync("UserID", loginResult.UserID);
-                    await SecureStorage.SetAsync("Role", loginResult.Role);
 
                     await Shell.Current.GoToAsync("///HomePage"); // Navigate to the HomePage
                     Debug.WriteLine(await SecureStorage.GetAsync("UserID"));

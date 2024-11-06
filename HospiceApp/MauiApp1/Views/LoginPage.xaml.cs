@@ -20,12 +20,12 @@ namespace MauiApp1.Views
         {
             base.OnAppearing();
             Debug.WriteLine("AppShell appearing.");
-            await Task.Delay(3000);
+            
             await CheckLoginStatus();
         }
         private async Task CheckLoginStatus()
         {
-            await Task.Delay(3000);
+            await Task.Delay(2000);
             Debug.WriteLine("Checking login status...");
             try
             {
