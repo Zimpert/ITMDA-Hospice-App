@@ -103,7 +103,7 @@
 
         <zxing:BarcodeGeneratorView Format="Code128"
                                 Value="{Binding BarcodeValue}"
-                                WidthRequest="300"
+                                WidthRequest="150"
                                 HeightRequest="150"
                                 HorizontalOptions="Center"
                                 VerticalOptions="Center" />
