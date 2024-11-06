@@ -101,7 +101,7 @@
             <Image Source="placeholder.png" Aspect="AspectFit"/>
         </Frame>
 
-        <zxing:BarcodeGeneratorView Format="Code128"
+        <zxing:BarcodeGeneratorView Format="QrCode"
                                 Value="{Binding BarcodeValue}"
                                 WidthRequest="150"
                                 HeightRequest="150"
