@@ -13,12 +13,12 @@ namespace MauiApp1.ViewModels
         private readonly IRequestManager _requestManager;
 
         [ObservableProperty]
-        private ObservableGroupedCollection<string, MedData?> _medicationDays;
+        private ObservableGroupedCollection<string, MedData> _medicationDays;
 
         public MedicationListViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
-            _medicationDays = new ObservableGroupedCollection<string, MedData?>();
+            _medicationDays = new ObservableGroupedCollection<string, MedData>();
         }
 
         public async Task LoadMedication()
