@@ -315,17 +315,14 @@ namespace MauiApp1.Services
             }
             catch (HttpRequestException e)
             {
-                // Handle HTTP request errors
                 Debug.WriteLine($"Request error: {e.Message}");
             }
             catch (JsonException e)
             {
-                // Handle JSON deserialization errors
                 Debug.WriteLine($"Deserialization error: {e.Message}");
             }
             catch (Exception e)
             {
-                // Handle any other errors
                 Debug.WriteLine($"Unexpected error: {e.Message}");
             }
 
