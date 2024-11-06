@@ -284,24 +284,36 @@ namespace MauiApp1.Services
         }
 
 
+        public class MedData
+        {
+            [JsonPropertyName("PatientInfo")]
+            public PatientInfo PatientInfo { get; set; }
+
+            [JsonPropertyName("Medication")]
+            public List<Medication> Medication { get; set; }
+        }
+
+        public class MedicationRoot
+        {
+            [JsonPropertyName("data")]
+            public Dictionary<string, MedData> Data { get; set; }
+        }
 
 
-        public async Task<List<MedicationDays>> GetPatientMedicationsAsync(string userID, string token)
+
+        public async Task<Dictionary<string, MedData?>> GetPatientMedicationsAsync(string token)
         {
             var jObject = new
             {
-                UserID = userID,
                 Token = token
             };
             string json = JsonSerializer.Serialize(jObject);
 
             var jsonResponse = await _apiRequest.SendRequestAsync("/medicine", json);
-            var result = JsonSerializer.Deserialize<List<MedicationDays?>>(jsonResponse);
+            var result = JsonSerializer.Deserialize<MedicationRoot>(jsonResponse);
 
-            return result;
+            return result.Data;
         }
-
-
     }
 
 
