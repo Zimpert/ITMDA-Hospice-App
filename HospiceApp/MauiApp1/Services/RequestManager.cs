@@ -284,98 +284,41 @@ namespace MauiApp1.Services
         }
 
 
-        public async Task<List<MedicationDays>> GetPatientMedicationsAsync(string userID, string token)
+        public class MedData
         {
-            try
-            {
-                var jObject = new
-                {
-                    UserID = userID,
-                    Token = token
-                };
-                string json = JsonSerializer.Serialize(jObject);
+            [JsonPropertyName("PatientInfo")]
+            public PatientInfo PatientInfo { get; set; }
 
-                var jsonResponse = await _apiRequest.SendRequestAsync("/medicine", json);
-
-                if (string.IsNullOrEmpty(jsonResponse))
-                {
-                    Debug.WriteLine("No data returned from the server.");
-                    return new List<MedicationDays>();
-                }
-
-                var result = JsonSerializer.Deserialize<List<MedicationDays?>>(jsonResponse);
-
-                if (result == null)
-                {
-                    Debug.WriteLine("Failed to deserialize the response.");
-                    return new List<MedicationDays>();
-                }
-
-                return result.Where(medication => medication != null).ToList();
-            }
-            catch (HttpRequestException e)
-            {
-                Debug.WriteLine($"Request error: {e.Message}");
-            }
-            catch (JsonException e)
-            {
-                Debug.WriteLine($"Deserialization error: {e.Message}");
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine($"Unexpected error: {e.Message}");
-            }
-
-            // Return an empty list if an error occurred
-            return new List<MedicationDays>();
+            [JsonPropertyName("Medication")]
+            public List<Medication> Medication { get; set; }
         }
 
-        public async Task<List<User>> GetAssignedPatientsAsync(string userID, string token)
+        public class MedicationRoot
         {
-            try
-            {
-                var jObject = new
-                {
-                    UserID = userID,
-                    Token = token
-                };
-                string json = JsonSerializer.Serialize(jObject);
+            [JsonPropertyName("data")]
+            public Dictionary<string, MedData> Data { get; set; }
+        }
 
-                var jsonResponse = await _apiRequest.SendRequestAsync("/assignments", json);
-
-                if (string.IsNullOrEmpty(jsonResponse))
-                {
-                    Debug.WriteLine("No data returned from the server.");
-                    return new List<User>();
-                }
-
-                var result = JsonSerializer.Deserialize<List<User?>>(jsonResponse);
-
-                if (result == null)
-                {
-                    Debug.WriteLine("Failed to deserialize the response.");
-                    return new List<User>();
-                }
-
-                return result.Where(user => user != null).ToList();
+                // Handle any other errors
+                Debug.WriteLine($"Unexpected error: {e.Message}");
             }
-            catch (HttpRequestException e)
-            {
-
-                Debug.WriteLine($"Request error: {e.Message}");
-            }
-            catch (JsonException e)
-            {
-
-                Debug.WriteLine($"Deserialization error: {e.Message}");
-            }
-            catch (Exception e)
-            {
+                // Handle any other errors
                 Debug.WriteLine($"Unexpected error: {e.Message}");
             }
 
-            // Return an empty list if an error occurred
-            return new List<User>();
+
+        public async Task<Dictionary<string, MedData?>> GetPatientMedicationsAsync(string token)
+        {
+            var jObject = new
+            {
+                Token = token
+            };
+            string json = JsonSerializer.Serialize(jObject);
+
+            var jsonResponse = await _apiRequest.SendRequestAsync("/medicine", json);
+            var result = JsonSerializer.Deserialize<MedicationRoot>(jsonResponse);
+
+            return result.Data;
         }
     }
 

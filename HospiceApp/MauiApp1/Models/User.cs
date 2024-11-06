@@ -25,7 +25,7 @@ namespace MauiApp1.Models
         public string? address;
         public string? Token { get; set; }
         public ContactBook? ContactBook { get; set; }
-        public List<PatientMedication>? PatientMedications { get; set; }
+        public List<Medication>? PatientMedications { get; set; }
         public List<Condition>? PatientConditions { get; set; }
 
 

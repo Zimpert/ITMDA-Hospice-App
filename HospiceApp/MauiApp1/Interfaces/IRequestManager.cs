@@ -1,11 +1,5 @@
 ﻿using MauiApp1.Models;
-using MauiApp1.Models.PatientModels;
-using MauiApp1.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using static MauiApp1.Services.RequestManager;
 
 namespace MauiApp1.Interfaces
 {
@@ -13,14 +7,13 @@ namespace MauiApp1.Interfaces
     {
         Task<User?> LoginAsync(string email, string password);
 
+        // user info
         Task<User?> GetUserDataAsync(string userID, string token);
 
         Task<bool> ValidateToken();
 
         Task<List<CaregiverShifts?>> GetCaregiverShiftsAsync(string userID, string token);
 
-        Task<List<MedicationDays>> GetPatientMedicationsAsync(string userID, string token);
-
-        Task <List<User>> GetAssignedPatientsAsync(string userID, string token);
+        Task<Dictionary<string, MedData?>> GetPatientMedicationsAsync(string token);
     }
 }

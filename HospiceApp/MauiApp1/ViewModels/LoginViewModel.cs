@@ -26,11 +26,8 @@ namespace MauiApp1.ViewModels
         [RelayCommand]
         public async Task Login()
         {
-            Console.WriteLine("Login method called.");
             var loginResult = await _requestManager.LoginAsync(LoginText, PasswordText);
-            await SecureStorage.SetAsync("TEST_STUFF", "TEST VALUE OUTPUT");
-            var contentString = await SecureStorage.GetAsync("TEST_STUFF");
-            await Shell.Current.DisplayAlert("Alert Title", contentString, "OK");
+
             if (loginResult != null)
             {
                 Console.WriteLine("Login successful."); 
@@ -39,10 +36,8 @@ namespace MauiApp1.ViewModels
                 {
                     await SecureStorage.SetAsync("Token", loginResult.Token);
                     await SecureStorage.SetAsync("UserID", loginResult.UserID);
-                    contentString = await SecureStorage.GetAsync("Token");
-                    await Shell.Current.DisplayAlert("Alert Title", contentString, "OK");
+
                     await Shell.Current.GoToAsync("///HomePage"); // Navigate to the HomePage
-                    Debug.WriteLine(await SecureStorage.GetAsync("TEST_STUFF"));
                     Debug.WriteLine(await SecureStorage.GetAsync("UserID"));
                     Debug.WriteLine(await SecureStorage.GetAsync("Token"));
                 }

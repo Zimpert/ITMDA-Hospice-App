@@ -70,21 +70,6 @@
         </Frame>
 
         <!-- Medication List -->
-        <CollectionView ItemsSource="{Binding MedicationDays}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="10">
-                        <Label Text="{Binding MedicationName}" FontSize="20" />
-                        <Label Text="{Binding Day}" FontSize="16" />
-                        <Label Text="{Binding Dosage}" FontSize="16" />
-                        <Label Text="{Binding StartDate, StringFormat='Start Date: {0:MM/dd/yyyy}'}" FontSize="14" />
-                        <Label Text="{Binding EndDate, StringFormat='End Date: {0:MM/dd/yyyy}'}" FontSize="14" />
-                        <Label Text="{Binding Interactions}" FontSize="14" />
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
 
         <!-- Action Button -->
         <Frame Grid.Row="3"
