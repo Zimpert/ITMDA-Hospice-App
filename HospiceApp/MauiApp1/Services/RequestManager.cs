@@ -284,24 +284,102 @@ namespace MauiApp1.Services
         }
 
 
-
-
         public async Task<List<MedicationDays>> GetPatientMedicationsAsync(string userID, string token)
         {
-            var jObject = new
+            try
             {
-                UserID = userID,
-                Token = token
-            };
-            string json = JsonSerializer.Serialize(jObject);
+                var jObject = new
+                {
+                    UserID = userID,
+                    Token = token
+                };
+                string json = JsonSerializer.Serialize(jObject);
 
-            var jsonResponse = await _apiRequest.SendRequestAsync("/medicine", json);
-            var result = JsonSerializer.Deserialize<List<MedicationDays?>>(jsonResponse);
+                var jsonResponse = await _apiRequest.SendRequestAsync("/medicine", json);
 
-            return result;
+                if (string.IsNullOrEmpty(jsonResponse))
+                {
+                    Debug.WriteLine("No data returned from the server.");
+                    return new List<MedicationDays>();
+                }
+
+                var result = JsonSerializer.Deserialize<List<MedicationDays?>>(jsonResponse);
+
+                if (result == null)
+                {
+                    Debug.WriteLine("Failed to deserialize the response.");
+                    return new List<MedicationDays>();
+                }
+
+                return result.Where(medication => medication != null).ToList();
+            }
+            catch (HttpRequestException e)
+            {
+                // Handle HTTP request errors
+                Debug.WriteLine($"Request error: {e.Message}");
+            }
+            catch (JsonException e)
+            {
+                // Handle JSON deserialization errors
+                Debug.WriteLine($"Deserialization error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                // Handle any other errors
+                Debug.WriteLine($"Unexpected error: {e.Message}");
+            }
+
+            // Return an empty list if an error occurred
+            return new List<MedicationDays>();
         }
 
+        public async Task<List<User>> GetAssignedPatientsAsync(string userID, string token)
+        {
+            try
+            {
+                var jObject = new
+                {
+                    UserID = userID,
+                    Token = token
+                };
+                string json = JsonSerializer.Serialize(jObject);
 
+                var jsonResponse = await _apiRequest.SendRequestAsync("/assignments", json);
+
+                if (string.IsNullOrEmpty(jsonResponse))
+                {
+                    Debug.WriteLine("No data returned from the server.");
+                    return new List<User>();
+                }
+
+                var result = JsonSerializer.Deserialize<List<User?>>(jsonResponse);
+
+                if (result == null)
+                {
+                    Debug.WriteLine("Failed to deserialize the response.");
+                    return new List<User>();
+                }
+
+                return result.Where(user => user != null).ToList();
+            }
+            catch (HttpRequestException e)
+            {
+
+                Debug.WriteLine($"Request error: {e.Message}");
+            }
+            catch (JsonException e)
+            {
+
+                Debug.WriteLine($"Deserialization error: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Unexpected error: {e.Message}");
+            }
+
+            // Return an empty list if an error occurred
+            return new List<User>();
+        }
     }
 
 
