@@ -1,8 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.Collections;
+using CommunityToolkit.Mvvm.ComponentModel;
 using MauiApp1.Interfaces;
 using MauiApp1.Models.PatientModels;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using static MauiApp1.Services.RequestManager;
 
 namespace MauiApp1.ViewModels
 {
@@ -11,12 +13,12 @@ namespace MauiApp1.ViewModels
         private readonly IRequestManager _requestManager;
 
         [ObservableProperty]
-        private ObservableCollection<MedicationDays> _medicationDays;
+        private ObservableGroupedCollection<string, MedData?> _medicationDays;
 
         public MedicationListViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
-            _medicationDays = new ObservableCollection<MedicationDays>();
+            _medicationDays = new ObservableGroupedCollection<string, MedData?>();
         }
 
         public async Task LoadMedication()
@@ -37,6 +39,9 @@ namespace MauiApp1.ViewModels
 
                     // Patient Info
                     var patientInfo = patientEntry.Value.PatientInfo;
+                        
+                    // PatientInfo { "PatientName" : "Name", "PatientSurname" : "Suranme" }
+
                     string patientName = patientInfo?.PatientName ?? "Unknown Name";
                     string patientSurname = patientInfo?.PatientSurname ?? "Unknown Surname";
 
@@ -47,14 +52,19 @@ namespace MauiApp1.ViewModels
 
                     // Iterate over the medications for this patient
                     foreach (var medication in patientEntry.Value.Medication)
+                        // Medication { [ ]}
                     {
                         // Log medication info
                         Debug.WriteLine($"Medication Name: {medication.MedicationName}");
                         Debug.WriteLine($"Description: {medication.Description}");
                         Debug.WriteLine($"Dosage: {medication.Dosage}");
                         Debug.WriteLine($"Frequency: {medication.Frequency}");
+                        Debug.WriteLine($"Day: {medication.Day}");
                         Debug.WriteLine($"Start Date: {medication.StartDate}");
                         Debug.WriteLine($"End Date: {medication.EndDate}");
+                        // PatientName:
+                            // -> Paracetamol
+                            // -> Lexapro
                     }
                 }
             }

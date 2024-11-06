@@ -71,8 +71,6 @@
 
         <!-- Medication List -->
 
-
-
         <!-- Action Button -->
         <Frame Grid.Row="3"
        BackgroundColor="#9b59b6"

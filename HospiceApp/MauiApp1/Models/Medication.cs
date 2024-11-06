@@ -10,17 +10,6 @@ namespace MauiApp1.Models
 {
     public class Medication
     {
-        //[ObservableProperty]
-        //public string medicationID;
-
-        //[ObservableProperty]
-        //public string medicationName;
-
-        //[ObservableProperty]
-        //public string description;
-
-        //[ObservableProperty]
-        //public string interactions;
 
         [JsonPropertyName("Day")]
         public string Day { get; set; }
