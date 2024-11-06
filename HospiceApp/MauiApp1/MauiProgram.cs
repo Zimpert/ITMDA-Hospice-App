@@ -36,6 +36,7 @@ namespace MauiApp1
             builder.Services.AddTransient<MedicationListPage>();
             builder.Services.AddTransient<ShiftPage>();
             builder.Services.AddTransient<AppShell>();
+            builder.Services.AddTransient<CaretakerQR>();
             // Configure the Maui application  
             builder
                 .UseMauiApp<App>()
