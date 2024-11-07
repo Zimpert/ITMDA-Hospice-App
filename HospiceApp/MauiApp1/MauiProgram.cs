@@ -24,7 +24,7 @@ namespace MauiApp1
 
             // Register services with the dependency injection container  
             builder.Services.AddTransient<HttpClient>();
-            builder.Services.AddSingleton<ApiRequest>();
+            builder.Services.AddTransient<ApiRequest>();
             builder.Services.AddSingleton<IRequestManager, RequestManager>();
             builder.Services.AddTransient<LoginPage>(); // Register LoginPage with DI  
             builder.Services.AddTransient<LoginViewModel>();
@@ -32,7 +32,7 @@ namespace MauiApp1
             builder.Services.AddTransient<ProfileViewModel>();
             builder.Services.AddTransient<HomePage>();
             builder.Services.AddTransient<CaregiverShiftViewModel>();
-            builder.Services.AddTransient<MedicationListViewModel>();
+            //builder.Services.AddTransient<MedicationListViewModel>();
             builder.Services.AddTransient<MedicationListPage>();
             builder.Services.AddTransient<ShiftPage>();
             builder.Services.AddTransient<AppShell>();
