@@ -15,13 +15,13 @@
                 </Grid.ColumnDefinitions>
 
                 <ImageButton Grid.Column="0" Source="arrow_left.png" BackgroundColor="Transparent"
-                             WidthRequest="30" HeightRequest="30" VerticalOptions="Center" />
+                             WidthRequest="30" HeightRequest="30" VerticalOptions="Center" Clicked="OnBackButtonTapped"/>
 
                 <Label Grid.Column="1" Text="Contacts" FontAttributes="Bold" VerticalOptions="Center" 
                        HorizontalOptions="Center" FontSize="18" TextColor="White" />
 
                 <ImageButton Grid.Column="2" Source="settings.png" BackgroundColor="Transparent"
-                             WidthRequest="30" HeightRequest="30" VerticalOptions="Center" />
+                             WidthRequest="30" HeightRequest="30" VerticalOptions="Center" Clicked="OnSettingsIconTapped"/>
             </Grid>
         </Frame>
 

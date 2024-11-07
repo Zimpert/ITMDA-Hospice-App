@@ -5,6 +5,7 @@
              Title="Notifications">
 
     <!-- single parent layout to fix viewing error // but now scroll inactive  -->
+    <ScrollView >
     <StackLayout BackgroundColor="White">
 
         <!-- Navbar with Title and Settings Icon -->
@@ -49,11 +50,12 @@
         </Frame>
 
         <!-- ScrollView for Notifications List -->
-        <ScrollView>
+        
             <StackLayout x:Name="NotificationListContainer" Padding="20" BackgroundColor="White">
                 <!-- Notifications will be added here dynamically -->
             </StackLayout>
-        </ScrollView>
+        
 
     </StackLayout>
+    </ScrollView>
 </ContentPage>
