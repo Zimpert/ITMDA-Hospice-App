@@ -17,7 +17,7 @@ def run(i):
  print(f"Response #{i}: {response.read()}")
 
 
-threads = [threading.Thread(target=run, args=(i,)) for i in range(20)]
+threads = [threading.Thread(target=run, args=(i,)) for i in range(512)]
 for thread in threads:
  thread.start()
 for thread in threads:

@@ -39,7 +39,7 @@ private:
  static void process_log(::webserver_resource* webserver_resource, net::http_request const& request) noexcept;
  static login_return_type process_login(::webserver_resource* webserver_resource, net::http_request const& request) noexcept;
  static std::vector<std::tuple<std::string, std::string, std::string, std::string, std::string>> process_shifts(::webserver_resource* webserver_resource, net::http_request const& request) noexcept;
- static std::vector<std::tuple<std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string>> process_medicine(::webserver_resource* webserver_resource, net::http_request const& request) noexcept;
+ static std::vector<std::tuple<std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string>> process_medicine(::webserver_resource* webserver_resource, net::http_request const& request) noexcept;
  static bool process_prelogin(::webserver_resource* webserver_resource, net::http_request const& request) noexcept;
  static user_info_type process_userinfo(::webserver_resource* webserver_resource, net::http_request const& request) noexcept;
 

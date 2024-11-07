@@ -51,11 +51,15 @@ void webserver_terminal::run() {
     for (auto&& [wthread, client] : this->m_webserver.wthreads() | 
      std::views::transform([](auto&& wthread) noexcept { return std::make_tuple(&wthread, std::get<0>(wthread.args())); }) |
      std::views::filter([](auto&& wthread_client) noexcept { 
-      return std::get<0>(wthread_client)->working() &&
+      return std::get<0>(wthread_client)->running() &&
+             std::get<1>(wthread_client) != nullptr &&
              std::get<1>(wthread_client)->socket().socket_handle != NULL;
      }))
     {
-     auto const connection_string = std::format("Thread {} @ {}:{}", wthread->pid(), net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port);
+     auto const connection_string = std::invoke([&]() noexcept {
+      if (wthread->working()) { return std::format("Thread {} @ {}:{}", wthread->pid(), net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port); }
+      else                    { return std::format("THread {}: N/A", wthread->pid()); }
+     });
      ImGui::TextUnformatted(std::data(connection_string));
     }
     ImGui::End();
@@ -64,21 +68,27 @@ void webserver_terminal::run() {
    /* HTTP Client Threads (Full) */
    {
     ImGui::Begin("HTTP Client Threads (Full)", nullptr, ImGuiWindowFlags_HorizontalScrollbar);
+    auto running_wthreads_view = this->m_webserver.wthreads() | std::views::transform([](auto&& wthread) noexcept { return wthread.running(); });
     auto working_wthreads_view = this->m_webserver.wthreads() | std::views::transform([](auto&& wthread) noexcept { 
      return wthread.working() && std::get<0>(wthread.args())->socket().socket_handle != NULL; 
     });
+    auto const running_count = std::accumulate(
+     std::begin(running_wthreads_view),
+     std::end(running_wthreads_view),
+     static_cast<std::size_t>(0));
     auto const working_count = std::accumulate(
      std::begin(working_wthreads_view),
      std::end(working_wthreads_view),
      static_cast<std::size_t>(0));
-    auto const working_count_string = std::format("Current Working Threads: {}/{}", working_count, 1024);
+    auto const working_count_string = std::format("Current Active Threads: {}w/{}r/{}t", working_count, running_count, 1024);
     ImGui::TextUnformatted(std::data(working_count_string));
     for (std::size_t i = 0; auto&& [wthread, client] :  this->m_webserver.wthreads() | 
      std::views::transform([](auto&& wthread) noexcept { return std::make_tuple(&wthread, std::get<0>(wthread.args())); }) ) 
     {
      auto const http_client_message = std::invoke([&]() noexcept {
       if (wthread->working() && client->socket().socket_handle != NULL) { return std::format("- #{} Thread ({}): {}:{}", i, wthread->pid(), net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port); }
-      else                                                             { return std::format("- #{} Thread ({}): N/A", i, wthread->pid()); }
+      else if (wthread->running())                                      { return std::format("- #{} Thread ({}): N/A", i, wthread->pid()); }
+      else                                                              { return std::format("- #{} Thread (N/A): N/A", i); }
      });
      ImGui::TextUnformatted(std::data(http_client_message));
      ++i;
@@ -96,7 +106,7 @@ void webserver_terminal::run() {
     auto const live_connection_count_string = std::format("Live Connection Count: {}", live_connection_count);
     ImGui::TextUnformatted(std::data(live_connection_count_string));
     for (auto&& [count, available] : std::views::enumerate(this->m_webserver.thread_resource().remote_connection_pool.available())) {
-     auto const available_string = std::invoke([&](){
+     auto const available_string = std::invoke([&]() noexcept {
       if (available) { return std::format("- {}: Available", count); }
       else           { return std::format("- {}: Unavailable", count); }
      });

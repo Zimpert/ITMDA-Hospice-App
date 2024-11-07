@@ -23,7 +23,7 @@ struct webserver_resource {
   while (true) {
    auto connection = this->remote_connection_pool.get();
    if (connection.connection() != nullptr) {
-    return std::move(connection);
+    return connection;
    }
   }
  }
@@ -31,7 +31,7 @@ struct webserver_resource {
   while (true) {
    auto connection = this->local_connection_pool.get();
    if (connection.connection() != nullptr) {
-    return std::move(connection);
+    return connection;
    }
   }
  }
