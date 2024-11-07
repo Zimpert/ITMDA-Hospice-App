@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.SettingsPage"
              Shell.NavBarIsVisible="False"
-             BackgroundColor="{DynamicResource BackgroundColor}">
+             BackgroundColor="White">
 
     <!-- Use a StackLayout to wrap all content -->
-    <StackLayout BackgroundColor="{DynamicResource BackgroundColor}">
+    <StackLayout BackgroundColor="White">
 
         <!-- Navbar with Title and Settings Icon -->
-        <Frame Grid.Row="0" BackgroundColor="#9b59b6" Padding="10" CornerRadius="0" HasShadow="True">
+        <Frame BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
+               HorizontalOptions="FillAndExpand" VerticalOptions="Start">
             <Grid Padding="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -27,7 +28,7 @@
                              Aspect="AspectFit"
                              Clicked="OnBackButtonTapped" />
 
-                <!-- Title in the center -->
+                <!-- Home Title in the center -->
                 <Label Grid.Column="1"
                        Text="Settings"
                        FontAttributes="Bold"
@@ -35,46 +36,15 @@
                        HorizontalOptions="Center"
                        FontSize="18"
                        TextColor="White" />
-
-                <!-- Settings Icon on the right -->
-                <ImageButton Grid.Column="2"
-                             Source="settings.png"
-                             BackgroundColor="Transparent"
-                             WidthRequest="30"
-                             HeightRequest="30"
-                             VerticalOptions="Center"
-                             Aspect="AspectFit"
-                             Clicked="OnSettingsIconTapped" />
             </Grid>
         </Frame>
 
         <!-- Settings Options -->
-        <StackLayout Padding="10" Spacing="20">
-
-            <!-- Theme Label, Icon, and Toggle -->
-            <Frame Padding="0" BackgroundColor="#D18EF6" CornerRadius="8" HasShadow="False">
-                <Grid Padding="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <!-- Icon Column -->
-                    <Image Source="placeholder.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Grid.Column="0" />
-
-                    <!-- Theme Label -->
-                    <Label Text="Light/Dark Mode" FontSize="Medium" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Padding="10,0,0,0" Grid.Column="1" />
-
-                    <!-- Toggle Switch -->
-                    <Switch x:Name="ThemeSwitch" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2" />
-                </Grid>
-            </Frame>
-
-
+        <StackLayout Padding="10" Spacing="20" Margin="0,20,0,0">
+            
             <!-- Contact Support -->
-            <Frame Padding="0" BackgroundColor="#D18EF6" CornerRadius="8" HasShadow="False">
-                <Grid Padding="10">
+            <Frame Padding="0" BackgroundColor="#9855AE" CornerRadius="8" HasShadow="False">
+                <Grid Padding="20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
@@ -82,7 +52,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Icon Column -->
-                    <Image Source="placeholder.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Grid.Column="0" />
+                    <Image Source="phone_call.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Grid.Column="0" Margin="0,0,10,0"/>
 
                     <!-- Description Column -->
                     <Label Text="Contact Support" FontSize="Medium" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Padding="10,0,0,0" Grid.Column="1" />
@@ -93,8 +63,8 @@
             </Frame>
 
             <!-- Logout -->
-            <Frame Padding="0" BackgroundColor="#D18EF6" CornerRadius="8" HasShadow="False">
-                <Grid Padding="10">
+            <Frame Padding="0" BackgroundColor="#9855AE" CornerRadius="8" HasShadow="False">
+                <Grid Padding="20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
@@ -102,7 +72,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- Icon Column -->
-                    <Image Source="placeholder.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Grid.Column="0" />
+                    <Image Source="running.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Grid.Column="0" Margin="0,0,10,0"/>
 
                     <!-- Description Column -->
                     <Label Text="Logout" FontSize="Medium" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Padding="10,0,0,0" Grid.Column="1" />

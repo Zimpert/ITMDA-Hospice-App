@@ -2,11 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.ProfilePage"
-             Shell.NavBarIsVisible="False"
-             Title="Profile">
-    <StackLayout Padding="0" Spacing="15">
+             Shell.NavBarIsVisible="False" 
+             BackgroundColor="White">
+    <StackLayout Padding="0,0,0,0" Spacing="15">
         <!-- Navbar with Title and Settings Icon -->
-        <Frame Grid.Row="0" BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
+        <Frame Grid.Row="0" BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True" 
                             HorizontalOptions="FillAndExpand" VerticalOptions="Start">
             <Grid Padding="10">
                 <Grid.ColumnDefinitions>
@@ -47,9 +47,9 @@
         </Frame>
 
         <!-- Input Fields -->
-        <StackLayout Spacing="10">
-            <Label Text="First name" TextColor="White"/>
-            <Entry Text="{Binding User.Name}" Placeholder="First name" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
+            <StackLayout Padding="10,0,10,0" >
+            <Label Text="First name" TextColor="White" FontSize="18" />
+            <Entry Text="{Binding User.Name}" Placeholder="First name" BackgroundColor="#9b59b6" PlaceholderColor="White" FontSize="18" HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
 
             <Label Text="Last name" TextColor="White"/>
             <Entry Text="{Binding User.Surname}" Placeholder="Last name" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
@@ -62,11 +62,12 @@
 
             <Label Text="Address" TextColor="White"/>
             <Entry Text="{Binding User.Address}" Placeholder="Not provided" BackgroundColor="#9b59b6" PlaceholderColor="White"/>
-                
-        </StackLayout>
 
-        <!-- Update Information Button -->
-        <Button Text="Update Information" BackgroundColor="Green" TextColor="White" 
-                HeightRequest="50" HorizontalOptions="FillAndExpand" />
+            <!-- Update Information Button -->
+            <Button Text="Update Information" BackgroundColor="Green" TextColor="White" 
+                HeightRequest="50" HorizontalOptions="FillAndExpand" Margin="0,20,0,0"/>
+        </StackLayout>
+        
+
     </StackLayout>
 </ContentPage>

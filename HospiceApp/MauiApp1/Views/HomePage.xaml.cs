@@ -29,7 +29,8 @@ public partial class HomePage : ContentPage
     private async void OnQRScanPageClicked(object sender, EventArgs e)
     {
         // Navigate to QR Scan Page or perform 
-        await Shell.Current.GoToAsync("///CaretakerQR");
+        // await Shell.Current.GoToAsync("///PatientQR");
+        await DisplayAlert("Help Connor","Path to page not set yet","OK");
     }
 
     private async void OnMedicationListClicked(object sender, EventArgs e)
