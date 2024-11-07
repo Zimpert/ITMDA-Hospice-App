@@ -8,23 +8,16 @@ namespace MauiApp1.Views
     public partial class MedicationListPage : ContentPage
     {
         private readonly IRequestManager _requestManager;
-        private readonly MedicationListViewModel _viewModel;
         public MedicationListPage(IRequestManager requestManager, MedicationListViewModel viewmodel)
         {
             InitializeComponent();
             //BindingContext = new MedicationListViewModel();
             BindingContext = viewmodel;
             _requestManager = requestManager;
-            _viewModel = viewmodel;
 
         }
 
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-            await _viewModel.LoadMedication();
 
-        }
 
 
         // Event handler for the Add Medication button

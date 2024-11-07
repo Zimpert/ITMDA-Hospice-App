@@ -19,6 +19,7 @@ namespace MauiApp1.ViewModels
         {
             _requestManager = requestManager;
             _medicationDays = new ObservableGroupedCollection<string, MedData>();
+            LoadMedication();
         }
 
         public async Task LoadMedication()
