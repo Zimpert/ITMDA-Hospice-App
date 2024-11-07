@@ -10,7 +10,6 @@ namespace MauiApp1.Interfaces
         // user info
         Task<User?> GetUserDataAsync(string userID, string token);
 
-        Task<bool> ValidateToken();
 
         void Prelogin();
 

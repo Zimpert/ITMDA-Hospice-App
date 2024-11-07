@@ -24,11 +24,11 @@ namespace MauiApp1.Classes
                 throw new ArgumentException("JSON content cannot be empty or null.");
             }
 
-            if (!await IsServerAvailableAsync())
-            {
-                Debug.WriteLine("Server is not available.");
-                throw new InvalidOperationException("Server is not available.");
-            }
+            //if (!await IsServerAvailableAsync())
+            //{
+            //    Debug.WriteLine("Server is not available.");
+            //    throw new InvalidOperationException("Server is not available.");
+            //}
 
             var fullUrl = baseURL + endpoint;
             Debug.WriteLine($"Request URL: {fullUrl}");
