@@ -1,14 +1,20 @@
+using MauiApp1.Models.PatientModels;
 using System;
 
 namespace MauiApp1.Models
 {
     public class ContactItem
     {
+
+        public string PatientID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string Gender { get; set; }
-        public int Age { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Email { get; set; }
+        public List<Medication>? Medication { get; set; }
+
+        public ContactItem()
+        {
+            
+        }
+
     }
 }
