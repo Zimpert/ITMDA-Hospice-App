@@ -97,12 +97,10 @@
         </StackLayout>
 
         <!-- QR Code Image -->
-        <Frame HeightRequest="200" WidthRequest="200" BorderColor="Gray" CornerRadius="10" HorizontalOptions="Center" VerticalOptions="Center">
-            <Image Source="placeholder.png" Aspect="AspectFit"/>
-        </Frame>
+
 
         <zxing:BarcodeGeneratorView Format="QrCode"
-                                Value="{Binding BarcodeValue}"
+                                Value="test"
                                 WidthRequest="150"
                                 HeightRequest="150"
                                 HorizontalOptions="Center"

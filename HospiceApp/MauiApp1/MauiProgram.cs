@@ -23,9 +23,10 @@ namespace MauiApp1
             var builder = MauiApp.CreateBuilder();
 
             // Register services with the dependency injection container  
-            builder.Services.AddTransient<HttpClient>();
+            builder.Services.AddSingleton<HttpClient>();
             builder.Services.AddSingleton<ApiRequest>();
             builder.Services.AddSingleton<IRequestManager, RequestManager>();
+            builder.Services.AddSingleton<RequestManager>();
             builder.Services.AddTransient<LoginPage>(); // Register LoginPage with DI  
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<ProfilePage>(); // Register ProfilePage with DI  

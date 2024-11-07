@@ -12,6 +12,8 @@ namespace MauiApp1.Interfaces
 
         Task<bool> ValidateToken();
 
+        void Prelogin();
+
         Task<List<CaregiverShifts?>> GetCaregiverShiftsAsync(string userID, string token);
 
         Task<Dictionary<string, MedData?>> GetPatientMedicationsAsync(string token);
