@@ -19,7 +19,7 @@ namespace MauiApp1.Views
         {
             base.OnNavigatedTo(args);
             Debug.WriteLine("Part1 Start");
-            _requestManager.Prelogin();
+            
         }
         
     }
