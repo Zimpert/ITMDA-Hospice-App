@@ -17,11 +17,11 @@ namespace MauiApp1.PartialViews
             set => NameLabel.Text = value;
         }
 
-        public string Details
-        {
-            get => DetailsLabel.Text;
-            set => DetailsLabel.Text = value;
-        }
+        //public string Details
+        //{
+        //    get => DetailsLabel.Text;
+        //    set => DetailsLabel.Text = value;
+        //}
 
     }
 }
