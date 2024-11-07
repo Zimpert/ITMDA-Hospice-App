@@ -12,7 +12,7 @@ namespace MauiApp1.Interfaces
 
         Task<bool> ValidateToken();
 
-        void Prelogin();
+        Task Prelogin();
 
         Task<List<CaregiverShifts?>> GetCaregiverShiftsAsync(string userID, string token);
 

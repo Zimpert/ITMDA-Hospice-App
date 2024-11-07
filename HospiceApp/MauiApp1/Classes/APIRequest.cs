@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Net.Http;
 using System.Text;
 
 namespace MauiApp1.Classes
@@ -11,7 +12,8 @@ namespace MauiApp1.Classes
 
         public ApiRequest()
         {
-            _client = new HttpClient();
+            var handler = new HttpClientHandler();
+            _client = new HttpClient(handler);
         }
 
         public async Task<string> SendRequestAsync(string endpoint, string jsonContent)

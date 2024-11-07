@@ -141,7 +141,7 @@ namespace MauiApp1.Services
             return null;
         }
 
-        public async void Prelogin()
+        public async Task Prelogin()
         {
             string token = null;
 
@@ -160,7 +160,7 @@ namespace MauiApp1.Services
             bool isSuccess = jsonDocument.RootElement.GetProperty("Success").GetBoolean();
             if (isSuccess)
             {
-                await Shell.Current.GoToAsync("//HomePage");
+                await Shell.Current.GoToAsync("///HomePage");
 
             }
             return;

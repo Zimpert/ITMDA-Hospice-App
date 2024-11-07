@@ -1,4 +1,5 @@
 ﻿using MauiApp1.Interfaces;
+using MauiApp1.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics;
 
@@ -7,10 +8,10 @@ namespace MauiApp1
     public partial class App : Application
     {
 
-        public App(IServiceProvider serviceProvider)
+        public App()
         {
             InitializeComponent();
-            MainPage = new AppShell(serviceProvider.GetService<IRequestManager>());
+            MainPage = new AppShell();
             Debug.WriteLine("App initialized.");
         }
 
