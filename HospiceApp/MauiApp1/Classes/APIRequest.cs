@@ -6,12 +6,12 @@ namespace MauiApp1.Classes
     public class ApiRequest
     {
 
-        private readonly HttpClient _client;
+        private HttpClient _client;
         protected readonly string baseURL = "http://ddnd.crabdance.com"; // Base URL for the API
 
-        public ApiRequest(HttpClient client)
+        public ApiRequest()
         {
-            _client = client;
+            _client = new HttpClient();
         }
 
         public async Task<string> SendRequestAsync(string endpoint, string jsonContent)
