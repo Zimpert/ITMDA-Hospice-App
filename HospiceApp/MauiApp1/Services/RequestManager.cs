@@ -141,6 +141,31 @@ namespace MauiApp1.Services
             return null;
         }
 
+        public async void Prelogin()
+        {
+            string token = null;
+
+            token = await SecureStorage.GetAsync("Token");
+            if (token == null)
+            {
+                return;
+            }
+            var jsonObj = new {Token =  token};
+            string jsonSerial = JsonSerializer.Serialize(jsonObj);
+            // otherwise we havea token so send it to the request
+            var response = await _apiRequest.SendRequestAsync("/prelogin", jsonSerial);
+            var jsonDocument = JsonDocument.Parse(response);
+
+            // Extract the "Success" value as a boolean
+            bool isSuccess = jsonDocument.RootElement.GetProperty("Success").GetBoolean();
+            if (isSuccess)
+            {
+                await Shell.Current.GoToAsync("//HomePage");
+
+            }
+            return;
+        }
+
         public async Task<bool> ValidateToken()
         {
             // Get the token from secure storage
