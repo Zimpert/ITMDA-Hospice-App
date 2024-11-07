@@ -305,6 +305,20 @@ std::vector<std::string> fetch_caregiver_userids(webserver_resource* webserver_r
   return temp;
  }
 }
+std::vector<std::tuple<std::string, std::string, std::string, std::string, std::string, std::string>> fetch_patientinfos(webserver_resource* webserver_resource, std::string_view const caregiver_id) noexcept {
+ static constexpr auto str = net::mysql_field_type::str;
+ auto const query = std::format(
+  "SELECT Users.UserID, Users.Name, Users.Surname, Users.Phone, Users.Email, Users.Address "
+  "FROM "
+  " AssignedPatients "
+  "  INNER JOIN Users "
+  "   ON AssignedPatients.PatientID = Users.UserID "
+  "WHERE AssignedPatients.CaregiverID = '{}'",
+  caregiver_id);
+ auto const connection = webserver_resource->get_remote_connection();
+ if (connection.connection() == nullptr) [[unlikely]] { return {}; }
+ else [[likely]] { return net::db_fetch<str, str, str, str, str, str>(connection.connection(), remote::database, query); }
+}
 
 webserver::webserver() noexcept : m_server{std::invoke([] () noexcept {
  auto maybe_server = net::http_socket::create_server(net::convert_ipv4_string_to_u32("192.168.88.2"), 80);
@@ -655,7 +669,35 @@ void webserver::handle_client_callable(::webserver_resource* webserver_resource,
   mtx->unlock();
   return;
  }
- 
+ if (resource == "/patientinfos") {
+  auto patientinfos = webserver::process_patientinfos(webserver_resource, request);
+  nlohmann::json response;
+  if (std::size(patientinfos) == NULL) [[unlikely]] {
+   response["data"] = nullptr;
+  } else {
+   for (auto&& patientinfo : patientinfos) {
+    response["data"].push_back({
+     { "UserID",  std::move(std::get<0>(patientinfo)) },
+     { "Name",    std::move(std::get<1>(patientinfo)) },
+     { "Surname", std::move(std::get<2>(patientinfo)) },
+     { "Phone",   std::move(std::get<3>(patientinfo)) },
+     { "Email",   std::move(std::get<4>(patientinfo)) },
+     { "Address", std::move(std::get<5>(patientinfo)) },
+    });
+   }
+  }
+  mtx->lock();
+  auto const send_status = client->send_response(response).status;
+  if (send_status != net::socket_error_code::success) [[unlikely]] {
+   SPDLOG_ERROR("Client ({}:{}) Failed to Send Response: {}", net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port, net::lookup_enum_verbose(send_status));
+   mtx->unlock();
+   return;
+  }
+  handle_client_callback(client);
+  mtx->unlock();
+  return;
+ }
+
  SPDLOG_ERROR("Client ({}:{}): Unknown Resource Requested (\"{}\")", net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port, resource);
  mtx->lock();
  handle_client_callback(client);
@@ -838,5 +880,20 @@ webserver::user_info_type webserver::process_userinfo(::webserver_resource* webs
   return {};
  }
  
- return std::move(requested_info);
+ return requested_info;
+}
+std::vector<std::tuple<std::string, std::string, std::string, std::string, std::string, std::string>> webserver::process_patientinfos(::webserver_resource* webserver_resource, net::http_request const& request) noexcept {
+ auto const maybe_token = get_token_from_request(request);
+ if (maybe_token.status != request_status::success) [[unlikely]] {
+  SPDLOG_ERROR("Invalid Request: {}", ::lookup_enum(maybe_token.status));
+  return {};
+ }
+ auto const& token = maybe_token.value;
+ auto const user_id = fetch_session_userid(webserver_resource, token);
+ if (std::size(user_id) == NULL) [[unlikely]] {
+  SPDLOG_ERROR("Invalid Session Token: {}", token);
+  return {};
+ }
+
+ return fetch_patientinfos(webserver_resource, user_id);;
 }

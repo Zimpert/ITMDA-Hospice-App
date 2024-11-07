@@ -14,7 +14,7 @@ client_info = json.loads(response.read().decode())
 
 if "Token" in client_info:
  response = urllib.request.urlopen(urllib.request.Request(
-  "http://ddnd.crabdance.com/medicine",
+  "http://ddnd.crabdance.com/patientinfos",
   data=json.dumps({
    "Token": client_info["Token"]
   }).encode(),

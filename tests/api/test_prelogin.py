@@ -4,7 +4,7 @@ import json
 response = urllib.request.urlopen(urllib.request.Request(
  "http://ddnd.crabdance.com/prelogin",
  data=json.dumps({
-  "Token": "cd02a0dd-36fd-4679-b754-6f24a4a70e14"
+  "Token": "90b3a648-07a1-4fb4-a6b5-974cfb12a03a"
  }).encode(),
  headers={"Content-Type": "application/json"},
  method="POST"
