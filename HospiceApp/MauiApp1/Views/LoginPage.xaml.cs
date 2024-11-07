@@ -15,22 +15,13 @@ namespace MauiApp1.Views
             _requestManager = requestManager;
         }
 
-        protected override async void OnNavigatedTo(NavigatedToEventArgs args)
+        protected override void OnNavigatedTo(NavigatedToEventArgs args)
         {
             base.OnNavigatedTo(args);
             Debug.WriteLine("Part1 Start");
-            await _requestManager.Prelogin();
+            
         }
-
-
-        //protected override async void OnAppearing()
-        //{
-        //    base.OnAppearing();
-        //    Debug.WriteLine("AppShell appearing.");
-
-        //    await _requestManager.Prelogin();
-        //}
-
+        
     }
 }
 

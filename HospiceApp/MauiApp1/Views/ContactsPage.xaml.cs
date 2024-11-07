@@ -4,40 +4,60 @@ using Microsoft.Maui.Controls;
 using System;
 using System.Collections.Generic;
 using MauiApp1;
+using MauiApp1.Interfaces;
+using MauiApp1.ViewModels;
 
 namespace MauiApp1.Views
 {
     public partial class ContactsPage : ContentPage
     {
-        public ContactsPage()
+        private readonly IRequestManager _requestManager;
+        private readonly MedicationListViewModel _viewModel;
+
+        public ContactsPage(IRequestManager requestManager, MedicationListViewModel viewModel)
         {
             InitializeComponent();
+            BindingContext = viewModel;
+            _requestManager = requestManager;
+            _viewModel = viewModel;
+
+            _viewModel.ContactsLoaded += OnContactsLoaded;
+            
+        }
+
+        private void OnContactsLoaded()
+        {
             LoadContacts();
         }
 
-        private void LoadContacts()
+        private async void OnBackButtonTapped(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("///HomePage"); // Navigate to the Homepage
+        }
+
+        private async void OnSettingsIconTapped(object sender, EventArgs e)
+        {
+            // Navigate to the Settings page 
+            await Shell.Current.GoToAsync("///SettingsPage"); // Navigate to the SettingsPage
+        }
+
+        public void LoadContacts()
         {
             // Clear existing contacts
             ContactsListContainer.Children.Clear();
 
-            // Mock data for demonstration; replace with actual data source later
-            var contacts = new List<ContactItem>
-            {
-                new ContactItem { Name = "Alice", Surname = "Nolan", Gender = "Female", Age = 29 },
-                new ContactItem { Name = "Dylan", Surname = "Duncan", Gender = "Male", Age = 82 },
-                new ContactItem { Name = "Anna", Surname = "Smith", Gender = "Female", Age = 75 },
-                new ContactItem { Name = "Hannah", Surname = "Tucker", Gender = "Male", Age = 32 }
-            };
 
             // Add each contact to the container
-            foreach (var contact in contacts)
+            if (_viewModel.ContactItemList != null)
             {
-                var contactItemView = new ContactItemView
+                foreach (var contact in _viewModel.ContactItemList)
                 {
-                    Name = $"{contact.Name} {contact.Surname}",
-                    Details = $"{contact.Gender}, {contact.Age} years old"
-                };
-                ContactsListContainer.Children.Add(contactItemView);
+                    var contactItemView = new ContactItemView
+                    {
+                        Name = $"{contact.Name} {contact.Surname}"
+                    };
+                    ContactsListContainer.Children.Add(contactItemView);
+                }
             }
         }
     }

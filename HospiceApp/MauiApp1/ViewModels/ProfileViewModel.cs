@@ -19,12 +19,27 @@ public partial class ProfileViewModel : ObservableObject
         public ProfileViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
-            user = new User(); // Initialize the user field
+            InitializeUserAsync();
+        }
+
+        public async Task InitializeUserAsync()
+        {
+            User currentUser = new User
+            {
+                Name = await SecureStorage.GetAsync("Name"),
+                Surname = await SecureStorage.GetAsync("Surname"),
+                Email = await SecureStorage.GetAsync("Email"),
+                Address = await SecureStorage.GetAsync("Address"),
+                //PhoneNo = await SecureStorage.GetAsync("PhoneNo")
+            };
+
+            User = currentUser;
         }
 
 
         public async Task OnAppearingAsync()
         {
+
             var userID = await SecureStorage.GetAsync("UserID");
             var token = await SecureStorage.GetAsync("Token");
 

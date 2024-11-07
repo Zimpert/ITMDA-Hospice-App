@@ -32,6 +32,7 @@ namespace MauiApp1
             builder.Services.AddTransient<ProfilePage>(); // Register ProfilePage with DI  
             builder.Services.AddTransient<ProfileViewModel>();
             builder.Services.AddTransient<HomePage>();
+            builder.Services.AddTransient<ContactsPage>();
             builder.Services.AddTransient<CaregiverShiftViewModel>();
             builder.Services.AddTransient<MedicationListViewModel>();
             builder.Services.AddTransient<MedicationListPage>();

@@ -118,6 +118,9 @@
 	  <MauiXaml Update="Resources\Styles\LightTheme.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\AssignedPatientsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\CaretakerQR.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -126,9 +129,6 @@
 	  </Compile>
 	  <Compile Update="Views\NotificationPage.xaml.cs">
 	    <DependentUpon>NotificationPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\QRScanPage.xaml.cs">
-	    <DependentUpon>QRScanPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\MedicationListPage.xaml.cs">
 	    <DependentUpon>MedicationListPage.xaml</DependentUpon>
@@ -164,9 +164,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\NotificationPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\QRScanPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\MedicationListPage.xaml">
