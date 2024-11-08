@@ -1,19 +1,41 @@
-namespace MauiApp1.Views;
+using MauiApp1.ViewModels;
+using Microsoft.Maui.Controls;
+using System.Collections.ObjectModel;
 
-public partial class MedicationTrackerPage: ContentPage
+namespace MauiApp1.Views
 {
-	public MedicationTrackerPage()
-	{
-		InitializeComponent();
-	}
-	private async void OnBackButtonTapped(object sender, EventArgs e)
-{
-    await Shell.Current.GoToAsync("///HomePage"); // Navigate to the Homepage
-}
+    public partial class MedicationTrackerPage : ContentPage
+    {
+        public MedicationTrackerPage()
+        {
+            InitializeComponent();
 
-private async void OnSettingsIconTapped(object sender, EventArgs e)
-{
-     
-    await Shell.Current.GoToAsync("///SettingsPage"); // Navigate to the SettingsPage
-}
+            // Sample data for testing
+            var medications = new List<MedicationTrackerItem>
+            {
+                new MedicationTrackerItem { MedicationName = "Ibuprofen", Dosage = "200mg", IsTaken = false },
+                new MedicationTrackerItem { MedicationName = "Amoxicillin", Dosage = "500mg", IsTaken = true },
+                new MedicationTrackerItem { MedicationName = "Metformin", Dosage = "500mg", IsTaken = false },
+                new MedicationTrackerItem { MedicationName = "Atorvastatin", Dosage = "20mg", IsTaken = true },
+
+            }; 
+
+
+            BindingContext = new MedicationTrackerViewModel
+            {
+                Medications = new ObservableCollection<MedicationTrackerItem>(medications)
+            };
+        }
+
+        private async void OnSettingsIconTapped(object sender, EventArgs e)
+        {
+            // Navigate to the Settings page 
+            await Shell.Current.GoToAsync("///SettingsPage"); // Navigate to the SettingsPage
+        }
+
+        private async void OnBackButtonTapped(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("///HomePage"); // Navigate back to the previous page
+        }
+    }
 }
