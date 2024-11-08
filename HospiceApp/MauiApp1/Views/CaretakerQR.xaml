@@ -6,116 +6,142 @@
              Title="CaretakerQR"
              xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls">
 
-    <StackLayout Padding="0" BackgroundColor="White">
+    <ScrollView>
+        <StackLayout Padding="0" BackgroundColor="White">
 
-        <!-- Navbar with Title and Settings Icon -->
-        <Frame Grid.Row="0" BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
-               HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-            <Grid Padding="10">
+            <!-- Navigation Bar -->
+            <Grid BackgroundColor="#9b59b6" Padding="10" HeightRequest="100">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <!-- Back button on the left -->
+                <!-- Back Button -->
                 <ImageButton Grid.Column="0"
                              Source="arrow_left.png"
                              BackgroundColor="Transparent"
                              WidthRequest="30"
                              HeightRequest="30"
                              VerticalOptions="Center"
-                             Aspect="AspectFit"
-                             Clicked="OnBackButtonTapped" />   
+                             Clicked="OnBackButtonTapped"
+                             AutomationId="BackButton"
+                             SemanticProperties.Hint="Go back" />
 
-                <!-- Home Title in the center -->
+                <!-- Title -->
                 <Label Grid.Column="1"
                        Text="QR Page"
                        FontAttributes="Bold"
                        VerticalOptions="Center"
                        HorizontalOptions="Center"
                        FontSize="18"
-                       TextColor="White" />    
+                       TextColor="White"
+                       AutomationId="PageTitle" />
 
-                <!-- Settings Icon on the right -->
+                <!-- Settings Icon -->
                 <ImageButton Grid.Column="2"
                              Source="settings.png"
                              BackgroundColor="Transparent"
                              WidthRequest="30"
                              HeightRequest="30"
                              VerticalOptions="Center"
-                             Aspect="AspectFit"
-                             Clicked="OnSettingsIconTapped" />
+                             Clicked="OnSettingsIconTapped"
+                             AutomationId="SettingsButton"
+                             SemanticProperties.Hint="Open settings" />
             </Grid>
-        </Frame>
 
+            <!-- Profile Picture -->
+            <Frame HeightRequest="100"
+                   WidthRequest="100"
+                   CornerRadius="50"
+                   BorderColor="#9b59b6"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   Padding="0"
+                   Margin="0,20,0,10">
+                <Image Source="placeholder.png"
+                       Aspect="AspectFill"
+                       HeightRequest="100"
+                       WidthRequest="100"
+                       AutomationId="ProfileImage" />
+            </Frame>
 
-        <!-- Profile Picture -->
-        <Frame HeightRequest="100" WidthRequest="100"
-           CornerRadius="50" 
-           BackgroundColor="Purple"
-           VerticalOptions="Center"
-           HorizontalOptions="Center"
-           Margin="0,20,0,10">
-            <Image Source="placeholder.png" 
-               VerticalOptions="Center"
-               HorizontalOptions="Center"/>
-        </Frame>
+            <!-- Name and Role -->
+            <Label Text="Alexa Williams"
+                   FontSize="Title"
+                   TextColor="Black"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"
+                   AutomationId="UserName" />
+            <Label Text="Caregiver"
+                   FontSize="Subtitle"
+                   TextColor="Gray"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"
+                   AutomationId="UserRole" />
 
-        <!-- Name and Role -->
-        <Label Text="Alexa Williams" 
-           FontSize="Large" 
-           TextColor="Black"
-           HorizontalOptions="Center" />
-        <Label Text="Caregiver" 
-           FontSize="Medium" 
-           TextColor="Black"
-           HorizontalOptions="Center"
-           Margin="0,0,0,20"/>
+            <!-- Description Text -->
+            <StackLayout Padding="20,0">
+                <Label Text="Your personal QR code."
+                       TextColor="Black"
+                       FontSize="Medium"
+                       AutomationId="DescriptionText1" />
+                <Label Text="Patients will scan this code to clock you in and out."
+                       TextColor="Black"
+                       FontSize="Small"
+                       Margin="0,0,0,20"
+                       AutomationId="DescriptionText2" />
+            </StackLayout>
 
-        <!-- Description Text -->
-        <Label Text="Your personal QR code."
-           TextColor="Black"
-           FontSize="Small"
-           HorizontalTextAlignment="Start"
-           Margin="20,0,0,0" />
-        <Label Text="Patients will scan this code to clock you in and out."
-           TextColor="Black"
-           FontSize="Small"
-           HorizontalTextAlignment="Start"
-           Margin="20,0,0,20" />
-
-        <!-- Clock In/Out Radio Buttons -->
-        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,0,0,20">
-            <Image Source="placeholder.png" VerticalOptions="Center" Margin="0,0,0,0"  HeightRequest="60" WidthRequest="60"/>
-            <StackLayout>
+            <!-- Clock In/Out Radio Buttons -->
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center"
+                         Margin="0,0,0,20">
                 <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-                    <RadioButton Content="Clocked In" IsChecked="True" TextColor="Black" Margin="20,5,0,0"/>
-                    <RadioButton Content="Clocked Out" IsChecked="False" TextColor="Black" Margin="10,5,0,0"/>
+                    <RadioButton Content="Clocked In"
+                                 IsChecked="{Binding IsClockedIn}"
+                                 TextColor="Black"
+                                 GroupName="ClockStatus"
+                                 Margin="0,0,10,0"
+                                 AutomationId="ClockedInRadioButton" />
+                    <RadioButton Content="Clocked Out"
+                                 IsChecked="{Binding IsClockedOut}"
+                                 TextColor="Black"
+                                 GroupName="ClockStatus"
+                                 AutomationId="ClockedOutRadioButton" />
                 </StackLayout>
             </StackLayout>
+
+            <!-- QR Code Image -->
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Frame WidthRequest="150"
+               HeightRequest="150"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Padding="0"
+               HasShadow="False"
+               BorderColor="#9b59b6"
+               CornerRadius="10">
+                    <zxing:BarcodeGeneratorView Format="QrCode"
+                                        Value="test"
+                                        HorizontalOptions="Fill"
+                                        VerticalOptions="Fill"
+                                        AutomationId="QrCodeImage" />
+                </Frame>
+            </StackLayout>
+
+            <!-- Save Button -->
+            <Button Text="Save to Camera Roll"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    FontSize="Medium"
+                    CornerRadius="10"
+                    VerticalOptions="End"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="20,20,20,20"
+                    Clicked="OnSaveButtonClicked"
+                    AutomationId="SaveButton" />
+
         </StackLayout>
-
-        <!-- QR Code Image -->
-
-
-        <zxing:BarcodeGeneratorView Format="QrCode"
-                                Value="test"
-                                WidthRequest="150"
-                                HeightRequest="150"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center" />
-
-        <!-- Save Button -->
-        <Button Text="Save to Camera Roll" 
-            BackgroundColor="Green" 
-            TextColor="Black" 
-            FontSize="Medium"
-            CornerRadius="10"
-            VerticalOptions="End" 
-            HorizontalOptions="FillAndExpand"
-            Margin="0,20,0,0" />
-
-    </StackLayout>
-    
+    </ScrollView>
 </ContentPage>
