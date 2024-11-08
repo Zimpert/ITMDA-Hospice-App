@@ -615,7 +615,6 @@ void webserver::handle_client_callable(::webserver_resource* webserver_resource,
   return;
  }
  if (resource == "/prelogin") {
-  std::cout << "prelogin started\n";
   auto const success = webserver::process_prelogin(webserver_resource, request);
   mtx->lock();
   auto const send_status = std::invoke([&]() noexcept {

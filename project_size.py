@@ -1,6 +1,6 @@
 import os
 
-file_paths = "entrypoint.cpp", "webserver.cpp", "webserver.hpp", "request_status.hpp"
+file_paths = "entrypoint.cpp", "webserver.cpp", "webserver.hpp", "request_status.hpp", "webserver_resource.hpp", "webserver_resource.cpp", "webserver_terminal.hpp", "webserver_terminal.cpp"
 
 total_line_count = 0
 total_char_count = 0
