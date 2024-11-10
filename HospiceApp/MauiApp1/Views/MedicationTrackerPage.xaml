@@ -3,45 +3,85 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.MedicationTrackerPage"
              Shell.NavBarIsVisible="False"
-             Title="MedicationTrackerPage">
-    <!-- Navbar with Title and Settings Icon -->
-    <Frame Grid.Row="0" BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
-HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-        <Grid Padding="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+             BackgroundColor="#FAFAFA">
 
-            <!-- Back button on the left -->
-            <ImageButton Grid.Column="0"
-              Source="arrow_left.png"
-              BackgroundColor="Transparent"
-              WidthRequest="30"
-              HeightRequest="30"
-              VerticalOptions="Center"
-              Aspect="AspectFit"
-              Clicked="OnBackButtonTapped" />
+    <Grid Padding="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <!-- Home Title in the center -->
-            <Label Grid.Column="1"
-        Text="Medication List"
-        FontAttributes="Bold"
-        VerticalOptions="Center"
-        HorizontalOptions="Center"
-        FontSize="18"
-        TextColor="White" />
+        <!-- Navbar with Title and Settings Icon -->
+        <Frame Grid.Row="0" BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True" 
+               HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-            <!-- Settings Icon on the right -->
-            <ImageButton Grid.Column="2"
-              Source="settings.png"
-              BackgroundColor="Transparent"
-              WidthRequest="30"
-              HeightRequest="30"
-              VerticalOptions="Center"
-              Aspect="AspectFit"
-              Clicked="OnSettingsIconTapped" />
-        </Grid>
-    </Frame>
+                <!-- Back button on the left -->
+                <ImageButton Grid.Column="0"
+                             Source="arrow_left.png"
+                             BackgroundColor="Transparent"
+                             WidthRequest="30"
+                             HeightRequest="30"
+                             VerticalOptions="Center"
+                             Aspect="AspectFit"
+                             Clicked="OnBackButtonTapped" />
+
+                <!-- Home Title in the center -->
+                <Label Grid.Column="1"
+                       Text="Medication Tracker"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       FontSize="18"
+                       TextColor="White" />
+
+                <!-- Settings Icon on the right -->
+                <ImageButton Grid.Column="2"
+                             Source="settings.png"
+                             BackgroundColor="Transparent"
+                             WidthRequest="30"
+                             HeightRequest="30"
+                             VerticalOptions="Center"
+                             Aspect="AspectFit"
+                             Clicked="OnSettingsIconTapped" />
+            </Grid>
+        </Frame>
+
+        <!-- Medication List with Custom Appearance -->
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Medications}"
+                        Margin="10"
+                        SelectionMode="None">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="15" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" BackgroundColor="#F8DFF8" CornerRadius="10" HasShadow="False">
+                        <Grid Padding="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <!-- Circular Icon Placeholder -->
+                            <Frame Grid.Column="0" WidthRequest="20" HeightRequest="20" BackgroundColor="#D9AFCB" CornerRadius="10" VerticalOptions="Center" />
+                            <!-- Medication Details -->
+                            <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="2" Padding="5" VerticalOptions="Center">
+                                <Label Text="{Binding MedicationName}" FontSize="16" FontAttributes="Bold" />
+                                <Label Text="{Binding Dosage}" FontSize="14" TextColor="Gray" />
+                            </StackLayout>
+                            <!-- Checkbox -->
+                            <CheckBox Grid.Column="2" IsChecked="{Binding IsTaken}" VerticalOptions="Center" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>
