@@ -20,9 +20,7 @@ namespace MauiApp1.Views
             BindingContext = viewModel;
             _requestManager = requestManager;
             _viewModel = viewModel;
-
             _viewModel.ContactsLoaded += OnContactsLoaded;
-            
         }
 
         private void OnContactsLoaded()
