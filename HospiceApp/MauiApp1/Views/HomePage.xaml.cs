@@ -17,7 +17,7 @@ public partial class HomePage : ContentPage
     private async void OnViewCarerClicked(object sender, EventArgs e)
     {
         // Navigate to View Carer page 
-        await Shell.Current.GoToAsync("///ViewCarerPage");
+        await Shell.Current.GoToAsync("///ContactsPage");
     }
 
     private async void OnNotificationPageClicked(object sender, EventArgs e)
@@ -29,8 +29,7 @@ public partial class HomePage : ContentPage
     private async void OnQRScanPageClicked(object sender, EventArgs e)
     {
         // Navigate to QR Scan Page or perform 
-        // await Shell.Current.GoToAsync("///PatientQR");
-        await DisplayAlert("Help Connor","Path to page not set yet","OK");
+        await Shell.Current.GoToAsync("///CaretakerQR");
     }
 
     private async void OnMedicationListClicked(object sender, EventArgs e)
@@ -61,4 +60,10 @@ public partial class HomePage : ContentPage
     {
         await Shell.Current.GoToAsync("///ShiftPage");
     }
+
+    private async void OnTaskPageClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("///TaskPage");
+    }
+
 }
