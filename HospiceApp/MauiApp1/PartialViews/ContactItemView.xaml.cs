@@ -10,23 +10,5 @@ namespace MauiApp1.PartialViews
         {
             InitializeComponent();
         }
-
-        public string Name
-        {
-            get => NameLabel.Text;
-            set => NameLabel.Text = value;
-        }
-
-        private async void TakeToNewPage(object sender, EventArgs e)
-        {
-            await Shell.Current.GoToAsync("///PatientMiddlePage");
-        }
-
-        //public string Details
-        //{
-        //    get => DetailsLabel.Text;
-        //    set => DetailsLabel.Text = value;
-        //}
-
     }
 }

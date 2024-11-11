@@ -1,53 +1,34 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿
+using CommunityToolkit.Mvvm.ComponentModel;
 using MauiApp1.Interfaces;
 using MauiApp1.Models;
-using MauiApp1.Services;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace MauiApp1.ViewModels
 {
-    public partial class MedicationListViewModel : ObservableObject, IQueryAttributable
+    public partial class MedicationListViewModel : ObservableObject
     {
-        private readonly IRequestManager _requestManager;
-        private readonly ContactService _cService;
+        private readonly IContactRepo _contactRepo;
+        public Action MedsLoaded;
 
-        [ObservableProperty]
-        private ObservableCollection<Medication> _filteredMeds;
-
-        private string targetID;
-
-        public MedicationListViewModel(IRequestManager requestManager, ContactService cService)
+        public MedicationListViewModel(IContactRepo contactRepo)
         {
-            _requestManager = requestManager;
-            _filteredMeds = new ObservableCollection<Medication>();
-            _cService = cService;
+            _contactRepo = contactRepo;
         }
 
-        public void ApplyQueryAttributes(IDictionary<string, object> query)
+        public List<Medication> MedsItemList;
+
+        public void  GetMedications(string patientID)
         {
-            targetID = query["patientID"].ToString();
-            Debug.WriteLine($"TARGET ID IS {targetID}");
-            LoadMedications();
-        }
-
-        public void LoadMedications()
-        {
-            _filteredMeds.Clear();
-
-            // Get the contact for the specific patient
-            var contact = _cService.ContactItemList.FirstOrDefault(c => c.PatientID == targetID);
-
-            if (contact != null)
-            {
-                // Filter medications for the specific patient
-                foreach (var med in contact.Medication)
-                {
-                    _filteredMeds.Add(med);
-                }
-            }
+            MedsItemList =  _contactRepo.GetMedsByPatientID(patientID);
+            MedsLoaded?.Invoke();
 
         }
 
-        }
+
+
+
+
+
+    }
 }

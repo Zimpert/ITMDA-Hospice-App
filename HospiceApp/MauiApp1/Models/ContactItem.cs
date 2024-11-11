@@ -1,20 +1,36 @@
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MauiApp1.Models.PatientModels;
 using System;
 
 namespace MauiApp1.Models
 {
-    public class ContactItem
+    public partial class ContactItem : ObservableObject
     {
-
-        public string PatientID { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public List<Medication>? Medication { get; set; }
-
+        [ObservableProperty]
+        string patientID;
+        [ObservableProperty]
+         string name;
+        [ObservableProperty]
+         string surname;
+        [ObservableProperty]
+         List<Medication>? medication
+            ;
         public ContactItem()
         {
             
         }
+
+        [RelayCommand] public async Task NavToMedList()
+        {
+            var navigationParameter = new Dictionary<string, object>
+            {
+                { "PatientID", PatientID }
+            };
+            await Shell.Current.GoToAsync("//MedicationListPage", navigationParameter);
+        }
+
+
 
     }
 }
