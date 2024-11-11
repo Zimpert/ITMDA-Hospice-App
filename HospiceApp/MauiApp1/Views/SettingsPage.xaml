@@ -26,6 +26,7 @@
                              HeightRequest="30"
                              VerticalOptions="Center"
                              Aspect="AspectFit"
+                             HorizontalOptions="Start"
                              Clicked="OnBackButtonTapped" />
 
                 <!-- Home Title in the center -->
@@ -35,7 +36,16 @@
                        VerticalOptions="Center"
                        HorizontalOptions="Center"
                        FontSize="18"
-                       TextColor="White" />
+                       TextColor="White" 
+                       Padding="0,0,0,10"/>
+                
+                <!-- Spacing image no other purpose -->
+                <ImageButton Grid.Column="2"                     
+                             BackgroundColor="Transparent"
+                             WidthRequest="30"
+                             HeightRequest="30"
+                             VerticalOptions="Center"
+                             Aspect="AspectFit"/>
             </Grid>
         </Frame>
 
