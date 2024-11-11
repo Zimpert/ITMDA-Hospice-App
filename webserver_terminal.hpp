@@ -1,5 +1,6 @@
 #pragma once
 
+#include "types.hpp"
 #include "webserver.hpp"
 #include <gl/glew.h>
 #include <glfw/glfw3.h>

@@ -1,8 +1,11 @@
+#define STB_IMAGE_IMPLEMENTATION
+
 #include "webserver_terminal.hpp"
 #include "net/address_conversion.hpp"
 #include <imgui.h>
 #include <backends/imgui_impl_glfw.h>
 #include <backends/imgui_impl_opengl3.h>
+#include <stb/stb_image.h>
 #include <format>
 #include <thread>
 
@@ -19,6 +22,9 @@ void webserver_terminal::run() {
  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
  this->m_window = glfwCreateWindow(1280, 720, "Terminal Window", nullptr, nullptr);
+ GLFWimage images[1]; 
+ images[0].pixels = stbi_load("c:/se/academic/itmda-hospice-app/bleaugh.png", &images[0].width, &images[0].height, 0, 4);
+ glfwSetWindowIcon(this->m_window, 1, images);
  glfwMakeContextCurrent(this->m_window);
  glfwSwapInterval(1);
  IMGUI_CHECKVERSION();
@@ -148,4 +154,5 @@ void webserver_terminal::run() {
  ImGui::DestroyContext();
  glfwDestroyWindow(this->m_window);
  glfwTerminate();
+ stbi_image_free(images[0].pixels);
 }

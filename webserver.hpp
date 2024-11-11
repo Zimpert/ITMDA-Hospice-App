@@ -1,6 +1,7 @@
 #pragma once
 
 #include "webserver_resource.hpp"
+#include "db_objects/core.hpp"
 #include "stl/threadpool/dynamic_decaying_centralised_threadpool.hpp"
 #include "net/http_socket.hpp"
 #include <cppconn/exception.h>
@@ -34,15 +35,15 @@ private:
  void accept_client() noexcept;
  void distribute_jobs() noexcept;
 
- static void handle_client_callable(::webserver_resource* webserver_resource, net::http_socket* client, std::mutex* mtx) noexcept;
+ static void handle_client_callable(::webserver_resource* resource, net::http_socket* client, std::mutex* mtx) noexcept;
 
- static void process_log(::webserver_resource* webserver_resource, net::http_request const& request) noexcept;
- static login_return_type process_login(::webserver_resource* webserver_resource, net::http_request const& request) noexcept;
- static std::vector<std::tuple<std::string, std::string, std::string, std::string, std::string>> process_shifts(::webserver_resource* webserver_resource, net::http_request const& request) noexcept;
- static std::vector<std::tuple<std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string, std::string>> process_medicine(::webserver_resource* webserver_resource, net::http_request const& request) noexcept;
- static bool process_prelogin(::webserver_resource* webserver_resource, net::http_request const& request) noexcept;
- static user_info_type process_userinfo(::webserver_resource* webserver_resource, net::http_request const& request) noexcept;
- static std::vector<std::tuple<std::string, std::string, std::string, std::string, std::string, std::string>> process_patientinfos(::webserver_resource* webserver_resource, net::http_request const& request) noexcept;
+ static void                                             process_log(webserver_resource* resource, net::http_request const& request) noexcept;
+ static db_objects::login_user_info                      process_login(webserver_resource* resource, net::http_request const& request) noexcept;
+ static std::vector<db_objects::shift_info>              process_shifts(webserver_resource* resource, net::http_request const& request) noexcept;
+ static std::vector<db_objects::patient_medication_info> process_medicine(webserver_resource* resource, net::http_request const& request) noexcept;
+ static bool                                             process_prelogin(webserver_resource* resource, net::http_request const& request) noexcept;
+ static db_objects::user_info                            process_userinfo(webserver_resource* resource, net::http_request const& request) noexcept;
+ static std::vector<db_objects::patient_info>            process_patientinfos(webserver_resource* resource, net::http_request const& request) noexcept;
 
  net::http_socket m_server;
  std::array<std::mutex, 1024> m_client_mutices;

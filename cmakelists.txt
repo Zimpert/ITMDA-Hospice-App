@@ -46,8 +46,9 @@ include_directories(itmda_webserver
  c:/se/libraries/c++/mysql-connector/include/jdbc/
  c:/se/libraries/c++/stduuid/include/
  c:/se/libraries/c++/imgui/
- c:/se/libraries/c++/glfw/include
- c:/se/libraries/c++/glew/include
+ c:/se/libraries/c++/glfw/include/
+ c:/se/libraries/c++/glew/include/
+ c:/se/libraries/c++/stb/
 )
 target_compile_definitions(itmda_webserver PRIVATE
  #_DEBUG
