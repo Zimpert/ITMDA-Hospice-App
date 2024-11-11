@@ -11,6 +11,8 @@
 #include <span>
 #include <mutex>
 
+/* Remember to use timestamps */
+
 class webserver {
 public:
  using callable_t = std::function<void(webserver_resource*, net::http_socket*, std::mutex*)>;
@@ -47,6 +49,7 @@ private:
 
  net::http_socket m_server;
  std::array<std::mutex, 1024> m_client_mutices;
+ std::array<std::chrono::steady_clock::time_point, 1024> m_client_timestamps;
  std::array<net::http_socket, 1024> m_clients;
  std::array<bool, 1024> m_clients_assigned{};
  ddct m_threadpool;

@@ -31,13 +31,23 @@ void webserver_terminal::run() {
  ImGui::CreateContext();
  ImGui_ImplGlfw_InitForOpenGL(this->m_window, true);
  ImGui_ImplOpenGL3_Init(glsl_version);
- ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
- ImGuiIO& io = ImGui::GetIO();
+ ImVec4 clear_color = ImVec4(.8509f, .6863f, .7961f, 1.00f);
+ auto& io = ImGui::GetIO();
+ auto& style = ImGui::GetStyle();
+ style.Colors[ImGuiCol_TitleBg]          = ImVec4(.5569f, .2667f, .6784f, 1.00f);
+ style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(1.000f, 1.000f, 1.000f, 0.50f);
+ style.Colors[ImGuiCol_TitleBgActive]    = ImVec4(.4177f, .2000f, .5088f, 1.00f);
+ style.Colors[ImGuiCol_WindowBg]         = ImVec4(.9725f, .8745f, 0.94f, .9725f);
+ style.Colors[ImGuiCol_Text]             = ImVec4(0.00f, 0.00f, 0.00f, 1.00f);
+ ImFont* font = io.Fonts->AddFontFromFileTTF("cour.ttf", 16);
  while (this->m_running && !glfwWindowShouldClose(this->m_window)) {
    glfwPollEvents();
    ImGui_ImplOpenGL3_NewFrame();
    ImGui_ImplGlfw_NewFrame();
    ImGui::NewFrame();
+ 
+  //ImGui::PushFont(font);
+
    io.DeltaTime = 1.0f / 60.0f;
    io.DisplaySize = ImVec2(1920, 1080);
 
@@ -64,7 +74,7 @@ void webserver_terminal::run() {
     {
      auto const connection_string = std::invoke([&]() noexcept {
       if (wthread->working()) { return std::format("Thread {} @ {}:{}", wthread->pid(), net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port); }
-      else                    { return std::format("THread {}: N/A", wthread->pid()); }
+      else                    { return std::format("Thread {}: N/A", wthread->pid()); }
      });
      ImGui::TextUnformatted(std::data(connection_string));
     }

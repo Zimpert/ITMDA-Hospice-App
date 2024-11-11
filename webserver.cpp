@@ -25,6 +25,12 @@
 #include <filesystem>
 #include <winsock2.h>
 
+// std::string pid_client_prefix(net::http_socket *const client) noexcept {
+//  return std::format("Thread {} Client ({}:{}): ", 
+//   std::bit_cast<u32>(std::this_thread::get_id()), 
+//   net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port);
+// }
+
 stl::status_type<request_status, std::string> get_token_from_request(net::http_request const& http_request) noexcept {
  auto const& data = http_request.content().get_json_content();
  auto const token_it = data.find("Token");
@@ -284,11 +290,11 @@ std::vector<db_objects::patient_info> fetch_patient_infos(webserver_resource* re
 webserver::webserver() noexcept : m_server{std::invoke([] () noexcept {
  auto maybe_server = net::http_socket::create_server(net::convert_ipv4_string_to_u32("192.168.88.2"), 80);
  if (maybe_server.status != net::socket_error_code::success) [[unlikely]] {
-  std::cout << std::format("Failed to Create Server\n{}\n", net::lookup_enum_verbose(maybe_server.status));
+  SPDLOG_ERROR("Thread {}: Failed to Create Server: {}", std::bit_cast<u32>(std::this_thread::get_id()), net::lookup_enum_verbose(maybe_server.status));
  }
  return maybe_server.value;
- })} 
- {
+ })}
+{
  this->m_running = true;
 }
 webserver::~webserver() noexcept {
@@ -303,12 +309,13 @@ void webserver::run() noexcept {
   this->accept_incoming_connections();
   this->distribute_jobs();
  }
- for (auto& client : this->m_clients) {
-  if (client.socket().socket_handle != 0) {
-   client.close();
-  }
- }
- this->m_server.close();
+ std::ranges::for_each(this->m_clients | std::views::filter(std::mem_fn(&net::http_socket::is_valid)), std::mem_fn(&net::http_socket::close));
+ // for (auto& client : this->m_clients) {
+ //  if (client.socket().socket_handle != 0) {
+ //   client.close();
+ //  }
+ // }
+ (void)this->m_server.close();
 }
 
 [[nodiscard]] std::span<net::http_socket const> webserver::clients() const noexcept { return this->m_clients; }
@@ -318,7 +325,7 @@ void webserver::accept_incoming_connections() noexcept {
  while (true) {
   auto [status, has_incoming_connection] = this->has_incoming_connection();
   if (status != net::socket_error_code::success) [[unlikely]] {
-   SPDLOG_ERROR("Failed to Select on Server Socket:\n{}", net::lookup_enum_verbose(status));
+   SPDLOG_ERROR("Thread {}: Failed to Select on Server Socket:\n{}", std::bit_cast<u32>(std::this_thread::get_id()), net::lookup_enum_verbose(status));
    return;
   }
   if (has_incoming_connection) { this->accept_client(); }
@@ -329,29 +336,26 @@ stl::status_type<net::socket_error_code, bool> webserver::has_incoming_connectio
  static constexpr ::TIMEVAL timeout{ 0, 2000 };
  ::fd_set server_socket { .fd_count = 1 };
  server_socket.fd_array[0] = this->m_server.socket().socket_handle;
- if (::select(NULL, &server_socket, nullptr, nullptr, &timeout) == SOCKET_ERROR) [[unlikely]] {
-  net::socket_error_code const socket_error_code = static_cast<net::socket_error_code>(::WSAGetLastError());
-  return stl::status_type<net::socket_error_code, bool>{ socket_error_code, false };
- } else {
-  return stl::status_type<net::socket_error_code, bool>{ net::socket_error_code::success, server_socket.fd_count == 1 };
- }
+ if (::select(NULL, &server_socket, nullptr, nullptr, &timeout) == SOCKET_ERROR) [[unlikely]] { return { static_cast<net::socket_error_code>(::WSAGetLastError()), false }; }
+ else { return { net::socket_error_code::success, server_socket.fd_count == 1 }; }
 }
 void webserver::accept_client() noexcept {
  auto it = std::find_if(std::begin(this->m_clients), std::end(this->m_clients), [&](auto const& client) noexcept { return client.socket().socket_handle == NULL; });
  if (it == std::end(this->m_clients)) [[unlikely]] {
-  SPDLOG_ERROR("Clients Full!\n");
+  SPDLOG_ERROR("Thread {}: Clients Full!", std::bit_cast<u32>(std::this_thread::get_id()));
   return;
  }
  auto maybe_client = this->m_server.accept();
  if (maybe_client.status != net::socket_error_code::success) [[unlikely]] {
-  SPDLOG_ERROR("Failed to Connect New Client\n");
+  SPDLOG_ERROR("Thread {}: Failed to Connect New Client", std::bit_cast<u32>(std::this_thread::get_id()));
   return;
  }
- SPDLOG_INFO("Accepted New Client: {}:{}", net::convert_ipv4_u32_to_string(maybe_client.value.socket().host), maybe_client.value.socket().port);
+ SPDLOG_INFO("{}Accepted New Client", pid_client_prefix(&maybe_client.value));
  auto const index = it - std::begin(this->m_clients);
  this->m_clients_assigned[index] = false;
  this->m_client_mutices[index].lock();
  *it = std::move(maybe_client.value);
+ this->m_client_timestamps[index] = std::chrono::steady_clock::now();
  this->m_client_mutices[index].unlock();
 }
 void webserver::distribute_jobs() noexcept {
@@ -431,32 +435,30 @@ void webserver::distribute_jobs() noexcept {
 }
 
 /* Assumes: Has mutex lock */
-void handle_client_callback(net::http_socket* client) noexcept {
+void handle_client_callback(net::http_socket *const client) noexcept {
  auto const client_shutdown_status = client->shutdown().status;
  if (client_shutdown_status != net::socket_error_code::success) [[unlikely]] {
-   SPDLOG_ERROR("Failed to Close Socket ({}:{}): {}\n", net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port, net::lookup_enum_verbose(client_shutdown_status));
+  SPDLOG_ERROR("{}Failed to Shutdown Socket: {}\n", pid_client_prefix(client), net::lookup_enum_verbose(client_shutdown_status));
  }
  auto const client_close_status = client->close().status;
  if (client_close_status != net::socket_error_code::success) [[unlikely]] {
-  SPDLOG_ERROR("Failed to Close Socket ({}:{}): {}\n", net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port, net::lookup_enum_verbose(client_close_status));
- } else [[likely]] {
-  SPDLOG_INFO("Closed Client: {}:{}", net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port);
- }
+  SPDLOG_ERROR("{}Failed to Close Socket: {}\n", pid_client_prefix(client), net::lookup_enum_verbose(client_close_status));
+ } else [[likely]] { SPDLOG_INFO("{}Closed Client", pid_client_prefix(client)); }
 }
 void webserver::handle_client_callable(::webserver_resource* webserver_resource, net::http_socket* client, std::mutex* mtx) noexcept {
- timing::scoped_timer timer([](auto&& location, auto&& time) { 
-   SPDLOG_INFO("Thread {} at {}:{} line {} ran for {}ms", 
-   std::bit_cast<u32>(std::this_thread::get_id()), 
+ timing::scoped_timer timer([&](auto&& location, auto&& time) { 
+   SPDLOG_INFO("{}at {}:{} line {} ran for {}ms",
+   pid_client_prefix(client), 
    std::filesystem::path(location.file_name).filename().string(), location.function_name, location.line,
    std::chrono::duration_cast<std::chrono::milliseconds>(time).count()); 
   });
  
- SPDLOG_INFO("Started Client Interaction (PID {}): {}:{}", std::bit_cast<u32>(std::this_thread::get_id()), net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port);
+ SPDLOG_INFO("{}Started Client Interaction", pid_client_prefix(client));
 
  mtx->lock();
  auto [request_status, request] = client->receive_request();
  if (request_status != net::socket_error_code::success) [[unlikely]] {
-  SPDLOG_ERROR("Failed HTTP Request Receival for Socket {}: {}\n", stl::cvt::to_hex_string(client->socket().socket_handle), net::lookup_enum_verbose(request_status));
+  SPDLOG_ERROR("{}Failed HTTP Request Receival for Socket: {}\n", pid_client_prefix(client), net::lookup_enum_verbose(request_status));
   handle_client_callback(client);
   mtx->unlock();
   return;
@@ -472,7 +474,7 @@ void webserver::handle_client_callable(::webserver_resource* webserver_resource,
   return;
  }
  if (resource == "/login") {
-  auto const user_info = webserver::process_login(webserver_resource, request);
+  auto user_info = webserver::process_login(webserver_resource, request);
   nlohmann::json response;
   if (user_info.is_empty()) [[unlikely]] {
    SPDLOG_INFO("Client ({}:{}): Invalid Login", net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port);
@@ -657,7 +659,8 @@ void webserver::handle_client_callable(::webserver_resource* webserver_resource,
   return;
  }
 
- SPDLOG_ERROR("Client ({}:{}): Unknown Resource Requested (\"{}\")", net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port, resource);
+ SPDLOG_ERROR("{}Unknown Resource Requested (\"{}\")", pid_client_prefix(client), resource);
+
  mtx->lock();
  handle_client_callback(client);
  mtx->unlock();
@@ -777,7 +780,7 @@ db_objects::user_info                            webserver::process_userinfo(web
   SPDLOG_ERROR("Invalid Request: Failed to Fetch Other User's Info");
   return {};
  }
- if (other_user_id == user_id) /* You're allowed to request your own info */ { return std::move(other_user_info); }
+ if (other_user_id == user_id) /* You're allowed to request your own info */ { return other_user_info; }
 
  if (user_info.role == "Patient") [[unlikely]] {
   SPDLOG_ERROR("Client {} trying to request somebody else ({})'s data.", user_id, other_user_info.user_id);
