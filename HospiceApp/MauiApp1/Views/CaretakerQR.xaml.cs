@@ -10,7 +10,15 @@ public partial class CaretakerQR : ContentPage
 		InitializeComponent();
 		BindingContext = new QRGenerationViewModel();
 	}
-	private async void OnBackButtonTapped(object sender, EventArgs e)
+
+    private void OnSaveButtonClicked(object sender, EventArgs e)
+    {
+        // Your code to handle the save action goes here.
+        // For now, you can display a simple alert to confirm the button click.
+        DisplayAlert("Save", "Save to Camera Roll button clicked.", "OK");
+    }
+
+    private async void OnBackButtonTapped(object sender, EventArgs e)
 {
     await Shell.Current.GoToAsync("///HomePage"); // Navigate to the Homepage
 }
