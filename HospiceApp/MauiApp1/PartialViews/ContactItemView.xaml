@@ -15,10 +15,11 @@
                 <Label Text="{Binding Surname}" FontSize="Small" TextColor="White" />
             </StackLayout>
 
-            <!-- Details Button -->
-            <!--<Button Text="Details" BackgroundColor="#341d5c" TextColor="White" CornerRadius="10"
+             <!--Details Button--> 
+            <Button Text="Details" BackgroundColor="#341d5c" TextColor="White" CornerRadius="10"
                     FontSize="Small" HeightRequest="40" 
-                    VerticalOptions="Center" Grid.Column="2" />-->
+                    VerticalOptions="Center" Grid.Column="2"
+                    Command="{Binding NavToPatientDetailsCommand}" CommandParameter="{Binding PatientID}"/>
             
             <!-- Medication Button -->
             <Button Text="Medication" BackgroundColor="#341d5c" TextColor="White" CornerRadius="10"

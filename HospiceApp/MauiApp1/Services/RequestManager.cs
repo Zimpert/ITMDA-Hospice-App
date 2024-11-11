@@ -23,15 +23,60 @@ namespace MauiApp1.Services
             _apiRequest = apiRequest;
         }
 
-        public async Task<User?> GetUserDataAsync(string userID, string token)
+        //public async Task<User?> GetUserDataAsync(string userID, string token)
+        //{
+        //    try
+        //    {
+        //        // Create an anonymous object with userID and token
+        //        var jObject = new
+        //        {
+        //            UserID = userID,
+        //            Token = token
+        //        };
+
+        //        // Serialize the object to JSON
+        //        string json = JsonSerializer.Serialize(jObject);
+
+        //        // Send the JSON to the server and get the response
+        //        var jsonResponse = await _apiRequest.SendRequestAsync("/userinfo", json);
+
+        //        // Deserialize the JSON response to a User object
+        //        var user = JsonSerializer.Deserialize<User>(jsonResponse);
+
+        //        // Check if deserialization was successful
+        //        if (user == null)
+        //        {
+        //            Console.WriteLine("Failed to deserialize the response.");
+        //            return null;
+        //        }
+
+        //        // Return the user object
+        //        return user;
+        //    }
+        //    catch (HttpRequestException e)
+        //    {
+        //        // Handle HTTP request errors
+        //        Console.WriteLine($"Request error: {e.Message}");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Handle any other errors
+        //        Console.WriteLine($"Unexpected error: {ex.Message}");
+        //    }
+
+        //    // Return null if an error occurred
+        //    return null;
+        //}
+
+        public async Task<User?> GetUserDataAsync(string userID)
         {
             try
             {
                 // Create an anonymous object with userID and token
                 var jObject = new
                 {
-                    UserID = userID,
-                    Token = token
+                    UserID = userID
+                    
                 };
 
                 // Serialize the object to JSON

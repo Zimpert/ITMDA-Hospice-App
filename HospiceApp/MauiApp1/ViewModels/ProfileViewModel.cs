@@ -50,7 +50,7 @@ public partial class ProfileViewModel : ObservableObject
             }
             else
             {
-                User? userData = await _requestManager.GetUserDataAsync(userID, token);
+                User? userData = await _requestManager.GetUserDataAsync(userID);
                 if (userData != null)
                 {
                     User = userData;

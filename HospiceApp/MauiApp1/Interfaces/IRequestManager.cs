@@ -8,7 +8,8 @@ namespace MauiApp1.Interfaces
         Task<User?> LoginAsync(string email, string password);
 
         // user info
-        Task<User?> GetUserDataAsync(string userID, string token);
+        //Task<User?> GetUserDataAsync(string userID, string token);
+        Task<User?> GetUserDataAsync(string userID);
 
 
         void Prelogin();

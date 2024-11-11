@@ -14,8 +14,8 @@ namespace MauiApp1.Models
         [ObservableProperty]
          string surname;
         [ObservableProperty]
-         List<Medication>? medication
-            ;
+         List<Medication>? medication;
+
         public ContactItem()
         {
             
@@ -30,7 +30,15 @@ namespace MauiApp1.Models
             await Shell.Current.GoToAsync("//MedicationListPage", navigationParameter);
         }
 
-
+        [RelayCommand]
+        public async Task NavToPatientDetails()
+        {
+            var navigationParameter = new Dictionary<string, object>
+            {
+                { "PatientID", PatientID }
+            };
+            await Shell.Current.GoToAsync("//PatientDetailsPage", navigationParameter);
+        }
 
     }
 }
