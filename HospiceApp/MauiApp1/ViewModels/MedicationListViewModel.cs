@@ -6,29 +6,33 @@ using System.Collections.ObjectModel;
 
 namespace MauiApp1.ViewModels
 {
-    public partial class MedicationListViewModel : ObservableObject
+    public partial class MedicationListViewModel : ObservableObject, IQueryAttributable
     {
         private readonly IContactRepo _contactRepo;
         public Action MedsLoaded;
+        public string targetID;
 
         public MedicationListViewModel(IContactRepo contactRepo)
         {
             _contactRepo = contactRepo;
+            
         }
+        public void ApplyQueryAttributes(IDictionary<string, object> query)
+        {
+            targetID = query["PatientID"].ToString();
+            GetMedications();
+        }
+
 
         public List<Medication> MedsItemList;
 
-        public void  GetMedications(string patientID)
+        public void  GetMedications()
         {
-            MedsItemList =  _contactRepo.GetMedsByPatientID(patientID);
+            MedsItemList =  _contactRepo.GetMedsByPatientID(targetID);
             MedsLoaded?.Invoke();
 
         }
 
-
-
-
-
-
+        
     }
 }

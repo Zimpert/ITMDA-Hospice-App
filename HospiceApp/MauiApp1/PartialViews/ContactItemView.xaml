@@ -16,9 +16,9 @@
             </StackLayout>
 
             <!-- Details Button -->
-            <Button Text="Details" BackgroundColor="#341d5c" TextColor="White" CornerRadius="10"
+            <!--<Button Text="Details" BackgroundColor="#341d5c" TextColor="White" CornerRadius="10"
                     FontSize="Small" HeightRequest="40" 
-                    VerticalOptions="Center" Grid.Column="2" />
+                    VerticalOptions="Center" Grid.Column="2" />-->
             
             <!-- Medication Button -->
             <Button Text="Medication" BackgroundColor="#341d5c" TextColor="White" CornerRadius="10"
@@ -27,9 +27,9 @@
                     Command="{Binding NavToMedListCommand}" CommandParameter="{Binding PatientID}"/>
             
             <!-- Tasks Button -->
-            <Button Text="Tasks" BackgroundColor="#341d5c" TextColor="White" CornerRadius="10"
+            <!--<Button Text="Tasks" BackgroundColor="#341d5c" TextColor="White" CornerRadius="10"
                     FontSize="Small" HeightRequest="40" 
-                    VerticalOptions="Center" Grid.Column="4" />
+                    VerticalOptions="Center" Grid.Column="4" />-->
         </Grid>
     </Frame>
 </ContentView>
