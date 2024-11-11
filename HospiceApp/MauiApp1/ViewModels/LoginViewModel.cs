@@ -12,11 +12,9 @@ namespace MauiApp1.ViewModels
     {
         private readonly IRequestManager _requestManager;
 
-        public LoginViewModel(IServiceProvider serviceProvider, IRequestManager requestManager)
+        public LoginViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
-            
-
 
         }
 
