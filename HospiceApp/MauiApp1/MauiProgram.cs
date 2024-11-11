@@ -39,7 +39,8 @@ namespace MauiApp1
             builder.Services.AddTransient<ShiftPage>();
             builder.Services.AddTransient<AppShell>();
             builder.Services.AddTransient<CaretakerQR>();
-            builder.Services.AddTransient<PatientMiddlePage>();
+            builder.Services.AddTransient<ContactViewModel>();
+            builder.Services.AddSingleton<ContactService>();
             // Configure the Maui application  
             builder
                 .UseMauiApp<App>()

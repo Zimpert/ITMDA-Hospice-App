@@ -14,7 +14,5 @@
     <ShellContent Route="MedicationListPage" ContentTemplate="{DataTemplate views:MedicationListPage}" />
     <ShellContent Route="MedicationTrackerPage" ContentTemplate="{DataTemplate views:MedicationTrackerPage}" />
     <ShellContent Route="TaskPage" ContentTemplate="{DataTemplate views:TaskPage}" />
-    <ShellContent Route="NotificationPage" ContentTemplate="{DataTemplate views:NotificationPage}" />
     <ShellContent Route="ContactsPage" ContentTemplate="{DataTemplate views:ContactsPage}"/>
-    <ShellContent Route="PatientMiddlePage" ContentTemplate="{DataTemplate views:PatientMiddlePage}"/>
 </Shell>

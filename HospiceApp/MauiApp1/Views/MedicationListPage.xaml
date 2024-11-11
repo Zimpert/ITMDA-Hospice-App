@@ -3,95 +3,171 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.MedicationListPage"
              xmlns:vm ="clr-namespace:MauiApp1.ViewModels"
-                x:DataType="vm:MedicationListViewModel"
              Shell.NavBarIsVisible="False"
              BackgroundColor="#FAFAFA">
 
-    <Grid Padding="0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <ScrollView>
+        <Grid Padding="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <!-- Navbar with Title and Settings Icon -->
-        <Frame Grid.Row="0" BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
-       HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-            <Grid Padding="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+            <!-- Navbar with Title and Settings Icon -->
+            <Frame Grid.Row="0" BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
+                   HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                <Grid Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                <!-- Back button on the left -->
-                <ImageButton Grid.Column="0"
-                     Source="arrow_left.png"
-                     BackgroundColor="Transparent"
-                     WidthRequest="30"
-                     HeightRequest="30"
-                     VerticalOptions="Center"
-                     Aspect="AspectFit"
-                     Clicked="OnBackButtonTapped" />
+                    <!-- Back button on the left -->
+                    <ImageButton Grid.Column="0"
+                                 Source="arrow_left.png"
+                                 BackgroundColor="Transparent"
+                                 WidthRequest="30"
+                                 HeightRequest="30"
+                                 VerticalOptions="Center"
+                                 Aspect="AspectFit"
+                                 Clicked="OnBackButtonTapped" />
 
-                <!-- Home Title in the center -->
-                <Label Grid.Column="1"
-               Text="Medication List"
-               FontAttributes="Bold"
-               VerticalOptions="Center"
-               HorizontalOptions="Center"
-               FontSize="18"
-               TextColor="White" />
+                    <!-- Home Title in the center -->
+                    <Label Grid.Column="1"
+                           Text="Medication List"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           FontSize="18"
+                           TextColor="White" />
 
-                <!-- Settings Icon on the right -->
-                <ImageButton Grid.Column="2"
-                     Source="settings.png"
-                     BackgroundColor="Transparent"
-                     WidthRequest="30"
-                     HeightRequest="30"
-                     VerticalOptions="Center"
-                     Aspect="AspectFit"
-                     Clicked="OnSettingsIconTapped" />
-            </Grid>
-        </Frame>
+                    <!-- Settings Icon on the right -->
+                    <ImageButton Grid.Column="2"
+                                 Source="settings.png"
+                                 BackgroundColor="Transparent"
+                                 WidthRequest="30"
+                                 HeightRequest="30"
+                                 VerticalOptions="Center"
+                                 Aspect="AspectFit"
+                                 Clicked="OnSettingsIconTapped" />
+                </Grid>
+            </Frame>
 
-        <!-- Search Bar -->
-        <Frame Grid.Row="1" BackgroundColor="#FDEFFB" CornerRadius="15" Padding="10" Margin="0,20,0,10" HasShadow="True">
-            <StackLayout Orientation="Horizontal" Spacing="10">
-                <Image Source="search_icon.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"/>
-                <Entry Placeholder="Search medication"
-                       PlaceholderColor="#9b59b6"
-                       TextColor="#333"
-                       BackgroundColor="Transparent"
-                       VerticalOptions="Center"
-                       HorizontalOptions="FillAndExpand"/>
+            <!-- Search Bar -->
+            <Frame Grid.Row="1" BackgroundColor="#FDEFFB" CornerRadius="15" Padding="10" Margin="0,20,0,10" HasShadow="True">
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <Image Source="search_icon.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"/>
+                    <Entry Placeholder="Search medication"
+                           PlaceholderColor="#9b59b6"
+                           TextColor="#333"
+                           BackgroundColor="Transparent"
+                           VerticalOptions="Center"
+                           HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Medication List -->
+            <StackLayout Grid.Row="2" Spacing="30">
+                <CollectionView 
+        ItemsSource="{Binding FilteredMeds}" 
+        SelectionMode="Single">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="10" BackgroundColor="#9b59b6" CornerRadius="10" Margin="0,10">
+                                <StackLayout>
+                                    <!-- Medication Name -->
+                                    <StackLayout Orientation="Horizontal" Spacing="5">
+                                        <Label Text="Medication Name:" 
+                                   FontAttributes="Bold" FontSize="Medium" 
+                                   TextColor="Black" VerticalOptions="Center" />
+                                        <Label Text="{Binding MedicationName}" 
+                                   FontSize="Small" TextColor="White" 
+                                   VerticalOptions="Center" />
+                                    </StackLayout>
+
+                                    <!-- Dosage -->
+                                    <StackLayout Orientation="Horizontal" Spacing="5">
+                                        <Label Text="Dosage:" 
+                                   FontAttributes="Bold" FontSize="Medium" 
+                                   TextColor="Black" VerticalOptions="Center" />
+                                        <Label Text="{Binding Dosage}" 
+                                   FontSize="Small" TextColor="White" 
+                                   VerticalOptions="Center" />
+                                    </StackLayout>
+
+                                    <!-- Description -->
+                                    <StackLayout Orientation="Horizontal" Spacing="5">
+                                        <Label Text="Description:" 
+                                   FontAttributes="Bold" FontSize="Medium" 
+                                   TextColor="Black" VerticalOptions="Center" />
+                                        <Label Text="{Binding Description}" 
+                                   FontSize="Small" TextColor="White" 
+                                   VerticalOptions="Center" />
+                                    </StackLayout>
+
+                                    <!-- Frequency -->
+                                    <StackLayout Orientation="Horizontal" Spacing="5">
+                                        <Label Text="Frequency:" 
+                                   FontAttributes="Bold" FontSize="Medium" 
+                                   TextColor="Black" VerticalOptions="Center" />
+                                        <Label Text="{Binding Frequency}" 
+                                   FontSize="Small" TextColor="White" 
+                                   VerticalOptions="Center" />
+                                    </StackLayout>
+
+                                    <!-- Start Date -->
+                                    <StackLayout Orientation="Horizontal" Spacing="5">
+                                        <Label Text="Start Date:" 
+                                   FontAttributes="Bold" FontSize="Medium" 
+                                   TextColor="Black" VerticalOptions="Center" />
+                                        <Label Text="{Binding StartDate}" 
+                                   FontSize="Small" TextColor="White" 
+                                   VerticalOptions="Center" />
+                                    </StackLayout>
+
+                                    <!-- End Date -->
+                                    <StackLayout Orientation="Horizontal" Spacing="5">
+                                        <Label Text="End Date:" 
+                                   FontAttributes="Bold" FontSize="Medium" 
+                                   TextColor="Black" VerticalOptions="Center" />
+                                        <Label Text="{Binding EndDate}" 
+                                   FontSize="Small" TextColor="White" 
+                                   VerticalOptions="Center" />
+                                    </StackLayout>
+
+                                    <!-- Interactions -->
+                                    <StackLayout Orientation="Horizontal" Spacing="5">
+                                        <Label Text="Interactions:" 
+                                   FontAttributes="Bold" FontSize="Medium" 
+                                   TextColor="Black" VerticalOptions="Center" />
+                                        <Label Text="{Binding Interactions}" 
+                                   FontSize="Small" TextColor="White" 
+                                   VerticalOptions="Center" />
+                                    </StackLayout>
+
+                                    <!-- Day -->
+                                    <StackLayout Orientation="Horizontal" Spacing="5">
+                                        <Label Text="Day:" 
+                                   FontAttributes="Bold" FontSize="Medium" 
+                                   TextColor="Black" VerticalOptions="Center" />
+                                        <Label Text="{Binding Day}" 
+                                   FontSize="Small" TextColor="White" 
+                                   VerticalOptions="Center" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </StackLayout>
-        </Frame>
 
-        <!-- Medication List -->
 
-        <!-- Action Button -->
-        <Frame Grid.Row="3"
-       BackgroundColor="#9b59b6"
-       CornerRadius="30"
-       WidthRequest="60"
-       HeightRequest="60"
-       Padding="0"
-       Margin="0,0,20,20"
-       HorizontalOptions="End"
-       VerticalOptions="End"
-       HasShadow="True">
-            <Button Text="+" 
-            BackgroundColor="#9b59b6" 
-            TextColor="White" 
-            CornerRadius="30" 
-            WidthRequest="60" 
-            HeightRequest="60"
-            FontAttributes="Bold" 
-            FontSize="28" 
-            Clicked="OnAddMedicationClicked"/>
-        </Frame>
 
-    </Grid>
+        </Grid>
+    </ScrollView>
+
 </ContentPage>

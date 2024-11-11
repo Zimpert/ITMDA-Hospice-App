@@ -107,14 +107,6 @@
 
                 </StackLayout>
             </Frame>
-
-            <!-- Action Buttons -->
-            <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="Center" Spacing="15" Margin="0,30,0,30">
-                <Button Text="Request Shift" BackgroundColor="#4CAF50" TextColor="White" CornerRadius="25" WidthRequest="220" HeightRequest="50"
-                        FontAttributes="Bold" FontSize="18" />
-                <Button Text="Request Cancel" BackgroundColor="#F44336" TextColor="White" CornerRadius="25" WidthRequest="220" HeightRequest="50"
-                        FontAttributes="Bold" FontSize="18" />
-            </StackLayout>
         </Grid>
     </ScrollView>
 </ContentPage>
