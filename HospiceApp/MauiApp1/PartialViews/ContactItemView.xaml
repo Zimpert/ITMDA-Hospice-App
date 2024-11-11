@@ -16,7 +16,8 @@
             <!-- Details Button -->
             <Button Text="Details" BackgroundColor="#341d5c" TextColor="White" CornerRadius="10"
                     FontSize="Small" HeightRequest="40" 
-                    VerticalOptions="Center" Grid.Column="2" />
+                    VerticalOptions="Center" Grid.Column="2" 
+                    Clicked="TakeToNewPage"/>
         </Grid>
     </Frame>
 </ContentView>

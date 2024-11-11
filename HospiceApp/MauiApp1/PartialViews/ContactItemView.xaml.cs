@@ -17,6 +17,11 @@ namespace MauiApp1.PartialViews
             set => NameLabel.Text = value;
         }
 
+        private async void TakeToNewPage(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("///PatientMiddlePage");
+        }
+
         //public string Details
         //{
         //    get => DetailsLabel.Text;
