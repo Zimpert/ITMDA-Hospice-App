@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MauiApp1.ViewModels"
+             xmlns:partials="clr-namespace:MauiApp1.PartialViews"
              x:Class="MauiApp1.Views.MedicationListPage"
-             xmlns:vm ="clr-namespace:MauiApp1.ViewModels"
-                x:DataType="vm:MedicationListViewModel"
+             x:DataType="vm:MedicationListViewModel"
              Shell.NavBarIsVisible="False"
              BackgroundColor="#FAFAFA">
 
@@ -17,7 +18,7 @@
 
         <!-- Navbar with Title and Settings Icon -->
         <Frame Grid.Row="0" BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
-       HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+               HorizontalOptions="FillAndExpand" VerticalOptions="Start">
             <Grid Padding="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -27,32 +28,32 @@
 
                 <!-- Back button on the left -->
                 <ImageButton Grid.Column="0"
-                     Source="arrow_left.png"
-                     BackgroundColor="Transparent"
-                     WidthRequest="30"
-                     HeightRequest="30"
-                     VerticalOptions="Center"
-                     Aspect="AspectFit"
-                     Clicked="OnBackButtonTapped" />
+                             Source="arrow_left.png"
+                             BackgroundColor="Transparent"
+                             WidthRequest="30"
+                             HeightRequest="30"
+                             VerticalOptions="Center"
+                             Aspect="AspectFit"
+                             Clicked="OnBackButtonTapped" />
 
                 <!-- Home Title in the center -->
                 <Label Grid.Column="1"
-               Text="Medication List"
-               FontAttributes="Bold"
-               VerticalOptions="Center"
-               HorizontalOptions="Center"
-               FontSize="18"
-               TextColor="White" />
+                       Text="Medication List"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       FontSize="18"
+                       TextColor="White" />
 
                 <!-- Settings Icon on the right -->
                 <ImageButton Grid.Column="2"
-                     Source="settings.png"
-                     BackgroundColor="Transparent"
-                     WidthRequest="30"
-                     HeightRequest="30"
-                     VerticalOptions="Center"
-                     Aspect="AspectFit"
-                     Clicked="OnSettingsIconTapped" />
+                             Source="settings.png"
+                             BackgroundColor="Transparent"
+                             WidthRequest="30"
+                             HeightRequest="30"
+                             VerticalOptions="Center"
+                             Aspect="AspectFit"
+                             Clicked="OnSettingsIconTapped" />
             </Grid>
         </Frame>
 
@@ -70,28 +71,32 @@
         </Frame>
 
         <!-- Medication List -->
+        <ScrollView Grid.Row="2">
+            <StackLayout x:Name="MedsListContainer">
+                <!-- Medications will be added here dynamically using partial view -->
+            </StackLayout>
+        </ScrollView>
 
         <!-- Action Button -->
         <Frame Grid.Row="3"
-       BackgroundColor="#9b59b6"
-       CornerRadius="30"
-       WidthRequest="60"
-       HeightRequest="60"
-       Padding="0"
-       Margin="0,0,20,20"
-       HorizontalOptions="End"
-       VerticalOptions="End"
-       HasShadow="True">
+               BackgroundColor="#9b59b6"
+               CornerRadius="30"
+               WidthRequest="60"
+               HeightRequest="60"
+               Padding="0"
+               Margin="0,0,20,20"
+               HorizontalOptions="End"
+               VerticalOptions="End"
+               HasShadow="True">
             <Button Text="+" 
-            BackgroundColor="#9b59b6" 
-            TextColor="White" 
-            CornerRadius="30" 
-            WidthRequest="60" 
-            HeightRequest="60"
-            FontAttributes="Bold" 
-            FontSize="28" 
-            Clicked="OnAddMedicationClicked"/>
+                    BackgroundColor="#9b59b6" 
+                    TextColor="White" 
+                    CornerRadius="30" 
+                    WidthRequest="60" 
+                    HeightRequest="60"
+                    FontAttributes="Bold" 
+                    FontSize="28" 
+                    Clicked="OnAddMedicationClicked"/>
         </Frame>
-
     </Grid>
 </ContentPage>

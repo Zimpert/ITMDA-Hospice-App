@@ -107,6 +107,9 @@
 	  <MauiXaml Update="PartialViews\ContactItemView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="PartialViews\MedicationItemView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="PartialViews\NotificationItemView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

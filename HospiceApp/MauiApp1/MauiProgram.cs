@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using MauiApp1.Classes;
 using MauiApp1.Interfaces;
+using MauiApp1.Repositories;
 using MauiApp1.Services;
 using MauiApp1.ViewModels;
 using MauiApp1.Views;
@@ -26,6 +27,7 @@ namespace MauiApp1
             builder.Services.AddSingleton<HttpClient>();
             builder.Services.AddSingleton<ApiRequest>();
             builder.Services.AddSingleton<IRequestManager, RequestManager>();
+            builder.Services.AddSingleton<IContactRepo, ContactRepo>();
             builder.Services.AddSingleton<RequestManager>();
             builder.Services.AddTransient<LoginPage>(); // Register LoginPage with DI  
             builder.Services.AddTransient<LoginViewModel>();
@@ -33,6 +35,7 @@ namespace MauiApp1
             builder.Services.AddTransient<ProfileViewModel>();
             builder.Services.AddTransient<HomePage>();
             builder.Services.AddTransient<ContactsPage>();
+            builder.Services.AddTransient<ContactPageViewModel>();
             builder.Services.AddTransient<CaregiverShiftViewModel>();
             builder.Services.AddTransient<MedicationListViewModel>();
             builder.Services.AddTransient<MedicationListPage>();

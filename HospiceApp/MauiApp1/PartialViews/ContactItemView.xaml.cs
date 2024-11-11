@@ -10,18 +10,5 @@ namespace MauiApp1.PartialViews
         {
             InitializeComponent();
         }
-
-        public string Name
-        {
-            get => NameLabel.Text;
-            set => NameLabel.Text = value;
-        }
-
-        //public string Details
-        //{
-        //    get => DetailsLabel.Text;
-        //    set => DetailsLabel.Text = value;
-        //}
-
     }
 }

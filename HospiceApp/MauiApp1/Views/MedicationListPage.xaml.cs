@@ -1,20 +1,46 @@
 using System.Collections.ObjectModel;
 using MauiApp1.Interfaces;
+using MauiApp1.PartialViews;
 using MauiApp1.ViewModels;
 using Microsoft.Maui.Controls;
 
 namespace MauiApp1.Views
 {
     public partial class MedicationListPage : ContentPage
+
     {
-        private readonly IRequestManager _requestManager;
-        public MedicationListPage(IRequestManager requestManager, MedicationListViewModel viewmodel)
+        private readonly MedicationListViewModel _viewModel;
+        public MedicationListPage(MedicationListViewModel viewmodel)
         {
             InitializeComponent();
-            //BindingContext = new MedicationListViewModel();
             BindingContext = viewmodel;
-            _requestManager = requestManager;
+            _viewModel = viewmodel;
+            _viewModel.MedsLoaded += OnMedsLoaded;
+        }
 
+        private void OnMedsLoaded()
+        {
+            LoadMeds();
+        }
+
+        public void LoadMeds()
+        {
+            // Clear existing contacts
+            MedsListContainer.Children.Clear();
+
+
+            // Add each contact to the container
+            if (_viewModel.MedsItemList != null)
+            {
+                foreach (var medication in _viewModel.MedsItemList)
+                {
+                    var medicationItemView = new MedicationItemView
+                    {
+                        BindingContext = medication
+                    };
+                    MedsListContainer.Children.Add(medicationItemView);
+                }
+            }
         }
 
 
@@ -38,30 +64,4 @@ namespace MauiApp1.Views
             await Shell.Current.GoToAsync("///SettingsPage"); // Navigate to the SettingsPage
         }
     }
-
-    //// ViewModel for Medication List Page
-    //public class MedicationListViewModel
-    //{
-    //    public ObservableCollection<Medication> Medications { get; set; }
-
-    //    public MedicationListViewModel()
-    //    {
-    //        Medications = new ObservableCollection<Medication>
-    //        {
-    //            new Medication { Name = "Ibuprofen", Dosage = "Twice a day" },
-    //            new Medication { Name = "Amoxicillin", Dosage = "Once a day" },
-    //            new Medication { Name = "Metformin", Dosage = "Once a day" },
-    //            new Medication { Name = "Atorvastatin", Dosage = "Once a day" }
-    //        };
-    //    }
-    //}
-
-
-
-    //// Model for Medication Item
-    //public class Medication
-    //{
-    //    public string Name { get; set; }
-    //    public string Dosage { get; set; }
-    //}
 }
