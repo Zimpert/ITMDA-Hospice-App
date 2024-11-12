@@ -35,7 +35,7 @@
                                  Aspect="AspectFit"
                                  Clicked="OnBackButtonTapped" />
 
-                    <!-- Home Title in the center -->
+                    <!-- Title in the center -->
                     <Label Grid.Column="1"
                            Text="Medication Tracker"
                            FontAttributes="Bold"
@@ -92,7 +92,8 @@
                                              VerticalOptions="Center">
                                     <Label Text="{Binding MedicationName}"
                                            FontSize="16"
-                                           FontAttributes="Bold" />
+                                           FontAttributes="Bold"
+                                           TextColor="Black" />
                                     <Label Text="{Binding Dosage}"
                                            FontSize="14"
                                            TextColor="Gray" />

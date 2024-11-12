@@ -6,33 +6,99 @@
 
     <Frame CornerRadius="10"
            Padding="10"
-           BackgroundColor="#e0e0e0"
+           BackgroundColor="#F8D0F6"
            HasShadow="True"
            Margin="0,10">
-        <StackLayout>
+        <Grid ColumnDefinitions="Auto, Auto"
+              RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto"
+              ColumnSpacing="10">
+
+            <!-- Name and Dosage -->
             <Label Text="{Binding MedicationName}"
+                   FontSize="Small"
                    FontAttributes="Bold"
-                   FontSize="Medium"
-                   TextColor="Black" />
+                   TextColor="Black"
+                   Grid.Row="0"
+                   Grid.Column="0" />
             <Label Text="{Binding Dosage}"
                    FontSize="Small"
-                   TextColor="Gray" />
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   Grid.Row="0"
+                   Grid.Column="0" 
+                   HorizontalOptions="End"/>
+            
+            <!-- Frequency -->
+            <Label Text="Frequency:"
+                   FontAttributes="Bold"
+                   FontSize="Small"
+                   TextColor="Black"
+                   Grid.Column="0" 
+                   Grid.Row="1"/>
+            <Label Text="{Binding Frequency}"
+                   FontAttributes="Bold"
+                   FontSize="Small"
+                   TextColor="Gray"
+                   Grid.Column="1" 
+                   Grid.Row="1"/>
+
+            <!-- Medication Type and Description -->
+            <Label Text="Medication Type:"
+                   FontAttributes="Bold"
+                   FontSize="Small"
+                   TextColor="Black"
+                   Grid.Row="2"
+                   Grid.Column="0" />
             <Label Text="{Binding Description}"
                    FontSize="Small"
-                   TextColor="Gray" />
-            <Label Text="{Binding Frequency}"
+                   FontAttributes="Bold"
+                   TextColor="Gray"
+                   Grid.Row="2"
+                   Grid.Column="1" />
+
+            <!-- Interacts With and Interactions -->
+            <Label Text="Interacts With:"
+                   FontAttributes="Bold"
                    FontSize="Small"
-                   TextColor="Gray" />
-            <Label Text="{Binding StartDate}"
-                   FontSize="Small"
-                   TextColor="Gray" />
-            <Label Text="{Binding EndDate}"
-                   FontSize="Small"
-                   TextColor="Gray" />
+                   TextColor="Black"
+                   Grid.Row="3"
+                   Grid.Column="0" />
             <Label Text="{Binding Interactions}"
                    FontSize="Small"
-                   TextColor="Gray" />
-        </StackLayout>
+                   FontAttributes="Bold"
+                   TextColor="Gray"
+                   Grid.Row="3"
+                   Grid.Column="1" />
+
+            <!-- Prescription Start Date and End Date -->
+            <Label Text="Prescription Start Date:"
+                   FontAttributes="Bold"
+                   FontSize="Small"
+                   TextColor="Black"
+                   Grid.Row="4"
+                   Grid.Column="0" />
+            <Label Text="{Binding StartDate}"
+                   FontSize="Small"
+                   FontAttributes="Bold"
+                   TextColor="Gray"
+                   Grid.Row="4"
+                   Grid.Column="1" />
+
+            <Label Text="Prescription End Date:"
+                   FontAttributes="Bold"
+                   FontSize="Small"
+                   TextColor="Black"
+                   Grid.Row="5"
+                   Grid.Column="0" />
+            <Label Text="{Binding EndDate}"
+                   FontSize="Small"
+                   FontAttributes="Bold"
+                   TextColor="Gray"
+                   Grid.Row="5"
+                   Grid.Column="1" />
+
+        </Grid>
     </Frame>
+
 </ContentView>
 

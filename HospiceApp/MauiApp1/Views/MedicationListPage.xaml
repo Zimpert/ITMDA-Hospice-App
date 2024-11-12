@@ -8,14 +8,13 @@
              Shell.NavBarIsVisible="False"
              BackgroundColor="#FAFAFA">
     <ScrollView>
-        <Grid Padding="0">
+        <Grid Padding="0,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-
             <!-- Navbar with Title and Settings Icon -->
             <Frame Grid.Row="0"
                    BackgroundColor="#9b59b6"
@@ -60,57 +59,37 @@
                                  Clicked="OnSettingsIconTapped" />
                 </Grid>
             </Frame>
+            <StackLayout Padding="20,0,20,0" Margin="0,100,0,0">
+                <!-- Search Bar -->
+                <Frame Grid.Row="1"
+                       BackgroundColor="#FDEFFB"
+                       CornerRadius="15"
+                       Padding="10"
+                       Margin="0,20,0,10"
+                       HasShadow="True">
+                    <StackLayout Orientation="Horizontal"
+                                 Spacing="10">
+                        <Image Source="search_icon.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               VerticalOptions="Center" />
+                        <Entry Placeholder="Search medication"
+                               PlaceholderColor="#9b59b6"
+                               TextColor="#9b59b6"
+                               BackgroundColor="Transparent"
+                               VerticalOptions="Center"
+                               HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                </Frame>
 
-            <!-- Search Bar -->
-            <Frame Grid.Row="1"
-                   BackgroundColor="#FDEFFB"
-                   CornerRadius="15"
-                   Padding="10"
-                   Margin="0,20,0,10"
-                   HasShadow="True">
-                <StackLayout Orientation="Horizontal"
-                             Spacing="10">
-                    <Image Source="search_icon.png"
-                           WidthRequest="20"
-                           HeightRequest="20"
-                           VerticalOptions="Center" />
-                    <Entry Placeholder="Search medication"
-                           PlaceholderColor="#9b59b6"
-                           TextColor="#333"
-                           BackgroundColor="Transparent"
-                           VerticalOptions="Center"
-                           HorizontalOptions="FillAndExpand" />
-                </StackLayout>
-            </Frame>
-
-            <!-- Medication List -->
-            <ScrollView Grid.Row="2">
-                <StackLayout x:Name="MedsListContainer">
-                    <!-- Medications will be added here dynamically using partial view -->
-                </StackLayout>
-            </ScrollView>
-
-            <!-- Action Button -->
-            <Frame Grid.Row="3"
-                   BackgroundColor="#9b59b6"
-                   CornerRadius="30"
-                   WidthRequest="60"
-                   HeightRequest="60"
-                   Padding="0"
-                   Margin="0,0,20,20"
-                   HorizontalOptions="End"
-                   VerticalOptions="End"
-                   HasShadow="True">
-                <Button Text="+"
-                        BackgroundColor="#9b59b6"
-                        TextColor="White"
-                        CornerRadius="30"
-                        WidthRequest="60"
-                        HeightRequest="60"
-                        FontAttributes="Bold"
-                        FontSize="28"
-                        Clicked="OnAddMedicationClicked" />
-            </Frame>
+                <!-- Medication List -->
+                <ScrollView Grid.Row="2">
+                    <StackLayout x:Name="MedsListContainer">
+                        <!-- Medications will be added here dynamically using partial view -->
+                    </StackLayout>
+                </ScrollView>
+                
+            </StackLayout>
         </Grid>
     </ScrollView>
 </ContentPage>

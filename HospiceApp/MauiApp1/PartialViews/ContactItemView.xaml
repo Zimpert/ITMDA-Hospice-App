@@ -10,19 +10,24 @@
                BackgroundColor="#9b59b6"
                HasShadow="True"
                Margin="0,10">
-            <Grid ColumnDefinitions="Auto, *, Auto, Auto, Auto"
-                  RowDefinitions="Auto"
-                  ColumnSpacing="10">
+            <Grid ColumnDefinitions="Auto, *, Auto"
+                  RowDefinitions="Auto, Auto, Auto"
+                  ColumnSpacing="10"
+                  RowSpacing="10">
                 <!-- Avatar -->
                 <Image Source="User.png"
                        HeightRequest="50"
                        WidthRequest="50"
-                       VerticalOptions="Center"
                        Margin="10,0,20,0"
-                       Grid.Column="0" />
+                       Grid.Column="0"
+                       Grid.Row="0"
+                       Grid.RowSpan="3"
+                       VerticalOptions="Center"/>
 
                 <!-- Contact Information -->
                 <StackLayout Grid.Column="1"
+                             Grid.Row="0"
+                             Grid.RowSpan="3"
                              VerticalOptions="Center">
                     <Label Text="{Binding Name}"
                            FontAttributes="Bold"
@@ -41,7 +46,8 @@
                         FontSize="Small"
                         HeightRequest="40"
                         VerticalOptions="Center"
-                        Grid.Column="2" />
+                        Grid.Column="2" 
+                        Grid.Row="0"/>
 
                 <!-- Medication Button -->
                 <Button Text="Medication"
@@ -51,7 +57,8 @@
                         FontSize="Small"
                         HeightRequest="40"
                         VerticalOptions="Center"
-                        Grid.Column="3"
+                        Grid.Column="2"
+                        Grid.Row="1"
                         Command="{Binding NavToMedListCommand}"
                         CommandParameter="{Binding PatientID}" />
 
@@ -63,7 +70,8 @@
                         FontSize="Small"
                         HeightRequest="40"
                         VerticalOptions="Center"
-                        Grid.Column="4" />
+                        Grid.Column="2" 
+                        Grid.Row="2"/>
             </Grid>
         </Frame>
     </ScrollView>
