@@ -8,11 +8,10 @@ using CommunityToolkit.Mvvm.Input;
 namespace MauiApp1.ViewModels
 {
     
-public partial class ProfileViewModel : ObservableObject
+    public partial class ProfileViewModel : ObservableObject
     {
         private readonly IRequestManager _requestManager;
 
-        // Backing field for the User property to store the user data
         [ObservableProperty]
         private User? user; // Marked as nullable
 
@@ -22,34 +21,45 @@ public partial class ProfileViewModel : ObservableObject
             InitializeUserAsync();
         }
 
+        /// <summary>
+        /// Initializes the user data from secure storage.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         public async Task InitializeUserAsync()
         {
-            User currentUser = new User
+            try
             {
-                Name = await SecureStorage.GetAsync("Name"),
-                Surname = await SecureStorage.GetAsync("Surname"),
-                Email = await SecureStorage.GetAsync("Email"),
-                Address = await SecureStorage.GetAsync("Address"),
-                //PhoneNo = await SecureStorage.GetAsync("PhoneNo")
-            };
+                User currentUser = new User
+                {
+                    Name = await SecureStorage.GetAsync("Name") ?? string.Empty,
+                    Surname = await SecureStorage.GetAsync("Surname") ?? string.Empty,
+                    Email = await SecureStorage.GetAsync("Email") ?? string.Empty,
+                    Address = await SecureStorage.GetAsync("Address") ?? string.Empty,
+                    PhoneNo = await SecureStorage.GetAsync("PhoneNo") ?? string.Empty
+                };
 
-            User = currentUser;
+                User = currentUser;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error initializing user: {ex.Message}");
+            }
         }
 
 
         public async Task OnAppearingAsync()
         {
-
-            var userID = await SecureStorage.GetAsync("UserID");
-            var token = await SecureStorage.GetAsync("Token");
-
-            if (string.IsNullOrEmpty(userID) || string.IsNullOrEmpty(token))
+            try
             {
-                Debug.WriteLine("User ID or token is missing.");
-                return;
-            }
-            else
-            {
+                var userID = await SecureStorage.GetAsync("UserID");
+                var token = await SecureStorage.GetAsync("Token");
+
+                if (string.IsNullOrEmpty(userID) || string.IsNullOrEmpty(token))
+                {
+                    Debug.WriteLine("User ID or token is missing.");
+                    return;
+                }
+
                 User? userData = await _requestManager.GetUserDataAsync(userID, token);
                 if (userData != null)
                 {
@@ -59,6 +69,10 @@ public partial class ProfileViewModel : ObservableObject
                 {
                     Debug.WriteLine("Failed to retrieve user data.");
                 }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error in OnAppearingAsync: {ex.Message}");
             }
         }
     }
