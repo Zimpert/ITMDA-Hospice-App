@@ -3,16 +3,35 @@
              x:Class="MauiApp1.PartialViews.MedicationItemView"
              xmlns:models="clr-namespace:MauiApp1.Models"
              x:DataType="models:Medication">
-    
-    <Frame CornerRadius="10" Padding="10" BackgroundColor="#e0e0e0" HasShadow="True" Margin="0,10">
+
+    <Frame CornerRadius="10"
+           Padding="10"
+           BackgroundColor="#e0e0e0"
+           HasShadow="True"
+           Margin="0,10">
         <StackLayout>
-            <Label Text="{Binding MedicationName}" FontAttributes="Bold" FontSize="Medium" TextColor="Black" />
-            <Label Text="{Binding Dosage}" FontSize="Small" TextColor="Gray" />
-            <Label Text="{Binding Description}" FontSize="Small" TextColor="Gray" />
-            <Label Text="{Binding Frequency}" FontSize="Small" TextColor="Gray" />
-            <Label Text="{Binding StartDate}" FontSize="Small" TextColor="Gray" />
-            <Label Text="{Binding EndDate}" FontSize="Small" TextColor="Gray" />
-            <Label Text="{Binding Interactions}" FontSize="Small" TextColor="Gray" />
+            <Label Text="{Binding MedicationName}"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   TextColor="Black" />
+            <Label Text="{Binding Dosage}"
+                   FontSize="Small"
+                   TextColor="Gray" />
+            <Label Text="{Binding Description}"
+                   FontSize="Small"
+                   TextColor="Gray" />
+            <Label Text="{Binding Frequency}"
+                   FontSize="Small"
+                   TextColor="Gray" />
+            <Label Text="{Binding StartDate}"
+                   FontSize="Small"
+                   TextColor="Gray" />
+            <Label Text="{Binding EndDate}"
+                   FontSize="Small"
+                   TextColor="Gray" />
+            <Label Text="{Binding Interactions}"
+                   FontSize="Small"
+                   TextColor="Gray" />
         </StackLayout>
     </Frame>
 </ContentView>
