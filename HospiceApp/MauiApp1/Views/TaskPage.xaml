@@ -7,8 +7,11 @@
         <StackLayout BackgroundColor="White">
 
             <!-- Header -->
-            <Frame BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
-                   HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+            <Frame BackgroundColor="#9b59b6"
+                   CornerRadius="0"
+                   HasShadow="True"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Start">
                 <Grid Padding="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -48,34 +51,52 @@
             </Frame>
             <StackLayout Padding="20,0,20,0">
                 <!-- Date Picker -->
-                <DatePicker x:Name="DatePicker" 
-                        Margin="0,20,0,20" 
-                        BackgroundColor="black" 
-                        HorizontalOptions="Center" 
-                        VerticalOptions="Center" 
-                        DateSelected="OnDateSelected" 
-                        TextColor="White" 
-                        FontSize="Large" />
+                <Label Text="Select Date"
+                       FontAttributes="Bold"
+                       FontSize="Medium"
+                       TextColor="Black"
+                       Margin="0,10,0,0"
+                       HorizontalOptions="Center" />
+
+                <Frame BackgroundColor="#F3F0FF"
+                       CornerRadius="10"
+                       Padding="10"
+                       Margin="0,20,0,0"
+                       HasShadow="True">
+                    <DatePicker x:Name="DatePicker"
+                                Margin="0,20,0,20"
+                                BackgroundColor="#F3F0FF"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                DateSelected="OnDateSelected"
+                                TextColor="Black"
+                                FontSize="Large" />
+                </Frame>
 
                 <!-- Task List -->
-                <Label Text="Tasks" 
-                   FontAttributes="Bold" 
-                   FontSize="Medium" 
-                   TextColor="Black" 
-                   Margin="0,10,0,0" />
+                <Label Text="Tasks"
+                       FontAttributes="Bold"
+                       FontSize="Medium"
+                       TextColor="Black"
+                       Margin="0,10,0,0"
+                       HorizontalOptions="Center" />
                 <StackLayout x:Name="TaskListContainer" />
 
                 <!-- Notes Section -->
+                <!--
                 <Label Text="Notes" 
                    FontAttributes="Bold" 
                    FontSize="Medium" 
                    TextColor="Black" 
-                   Margin="0,10,0,0" />
+                   Margin="0,10,0,0" 
+                   HorizontalOptions="Center"/>
+                
                 <Editor x:Name="NotesEditor" 
                     BackgroundColor="#9855AE" 
                     HeightRequest="100" 
                     Margin="0,10,0,0" 
-                    TextColor="Black" />
+                    TextColor="Black" />-->
+
             </StackLayout>
         </StackLayout>
     </ScrollView>
