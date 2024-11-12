@@ -3,88 +3,86 @@ using System.Text;
 
 namespace MauiApp1.Classes
 {
+    /// <summary>
+    /// Class to handle API requests.
+    /// </summary>
     public class ApiRequest
     {
-
         private HttpClient _client;
         protected readonly string baseURL = "http://ddnd.crabdance.com"; // Base URL for the API
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiRequest"/> class.
+        /// </summary>
         public ApiRequest()
         {
             _client = new HttpClient();
         }
 
+        /// <summary>
+        /// Sends an asynchronous POST request to the specified endpoint with the provided JSON content.
+        /// </summary>
+        /// <param name="endpoint">The API endpoint to send the request to.</param>
+        /// <param name="jsonContent">The JSON content to include in the request body.</param>
+        /// <returns>A task that represents the asynchronous operation. The task result contains the response content as a string.</returns>
+        /// <exception cref="ArgumentException">Thrown when the JSON content is empty or null.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when an error occurs while sending the request or an unexpected error occurs.</exception>
         public async Task<string> SendRequestAsync(string endpoint, string jsonContent)
         {
-            Debug.WriteLine("SendRequestStart");
-
             if (string.IsNullOrWhiteSpace(jsonContent))
             {
-                Debug.WriteLine("JSON content is empty or null.");
+                Console.WriteLine("JSON content is empty or null.");
                 throw new ArgumentException("JSON content cannot be empty or null.");
             }
 
-            //if (!await IsServerAvailableAsync())
-            //{
-            //    Debug.WriteLine("Server is not available.");
-            //    throw new InvalidOperationException("Server is not available.");
-            //}
-
             var fullUrl = baseURL + endpoint;
-            Debug.WriteLine($"Request URL: {fullUrl}");
-            Debug.WriteLine($"Request Content: {jsonContent}");
+            Console.WriteLine($"Request URL: {fullUrl}");
 
             var request = new HttpRequestMessage(HttpMethod.Post, fullUrl)
             {
                 Content = new StringContent(jsonContent, Encoding.UTF8, "application/json")
             };
 
-            // Additional debugging information
-            Debug.WriteLine($"Request Method: {request.Method}");
-            Debug.WriteLine($"Request Headers: {request.Headers}");
-            Debug.WriteLine($"Request Content Headers: {request.Content.Headers}");
-            Debug.WriteLine($"Request Content: {await request.Content.ReadAsStringAsync()}");
-
-            Debug.WriteLine("SendRequestMiddle");
-
             try
             {
                 HttpResponseMessage response = await _client.SendAsync(request);
-                Debug.WriteLine("SendRequestEnd");
-
                 response.EnsureSuccessStatusCode();
-                Debug.WriteLine($"Response Status Code: {response.StatusCode}");
+                Console.WriteLine($"Response Status Code: {response.StatusCode}");
 
                 string responseContent = await response.Content.ReadAsStringAsync();
-                Debug.WriteLine($"Response Content: {responseContent}");
+                Console.WriteLine($"Response Content: {responseContent}");
 
                 return responseContent;
             }
             catch (HttpRequestException e)
             {
-                Debug.WriteLine($"Request error: {e.Message}");
-                throw;
+                Console.WriteLine($"Request error: {e.Message}");
+                throw new InvalidOperationException("An error occurred while sending the request.", e);
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Unexpected error: {ex.Message}");
-                throw;
+                Console.WriteLine($"Unexpected error: {ex.Message}");
+                throw new InvalidOperationException("An unexpected error occurred.", ex);
             }
         }
 
-        private async Task<bool> IsServerAvailableAsync()
-        {
-            try
-            {
-                var request = new HttpRequestMessage(HttpMethod.Head, baseURL);
-                HttpResponseMessage response = await _client.SendAsync(request);
-                return response.IsSuccessStatusCode;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        /// <summary>
+        /// Checks if the server is available by sending a HEAD request to the base URL. For Debugging Only
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation. The task result contains a boolean indicating whether the server is available.</returns>
+        //private async Task<bool> IsServerAvailableAsync()
+        //{
+        //    try
+        //    {
+        //        var request = new HttpRequestMessage(HttpMethod.Head, baseURL);
+        //        HttpResponseMessage response = await _client.SendAsync(request);
+        //        return response.IsSuccessStatusCode;
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
     }
 
 }
