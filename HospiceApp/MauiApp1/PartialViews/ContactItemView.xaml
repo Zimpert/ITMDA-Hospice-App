@@ -47,7 +47,9 @@
                         HeightRequest="40"
                         VerticalOptions="Center"
                         Grid.Column="2" 
-                        Grid.Row="0"/>
+                        Grid.Row="0"
+                        Command="{Binding NavToPatientDetailsCommand}"
+                        CommandParameter="{Binding PatientID}"/>
 
                 <!-- Medication Button -->
                 <Button Text="Medication"
@@ -71,7 +73,9 @@
                         HeightRequest="40"
                         VerticalOptions="Center"
                         Grid.Column="2" 
-                        Grid.Row="2"/>
+                        Grid.Row="2"
+                        Command="{Binding NavToPatientTasksCommand}"
+                        CommandParameter="{Binding PatientID}"/>
             </Grid>
         </Frame>
     </ScrollView>
