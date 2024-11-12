@@ -7,96 +7,110 @@
              x:DataType="vm:MedicationListViewModel"
              Shell.NavBarIsVisible="False"
              BackgroundColor="#FAFAFA">
+    <ScrollView>
+        <Grid Padding="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-    <Grid Padding="0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+            <!-- Navbar with Title and Settings Icon -->
+            <Frame Grid.Row="0"
+                   BackgroundColor="#9b59b6"
+                   CornerRadius="0"
+                   HasShadow="True"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Start">
+                <Grid Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-        <!-- Navbar with Title and Settings Icon -->
-        <Frame Grid.Row="0" BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
-               HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-            <Grid Padding="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+                    <!-- Back button on the left -->
+                    <ImageButton Grid.Column="0"
+                                 Source="arrow_left.png"
+                                 BackgroundColor="Transparent"
+                                 WidthRequest="30"
+                                 HeightRequest="30"
+                                 VerticalOptions="Center"
+                                 Aspect="AspectFit"
+                                 Clicked="OnBackButtonTapped" />
 
-                <!-- Back button on the left -->
-                <ImageButton Grid.Column="0"
-                             Source="arrow_left.png"
-                             BackgroundColor="Transparent"
-                             WidthRequest="30"
-                             HeightRequest="30"
-                             VerticalOptions="Center"
-                             Aspect="AspectFit"
-                             Clicked="OnBackButtonTapped" />
+                    <!-- Home Title in the center -->
+                    <Label Grid.Column="1"
+                           Text="Medication List"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           FontSize="18"
+                           TextColor="White" />
 
-                <!-- Home Title in the center -->
-                <Label Grid.Column="1"
-                       Text="Medication List"
-                       FontAttributes="Bold"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center"
-                       FontSize="18"
-                       TextColor="White" />
+                    <!-- Settings Icon on the right -->
+                    <ImageButton Grid.Column="2"
+                                 Source="settings.png"
+                                 BackgroundColor="Transparent"
+                                 WidthRequest="30"
+                                 HeightRequest="30"
+                                 VerticalOptions="Center"
+                                 Aspect="AspectFit"
+                                 Clicked="OnSettingsIconTapped" />
+                </Grid>
+            </Frame>
 
-                <!-- Settings Icon on the right -->
-                <ImageButton Grid.Column="2"
-                             Source="settings.png"
-                             BackgroundColor="Transparent"
-                             WidthRequest="30"
-                             HeightRequest="30"
-                             VerticalOptions="Center"
-                             Aspect="AspectFit"
-                             Clicked="OnSettingsIconTapped" />
-            </Grid>
-        </Frame>
+            <!-- Search Bar -->
+            <Frame Grid.Row="1"
+                   BackgroundColor="#FDEFFB"
+                   CornerRadius="15"
+                   Padding="10"
+                   Margin="0,20,0,10"
+                   HasShadow="True">
+                <StackLayout Orientation="Horizontal"
+                             Spacing="10">
+                    <Image Source="search_icon.png"
+                           WidthRequest="20"
+                           HeightRequest="20"
+                           VerticalOptions="Center" />
+                    <Entry Placeholder="Search medication"
+                           PlaceholderColor="#9b59b6"
+                           TextColor="#333"
+                           BackgroundColor="Transparent"
+                           VerticalOptions="Center"
+                           HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+            </Frame>
 
-        <!-- Search Bar -->
-        <Frame Grid.Row="1" BackgroundColor="#FDEFFB" CornerRadius="15" Padding="10" Margin="0,20,0,10" HasShadow="True">
-            <StackLayout Orientation="Horizontal" Spacing="10">
-                <Image Source="search_icon.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center"/>
-                <Entry Placeholder="Search medication"
-                       PlaceholderColor="#9b59b6"
-                       TextColor="#333"
-                       BackgroundColor="Transparent"
-                       VerticalOptions="Center"
-                       HorizontalOptions="FillAndExpand"/>
-            </StackLayout>
-        </Frame>
+            <!-- Medication List -->
+            <ScrollView Grid.Row="2">
+                <StackLayout x:Name="MedsListContainer">
+                    <!-- Medications will be added here dynamically using partial view -->
+                </StackLayout>
+            </ScrollView>
 
-        <!-- Medication List -->
-        <ScrollView Grid.Row="2">
-            <StackLayout x:Name="MedsListContainer">
-                <!-- Medications will be added here dynamically using partial view -->
-            </StackLayout>
-        </ScrollView>
-
-        <!-- Action Button -->
-        <Frame Grid.Row="3"
-               BackgroundColor="#9b59b6"
-               CornerRadius="30"
-               WidthRequest="60"
-               HeightRequest="60"
-               Padding="0"
-               Margin="0,0,20,20"
-               HorizontalOptions="End"
-               VerticalOptions="End"
-               HasShadow="True">
-            <Button Text="+" 
-                    BackgroundColor="#9b59b6" 
-                    TextColor="White" 
-                    CornerRadius="30" 
-                    WidthRequest="60" 
-                    HeightRequest="60"
-                    FontAttributes="Bold" 
-                    FontSize="28" 
-                    Clicked="OnAddMedicationClicked"/>
-        </Frame>
-    </Grid>
+            <!-- Action Button -->
+            <Frame Grid.Row="3"
+                   BackgroundColor="#9b59b6"
+                   CornerRadius="30"
+                   WidthRequest="60"
+                   HeightRequest="60"
+                   Padding="0"
+                   Margin="0,0,20,20"
+                   HorizontalOptions="End"
+                   VerticalOptions="End"
+                   HasShadow="True">
+                <Button Text="+"
+                        BackgroundColor="#9b59b6"
+                        TextColor="White"
+                        CornerRadius="30"
+                        WidthRequest="60"
+                        HeightRequest="60"
+                        FontAttributes="Bold"
+                        FontSize="28"
+                        Clicked="OnAddMedicationClicked" />
+            </Frame>
+        </Grid>
+    </ScrollView>
 </ContentPage>

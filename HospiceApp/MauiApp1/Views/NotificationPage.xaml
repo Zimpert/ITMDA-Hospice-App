@@ -5,57 +5,62 @@
              Title="Notifications">
 
     <!-- single parent layout to fix viewing error // but now scroll inactive  -->
-    <ScrollView >
-    <StackLayout BackgroundColor="White">
+    <ScrollView>
+        <StackLayout BackgroundColor="White">
 
-        <!-- Navbar with Title and Settings Icon -->
-        <Frame BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
-               HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-            <Grid Padding="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+            <!-- Navbar with Title and Settings Icon -->
+            <Frame BackgroundColor="#9b59b6"
+                   CornerRadius="0"
+                   HasShadow="True"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Start">
+                <Grid Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                <!-- Back button on the left -->
-                <ImageButton Grid.Column="0"
-                             Source="arrow_left.png"
-                             BackgroundColor="Transparent"
-                             WidthRequest="30"
-                             HeightRequest="30"
-                             VerticalOptions="Center"
-                             Aspect="AspectFit"
-                             Clicked="OnBackButtonTapped" />
+                    <!-- Back button on the left -->
+                    <ImageButton Grid.Column="0"
+                                 Source="arrow_left.png"
+                                 BackgroundColor="Transparent"
+                                 WidthRequest="30"
+                                 HeightRequest="30"
+                                 VerticalOptions="Center"
+                                 Aspect="AspectFit"
+                                 Clicked="OnBackButtonTapped" />
 
-                <!-- Home Title in the center -->
-                <Label Grid.Column="1"
-                       Text="Notifications"
-                       FontAttributes="Bold"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center"
-                       FontSize="18"
-                       TextColor="White" />
+                    <!-- Home Title in the center -->
+                    <Label Grid.Column="1"
+                           Text="Notifications"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           FontSize="18"
+                           TextColor="White" />
 
-                <!-- Settings Icon on the right -->
-                <ImageButton Grid.Column="2"
-                             Source="settings.png"
-                             BackgroundColor="Transparent"
-                             WidthRequest="30"
-                             HeightRequest="30"
-                             VerticalOptions="Center"
-                             Aspect="AspectFit"
-                             Clicked="OnSettingsIconTapped" />
-            </Grid>
-        </Frame>
+                    <!-- Settings Icon on the right -->
+                    <ImageButton Grid.Column="2"
+                                 Source="settings.png"
+                                 BackgroundColor="Transparent"
+                                 WidthRequest="30"
+                                 HeightRequest="30"
+                                 VerticalOptions="Center"
+                                 Aspect="AspectFit"
+                                 Clicked="OnSettingsIconTapped" />
+                </Grid>
+            </Frame>
 
-        <!-- ScrollView for Notifications List -->
-        
-            <StackLayout x:Name="NotificationListContainer" Padding="20" BackgroundColor="White">
+            <!-- ScrollView for Notifications List -->
+
+            <StackLayout x:Name="NotificationListContainer"
+                         Padding="20"
+                         BackgroundColor="White">
                 <!-- Notifications will be added here dynamically -->
             </StackLayout>
-        
 
-    </StackLayout>
+
+        </StackLayout>
     </ScrollView>
 </ContentPage>
