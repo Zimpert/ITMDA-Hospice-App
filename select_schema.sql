@@ -1,0 +1,1 @@
+SELECT TABLE_NAME FROM information_schema.tables WHERE information_schema.tables.TABLE_SCHEMA = 'CareGiver-App';

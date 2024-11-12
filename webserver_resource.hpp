@@ -7,7 +7,7 @@
 #include <vector>
 
 struct webserver_resource {
- net::connection_pool<64> remote_connection_pool{ remote::credentials };
+ net::connection_pool<4> remote_connection_pool{ remote::credentials };
  net::connection_pool<128> local_connection_pool{ local::credentials };
 
  webserver_resource() = default;

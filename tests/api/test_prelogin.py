@@ -19,4 +19,4 @@ response = urllib.request.urlopen(urllib.request.Request(
  headers={"Content-Type": "application/json"},
  method="POST"
 ))
-print(response.read())
+print(json.dumps(json.loads(response.read().decode()), indent=1))

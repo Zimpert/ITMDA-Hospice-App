@@ -39,13 +39,25 @@ private:
 
  static void handle_client_callable(::webserver_resource* resource, net::http_socket* client, std::mutex* mtx) noexcept;
 
- static void                                             process_log(webserver_resource* resource, net::http_request const& request) noexcept;
- static db_objects::login_user_info                      process_login(webserver_resource* resource, net::http_request const& request) noexcept;
- static std::vector<db_objects::shift_info>              process_shifts(webserver_resource* resource, net::http_request const& request) noexcept;
- static std::vector<db_objects::patient_medication_info> process_medicine(webserver_resource* resource, net::http_request const& request) noexcept;
- static bool                                             process_prelogin(webserver_resource* resource, net::http_request const& request) noexcept;
- static db_objects::user_info                            process_userinfo(webserver_resource* resource, net::http_request const& request) noexcept;
+ static db_objects::login_user_info                      process_login       (webserver_resource* resource, net::http_request const& request) noexcept;
+ static void                                             process_medlog      (webserver_resource* resource, net::http_request const& request) noexcept;
+ static std::vector<db_objects::shift_info>              process_shifts      (webserver_resource* resource, net::http_request const& request) noexcept;
+ static bool                                             process_addtask     (webserver_resource* resource, net::http_request const& request) noexcept;
+ static void                                             process_tasklog     (webserver_resource* resource, net::http_request const& request) noexcept;
+ static std::vector<db_objects::task_info>               process_gettasks    (webserver_resource* resource, net::http_request const& request) noexcept;
+ static std::vector<db_objects::patient_medication_info> process_medicine    (webserver_resource* resource, net::http_request const& request) noexcept;
+ static bool                                             process_prelogin    (webserver_resource* resource, net::http_request const& request) noexcept;
+ static void                                             process_shiftlog    (webserver_resource* resource, net::http_request const& request) noexcept;
+ static db_objects::user_info                            process_userinfo    (webserver_resource* resource, net::http_request const& request) noexcept;
  static std::vector<db_objects::patient_info>            process_patientinfos(webserver_resource* resource, net::http_request const& request) noexcept;
+ 
+ static stl::status_type<bool, nlohmann::json> generate_login_response(db_objects::login_user_info& data) noexcept;
+ static stl::status_type<bool, nlohmann::json> generate_shifts_response(std::vector<db_objects::shift_info>& data) noexcept;
+ static stl::status_type<bool, nlohmann::json> generate_gettasks_response(std::vector<db_objects::task_info>& data) noexcept;
+ static stl::status_type<bool, nlohmann::json> generate_medicine_response(std::vector<db_objects::patient_medication_info>& data) noexcept;
+ static stl::status_type<bool, nlohmann::json> generate_prelogin_response(bool const success) noexcept;
+ static stl::status_type<bool, nlohmann::json> generate_userinfo_response(db_objects::user_info& data) noexcept;
+ static stl::status_type<bool, nlohmann::json> generate_patientinfos_response(std::vector<db_objects::patient_info>& data) noexcept;
 
  net::http_socket m_server;
  std::array<std::mutex, 1024> m_client_mutices;

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "task_info.hpp"
 #include "user_info.hpp"
 #include "shift_info.hpp"
 #include "patient_info.hpp"

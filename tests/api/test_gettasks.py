@@ -14,9 +14,10 @@ client_info = json.loads(response.read().decode())
 
 if "Token" in client_info:
  response = urllib.request.urlopen(urllib.request.Request(
-  "http://ddnd.crabdance.com/medicine",
+  "http://ddnd.crabdance.com/gettasks",
   data=json.dumps({
-   "Token": client_info["Token"]
+   "Token": client_info["Token"],
+   "UserID": "42790224-5b78-498f-9755-9722b6cfd3ac"
   }).encode(),
   headers={"Content-Type": "application/json"},
   method="POST"

@@ -21,9 +21,14 @@ enum class request_status : u08 {
  passwordhash_not_found,
  passwordhash_not_string,
  passwordhash_not_hash,
+ date_due_not_found,
+ date_due_not_string,
+ date_due_not_date,
+ description_not_found,
+ description_not_string,
 };
 
-inline constexpr std::array<std::pair<request_status, std::string_view>, 15> REQUEST_STATUS_LOOKUP {
+inline constexpr std::array<std::pair<request_status, std::string_view>, 20> REQUEST_STATUS_LOOKUP {
  std::pair<request_status, std::string_view>{ request_status::success,                 "request_status::success"                 },
  std::pair<request_status, std::string_view>{ request_status::token_not_found,         "request_status::token_not_found"         },
  std::pair<request_status, std::string_view>{ request_status::token_not_string,        "request_status::token_not_string"        },
@@ -39,6 +44,11 @@ inline constexpr std::array<std::pair<request_status, std::string_view>, 15> REQ
  std::pair<request_status, std::string_view>{ request_status::passwordhash_not_found,  "request_status::passwordhash_not_found"  },
  std::pair<request_status, std::string_view>{ request_status::passwordhash_not_string, "request_status::passwordhash_not_string" },
  std::pair<request_status, std::string_view>{ request_status::passwordhash_not_hash,   "request_status::passwordhash_not_hash"   },
+ std::pair<request_status, std::string_view>{ request_status::date_due_not_found,      "request_status::date_due_not_found"      },
+ std::pair<request_status, std::string_view>{ request_status::date_due_not_string,     "request_status::date_due_not_string"     },
+ std::pair<request_status, std::string_view>{ request_status::date_due_not_date,       "request_status::date_due_not_date"       },
+ std::pair<request_status, std::string_view>{ request_status::description_not_found,   "request_status::description_not_found"   },
+ std::pair<request_status, std::string_view>{ request_status::description_not_string,  "request_status::description_not_string"  },
 };
 
 inline constexpr std::string_view lookup_enum(request_status const request_status) noexcept {

@@ -22,7 +22,7 @@ if "Token" in client_info:
   headers={"Content-Type": "application/json"},
   method="POST"
  ))
- print(response.read())
+ print(json.dumps(json.loads(response.read().decode()), indent=1))
 
  response = urllib.request.urlopen(urllib.request.Request(
   "http://ddnd.crabdance.com/userinfo",
@@ -33,5 +33,5 @@ if "Token" in client_info:
   headers={"Content-Type": "application/json"},
   method="POST"
  ))
- print(response.read())
+ print(json.dumps(json.loads(response.read().decode()), indent=1))
 

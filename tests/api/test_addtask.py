@@ -13,13 +13,18 @@ response = urllib.request.urlopen(urllib.request.Request(
 client_info = json.loads(response.read().decode())
 
 if "Token" in client_info:
- response = urllib.request.urlopen(urllib.request.Request(
-  "http://ddnd.crabdance.com/medicine",
-  data=json.dumps({
-   "Token": client_info["Token"]
-  }).encode(),
-  headers={"Content-Type": "application/json"},
-  method="POST"
- ))
- print(json.dumps(json.loads(response.read().decode()), indent=1))
+ try:
+  response = urllib.request.urlopen(urllib.request.Request(
+   "http://ddnd.crabdance.com/addtask",
+   data=json.dumps({
+    "Token": client_info["Token"],
+    "UserID": "42790224-5b78-498f-9755-9722b6cfd3ac",
+    "Description": "This is my Test",
+    "DateDue": "2024-12-25 12:05:19"
+   }).encode(),
+   headers={"Content-Type": "application/json"},
+   method="POST"
+  ))
+ except:
+  pass 
 
