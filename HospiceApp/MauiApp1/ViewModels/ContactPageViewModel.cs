@@ -57,7 +57,7 @@ namespace MauiApp1.ViewModels
                         // Patient ID
                         string patientID = patientEntry.Key;
 
-                        // Patient Info
+                        // Patient Personal Info
                         var patientInfo = patientEntry.Value.PatientInfo;
 
                         string patientName = patientInfo?.PatientName ?? "Unknown Name";
