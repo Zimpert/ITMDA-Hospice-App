@@ -55,7 +55,7 @@
             <!-- Profile Details Form -->
             <Frame Padding="20"
                    CornerRadius="15"
-                   BackgroundColor="White"
+                   BackgroundColor="#F8D0F6"
                    HasShadow="True"
                    Margin="10">
                 <StackLayout Spacing="15">
@@ -71,7 +71,8 @@
                                BackgroundColor="Transparent"
                                PlaceholderColor="#999"
                                FontSize="16"
-                               TextColor="Black" />
+                               TextColor="Black" 
+                               IsEnabled="False"/>
                     </Frame>
 
                     <Label Text="Last Name"
@@ -86,7 +87,8 @@
                                BackgroundColor="Transparent"
                                PlaceholderColor="#999"
                                FontSize="16"
-                               TextColor="Black" />
+                               TextColor="Black"
+                               IsEnabled="False" />
                     </Frame>
 
                     <Label Text="Email"
@@ -101,7 +103,8 @@
                                BackgroundColor="Transparent"
                                PlaceholderColor="#999"
                                FontSize="16"
-                               TextColor="Black" />
+                               TextColor="Black"
+                               IsEnabled="False" />
                     </Frame>
 
                     <Label Text="Phone Number"
@@ -116,7 +119,8 @@
                                BackgroundColor="Transparent"
                                PlaceholderColor="#999"
                                FontSize="16"
-                               TextColor="Black" />
+                               TextColor="Black"
+                               IsEnabled="False" />
                     </Frame>
 
                     <Label Text="Address"
@@ -131,7 +135,8 @@
                                BackgroundColor="Transparent"
                                PlaceholderColor="#999"
                                FontSize="16"
-                               TextColor="Black" />
+                               TextColor="Black"
+                               IsEnabled="False" />
                     </Frame>
                 </StackLayout>
             </Frame>
