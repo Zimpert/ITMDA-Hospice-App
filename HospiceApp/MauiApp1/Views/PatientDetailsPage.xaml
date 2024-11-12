@@ -3,96 +3,138 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:view="clr-namespace:MauiApp1.Views"
              x:Class="MauiApp1.Views.PatientDetailsPage"
-             Title="PatientDetailsPage">
-    <StackLayout Padding="0" Spacing="20">
-        <!-- Navbar with Title and Settings Icon -->
-        <Grid BackgroundColor="#8e44ad" Padding="10" VerticalOptions="Start">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#f5f5f5">
+    <ScrollView>
+        <StackLayout Padding="0"
+                     Spacing="20">
+            <!-- Navbar with Title and Settings Icon -->
+            <Frame BackgroundColor="#9b59b6"
+                   CornerRadius="0"
+                   HasShadow="True"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Start">
+                <Grid Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-            <!-- Back button on the left -->
-            <ImageButton Grid.Column="0"
-                     Source="arrow_left.png"
-                     BackgroundColor="Transparent"
-                     WidthRequest="30"
-                     HeightRequest="30"
-                     VerticalOptions="Center"
-                     Aspect="AspectFit"
-                     Clicked="OnBackButtonTapped" />
+                    <!-- Back button on the left -->
+                    <ImageButton Grid.Column="0"
+                                 Source="arrow_left.png"
+                                 BackgroundColor="Transparent"
+                                 WidthRequest="30"
+                                 HeightRequest="30"
+                                 VerticalOptions="Center"
+                                 Aspect="AspectFit"
+                                 Clicked="OnBackButtonTapped" />
 
-            <!-- Profile Title in the center -->
-            <Label Grid.Column="1"
-               Text="Profile"
-               FontAttributes="Bold"
-               VerticalOptions="Center"
-               HorizontalOptions="Center"
-               FontSize="22"
-               TextColor="White" />
+                    <!-- Home Title in the center -->
+                    <Label Grid.Column="1"
+                           Text="Patient Details"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           FontSize="18"
+                           TextColor="White" />
 
-            <!-- Settings Icon on the right -->
-            <ImageButton Grid.Column="2"
-                     Source="settings.png"
-                     BackgroundColor="Transparent"
-                     WidthRequest="30"
-                     HeightRequest="30"
-                     VerticalOptions="Center"
-                     Aspect="AspectFit"
-                     Clicked="OnSettingsIconTapped" />
-        </Grid>
+                    <!-- Settings Icon on the right -->
+                    <ImageButton Grid.Column="2"
+                                 Source="settings.png"
+                                 BackgroundColor="Transparent"
+                                 WidthRequest="30"
+                                 HeightRequest="30"
+                                 VerticalOptions="Center"
+                                 Aspect="AspectFit"
+                                 Clicked="OnSettingsIconTapped" />
+                </Grid>
+            </Frame>
 
-        <!-- Profile Details Form -->
-        <Frame Padding="20" CornerRadius="15" BackgroundColor="White" HasShadow="True" Margin="10">
-            <StackLayout Spacing="15">
-                <Label Text="First Name" TextColor="#333" FontSize="16"/>
-                <Frame CornerRadius="10" Padding="0" BackgroundColor="#e8e8e8" HeightRequest="45">
-                    <Label Text="{Binding User.Name}"
-                       BackgroundColor="Transparent"
-                       TextColor="#333"
-                       FontSize="16"
-                       VerticalTextAlignment="Center"/>
-                </Frame>
+            <!-- Profile Details Form -->
+            <Frame Padding="20"
+                   CornerRadius="15"
+                   BackgroundColor="White"
+                   HasShadow="True"
+                   Margin="10">
+                <StackLayout Spacing="15">
+                    <Label Text="First Name"
+                           TextColor="#333"
+                           FontSize="16" />
+                    <Frame CornerRadius="10"
+                           Padding="0"
+                           BackgroundColor="#e8e8e8"
+                           HeightRequest="45">
+                        <Entry Text="{Binding User.Name}"
+                               Placeholder="Enter first name"
+                               BackgroundColor="Transparent"
+                               PlaceholderColor="#999"
+                               FontSize="16"
+                               TextColor="Black" />
+                    </Frame>
 
-                <Label Text="Last Name" TextColor="#333" FontSize="16"/>
-                <Frame CornerRadius="10" Padding="0" BackgroundColor="#e8e8e8" HeightRequest="45">
-                    <Label Text="{Binding User.Surname}"
-                       BackgroundColor="Transparent"
-                       TextColor="#333"
-                       FontSize="16"
-                       VerticalTextAlignment="Center"/>
-                </Frame>
+                    <Label Text="Last Name"
+                           TextColor="#333"
+                           FontSize="16" />
+                    <Frame CornerRadius="10"
+                           Padding="0"
+                           BackgroundColor="#e8e8e8"
+                           HeightRequest="45">
+                        <Entry Text="{Binding User.Surname}"
+                               Placeholder="Enter last name"
+                               BackgroundColor="Transparent"
+                               PlaceholderColor="#999"
+                               FontSize="16"
+                               TextColor="Black" />
+                    </Frame>
 
-                <Label Text="Email" TextColor="#333" FontSize="16"/>
-                <Frame CornerRadius="10" Padding="0" BackgroundColor="#e8e8e8" HeightRequest="45">
-                    <Label Text="{Binding User.Email}"
-                       BackgroundColor="Transparent"
-                       TextColor="#333"
-                       FontSize="16"
-                       VerticalTextAlignment="Center"/>
-                </Frame>
+                    <Label Text="Email"
+                           TextColor="#333"
+                           FontSize="16" />
+                    <Frame CornerRadius="10"
+                           Padding="0"
+                           BackgroundColor="#e8e8e8"
+                           HeightRequest="45">
+                        <Entry Text="{Binding User.Email}"
+                               Placeholder="Enter email"
+                               BackgroundColor="Transparent"
+                               PlaceholderColor="#999"
+                               FontSize="16"
+                               TextColor="Black" />
+                    </Frame>
 
-                <Label Text="Phone Number" TextColor="#333" FontSize="16"/>
-                <Frame CornerRadius="10" Padding="0" BackgroundColor="#e8e8e8" HeightRequest="45">
-                    <Label Text="{Binding User.PhoneNo}"
-                       BackgroundColor="Transparent"
-                       TextColor="#333"
-                       FontSize="16"
-                       VerticalTextAlignment="Center"/>
-                </Frame>
+                    <Label Text="Phone Number"
+                           TextColor="#333"
+                           FontSize="16" />
+                    <Frame CornerRadius="10"
+                           Padding="0"
+                           BackgroundColor="#e8e8e8"
+                           HeightRequest="45">
+                        <Entry Text="{Binding User.PhoneNo}"
+                               Placeholder="Enter phone number"
+                               BackgroundColor="Transparent"
+                               PlaceholderColor="#999"
+                               FontSize="16"
+                               TextColor="Black" />
+                    </Frame>
 
-                <Label Text="Address" TextColor="#333" FontSize="16"/>
-                <Frame CornerRadius="10" Padding="0" BackgroundColor="#e8e8e8" HeightRequest="45">
-                    <Label Text="{Binding User.Address}"
-                       BackgroundColor="Transparent"
-                       TextColor="#333"
-                       FontSize="16"
-                       VerticalTextAlignment="Center"/>
-                </Frame>
-
-               
-            </StackLayout>
-        </Frame>
-    </StackLayout>
+                    <Label Text="Address"
+                           TextColor="#333"
+                           FontSize="16" />
+                    <Frame CornerRadius="10"
+                           Padding="0"
+                           BackgroundColor="#e8e8e8"
+                           HeightRequest="45">
+                        <Entry Text="{Binding User.Address}"
+                               Placeholder="Enter address"
+                               BackgroundColor="Transparent"
+                               PlaceholderColor="#999"
+                               FontSize="16"
+                               TextColor="Black" />
+                    </Frame>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
