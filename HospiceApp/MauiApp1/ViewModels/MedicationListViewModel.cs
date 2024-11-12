@@ -15,21 +15,24 @@ namespace MauiApp1.ViewModels
         public MedicationListViewModel(IContactRepo contactRepo)
         {
             _contactRepo = contactRepo;
+            
         }
-
-        public List<Medication?> MedsItemList;
-
-        public void GetMedications()
-        {
-            MedsItemList = _contactRepo.GetMedsByPatientID(targetID);
-            MedsLoaded?.Invoke();
-
-        }
-
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
             targetID = query["PatientID"].ToString();
             GetMedications();
         }
+
+
+        public List<Medication> MedsItemList;
+
+        public void  GetMedications()
+        {
+            MedsItemList =  _contactRepo.GetMedsByPatientID(targetID);
+            MedsLoaded?.Invoke();
+
+        }
+
+        
     }
 }
