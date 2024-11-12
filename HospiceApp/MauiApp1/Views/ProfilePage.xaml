@@ -69,7 +69,8 @@
                                Placeholder="Enter first name"
                                BackgroundColor="Transparent"
                                PlaceholderColor="#999"
-                               FontSize="16" />
+                               FontSize="16"
+                               TextColor="Black" />
                     </Frame>
 
                     <Label Text="Last Name"
@@ -83,7 +84,8 @@
                                Placeholder="Enter last name"
                                BackgroundColor="Transparent"
                                PlaceholderColor="#999"
-                               FontSize="16" />
+                               FontSize="16"
+                               TextColor="Black" />
                     </Frame>
 
                     <Label Text="Email"
@@ -97,7 +99,8 @@
                                Placeholder="Enter email"
                                BackgroundColor="Transparent"
                                PlaceholderColor="#999"
-                               FontSize="16" />
+                               FontSize="16"
+                               TextColor="Black" />
                     </Frame>
 
                     <Label Text="Phone Number"
@@ -111,7 +114,8 @@
                                Placeholder="Enter phone number"
                                BackgroundColor="Transparent"
                                PlaceholderColor="#999"
-                               FontSize="16" />
+                               FontSize="16"
+                               TextColor="Black" />
                     </Frame>
 
                     <Label Text="Address"
@@ -125,7 +129,8 @@
                                Placeholder="Enter address"
                                BackgroundColor="Transparent"
                                PlaceholderColor="#999"
-                               FontSize="16" />
+                               FontSize="16" 
+                               TextColor="Black"/>
                     </Frame>
 
                     <!-- Update Information Button -->
