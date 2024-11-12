@@ -15,8 +15,12 @@ namespace MauiApp1.ViewModels
     {
         private readonly IRequestManager _requestManager;
         private readonly IContactRepo _contactRepo;
+
         public ObservableCollection<ContactItem> ContactItemList => _contactRepo.ContactItemList;
 
+        /// <summary>
+        /// Event triggered when contact items are created.
+        /// </summary>
         public Action ContactItemsCreated;
 
         public ContactPageViewModel(IRequestManager requestManager, IContactRepo contactRepo)
@@ -26,49 +30,67 @@ namespace MauiApp1.ViewModels
             LoadMedication();
         }
 
-
+        /// <summary>
+        /// Loads the medication data for patients.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         public async Task LoadMedication()
         {
-            // Get the token from SecureStorage
-            var token = await SecureStorage.GetAsync("Token");
-
-            // Fetch patient medication data from the API
-            var medicationResult = await _requestManager.GetPatientMedicationsAsync(token);
-
-            if (medicationResult != null)
+            try
             {
-                // Iterate over the dictionary to log the details to Debug.WriteLine
-                foreach (var patientEntry in medicationResult)
+                var token = await SecureStorage.GetAsync("Token");
+
+                if (string.IsNullOrEmpty(token))
                 {
-                    // Patient ID
-                    string patientID = patientEntry.Key;
-
-                    // Patient Info
-                    var patientInfo = patientEntry.Value.PatientInfo;
-
-                    string patientName = patientInfo?.PatientName ?? "Unknown Name";
-                    string patientSurname = patientInfo?.PatientSurname ?? "Unknown Surname";
-
-                    ContactItem contactItem = new ContactItem
-                    {
-                        PatientID = patientID,
-                        Name = patientName,
-                        Surname = patientSurname,
-                        Medication = patientEntry.Value.Medication
-                    };
-
-                    _contactRepo.ContactItemList.Add(contactItem);
+                    Debug.WriteLine("Token is null or empty.");
+                    return;
                 }
 
-                // Trigger the event after loading data
-                ContactItemsCreated?.Invoke();
+                // Fetch patient medication data
+                var medicationResult = await _requestManager.GetPatientMedicationsAsync(token);
+
+                if (medicationResult != null)
+                {
+                    // Iterate over the dictionary
+                    foreach (var patientEntry in medicationResult)
+                    {
+                        // Patient ID
+                        string patientID = patientEntry.Key;
+
+                        // Patient Info
+                        var patientInfo = patientEntry.Value.PatientInfo;
+
+                        string patientName = patientInfo?.PatientName ?? "Unknown Name";
+                        string patientSurname = patientInfo?.PatientSurname ?? "Unknown Surname";
+
+                        ContactItem contactItem = new ContactItem
+                        {
+                            PatientID = patientID,
+                            Name = patientName,
+                            Surname = patientSurname,
+                            Medication = patientEntry.Value.Medication
+                        };
+
+                        _contactRepo.ContactItemList.Add(contactItem);
+                    }
+
+                    // Trigger the event after loading data
+                    ContactItemsCreated?.Invoke();
+                }
+                else
+                {
+                    Debug.WriteLine("No medication data found.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Debug.WriteLine("No medication data found.");
+                Debug.WriteLine($"An error occurred while loading medication: {ex.Message}");
             }
         }
 
+        /// <summary>
+        /// Event triggered when contacts are loaded.
+        /// </summary>
         public event Action ContactsLoaded;
     }
 }
