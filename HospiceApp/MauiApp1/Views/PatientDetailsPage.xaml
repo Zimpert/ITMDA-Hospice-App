@@ -48,58 +48,50 @@
             <StackLayout Spacing="15">
                 <Label Text="First Name" TextColor="#333" FontSize="16"/>
                 <Frame CornerRadius="10" Padding="0" BackgroundColor="#e8e8e8" HeightRequest="45">
-                    <Entry Text="{Binding User.Name}"
-                       Placeholder="Enter first name"
+                    <Label Text="{Binding User.Name}"
                        BackgroundColor="Transparent"
-                       PlaceholderColor="#999"
-                       FontSize="16"/>
+                       TextColor="#333"
+                       FontSize="16"
+                       VerticalTextAlignment="Center"/>
                 </Frame>
 
                 <Label Text="Last Name" TextColor="#333" FontSize="16"/>
                 <Frame CornerRadius="10" Padding="0" BackgroundColor="#e8e8e8" HeightRequest="45">
-                    <Entry Text="{Binding User.Surname}"
-                       Placeholder="Enter last name"
+                    <Label Text="{Binding User.Surname}"
                        BackgroundColor="Transparent"
-                       PlaceholderColor="#999"
-                       FontSize="16"/>
+                       TextColor="#333"
+                       FontSize="16"
+                       VerticalTextAlignment="Center"/>
                 </Frame>
 
                 <Label Text="Email" TextColor="#333" FontSize="16"/>
                 <Frame CornerRadius="10" Padding="0" BackgroundColor="#e8e8e8" HeightRequest="45">
-                    <Entry Text="{Binding User.Email}"
-                       Placeholder="Enter email"
+                    <Label Text="{Binding User.Email}"
                        BackgroundColor="Transparent"
-                       PlaceholderColor="#999"
-                       FontSize="16"/>
+                       TextColor="#333"
+                       FontSize="16"
+                       VerticalTextAlignment="Center"/>
                 </Frame>
 
                 <Label Text="Phone Number" TextColor="#333" FontSize="16"/>
                 <Frame CornerRadius="10" Padding="0" BackgroundColor="#e8e8e8" HeightRequest="45">
-                    <Entry Text="{Binding User.PhoneNo}"
-                       Placeholder="Enter phone number"
+                    <Label Text="{Binding User.PhoneNo}"
                        BackgroundColor="Transparent"
-                       PlaceholderColor="#999"
-                       FontSize="16"/>
+                       TextColor="#333"
+                       FontSize="16"
+                       VerticalTextAlignment="Center"/>
                 </Frame>
 
                 <Label Text="Address" TextColor="#333" FontSize="16"/>
                 <Frame CornerRadius="10" Padding="0" BackgroundColor="#e8e8e8" HeightRequest="45">
-                    <Entry Text="{Binding User.Address}"
-                       Placeholder="Enter address"
+                    <Label Text="{Binding User.Address}"
                        BackgroundColor="Transparent"
-                       PlaceholderColor="#999"
-                       FontSize="16"/>
+                       TextColor="#333"
+                       FontSize="16"
+                       VerticalTextAlignment="Center"/>
                 </Frame>
 
-                <!-- Update Information Button -->
-                <Button Text="Update Information"
-                    BackgroundColor="#27ae60"
-                    TextColor="White"
-                    FontSize="18"
-                    HeightRequest="50"
-                    CornerRadius="10"
-                    HorizontalOptions="FillAndExpand"
-                    Margin="0,15,0,0" />
+               
             </StackLayout>
         </Frame>
     </StackLayout>

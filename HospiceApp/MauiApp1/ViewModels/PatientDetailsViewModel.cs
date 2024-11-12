@@ -35,16 +35,24 @@ namespace MauiApp1.ViewModels
         {
             try
             {
-                User? userData = await _requestManager.GetUserDataAsync(targetID);
+                var token = await SecureStorage.GetAsync("Token");
 
-                if (userData != null)
+                if (string.IsNullOrEmpty(targetID) || string.IsNullOrEmpty(token))
                 {
-                    User = userData;
-                    
+                    Debug.WriteLine("User ID or token is missing.");
+                    return;
                 }
                 else
                 {
-                    Debug.WriteLine("Failed to retrieve user data.");
+                    User? userData = await _requestManager.GetUserDataAsync(targetID, token);
+                    if (userData != null)
+                    {
+                        User = userData;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Failed to retrieve user data.");
+                    }
                 }
             }
             catch (Exception ex)

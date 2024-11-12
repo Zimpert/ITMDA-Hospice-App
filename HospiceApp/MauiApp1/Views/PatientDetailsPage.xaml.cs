@@ -14,7 +14,7 @@ namespace MauiApp1.Views
         }
         private async void OnBackButtonTapped(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("///HomePage"); // Navigate to the Homepage
+            await Shell.Current.GoToAsync("///ContactsPage"); // Navigate to the ContactsPage
         }
 
         private async void OnSettingsIconTapped(object sender, EventArgs e)
