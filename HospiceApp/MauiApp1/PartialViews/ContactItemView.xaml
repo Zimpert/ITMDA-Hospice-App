@@ -4,7 +4,7 @@
              xmlns:models="clr-namespace:MauiApp1.Models"
              x:DataType="models:ContactItem">
     <Frame CornerRadius="10" Padding="10" BackgroundColor="#9b59b6" HasShadow="True" Margin="0,10">
-        <Grid ColumnDefinitions="Auto, *, Auto, Auto" RowDefinitions="Auto">
+        <Grid ColumnDefinitions="Auto, *, Auto, Auto, Auto" RowDefinitions="Auto">
             <!-- Avatar -->
             <Image Source="User.png" HeightRequest="50" WidthRequest="50"
                    VerticalOptions="Center" Margin="10,0,20,0" />

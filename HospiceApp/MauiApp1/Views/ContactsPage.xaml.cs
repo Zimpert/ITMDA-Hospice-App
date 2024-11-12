@@ -1,12 +1,5 @@
-using MauiApp1.Models;
 using MauiApp1.PartialViews;
-using Microsoft.Maui.Controls;
-using System;
-using System.Collections.Generic;
-using MauiApp1;
-using MauiApp1.Interfaces;
 using MauiApp1.ViewModels;
-using MauiApp1.Services;
 
 namespace MauiApp1.Views
 {

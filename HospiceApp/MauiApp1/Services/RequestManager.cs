@@ -17,7 +17,7 @@ namespace MauiApp1.Services
     public class RequestManager : IRequestManager
     {
         private readonly ApiRequest _apiRequest;
-
+        private readonly HttpClient _httpClient = new HttpClient();
         public RequestManager(ApiRequest apiRequest)
         {
             _apiRequest = apiRequest;
@@ -93,9 +93,12 @@ namespace MauiApp1.Services
 
                 // Serialize the object to JSON
                 string json = JsonSerializer.Serialize(jObject);
+                var cContent = new StringContent(json, Encoding.UTF8, "application/json");
 
                 // Send the JSON to the server and get the response
-                var jsonResponse = await _apiRequest.SendRequestAsync("/login", json);
+                var jResponse = await _httpClient.PostAsync("http://ddnd.crabdance.com/login", cContent);
+                var jsonResponse = await jResponse.Content.ReadAsStringAsync();
+                //var jsonResponse = await _apiRequest.SendRequestAsync("/login", json);
 
                 // Check if the response is empty
                 if (string.IsNullOrEmpty(jsonResponse))

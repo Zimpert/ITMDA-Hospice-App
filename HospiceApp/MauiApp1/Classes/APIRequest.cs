@@ -26,12 +26,6 @@ namespace MauiApp1.Classes
                 throw new ArgumentException("JSON content cannot be empty or null.");
             }
 
-            //if (!await IsServerAvailableAsync())
-            //{
-            //    Debug.WriteLine("Server is not available.");
-            //    throw new InvalidOperationException("Server is not available.");
-            //}
-
             var fullUrl = baseURL + endpoint;
             Debug.WriteLine($"Request URL: {fullUrl}");
             Debug.WriteLine($"Request Content: {jsonContent}");
@@ -71,20 +65,6 @@ namespace MauiApp1.Classes
             {
                 Debug.WriteLine($"Unexpected error: {ex.Message}");
                 throw;
-            }
-        }
-
-        private async Task<bool> IsServerAvailableAsync()
-        {
-            try
-            {
-                var request = new HttpRequestMessage(HttpMethod.Head, baseURL);
-                HttpResponseMessage response = await _client.SendAsync(request);
-                return response.IsSuccessStatusCode;
-            }
-            catch
-            {
-                return false;
             }
         }
     }

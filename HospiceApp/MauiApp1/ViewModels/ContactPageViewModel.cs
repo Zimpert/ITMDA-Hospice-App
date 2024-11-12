@@ -1,13 +1,7 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using MauiApp1.Interfaces;
+﻿using MauiApp1.Interfaces;
 using MauiApp1.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MauiApp1.ViewModels
 {

@@ -1,7 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MauiApp1.Models.PatientModels;
-using System;
 
 namespace MauiApp1.Models
 {
@@ -14,14 +12,10 @@ namespace MauiApp1.Models
         [ObservableProperty]
          string surname;
         [ObservableProperty]
-         List<Medication>? medication
-            ;
-        public ContactItem()
-        {
-            
-        }
+         List<Medication>? medication;
 
-        [RelayCommand] public async Task NavToMedList()
+        [RelayCommand] 
+        public async Task NavToMedList()
         {
             var navigationParameter = new Dictionary<string, object>
             {
