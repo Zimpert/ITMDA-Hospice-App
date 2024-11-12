@@ -51,6 +51,7 @@ namespace MauiApp1.ViewModels
 
                 if (medicationResult != null)
                 {
+
                     // Iterate over the dictionary
                     foreach (var patientEntry in medicationResult)
                     {

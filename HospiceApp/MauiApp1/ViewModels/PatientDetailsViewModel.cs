@@ -28,6 +28,7 @@ namespace MauiApp1.ViewModels
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
             targetID = query["PatientID"].ToString();
+
             GetPatientDetails();
         }
 
@@ -60,9 +61,5 @@ namespace MauiApp1.ViewModels
                 Debug.WriteLine(ex.Message);
             }
         }
-
-
-
-
     }
 }
