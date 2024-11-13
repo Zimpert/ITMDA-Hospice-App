@@ -9,6 +9,10 @@ namespace MauiApp1.Models
         //string medicationID;
 
         [ObservableProperty]
+        [JsonPropertyName("PatientMedicationID")]
+        string medicationID;
+
+        [ObservableProperty]
         [JsonPropertyName("Day")]
          string day;
 

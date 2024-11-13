@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using MauiApp1.Interfaces;
 using MauiApp1.Models;
+using MauiApp1.Views;
 using System.Collections.ObjectModel;
 using System.Globalization;
 
@@ -15,7 +16,12 @@ namespace MauiApp1.ViewModels
         public Action TasksLoaded;
         [ObservableProperty]
         private ObservableCollection<TaskM> tasks = new();
-        
+
+
+        private string dateDue;
+
+
+        private string description;
 
         public TaskViewModel(IRequestManager reqMan)
         {
@@ -58,12 +64,34 @@ namespace MauiApp1.ViewModels
         }
 
         [RelayCommand]
+        public async Task SaveTask()
+        {
+            // Logic to save the task (e.g., add to a list or send to a database)
+
+            // Close the modal after saving
+            //await Application.Current.MainPage.Navigation.PopModalAsync();
+            var Token = await SecureStorage.GetAsync("Token");
+            await _requestManager.AddPatientTasks(dateDue, description, Token, targetID);
+            LoadTasks();
+        }
+
+        public async Task UpdateValues(string DueDateS, string Desc, string UserID)
+        {
+            dateDue = DueDateS;
+            description = Desc;
+            targetID = UserID;
+            await SaveTask();
+        }
+
+        [RelayCommand]
         public async void AddTask()
         {
             // no challenge because targetID will be loaded in here so it's easy actually 
             // we just need to present a popup to add a task, then refresh the tasks page by calling it again?
             // need to call a modal pop up
             // need to make the modal pop up, let's work on the medication tracker so long
+
+
             var Token = await SecureStorage.GetAsync("Token");
             await _requestManager.AddPatientTasks("2024-03-01 12:15:00", "Just added per jano request", Token, targetID);
             LoadTasks();

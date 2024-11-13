@@ -6,11 +6,14 @@ namespace MauiApp1.Views
 {
     public partial class TaskPage : ContentPage
     {
-        public TaskPage(TaskViewModel tsvm)
+
+        private readonly TaskViewModel viewModelModel;
+        public TaskPage(TaskViewModel TASKVIEW)
         {
             InitializeComponent();
-            BindingContext = tsvm;
+            BindingContext = TASKVIEW;
 
+            viewModelModel = TASKVIEW;
         }
 
         private async void OnBackButtonTapped(object sender, EventArgs e)
@@ -25,6 +28,11 @@ namespace MauiApp1.Views
         }
 
 
-
+        private async void AddTask(object sender, EventArgs e)
+        {
+            // Navigate to the Settings page 
+            var taskEntryPage = new TaskEntryPage(viewModelModel, viewModelModel.targetID);
+            await Navigation.PushModalAsync(taskEntryPage);
+        }
     }
 }

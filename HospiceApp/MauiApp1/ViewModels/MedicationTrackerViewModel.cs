@@ -16,6 +16,8 @@ namespace MauiApp1.ViewModels
         [ObservableProperty]
         private ObservableCollection<Medication> medications;
 
+        [ObservableProperty]
+        private string medicationID;
         public MedicationTrackerViewModel(IRequestManager requestManager, IContactRepo contactRepo)
         {
             _requestManager = requestManager;
@@ -42,7 +44,7 @@ namespace MauiApp1.ViewModels
             Medications.Clear();
             foreach (var item in MedList)
             {
-                if (item.Day.ToLower() == DateTime.Now.Day.ToString().ToLower())
+                if (item.Day.Equals(DateTime.Now.DayOfWeek.ToString(), StringComparison.CurrentCultureIgnoreCase))
                     //
                 {
                     Medications.Add(item);
@@ -52,11 +54,12 @@ namespace MauiApp1.ViewModels
         }
 
         [RelayCommand]
-        private async Task MedicationTaken(string MedicationID)
+        private async Task MedicationTaken(string MedID)
         {
             // call the log api, then call get medication, then load it 
             var token = await SecureStorage.GetAsync("Token");
-            await _requestManager.MedLog(token, MedicationID);
+            await _requestManager.MedLog(token, MedID);
+            // if it's been taken we need to log that somehow and not re-display it!
             await GetMedications();
         }
 
@@ -68,7 +71,7 @@ namespace MauiApp1.ViewModels
             var NewMedList = await _requestManager.GetPatientMedsONLY(token, PatientID);
             foreach (var item in NewMedList)
             {
-                if (item.Day.ToLower() == DateTime.Now.Day.ToString().ToLower())
+                if (item.Day.Equals(DateTime.Now.DayOfWeek.ToString(), StringComparison.CurrentCultureIgnoreCase))
                 {
                     Medications.Add(item);
                 }

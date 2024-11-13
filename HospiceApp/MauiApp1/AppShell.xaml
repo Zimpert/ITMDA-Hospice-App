@@ -16,4 +16,5 @@
     <ShellContent Route="TaskPage" ContentTemplate="{DataTemplate views:TaskPage}" />
     <ShellContent Route="ContactsPage" ContentTemplate="{DataTemplate views:ContactsPage}"/>
     <ShellContent Route="PatientDetailsPage" ContentTemplate="{DataTemplate views:PatientDetailsPage}"/>
+    <ShellContent Route="PatientQRPage" ContentTemplate="{DataTemplate views:PatientQR}"/>
 </Shell>

@@ -23,6 +23,8 @@ public partial class PatientQR : ContentPage
 
     protected void BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
     {
+        // here if it's detected we need to call request manager and just log the value 
+        // simple!
         foreach (var barcode in e.Results)
             Console.WriteLine($"Barcodes: {barcode.Format} -> {barcode.Value}");
     }

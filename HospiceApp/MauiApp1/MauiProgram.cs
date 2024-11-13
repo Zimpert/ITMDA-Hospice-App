@@ -57,6 +57,10 @@ namespace MauiApp1
             builder.Services.AddTransient<PatientDetailsPage>();
             builder.Services.AddTransient<MedicationTrackerViewModel>();
             builder.Services.AddTransient<MedicationTrackerPage>();
+            builder.Services.AddTransient<PatientQR>();
+            builder.Services.AddTransient<HomePageViewModel>();
+            builder.Services.AddTransient<TaskEntryPage>();
+            builder.Services.AddTransient<TaskEntryViewModel>();
 
             // Configure the Maui application  
             builder

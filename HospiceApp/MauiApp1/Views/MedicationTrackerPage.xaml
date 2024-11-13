@@ -103,7 +103,7 @@
                                 <Button Grid.Column="2"
                                 Text="Mark as Taken"
                                 VerticalOptions="Center"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MedicationTrackerViewModel}}, Path=MedicationTaken}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:MedicationTrackerViewModel}}, Path=MedicationTakenCommand}"
                                 CommandParameter="{Binding MedicationID}" />
                             </Grid>
                         </Frame>
