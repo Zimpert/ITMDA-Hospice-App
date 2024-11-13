@@ -61,6 +61,7 @@ namespace MauiApp1
             builder.Services.AddTransient<HomePageViewModel>();
             builder.Services.AddTransient<TaskEntryPage>();
             builder.Services.AddTransient<TaskEntryViewModel>();
+            builder.Services.AddTransient<QRGenerationViewModel>();
 
             // Configure the Maui application  
             builder

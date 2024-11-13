@@ -7,12 +7,12 @@ namespace MauiApp1.Views;
 
 public partial class CaretakerQR : ContentPage
 {
-	public CaretakerQR()
+	public CaretakerQR(QRGenerationViewModel qrVM)
 	{
 		InitializeComponent();
-        //BindingContext = new QRGenerationViewModel();
-        
-	}
+        BindingContext = qrVM;
+
+    }
 
 
 
