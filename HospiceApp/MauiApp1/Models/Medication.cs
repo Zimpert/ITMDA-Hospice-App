@@ -5,6 +5,9 @@ namespace MauiApp1.Models
 {
     public partial class Medication : ObservableObject
     {
+        //[ObservableProperty]
+        //string medicationID;
+
         [ObservableProperty]
         [JsonPropertyName("Day")]
          string day;

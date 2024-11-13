@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 
 namespace MauiApp1.Services
@@ -328,8 +329,104 @@ namespace MauiApp1.Services
 
                 var result = JsonSerializer.Deserialize<MedicationRoot>(jsonResponse);
 
-            return result.Data;
+                // Check if the deserialization was successful and if data is null
+                if (result?.Data == null || result.Data.Count == 0)
+                {
+                    Console.WriteLine("No medication data found.");
+                    await Application.Current.MainPage.DisplayAlert("Error", "No medication data found.", "OK");
+                    return new Dictionary<string, MedData?>();
+                }
+
+                return result.Data;
+            }
+            catch (HttpRequestException e)
+            {
+                // Handle HTTP request errors
+                Console.WriteLine($"Request error: {e.Message}");
+                await Application.Current.MainPage.DisplayAlert("Error", "Network error. Please try again.", "OK");
+            }
+            catch (JsonException e)
+            {
+                // Handle JSON serialization/deserialization errors
+                Console.WriteLine($"JSON error: {e.Message}");
+                await Application.Current.MainPage.DisplayAlert("Error", "Data processing error. Please try again.", "OK");
+            }
+            catch (Exception ex)
+            {
+                // Handle any other errors
+                Console.WriteLine($"Unexpected error: {ex.Message}");
+                await Application.Current.MainPage.DisplayAlert("Error", "An unexpected error occurred. Please try again.", "OK");
+            }
+
+            // Return an empty dictionary if an error occurred
+            return new Dictionary<string, MedData?>();
         }
+
+        public async Task<List<Medication>> GetPatientMedsONLY(string token, string targetID)
+        {
+            try
+            {
+                var jObject = new
+                {
+                    Token = token
+                };
+                string json = JsonSerializer.Serialize(jObject);
+
+                var jsonResponse = await _apiRequest.SendRequestAsync("/medicine", json);
+
+                if (string.IsNullOrEmpty(jsonResponse))
+                {
+                    Console.WriteLine("No data returned from the server.");
+                    return new();
+                }
+
+                var result = JsonSerializer.Deserialize<MedicationRoot>(jsonResponse);
+
+                // Check if the deserialization was successful and if data is null
+                if (result?.Data == null || result.Data.Count == 0)
+                {
+                    Console.WriteLine("No medication data found.");
+                    await Application.Current.MainPage.DisplayAlert("Error", "No medication data found.", "OK");
+                    return new();
+                }
+
+                List<Medication> MedList = new();
+
+                foreach (var patientEntry in result.Data)
+                {
+
+                    if (patientEntry.Key == targetID)
+                    {
+                        MedList = patientEntry.Value.Medication;
+                    }
+                    
+                }
+
+                return MedList;
+            }
+            catch (HttpRequestException e)
+            {
+                // Handle HTTP request errors
+                Console.WriteLine($"Request error: {e.Message}");
+                await Application.Current.MainPage.DisplayAlert("Error", "Network error. Please try again.", "OK");
+            }
+            catch (JsonException e)
+            {
+                // Handle JSON serialization/deserialization errors
+                Console.WriteLine($"JSON error: {e.Message}");
+                await Application.Current.MainPage.DisplayAlert("Error", "Data processing error. Please try again.", "OK");
+            }
+            catch (Exception ex)
+            {
+                // Handle any other errors
+                Console.WriteLine($"Unexpected error: {ex.Message}");
+                await Application.Current.MainPage.DisplayAlert("Error", "An unexpected error occurred. Please try again.", "OK");
+            }
+
+            // Return an empty dictionary if an error occurred
+            return new();
+        }
+
 
         public class RootTask
         {
@@ -373,7 +470,19 @@ namespace MauiApp1.Services
             string json = JsonSerializer.Serialize(jObject);
             await _apiRequest.SendRequestAsync("/tasklog", json);
         }
+
+        public async Task MedLog(string token, string PatientMedicationID)
+        {
+            var jObject = new
+            {
+                Token = token,
+                PatientMedicationID = PatientMedicationID // patient ID
+            };
+            string json = JsonSerializer.Serialize(jObject);
+            await _apiRequest.SendRequestAsync("/medlog", json);
+        }
     }
-
-
 }
+
+
+

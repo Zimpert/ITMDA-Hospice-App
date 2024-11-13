@@ -17,10 +17,14 @@ namespace MauiApp1.Interfaces
 
         Task<Dictionary<string, MedData?>> GetPatientMedicationsAsync(string token);
 
+        Task<List<Medication>> GetPatientMedsONLY(string token, string targetID);
+
         Task<List<TaskM>> GetPatientTasks(string id);
 
         Task AddPatientTasks(string DateDue, string Description, string Token, string targetID);
 
         Task TaskLog(string token, string TaskID);
+
+        Task MedLog(string token, string PatientMedicationID);
     }
 }

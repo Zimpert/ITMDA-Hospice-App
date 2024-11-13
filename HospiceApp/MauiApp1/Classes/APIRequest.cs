@@ -44,11 +44,12 @@ namespace MauiApp1.Classes
 
             try
             {
-                if (endpoint == "/addtask" || endpoint == "/tasklog")
+                if (endpoint == "/addtask" || endpoint == "/tasklog" || endpoint == "/medlog" || endpoint == "/shiftlog")
                 {
                     try
                     {
                       await client.SendAsync(request);
+                        return "Sent";
                     } catch (HttpRequestException e)
                     {
                         Debug.WriteLine("It was added to the db");

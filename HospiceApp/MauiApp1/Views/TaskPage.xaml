@@ -83,17 +83,6 @@
 
                 <Button Text="Add Task" Command="{Binding AddTaskCommand}"/>
 
-                <!-- Notes Section -->
-                <Label Text="Notes" 
-                   FontAttributes="Bold" 
-                   FontSize="Medium" 
-                   TextColor="Black" 
-                   Margin="0,10,0,0" />
-                <Editor x:Name="NotesEditor" 
-                    BackgroundColor="#9855AE" 
-                    HeightRequest="100" 
-                    Margin="0,10,0,0" 
-                    TextColor="Black" />
             </StackLayout>
         </StackLayout>
     </ScrollView>

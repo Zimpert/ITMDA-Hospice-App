@@ -132,7 +132,7 @@
                                         <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" TextColor="#333" />
                                         <StackLayout Orientation="Horizontal" Spacing="2">
                                             <Label Text="Shift Start:" FontSize="16" TextColor="#444" />
-                                            <Label Text="{Binding ShiftStart}" FontSize="14" TextColor="#444" />
+                                            <Label Text="{Binding ShiftStart}" FontSize="16" TextColor="#444" />
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal" Spacing="2">
                                             <Label Text="Shift End:" FontSize="16" TextColor="#444" />
