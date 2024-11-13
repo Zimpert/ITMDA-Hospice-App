@@ -51,7 +51,7 @@ namespace MauiApp1.ViewModels
 
             // Logic to mark the task as complete using the taskID
             var token = await SecureStorage.GetAsync("Token");
-            await _requestManager.MedLog(token, taskID);
+            await _requestManager.TaskLog(token, taskID);
 
             // Reload or update tasks after marking as complete
             await LoadTasks();
