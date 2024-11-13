@@ -487,7 +487,7 @@ namespace MauiApp1.Services
             var jObject = new
             {
                 Token = token,
-                CaregiverID = TargetID // patient ID
+                UserID = TargetID // patient ID
             };
             string json = JsonSerializer.Serialize(jObject);
             await _apiRequest.SendRequestAsync("/shiftlog", json);

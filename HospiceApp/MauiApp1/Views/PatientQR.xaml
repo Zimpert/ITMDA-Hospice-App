@@ -10,6 +10,7 @@
 
             <zxing:CameraBarcodeReaderView
               x:Name="cameraBarcodeReaderView"
+              IsDetecting="True"
               BarcodesDetected="BarcodesDetected" />
 
             <!-- Header with title and settings icon -->
