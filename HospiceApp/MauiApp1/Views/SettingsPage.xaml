@@ -4,83 +4,135 @@
              x:Class="MauiApp1.Views.SettingsPage"
              Shell.NavBarIsVisible="False"
              BackgroundColor="White">
+    <ScrollView>
+        <!-- Use a StackLayout to wrap all content -->
+        <StackLayout BackgroundColor="White">
 
-    <!-- Use a StackLayout to wrap all content -->
-    <StackLayout BackgroundColor="White">
-
-        <!-- Navbar with Title and Settings Icon -->
-        <Frame BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
-               HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-            <Grid Padding="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                <!-- Back button on the left -->
-                <ImageButton Grid.Column="0"
-                             Source="arrow_left.png"
-                             BackgroundColor="Transparent"
-                             WidthRequest="30"
-                             HeightRequest="30"
-                             VerticalOptions="Center"
-                             Aspect="AspectFit"
-                             Clicked="OnBackButtonTapped" />
-
-                <!-- Home Title in the center -->
-                <Label Grid.Column="1"
-                       Text="Settings"
-                       FontAttributes="Bold"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center"
-                       FontSize="18"
-                       TextColor="White" />
-            </Grid>
-        </Frame>
-
-        <!-- Settings Options -->
-        <StackLayout Padding="10" Spacing="20" Margin="0,20,0,0">
-            
-            <!-- Contact Support -->
-            <Frame Padding="0" BackgroundColor="#9855AE" CornerRadius="8" HasShadow="False">
-                <Grid Padding="20">
+            <!-- Navbar with Title and Settings Icon -->
+            <Frame BackgroundColor="#9b59b6"
+                   CornerRadius="0"
+                   HasShadow="True"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Start">
+                <Grid Padding="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <!-- Icon Column -->
-                    <Image Source="phone_call.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Grid.Column="0" Margin="0,0,10,0"/>
+                    <!-- Back button on the left -->
+                    <ImageButton Grid.Column="0"
+                                 Source="arrow_left.png"
+                                 BackgroundColor="Transparent"
+                                 WidthRequest="30"
+                                 HeightRequest="30"
+                                 VerticalOptions="Center"
+                                 Aspect="AspectFit"
+                                 HorizontalOptions="Start"
+                                 Clicked="OnBackButtonTapped" />
 
-                    <!-- Description Column -->
-                    <Label Text="Contact Support" FontSize="Medium" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Padding="10,0,0,0" Grid.Column="1" />
+                    <!-- Home Title in the center -->
+                    <Label Grid.Column="1"
+                           Text="Settings"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           FontSize="18"
+                           TextColor="White"
+                           Padding="0,0,0,10" />
 
-                    <!-- Action Text Column -->
-                    <Label Text="Get Help" FontSize="Small" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2" />
+                    <!-- Spacing image no other purpose -->
+                    <ImageButton Grid.Column="2"
+                                 BackgroundColor="Transparent"
+                                 WidthRequest="30"
+                                 HeightRequest="30"
+                                 VerticalOptions="Center"
+                                 Aspect="AspectFit" />
                 </Grid>
             </Frame>
 
-            <!-- Logout -->
-            <Frame Padding="0" BackgroundColor="#9855AE" CornerRadius="8" HasShadow="False">
-                <Grid Padding="20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+            <!-- Settings Options -->
+            <StackLayout Padding="10"
+                         Spacing="20"
+                         Margin="0,20,0,0">
 
-                    <!-- Icon Column -->
-                    <Image Source="running.png" HeightRequest="30" WidthRequest="30" VerticalOptions="Center" Grid.Column="0" Margin="0,0,10,0"/>
+                <!-- Contact Support -->
+                <Frame Padding="0"
+                       BackgroundColor="#9855AE"
+                       CornerRadius="8"
+                       HasShadow="False">
+                    <Grid Padding="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                    <!-- Description Column -->
-                    <Label Text="Logout" FontSize="Medium" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Padding="10,0,0,0" Grid.Column="1" />
+                        <!-- Icon Column -->
+                        <Image Source="phone_call.png"
+                               HeightRequest="30"
+                               WidthRequest="30"
+                               VerticalOptions="Center"
+                               Grid.Column="0"
+                               Margin="0,0,10,0" />
 
-                    <!-- Action Text Column -->
-                    <Button Text="Sign out" FontSize="Small" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2" Clicked="OnSignOutTapped"/>
-                </Grid>
-            </Frame>
+                        <!-- Description Column -->
+                        <Label Text="Contact Support"
+                               FontSize="Medium"
+                               TextColor="{DynamicResource TextColor}"
+                               VerticalOptions="Center"
+                               Padding="10,0,0,0"
+                               Grid.Column="1" />
+
+                        <!-- Action Text Column -->
+                        <Label Text="Get Help"
+                               FontSize="Small"
+                               TextColor="{DynamicResource TextColor}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="End"
+                               Grid.Column="2" />
+                    </Grid>
+                </Frame>
+
+                <!-- Logout -->
+                <Frame Padding="0"
+                       BackgroundColor="#9855AE"
+                       CornerRadius="8"
+                       HasShadow="False">
+                    <Grid Padding="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Icon Column -->
+                        <Image Source="running.png"
+                               HeightRequest="30"
+                               WidthRequest="30"
+                               VerticalOptions="Center"
+                               Grid.Column="0"
+                               Margin="0,0,10,0" />
+
+                        <!-- Description Column -->
+                        <Label Text="Logout"
+                               FontSize="Medium"
+                               TextColor="{DynamicResource TextColor}"
+                               VerticalOptions="Center"
+                               Padding="10,0,0,0"
+                               Grid.Column="1" />
+
+                        <!-- Action Text Column -->
+                        <Label Text="Sign out"
+                               FontSize="Small"
+                               TextColor="{DynamicResource TextColor}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="End"
+                               Grid.Column="2" />
+                    </Grid>
+                </Frame>
+            </StackLayout>
         </StackLayout>
-    </StackLayout>
+    </ScrollView>
 </ContentPage>

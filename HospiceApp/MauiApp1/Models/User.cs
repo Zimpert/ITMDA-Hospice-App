@@ -12,15 +12,19 @@ namespace MauiApp1.Models
     {
         public string UserID { get; set; }
         public string Role { get; set; }
+
         [ObservableProperty]
         public string name;
+
         [ObservableProperty]
         public string surname;
+
         [ObservableProperty]
         public string? phoneNo;
+
         [ObservableProperty]
-        
         public string email;
+
         [ObservableProperty]
         public string? address;
         public string? Token { get; set; }

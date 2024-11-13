@@ -1,39 +1,47 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace MauiApp1.Models
 {
-    public class Medication
+    public partial class Medication : ObservableObject
     {
+        //[ObservableProperty]
+        //string medicationID;
 
+        [ObservableProperty]
+        [JsonPropertyName("PatientMedicationID")]
+        string medicationID;
+
+        [ObservableProperty]
         [JsonPropertyName("Day")]
-        public string Day { get; set; }
+         string day;
 
+        [ObservableProperty]
         [JsonPropertyName("Description")]
-        public string Description { get; set; }
+         string description;
 
+        [ObservableProperty]
         [JsonPropertyName("Dosage")]
-        public string Dosage { get; set; }
+         string dosage;
 
+        [ObservableProperty]
         [JsonPropertyName("EndDate")]
-        public string EndDate { get; set; }
+         string endDate;
 
+        [ObservableProperty]
         [JsonPropertyName("Frequency")]
-        public string Frequency { get; set; }
+         string frequency;
 
+        [ObservableProperty]
         [JsonPropertyName("Interactions")]
-        public string Interactions { get; set; }
+         string interactions;
 
+        [ObservableProperty]
         [JsonPropertyName("MedicationName")]
-        public string MedicationName { get; set; }
+         string medicationName;
 
+        [ObservableProperty]
         [JsonPropertyName("StartDate")]
-        public string StartDate { get; set; }
-
+         string startDate;
     }
 }

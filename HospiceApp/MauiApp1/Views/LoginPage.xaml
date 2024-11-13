@@ -8,8 +8,8 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#9b59b6"
              xmlns:fontawesome="clr-namespace:MauiApp1.ViewModels">
-
-    <ContentPage.Content>
+    
+    <ScrollView>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -109,5 +109,5 @@
                 </Grid>
             </Frame>
         </Grid>
-    </ContentPage.Content>
+    </ScrollView>
 </ContentPage>

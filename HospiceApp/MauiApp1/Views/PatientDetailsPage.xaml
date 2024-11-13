@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.Views.ProfilePage"
+             xmlns:view="clr-namespace:MauiApp1.Views"
+             x:Class="MauiApp1.Views.PatientDetailsPage"
              Shell.NavBarIsVisible="False"
              BackgroundColor="#f5f5f5">
     <ScrollView>
@@ -32,7 +33,7 @@
 
                     <!-- Home Title in the center -->
                     <Label Grid.Column="1"
-                           Text="Profile"
+                           Text="Patient Details"
                            FontAttributes="Bold"
                            VerticalOptions="Center"
                            HorizontalOptions="Center"
@@ -54,7 +55,7 @@
             <!-- Profile Details Form -->
             <Frame Padding="20"
                    CornerRadius="15"
-                   BackgroundColor="White"
+                   BackgroundColor="#F8D0F6"
                    HasShadow="True"
                    Margin="10">
                 <StackLayout Spacing="15">
@@ -70,7 +71,8 @@
                                BackgroundColor="Transparent"
                                PlaceholderColor="#999"
                                FontSize="16"
-                               TextColor="Black" />
+                               TextColor="Black" 
+                               IsEnabled="False"/>
                     </Frame>
 
                     <Label Text="Last Name"
@@ -85,7 +87,8 @@
                                BackgroundColor="Transparent"
                                PlaceholderColor="#999"
                                FontSize="16"
-                               TextColor="Black" />
+                               TextColor="Black"
+                               IsEnabled="False" />
                     </Frame>
 
                     <Label Text="Email"
@@ -100,7 +103,8 @@
                                BackgroundColor="Transparent"
                                PlaceholderColor="#999"
                                FontSize="16"
-                               TextColor="Black" />
+                               TextColor="Black"
+                               IsEnabled="False" />
                     </Frame>
 
                     <Label Text="Phone Number"
@@ -115,7 +119,8 @@
                                BackgroundColor="Transparent"
                                PlaceholderColor="#999"
                                FontSize="16"
-                               TextColor="Black" />
+                               TextColor="Black"
+                               IsEnabled="False" />
                     </Frame>
 
                     <Label Text="Address"
@@ -129,19 +134,10 @@
                                Placeholder="Enter address"
                                BackgroundColor="Transparent"
                                PlaceholderColor="#999"
-                               FontSize="16" 
-                               TextColor="Black"/>
+                               FontSize="16"
+                               TextColor="Black"
+                               IsEnabled="False" />
                     </Frame>
-
-                    <!-- Update Information Button -->
-                    <Button Text="Update Information"
-                            BackgroundColor="#27ae60"
-                            TextColor="White"
-                            FontSize="18"
-                            HeightRequest="50"
-                            CornerRadius="10"
-                            HorizontalOptions="FillAndExpand"
-                            Margin="0,15,0,0" />
                 </StackLayout>
             </Frame>
         </StackLayout>

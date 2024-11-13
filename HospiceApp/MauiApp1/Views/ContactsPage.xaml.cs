@@ -1,31 +1,24 @@
-using MauiApp1.Models;
 using MauiApp1.PartialViews;
-using Microsoft.Maui.Controls;
-using System;
-using System.Collections.Generic;
-using MauiApp1;
-using MauiApp1.Interfaces;
 using MauiApp1.ViewModels;
 
 namespace MauiApp1.Views
 {
     public partial class ContactsPage : ContentPage
     {
-        private readonly IRequestManager _requestManager;
-        private readonly MedicationListViewModel _viewModel;
 
-        public ContactsPage(IRequestManager requestManager, MedicationListViewModel viewModel)
+        private readonly ContactPageViewModel _viewModel;
+
+        public ContactsPage( ContactPageViewModel viewModel)
         {
             InitializeComponent();
             BindingContext = viewModel;
-            _requestManager = requestManager;
             _viewModel = viewModel;
 
-            _viewModel.ContactsLoaded += OnContactsLoaded;
+            _viewModel.ContactItemsCreated += OnContactsCreated;
             
         }
 
-        private void OnContactsLoaded()
+        private void OnContactsCreated()
         {
             LoadContacts();
         }
@@ -54,7 +47,7 @@ namespace MauiApp1.Views
                 {
                     var contactItemView = new ContactItemView
                     {
-                        Name = $"{contact.Name} {contact.Surname}"
+                        BindingContext = contact
                     };
                     ContactsListContainer.Children.Add(contactItemView);
                 }

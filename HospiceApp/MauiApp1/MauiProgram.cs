@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Maui;
 using MauiApp1.Classes;
 using MauiApp1.Interfaces;
+using MauiApp1.Models;
+using MauiApp1.Repositories;
 using MauiApp1.Services;
 using MauiApp1.ViewModels;
 using MauiApp1.Views;
@@ -23,9 +25,15 @@ namespace MauiApp1
             var builder = MauiApp.CreateBuilder();
 
             // Register services with the dependency injection container  
-            builder.Services.AddSingleton<HttpClient>();
+            builder.Services.AddHttpClient("API", client =>
+            {
+                client.BaseAddress = new Uri("http://ddnd.crabdance.com");
+                client.DefaultRequestHeaders.Accept.Add(
+                    new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            });
             builder.Services.AddSingleton<ApiRequest>();
             builder.Services.AddSingleton<IRequestManager, RequestManager>();
+            builder.Services.AddSingleton<IContactRepo, ContactRepo>();
             builder.Services.AddSingleton<RequestManager>();
             builder.Services.AddTransient<LoginPage>(); // Register LoginPage with DI  
             builder.Services.AddTransient<LoginViewModel>();
@@ -33,12 +41,27 @@ namespace MauiApp1
             builder.Services.AddTransient<ProfileViewModel>();
             builder.Services.AddTransient<HomePage>();
             builder.Services.AddTransient<ContactsPage>();
+            builder.Services.AddTransient<ContactPageViewModel>();
             builder.Services.AddTransient<CaregiverShiftViewModel>();
             builder.Services.AddTransient<MedicationListViewModel>();
             builder.Services.AddTransient<MedicationListPage>();
             builder.Services.AddTransient<ShiftPage>();
             builder.Services.AddTransient<AppShell>();
             builder.Services.AddTransient<CaretakerQR>();
+            builder.Services.AddTransient<ContactViewModel>();
+            builder.Services.AddSingleton<ContactService>();
+            builder.Services.AddTransient<TaskPage>();
+            builder.Services.AddTransient<TaskViewModel>();
+            builder.Services.AddTransient<TaskM>();
+            builder.Services.AddTransient<PatientDetailsViewModel>();
+            builder.Services.AddTransient<PatientDetailsPage>();
+            builder.Services.AddTransient<MedicationTrackerViewModel>();
+            builder.Services.AddTransient<MedicationTrackerPage>();
+            builder.Services.AddTransient<PatientQR>();
+            builder.Services.AddTransient<HomePageViewModel>();
+            builder.Services.AddTransient<TaskEntryPage>();
+            builder.Services.AddTransient<TaskEntryViewModel>();
+
             // Configure the Maui application  
             builder
                 .UseMauiApp<App>()

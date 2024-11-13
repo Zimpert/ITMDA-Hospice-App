@@ -14,8 +14,11 @@
             </Grid.RowDefinitions>
 
             <!-- Navbar with Profile Icon, Title, and Settings Icon -->
-            <Frame BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
-                   HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+            <Frame BackgroundColor="#9b59b6"
+                   CornerRadius="0"
+                   HasShadow="True"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Start">
                 <Grid Padding="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -55,20 +58,35 @@
             </Frame>
 
             <!-- Main Content -->
-            <Frame Grid.Row="1" Padding="20" CornerRadius="30" HasShadow="False" Margin="20,10,20,0">
+            <Frame Grid.Row="1"
+                   Padding="20"
+                   CornerRadius="30"
+                   HasShadow="False"
+                   Margin="20,10,20,0">
                 <Frame.Background>
                     <LinearGradientBrush EndPoint="0,1">
-                        <GradientStop Color="#FFFFFF" Offset="0.0" />
-                        <GradientStop Color="#F5F3FF" Offset="1.0" />
+                        <GradientStop Color="#FFFFFF"
+                                      Offset="0.0" />
+                        <GradientStop Color="#F5F3FF"
+                                      Offset="1.0" />
                     </LinearGradientBrush>
                 </Frame.Background>
-                <StackLayout Orientation="Vertical" Spacing="20">
+                <StackLayout Orientation="Vertical"
+                             Spacing="20">
 
                     <!-- Date Picker Section -->
-                    <Label Text="Select Date" FontAttributes="Bold" FontSize="20" TextColor="Black" HorizontalOptions="Center" />
+                    <Label Text="Select Date"
+                           FontAttributes="Bold"
+                           FontSize="20"
+                           TextColor="Black"
+                           HorizontalOptions="Center" />
 
-                    <Frame BackgroundColor="#F3F0FF" CornerRadius="10" Padding="10" Margin="0,0,0,20" HasShadow="True">
-                        <DatePicker Date="{Binding SelectedDate, Mode=TwoWay}" 
+                    <Frame BackgroundColor="#F3F0FF"
+                           CornerRadius="10"
+                           Padding="10"
+                           Margin="0,0,0,20"
+                           HasShadow="True">
+                        <DatePicker Date="{Binding SelectedDate, Mode=TwoWay}"
                                     MinimumDate="{Binding MinimumDate}"
                                     MaximumDate="{Binding MaximumDate}"
                                     HorizontalOptions="Center"
@@ -77,13 +95,23 @@
                     </Frame>
 
                     <!-- Selected Date Display -->
-                    <Label Text="{Binding SelectedDateString}" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" TextColor="Black" />
+                    <Label Text="{Binding SelectedDateString}"
+                           FontAttributes="Bold"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           TextColor="Black" />
 
                     <!-- Upcoming Shifts Section -->
-                    <Label Text="Upcoming Shifts" FontAttributes="Bold" FontSize="24" TextColor="#9855AE" HorizontalOptions="Start" Margin="0,20,0,10" />
+                    <Label Text="Upcoming Shifts"
+                           FontAttributes="Bold"
+                           FontSize="24"
+                           TextColor="#9855AE"
+                           HorizontalOptions="Start"
+                           Margin="0,20,0,10" />
 
                     <!-- Shifts List for Selected Date -->
-                    <CollectionView ItemsSource="{Binding FilteredShifts}" ItemsLayout="VerticalList">
+                    <CollectionView ItemsSource="{Binding FilteredShifts}"
+                                    ItemsLayout="VerticalList">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Padding="10">
@@ -93,12 +121,23 @@
                                     </Grid.ColumnDefinitions>
 
                                     <!-- Shift Icon -->
-                                    <Image Source="shift_icon.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center" Grid.Column="0" />
+                                    <Image Source="shift_icon.png"
+                                           WidthRequest="30"
+                                           HeightRequest="30"
+                                           VerticalOptions="Center"
+                                           Grid.Column="0" />
 
                                     <!-- Shift Information -->
-                                    <StackLayout Orientation="Vertical" Spacing="2" Grid.Column="1">
-                                        <Label Text="{Binding PatientName}" FontAttributes="Bold" FontSize="16" TextColor="#333" />
-                                        <Label Text="{Binding Time}" FontSize="14" TextColor="#666" />
+                                    <StackLayout Orientation="Vertical" Spacing="3" Grid.Column="1">
+                                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" TextColor="#333" />
+                                        <StackLayout Orientation="Horizontal" Spacing="2">
+                                            <Label Text="Shift Start:" FontSize="16" TextColor="#444" />
+                                            <Label Text="{Binding ShiftStart}" FontSize="16" TextColor="#444" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Spacing="2">
+                                            <Label Text="Shift End:" FontSize="16" TextColor="#444" />
+                                            <Label Text="{Binding ShiftEnd}" FontSize="16" TextColor="#444" />
+                                        </StackLayout>
                                     </StackLayout>
                                 </Grid>
                             </DataTemplate>
@@ -107,14 +146,6 @@
 
                 </StackLayout>
             </Frame>
-
-            <!-- Action Buttons -->
-            <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="Center" Spacing="15" Margin="0,30,0,30">
-                <Button Text="Request Shift" BackgroundColor="#4CAF50" TextColor="White" CornerRadius="25" WidthRequest="220" HeightRequest="50"
-                        FontAttributes="Bold" FontSize="18" />
-                <Button Text="Request Cancel" BackgroundColor="#F44336" TextColor="White" CornerRadius="25" WidthRequest="220" HeightRequest="50"
-                        FontAttributes="Bold" FontSize="18" />
-            </StackLayout>
         </Grid>
     </ScrollView>
 </ContentPage>

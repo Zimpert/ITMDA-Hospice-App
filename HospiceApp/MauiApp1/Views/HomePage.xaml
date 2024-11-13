@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:services="clr-namespace:MauiApp1.Services"
              x:Class="MauiApp1.Views.HomePage"
              Shell.NavBarIsVisible="False"
              BackgroundColor="White">
 
-  
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <services:RoleVisibility x:Key="RoleVisibility" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-        <!-- Custom Navbar with Profile Icon, Title, and Settings Icon -->
-    <ScrollView >
+    <!-- Custom Navbar with Profile Icon, Title, and Settings Icon -->
+    <ScrollView>
         <StackLayout BackgroundColor="White">
-
-            <!-- Navbar with Title and Settings Icon -->
             <Frame BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
-               HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                   HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                 <Grid Padding="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -21,121 +24,111 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <!-- Back button on the left -->
-                    <ImageButton Grid.Column="0"
-                             Source="profile.png"
-                             BackgroundColor="Transparent"
-                             WidthRequest="30"
-                             HeightRequest="30"
-                             VerticalOptions="Center"
-                             Aspect="AspectFit"
-                             Clicked="OnProfileIconTapped" />
+                    <ImageButton Grid.Column="0" Source="profile.png" BackgroundColor="Transparent"
+                                 WidthRequest="30" HeightRequest="30" VerticalOptions="Center"
+                                 Aspect="AspectFit" Clicked="OnProfileIconTapped" />
 
-                    <!-- Home Title in the center -->
-                    <Label Grid.Column="1"
-                       Text="Home"
-                       FontAttributes="Bold"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center"
-                       FontSize="18"
-                       TextColor="White" />
+                    <Label Grid.Column="1" Text="Home" FontAttributes="Bold"
+                           VerticalOptions="Center" HorizontalOptions="Center" FontSize="18"
+                           TextColor="White" />
 
-                    <!-- Settings Icon on the right -->
-                    <ImageButton Grid.Column="2"
-                             Source="settings.png"
-                             BackgroundColor="Transparent"
-                             WidthRequest="30"
-                             HeightRequest="30"
-                             VerticalOptions="Center"
-                             Aspect="AspectFit"
-                             Clicked="OnSettingsIconTapped" />
+                    <ImageButton Grid.Column="2" Source="settings.png" BackgroundColor="Transparent"
+                                 WidthRequest="30" HeightRequest="30" VerticalOptions="Center"
+                                 Aspect="AspectFit" Clicked="OnSettingsIconTapped" />
                 </Grid>
             </Frame>
-            <!-- Button Grid with Icons and Text -->
-        <Grid Grid.Row="1" Padding="20" RowSpacing="15" ColumnSpacing="15">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
 
+            <Grid Padding="20" RowSpacing="15" ColumnSpacing="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <!-- Button-like Frames with Icons and Labels -->
-            <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#9b59b6" CornerRadius="15" HasShadow="True" Padding="10">
-                <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnViewCarerClicked" />
-                    </StackLayout.GestureRecognizers>
-                    <Image Source="care.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
-                    <Label Text="View Carer" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,10,0,0"/>
-                </StackLayout>
-            </Frame>
-
-            <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="#9b59b6" CornerRadius="15" HasShadow="True" Padding="10">
-                <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnShiftPageClicked" />
-                    </StackLayout.GestureRecognizers>
-                    <Image Source="calendar_lines.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
-                    <Label Text="Shift Page" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,10,0,0"/>
-                </StackLayout>
-            </Frame>
-
-            <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="#9b59b6" CornerRadius="15" HasShadow="True" Padding="10">
-                <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnNotificationPageClicked" />
-                    </StackLayout.GestureRecognizers>
-                    <Image Source="bell.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
-                    <Label Text="Notification Page" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,10,0,0"/>
-                </StackLayout>
-            </Frame>
-
-            <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="#9b59b6" CornerRadius="15" HasShadow="True" Padding="10">
-                <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnQRScanPageClicked" />
-                    </StackLayout.GestureRecognizers>
-                    <Image Source="qr.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
-                    <Label Text="QR Scan Page" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,10,0,0"/>
-                </StackLayout>
-            </Frame>
-
-            <Frame Grid.Row="2" Grid.Column="0" BackgroundColor="#9b59b6" CornerRadius="15" HasShadow="True" Padding="10">
-                <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnMedicationListClicked" />
-                    </StackLayout.GestureRecognizers>
-                    <Image Source="book_medical.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
-                    <Label Text="Medication List" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,10,0,0"/>
-                </StackLayout>
-            </Frame>
-
-            <Frame Grid.Row="2" Grid.Column="1" BackgroundColor="#9b59b6" CornerRadius="15" HasShadow="True" Padding="10">
-                <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnMedicationTrackerClicked" />
-                    </StackLayout.GestureRecognizers>
-                    <Image Source="capsules.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
-                    <Label Text="Medication Tracker" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,10,0,0"/>
-                </StackLayout>
-            </Frame>
-
-                <Frame Grid.Row="3" Grid.Column="0" BackgroundColor="#9b59b6" CornerRadius="15" HasShadow="True" Padding="10">
+                <!-- Frames for Caregiver Role -->
+                <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#9b59b6"
+                       CornerRadius="15" HasShadow="True" Padding="10">
+                    <Frame.Triggers>
+                        <DataTrigger TargetType="Frame" Binding="{Binding UserRole}" Value="Caregiver">
+                            <Setter Property="IsVisible" Value="True" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Frame" Binding="{Binding UserRole}" Value="Patient">
+                            <Setter Property="IsVisible" Value="False" />
+                        </DataTrigger>
+                    </Frame.Triggers>
                     <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
                         <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnTaskPageClicked" />
+                            <TapGestureRecognizer Tapped="OnViewCarerClicked" />
                         </StackLayout.GestureRecognizers>
-                        <Image Source="task.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
-                        <Label Text="Tasks" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" Margin="0,10,0,0"/>
+                        <Image Source="care.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit" />
+                        <Label Text="View Carer" TextColor="White" HorizontalOptions="Center"
+                               FontAttributes="Bold" FontSize="16" Margin="0,10,0,0" />
                     </StackLayout>
                 </Frame>
 
+                <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="#9b59b6"
+                       CornerRadius="15" HasShadow="True" Padding="10">
+                    <Frame.Triggers>
+                        <DataTrigger TargetType="Frame" Binding="{Binding UserRole}" Value="Caregiver">
+                            <Setter Property="IsVisible" Value="True" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Frame" Binding="{Binding UserRole}" Value="Patient">
+                            <Setter Property="IsVisible" Value="False" />
+                        </DataTrigger>
+                    </Frame.Triggers>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnShiftPageClicked" />
+                        </StackLayout.GestureRecognizers>
+                        <Image Source="calendar_lines.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit" />
+                        <Label Text="Shift Page" TextColor="White" HorizontalOptions="Center"
+                               FontAttributes="Bold" FontSize="16" Margin="0,10,0,0" />
+                    </StackLayout>
+                </Frame>
+
+                <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="#9b59b6"
+                       CornerRadius="15" HasShadow="True" Padding="10">
+                    <Frame.Triggers>
+                        <DataTrigger TargetType="Frame" Binding="{Binding UserRole}" Value="Caregiver">
+                            <Setter Property="IsVisible" Value="True" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Frame" Binding="{Binding UserRole}" Value="Patient">
+                            <Setter Property="IsVisible" Value="False" />
+                        </DataTrigger>
+                    </Frame.Triggers>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnQRScanPageClicked" />
+                        </StackLayout.GestureRecognizers>
+                        <Image Source="qr.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit" />
+                        <Label Text="Generate QR Code" TextColor="White" HorizontalOptions="Center"
+                               FontAttributes="Bold" FontSize="16" Margin="0,10,0,0" />
+                    </StackLayout>
+                </Frame>
+
+                <!-- Frame for PatientQR Navigation (Visible only for Patient Role) -->
+                <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#3498db"
+                       CornerRadius="15" HasShadow="True" Padding="10">
+                    <Frame.Triggers>
+                        <DataTrigger TargetType="Frame" Binding="{Binding UserRole}" Value="Patient">
+                            <Setter Property="IsVisible" Value="True" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Frame" Binding="{Binding UserRole}" Value="Caregiver">
+                            <Setter Property="IsVisible" Value="False" />
+                        </DataTrigger>
+                    </Frame.Triggers>
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnPatientQRPageClicked" />
+                        </StackLayout.GestureRecognizers>
+                        <Image Source="qr_patient.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit" />
+                        <Label Text="Patient QR" TextColor="White" HorizontalOptions="Center"
+                               FontAttributes="Bold" FontSize="16" Margin="0,10,0,0" />
+                    </StackLayout>
+                </Frame>
             </Grid>
         </StackLayout>
     </ScrollView>

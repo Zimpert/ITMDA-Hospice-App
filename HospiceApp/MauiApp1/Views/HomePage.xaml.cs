@@ -3,14 +3,15 @@ using Microsoft.Maui.Controls;
 using MauiApp1.Services;
 using System;
 using System.Windows.Input;
+using MauiApp1.ViewModels;
 
 public partial class HomePage : ContentPage
 {
 
-    public HomePage()
+    public HomePage(HomePageViewModel hpvm)
     {
         InitializeComponent();
-        BindingContext = this;
+        BindingContext = hpvm;
 
     }
     // Event handlers 
@@ -64,6 +65,11 @@ public partial class HomePage : ContentPage
     private async void OnTaskPageClicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("///TaskPage");
+    }
+
+    private async void OnPatientQRPageClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("///PatientQRPage");
     }
 
 }

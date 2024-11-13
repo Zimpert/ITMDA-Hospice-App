@@ -9,7 +9,6 @@ namespace MauiApp1.Models.PatientModels
     public class ContactBook
     {
         public string ContactBookID { get; set; }
-        public List<PersonalContact>? PersonalContacts { get; set; }
         public List<MedicalContact>? MedicalContacts { get; set; }
     }
 }

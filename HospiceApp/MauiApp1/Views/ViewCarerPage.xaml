@@ -4,46 +4,51 @@
              x:Class="MauiApp1.Views.ViewCarerPage"
              Shell.NavBarIsVisible="False"
              Title="ViewCarerPage">
-    
-    
-    <!-- Navbar with Title and Settings Icon -->
-    <Frame Grid.Row="0" BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True"
-                        HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-        <Grid Padding="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
 
-            <!-- Back button on the left -->
-            <ImageButton Grid.Column="0"
-                         Source="arrow_left.png"
-                         BackgroundColor="Transparent"
-                         WidthRequest="30"
-                         HeightRequest="30"
-                         VerticalOptions="Center"
-                         Aspect="AspectFit"
-                         Clicked="OnBackButtonTapped" />   
+    <ScrollView>
+        <!-- Navbar with Title and Settings Icon -->
+        <Frame Grid.Row="0"
+               BackgroundColor="#9b59b6"
+               CornerRadius="0"
+               HasShadow="True"
+               HorizontalOptions="FillAndExpand"
+               VerticalOptions="Start">
+            <Grid Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-            <!-- Home Title in the center -->
-            <Label Grid.Column="1"
-                   Text="Carer List"
-                   FontAttributes="Bold"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center"
-                   FontSize="18"
-                   TextColor="White" />
+                <!-- Back button on the left -->
+                <ImageButton Grid.Column="0"
+                             Source="arrow_left.png"
+                             BackgroundColor="Transparent"
+                             WidthRequest="30"
+                             HeightRequest="30"
+                             VerticalOptions="Center"
+                             Aspect="AspectFit"
+                             Clicked="OnBackButtonTapped" />
 
-            <!-- Settings Icon on the right -->
-            <ImageButton Grid.Column="2"
-                         Source="settings.png"
-                         BackgroundColor="Transparent"
-                         WidthRequest="30"
-                         HeightRequest="30"
-                         VerticalOptions="Center"
-                         Aspect="AspectFit"
-                         Clicked="OnSettingsIconTapped" />
-        </Grid>
-    </Frame>
+                <!-- Home Title in the center -->
+                <Label Grid.Column="1"
+                       Text="Carer List"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       FontSize="18"
+                       TextColor="White" />
+
+                <!-- Settings Icon on the right -->
+                <ImageButton Grid.Column="2"
+                             Source="settings.png"
+                             BackgroundColor="Transparent"
+                             WidthRequest="30"
+                             HeightRequest="30"
+                             VerticalOptions="Center"
+                             Aspect="AspectFit"
+                             Clicked="OnSettingsIconTapped" />
+            </Grid>
+        </Frame>
+    </ScrollView>
 </ContentPage>
