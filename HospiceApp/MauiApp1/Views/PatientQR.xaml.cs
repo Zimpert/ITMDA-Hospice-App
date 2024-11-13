@@ -1,14 +1,17 @@
 
+using MauiApp1.Interfaces;
 using ZXing.Net.Maui;
 
 namespace MauiApp1.Views;
 
 public partial class PatientQR : ContentPage
 {
-	public PatientQR()
+    private readonly IRequestManager _reqMan;
+	public PatientQR(IRequestManager regMan)
 	{
 		InitializeComponent();
         ConfigureBarcodeReader();
+        _reqMan = regMan;
 	}
 
     private void ConfigureBarcodeReader()
@@ -17,16 +20,29 @@ public partial class PatientQR : ContentPage
         {
             Formats = BarcodeFormats.TwoDimensional,
             AutoRotate = true,
-            Multiple = true
+            Multiple = false
         };
     }
 
-    protected void BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
+    protected async void BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
     {
         // here if it's detected we need to call request manager and just log the value 
         // simple!
-        foreach (var barcode in e.Results)
-            Console.WriteLine($"Barcodes: {barcode.Format} -> {barcode.Value}");
+        
+        var first = e.Results?.FirstOrDefault();
+        if (first is null)
+        {
+            return;
+        }
+        
+        var token = await SecureStorage.GetAsync("Token");
+        await _reqMan.ShiftLog(token, first.Value);
+        Dispatcher.DispatchAsync(async () =>
+        {
+            await Shell.Current.GoToAsync("///HomePage");
+        });
+
+            
     }
 
 }

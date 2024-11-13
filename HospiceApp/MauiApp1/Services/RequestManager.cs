@@ -481,6 +481,17 @@ namespace MauiApp1.Services
             string json = JsonSerializer.Serialize(jObject);
             await _apiRequest.SendRequestAsync("/medlog", json);
         }
+
+        public async Task ShiftLog(string token, string TargetID)
+        {
+            var jObject = new
+            {
+                Token = token,
+                CaregiverID = TargetID // patient ID
+            };
+            string json = JsonSerializer.Serialize(jObject);
+            await _apiRequest.SendRequestAsync("/shiftlog", json);
+        }
     }
 }
 
