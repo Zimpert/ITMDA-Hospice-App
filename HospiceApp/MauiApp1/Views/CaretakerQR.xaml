@@ -53,7 +53,7 @@
                              SemanticProperties.Hint="Open settings" />
             </Grid>
 
-            <!-- Profile Picture -->
+            <!-- Profile Picture 
             <Frame HeightRequest="100"
                    WidthRequest="100"
                    CornerRadius="50"
@@ -67,10 +67,10 @@
                        HeightRequest="100"
                        WidthRequest="100"
                        AutomationId="ProfileImage" />
-            </Frame>
+            </Frame> -->
 
             <!-- Name and Role -->
-            <Label Text="Alexa Williams"
+           <!-- <Label Text="Alexa Williams"
                    FontSize="Title"
                    TextColor="Black"
                    HorizontalOptions="Center"
@@ -81,7 +81,7 @@
                    TextColor="Gray"
                    HorizontalOptions="Center"
                    Margin="0,0,0,20"
-                   AutomationId="UserRole" />
+                   AutomationId="UserRole" /> -->
 
             <!-- Description Text -->
             <StackLayout Padding="20,0">
@@ -94,26 +94,6 @@
                        FontSize="Small"
                        Margin="0,0,0,20"
                        AutomationId="DescriptionText2" />
-            </StackLayout>
-
-            <!-- Clock In/Out Radio Buttons -->
-            <StackLayout Orientation="Horizontal"
-                         HorizontalOptions="Center"
-                         Margin="0,0,0,20">
-                <StackLayout Orientation="Horizontal"
-                             VerticalOptions="Center">
-                    <RadioButton Content="Clocked In"
-                                 IsChecked="{Binding IsClockedIn}"
-                                 TextColor="Black"
-                                 GroupName="ClockStatus"
-                                 Margin="0,0,10,0"
-                                 AutomationId="ClockedInRadioButton" />
-                    <RadioButton Content="Clocked Out"
-                                 IsChecked="{Binding IsClockedOut}"
-                                 TextColor="Black"
-                                 GroupName="ClockStatus"
-                                 AutomationId="ClockedOutRadioButton" />
-                </StackLayout>
             </StackLayout>
 
             <!-- QR Code Image -->
