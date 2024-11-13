@@ -26,5 +26,7 @@ namespace MauiApp1.Interfaces
         Task TaskLog(string token, string TaskID);
 
         Task MedLog(string token, string PatientMedicationID);
+
+        Task ShiftLog(string token, string TargetID);
     }
 }
