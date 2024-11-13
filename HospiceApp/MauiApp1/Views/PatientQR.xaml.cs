@@ -34,7 +34,7 @@ public partial class PatientQR : ContentPage
         {
             return;
         }
-        
+        cameraBarcodeReaderView.IsDetecting = false;
         var token = await SecureStorage.GetAsync("Token");
         await _reqMan.ShiftLog(token, first.Value);
         Dispatcher.DispatchAsync(async () =>
