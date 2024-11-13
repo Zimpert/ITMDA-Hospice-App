@@ -12,4 +12,11 @@ public partial class SettingsPage : ContentPage
         await Shell.Current.GoToAsync("///HomePage"); // Navigate to the Homepage
     }
 
+    private async void OnSignOutTapped(object sender, EventArgs e)
+    {
+        SecureStorage.Remove("UserID");
+        SecureStorage.Remove("Token");
+        await Shell.Current.GoToAsync("///LoginPage");
+    }
+
 }

@@ -78,7 +78,7 @@
                     <Label Text="Logout" FontSize="Medium" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" Padding="10,0,0,0" Grid.Column="1" />
 
                     <!-- Action Text Column -->
-                    <Label Text="Sign out" FontSize="Small" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2" />
+                    <Button Text="Sign out" FontSize="Small" TextColor="{DynamicResource TextColor}" VerticalOptions="Center" HorizontalOptions="End" Grid.Column="2" Clicked="OnSignOutTapped"/>
                 </Grid>
             </Frame>
         </StackLayout>
