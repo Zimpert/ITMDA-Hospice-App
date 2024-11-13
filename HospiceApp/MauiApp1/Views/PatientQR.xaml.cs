@@ -25,6 +25,7 @@ public partial class PatientQR : ContentPage
     {
         // here if it's detected we need to call request manager and just log the value 
         // simple!
+        cameraBarcodeReaderView.IsDetecting = false;
         foreach (var barcode in e.Results)
             Console.WriteLine($"Barcodes: {barcode.Format} -> {barcode.Value}");
     }

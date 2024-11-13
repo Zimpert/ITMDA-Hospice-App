@@ -11,17 +11,17 @@ namespace MauiApp1.ViewModels
     {
 
         [ObservableProperty]
-        private string _barcodeValue;
+        private string barcodeValue;
 
         public QRGenerationViewModel()
         {
-            InitializeAsync();
+            _ = InitializeAsync();
         }
 
         private async Task InitializeAsync()
         {
             // Fetch the user ID from SecureStorage and set it as the default for BarcodeValue
-            _barcodeValue = await SecureStorage.GetAsync("UserID") ?? "DefaultUserID";
+            BarcodeValue = await SecureStorage.GetAsync("UserID") ?? "DefaultUserID";
         }
 
 

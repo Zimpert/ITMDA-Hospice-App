@@ -128,7 +128,7 @@
                        BorderColor="#9b59b6"
                        CornerRadius="10">
                     <zxing:BarcodeGeneratorView Format="QrCode"
-                                                Value="test"
+                                                Value="{Binding BarcodeValue}"
                                                 HorizontalOptions="Fill"
                                                 VerticalOptions="Fill"
                                                 AutomationId="QrCodeImage" />
