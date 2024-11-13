@@ -23,7 +23,7 @@ namespace MauiApp1.Views
 
         private async void OnBackButtonTapped(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("///HomePage"); // Navigate back to the previous page
+            await Shell.Current.GoToAsync("///ContactsPage"); // Navigate back to the previous page
         }
     }
 }
