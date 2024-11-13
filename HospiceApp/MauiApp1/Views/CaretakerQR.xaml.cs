@@ -1,5 +1,7 @@
 
 using MauiApp1.ViewModels;
+using ZXing.Net.Maui;
+using ZXing.Net.Maui.Controls;
 
 namespace MauiApp1.Views;
 
@@ -8,8 +10,11 @@ public partial class CaretakerQR : ContentPage
 	public CaretakerQR()
 	{
 		InitializeComponent();
-		BindingContext = new QRGenerationViewModel();
+        //BindingContext = new QRGenerationViewModel();
+        
 	}
+
+
 
     private void OnSaveButtonClicked(object sender, EventArgs e)
     {
