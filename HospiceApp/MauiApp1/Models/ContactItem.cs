@@ -24,6 +24,15 @@ namespace MauiApp1.Models
             await Shell.Current.GoToAsync("//MedicationListPage", navigationParameter);
         }
 
+        [RelayCommand]
+        public async Task NavToTaskList()
+        {
+            var navigationParameter = new Dictionary<string, object>
+            {
+                { "PatientID", PatientID }
+            };
+            await Shell.Current.GoToAsync("//TaskPage", navigationParameter);
+        }
 
 
     }

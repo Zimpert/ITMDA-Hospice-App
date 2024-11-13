@@ -96,9 +96,16 @@
                                     <Image Source="shift_icon.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center" Grid.Column="0" />
 
                                     <!-- Shift Information -->
-                                    <StackLayout Orientation="Vertical" Spacing="2" Grid.Column="1">
-                                        <Label Text="{Binding PatientName}" FontAttributes="Bold" FontSize="16" TextColor="#333" />
-                                        <Label Text="{Binding Time}" FontSize="14" TextColor="#666" />
+                                    <StackLayout Orientation="Vertical" Spacing="3" Grid.Column="1">
+                                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" TextColor="#333" />
+                                        <StackLayout Orientation="Horizontal" Spacing="2">
+                                            <Label Text="Shift Start:" FontSize="16" TextColor="#444" />
+                                            <Label Text="{Binding ShiftStart}" FontSize="14" TextColor="#444" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal" Spacing="2">
+                                            <Label Text="Shift End:" FontSize="16" TextColor="#444" />
+                                            <Label Text="{Binding ShiftEnd}" FontSize="16" TextColor="#444" />
+                                        </StackLayout>
                                     </StackLayout>
                                 </Grid>
                             </DataTemplate>

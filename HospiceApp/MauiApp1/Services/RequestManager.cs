@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
+
 namespace MauiApp1.Services
 {
     /// <summary>
@@ -17,7 +18,6 @@ namespace MauiApp1.Services
     public class RequestManager : IRequestManager
     {
         private readonly ApiRequest _apiRequest;
-        private readonly HttpClient _httpClient = new HttpClient();
         public RequestManager(ApiRequest apiRequest)
         {
             _apiRequest = apiRequest;
@@ -96,9 +96,8 @@ namespace MauiApp1.Services
                 var cContent = new StringContent(json, Encoding.UTF8, "application/json");
 
                 // Send the JSON to the server and get the response
-                var jResponse = await _httpClient.PostAsync("http://ddnd.crabdance.com/login", cContent);
-                var jsonResponse = await jResponse.Content.ReadAsStringAsync();
-                //var jsonResponse = await _apiRequest.SendRequestAsync("/login", json);
+
+                var jsonResponse = await _apiRequest.SendRequestAsync("/login", json);
 
                 // Check if the response is empty
                 if (string.IsNullOrEmpty(jsonResponse))
@@ -239,8 +238,6 @@ namespace MauiApp1.Services
             public Dictionary<string, MedData> Data { get; set; }
         }
 
-
-
         public async Task<Dictionary<string, MedData?>> GetPatientMedicationsAsync(string token)
         {
             var jObject = new
@@ -253,6 +250,49 @@ namespace MauiApp1.Services
             var result = JsonSerializer.Deserialize<MedicationRoot>(jsonResponse);
 
             return result.Data;
+        }
+
+        public class RootTask
+        {
+            [JsonPropertyName("data")]
+            public List<TaskM?> Data { get; set; }
+        }
+        public async Task<List<TaskM>> GetPatientTasks(string patientID)
+        {
+            var jObject = new
+            {
+                Token = await SecureStorage.GetAsync("Token"),
+                UserID = patientID // patient ID
+            };
+            string json = JsonSerializer.Serialize(jObject);
+            var jsonResponse = await _apiRequest.SendRequestAsync("/gettasks", json);
+            var result = JsonSerializer.Deserialize<RootTask>(jsonResponse);
+            return result.Data;
+        }
+
+        public async Task AddPatientTasks(string DateDue, string Description, string Token, string targetID)
+        {
+            var jObject = new
+            {
+                DateDue = DateDue,
+                Description = Description,
+                Token = Token,
+                UserID = targetID // patient ID
+            };
+            string json = JsonSerializer.Serialize(jObject);
+            await _apiRequest.SendRequestAsync("/addtask", json);
+
+        }
+
+        public async Task TaskLog(string token, string TaskID)
+        {
+            var jObject = new
+            {
+                Token = token,
+                TaskID = TaskID // patient ID
+            };
+            string json = JsonSerializer.Serialize(jObject);
+            await _apiRequest.SendRequestAsync("/tasklog", json);
         }
     }
 

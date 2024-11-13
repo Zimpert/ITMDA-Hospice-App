@@ -27,9 +27,10 @@
                     Command="{Binding NavToMedListCommand}" CommandParameter="{Binding PatientID}"/>
             
             <!-- Tasks Button -->
-            <!--<Button Text="Tasks" BackgroundColor="#341d5c" TextColor="White" CornerRadius="10"
+            <Button Text="Tasks" BackgroundColor="#341d5c" TextColor="White" CornerRadius="10"
                     FontSize="Small" HeightRequest="40" 
-                    VerticalOptions="Center" Grid.Column="4" />-->
+                    VerticalOptions="Center" Grid.Column="4" 
+                    Command="{Binding NavToTaskListCommand}" CommandParameter="{Binding PatientID}"/>
         </Grid>
     </Frame>
 </ContentView>

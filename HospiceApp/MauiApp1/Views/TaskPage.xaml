@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp1.Views.TaskPage"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             xmlns:viewmodels="clr-namespace:MauiApp1.ViewModels">
     <ScrollView>
         <StackLayout BackgroundColor="White">
 
@@ -47,23 +48,40 @@
                 </Grid>
             </Frame>
             <StackLayout Padding="20,0,20,0">
-                <!-- Date Picker -->
-                <DatePicker x:Name="DatePicker" 
-                        Margin="0,20,0,20" 
-                        BackgroundColor="black" 
-                        HorizontalOptions="Center" 
-                        VerticalOptions="Center" 
-                        DateSelected="OnDateSelected" 
-                        TextColor="White" 
-                        FontSize="Large" />
-
                 <!-- Task List -->
                 <Label Text="Tasks" 
                    FontAttributes="Bold" 
                    FontSize="Medium" 
                    TextColor="Black" 
                    Margin="0,10,0,0" />
-                <StackLayout x:Name="TaskListContainer" />
+
+                <CollectionView ItemsSource="{Binding Tasks}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Frame with purple background color -->
+                            <Frame BackgroundColor="Purple" CornerRadius="10" Padding="10" Margin="5">
+                                <Grid ColumnDefinitions="*,Auto">
+                                    <!-- Task Details StackLayout -->
+                                    <StackLayout Grid.Column="0" VerticalOptions="Center">
+                                        <Label Text="Task:" FontAttributes="Bold" TextColor="White" />
+                                        <Label Text="{Binding Description}" FontSize="Small" TextColor="White" />
+                                        <Label Text="{Binding DateDue}" FontSize="Small" TextColor="White" />
+                                        <Label Text="{Binding TaskID}" IsVisible="True" TextColor="White" />
+                                    </StackLayout>
+
+                                    <!-- Task Completion Button -->
+                                    <Button Grid.Column="1"
+                                    Text="Complete"
+                                    VerticalOptions="Center"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:TaskViewModel}}, Path=TaskCompletionCommand}"
+                                    CommandParameter="{Binding TaskID}" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Button Text="Add Task" Command="{Binding AddTaskCommand}"/>
 
                 <!-- Notes Section -->
                 <Label Text="Notes" 

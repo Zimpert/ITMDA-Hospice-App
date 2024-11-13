@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiApp1.Interfaces;
-using MauiApp1.Services;
 using System.Diagnostics;
 
 
@@ -10,9 +9,9 @@ namespace MauiApp1.ViewModels
 {
     public partial class LoginViewModel : ObservableObject
     {
-        private readonly RequestManager _requestManager;
+        private readonly IRequestManager _requestManager;
 
-        public LoginViewModel(RequestManager requestManager)
+        public LoginViewModel(IRequestManager requestManager)
         {
             _requestManager = requestManager;
            

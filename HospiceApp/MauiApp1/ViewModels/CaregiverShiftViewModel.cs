@@ -1,15 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MauiApp1.Interfaces;
 using MauiApp1.Models;
-using MauiApp1.Models.Enums;
-using MauiApp1.Models.PatientModels;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Maui.Dispatching;
 
 namespace MauiApp1.ViewModels
 {

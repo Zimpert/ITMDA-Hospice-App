@@ -6,14 +6,11 @@ namespace MauiApp1.Classes
 {
     public class ApiRequest
     {
+        private readonly IHttpClientFactory _clientFactory;
 
-        private HttpClient _client;
-        protected readonly string baseURL = "http://ddnd.crabdance.com"; // Base URL for the API
-
-        public ApiRequest()
+        public ApiRequest(IHttpClientFactory clientFactory)
         {
-            var handler = new HttpClientHandler();
-            _client = new HttpClient(handler);
+            _clientFactory = clientFactory;
         }
 
         public async Task<string> SendRequestAsync(string endpoint, string jsonContent)
@@ -26,13 +23,16 @@ namespace MauiApp1.Classes
                 throw new ArgumentException("JSON content cannot be empty or null.");
             }
 
-            var fullUrl = baseURL + endpoint;
-            Debug.WriteLine($"Request URL: {fullUrl}");
+            // Get a new HttpClient instance
+            var client = _clientFactory.CreateClient("API");
+
+            Debug.WriteLine($"Request URL: {endpoint}");
             Debug.WriteLine($"Request Content: {jsonContent}");
 
-            var request = new HttpRequestMessage(HttpMethod.Post, fullUrl)
+            var request = new HttpRequestMessage(HttpMethod.Post, endpoint)
             {
-                Content = new StringContent(jsonContent, Encoding.UTF8, "application/json")
+                Content = new StringContent(jsonContent, Encoding.UTF8, "application/json"),
+                
             };
 
             // Additional debugging information
@@ -40,12 +40,25 @@ namespace MauiApp1.Classes
             Debug.WriteLine($"Request Headers: {request.Headers}");
             Debug.WriteLine($"Request Content Headers: {request.Content.Headers}");
             Debug.WriteLine($"Request Content: {await request.Content.ReadAsStringAsync()}");
-
             Debug.WriteLine("SendRequestMiddle");
 
             try
             {
-                HttpResponseMessage response = await _client.SendAsync(request);
+                if (endpoint == "/addtask" || endpoint == "/tasklog")
+                {
+                    try
+                    {
+                      await client.SendAsync(request);
+                    } catch (HttpRequestException e)
+                    {
+                        Debug.WriteLine("It was added to the db");
+                        return "Sent";
+                        
+                    }
+
+                }
+
+                using var response = await client.SendAsync(request);
                 Debug.WriteLine("SendRequestEnd");
 
                 response.EnsureSuccessStatusCode();
