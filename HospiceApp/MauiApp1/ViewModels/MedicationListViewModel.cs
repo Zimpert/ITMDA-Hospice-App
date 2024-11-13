@@ -15,7 +15,6 @@ namespace MauiApp1.ViewModels
         public MedicationListViewModel(IContactRepo contactRepo)
         {
             _contactRepo = contactRepo;
-            
         }
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {

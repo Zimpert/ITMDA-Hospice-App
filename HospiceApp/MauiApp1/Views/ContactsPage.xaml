@@ -4,36 +4,61 @@
              Title="Contacts"
              Shell.NavBarIsVisible="False">
 
-    <StackLayout BackgroundColor="White">
-        <!-- Navbar with Back and Settings buttons -->
-        <Frame BackgroundColor="#9b59b6" CornerRadius="0" HasShadow="True" HorizontalOptions="FillAndExpand">
-            <Grid Padding="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+    <ScrollView>
+        <StackLayout BackgroundColor="White">
+            <!-- Navbar with Back and Settings buttons -->
+            <Frame BackgroundColor="#9b59b6"
+                   CornerRadius="0"
+                   HasShadow="True"
+                   HorizontalOptions="FillAndExpand">
+                <Grid Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                <ImageButton Grid.Column="0" Source="arrow_left.png" BackgroundColor="Transparent"
-                             WidthRequest="30" HeightRequest="30" VerticalOptions="Center" Clicked="OnBackButtonTapped"/>
+                    <ImageButton Grid.Column="0"
+                                 Source="arrow_left.png"
+                                 BackgroundColor="Transparent"
+                                 WidthRequest="30"
+                                 HeightRequest="30"
+                                 VerticalOptions="Center"
+                                 Clicked="OnBackButtonTapped" />
 
-                <Label Grid.Column="1" Text="Contacts" FontAttributes="Bold" VerticalOptions="Center" 
-                       HorizontalOptions="Center" FontSize="18" TextColor="White" />
+                    <Label Grid.Column="1"
+                           Text="Contacts"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           FontSize="18"
+                           TextColor="White" />
 
-                <ImageButton Grid.Column="2" Source="settings.png" BackgroundColor="Transparent"
-                             WidthRequest="30" HeightRequest="30" VerticalOptions="Center" Clicked="OnSettingsIconTapped"/>
-            </Grid>
-        </Frame>
+                    <ImageButton Grid.Column="2"
+                                 Source="settings.png"
+                                 BackgroundColor="Transparent"
+                                 WidthRequest="30"
+                                 HeightRequest="30"
+                                 VerticalOptions="Center"
+                                 Clicked="OnSettingsIconTapped" />
+                </Grid>
+            </Frame>
 
-        <!-- Contacts List -->
-        <ScrollView>
-            <StackLayout x:Name="ContactsListContainer" Padding="20">
-                <!-- Contact items will be added dynamically here -->
-            </StackLayout>
-        </ScrollView>
+            <!-- Contacts List -->
+            <ScrollView>
+                <StackLayout x:Name="ContactsListContainer"
+                             Padding="20">
+                    <!-- Contact items will be added dynamically here -->
+                </StackLayout>
+            </ScrollView>
 
-        <!-- Add New Contact Button -->
-        <Button Text="Request New Contact" BackgroundColor="Green" TextColor="White" 
-                Margin="20,10" CornerRadius="10" HeightRequest="50" />
-    </StackLayout>
+            <!-- Add New Contact Button -->
+            <Button Text="Request New Contact"
+                    BackgroundColor="Green"
+                    TextColor="White"
+                    Margin="20,10"
+                    CornerRadius="10"
+                    HeightRequest="50" />
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
