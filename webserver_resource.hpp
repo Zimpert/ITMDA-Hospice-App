@@ -22,17 +22,13 @@ struct webserver_resource {
  [[nodiscard]] auto get_remote_connection() noexcept {
   while (true) {
    auto connection = this->remote_connection_pool.get();
-   if (connection.connection() != nullptr) {
-    return connection;
-   }
+   if (connection.connection() != nullptr) [[likely]] { return connection; }
   }
  }
  [[nodiscard]] auto get_local_connection() noexcept {
   while (true) {
    auto connection = this->local_connection_pool.get();
-   if (connection.connection() != nullptr) {
-    return connection;
-   }
+   if (connection.connection() != nullptr) [[likely]] { return connection; }
   }
  }
 };

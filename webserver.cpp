@@ -120,6 +120,38 @@ stl::status_type<request_status, std::string> get_description_from_request(net::
  auto description = description_object.get<std::string>();
  return stl::status_type<request_status, std::string>{ request_status::success, std::move(description) };
 }
+stl::status_type<request_status, std::string> get_task_id_from_request(net::http_request const& request) noexcept {
+ auto const& data = request.content().get_json_content();
+ auto const task_id_it = data.find("TaskID");
+ if (task_id_it == std::cend(data)) [[unlikely]] /* Presence Check */ {
+  return stl::status_type<request_status, std::string>{ request_status::task_id_not_found, "" };
+ }
+ auto const& task_id_object = *task_id_it;
+ if (!task_id_object.is_string()) [[unlikely]] /* Type Check */ {
+  return stl::status_type<request_status, std::string>{ request_status::task_id_not_string, "" };
+ }
+ auto task_id = task_id_object.get<std::string>();
+ if (!::is_uuid(task_id)) [[unlikely]] /* Format Check */ {
+  return stl::status_type<request_status, std::string>{ request_status::task_id_not_uuid, "" };
+ }
+ return stl::status_type<request_status, std::string>{ request_status::success, std::move(task_id) };
+}
+stl::status_type<request_status, std::string> get_patient_medication_id_from_request(net::http_request const& request) noexcept {
+ auto const& data = request.content().get_json_content();
+ auto const patient_medication_id_it = data.find("PatientMedicationID");
+ if (patient_medication_id_it == std::cend(data)) [[unlikely]] /* Presence Check */ {
+  return stl::status_type<request_status, std::string>{ request_status::patient_medication_id_not_found, "" };
+ }
+ auto const& patient_medication_id_object = *patient_medication_id_it;
+ if (!patient_medication_id_object.is_string()) [[unlikely]] /* Type Check */ {
+  return stl::status_type<request_status, std::string>{ request_status::patient_medication_id_not_string, "" };
+ }
+ auto patient_medication_id = patient_medication_id_object.get<std::string>();
+ if (!::is_uuid(patient_medication_id)) [[unlikely]] /* Format Check */ {
+  return stl::status_type<request_status, std::string>{ request_status::patient_medication_id_not_uuid, "" };
+ }
+ return stl::status_type<request_status, std::string>{ request_status::success, std::move(patient_medication_id) };
+}
 
 void destroy_session_by_token(webserver_resource* webserver_resource, std::string_view const token) noexcept {
  auto const query = std::format(
@@ -197,6 +229,89 @@ void create_session(webserver_resource* webserver_resource, std::string_view con
  net::db_exec(connection.connection(), local::database, query);
 }
 
+void create_or_update_shiftlog(webserver_resource* resource, std::string_view const caregiver_id, std::string_view const patient_id) noexcept {
+ //Slow piece of grabage
+ auto const query = std::format(
+  R"(
+  INSERT INTO ShiftLogs (
+   ShiftLogID, 
+   CaregiverID, 
+   ClockInTime
+  ) 
+  SELECT 
+   ShiftLogID, 
+   nested_query_1.CaregiverID, 
+   NOW() 
+  FROM (
+   SELECT 
+    CaregiverID 
+   FROM (
+    SELECT 
+     '{}' AS CaregiverID, 
+     1 AS SortOrder 
+    FROM CaregiverShifts 
+    WHERE 
+     CaregiverShifts.CaregiverID = '{}' 
+      AND 
+     CaregiverShifts.PatientID = '{}' 
+      AND
+     CaregiverShifts.ShiftStart < NOW()
+      AND 
+     NOW() < CaregiverShifts.ShiftEnd
+    UNION
+    SELECT 
+     NULL, 
+     2
+   ) AS nested_query_0 
+   ORDER BY SortOrder 
+   LIMIT 1
+  ) AS nested_query_1 
+   INNER JOIN 
+  (
+   SELECT
+    ShiftLogID, 
+    CaregiverID
+   FROM (
+    SELECT 
+     ShiftLogID, 
+     '{}' AS CaregiverID, 
+     0 AS SortOrder 
+    FROM ShiftLogs 
+    WHERE ShiftLogs.ClockOutTime IS NULL 
+    UNION 
+    SELECT 
+     NULL, 
+     NULL, 
+     1 
+    FROM ShiftLogs 
+    WHERE 
+     ShiftLogs.CaregiverID = '{}' 
+      AND 
+     ShiftLogs.ClockOutTime IS NOT NULL 
+    UNION
+    SELECT 
+     uuid(), 
+     '{}', 
+     2
+   ) AS nested_query_2 
+   ORDER BY nested_query_2.SortOrder 
+   LIMIT 1
+  ) AS nested_query_3 
+   ON nested_query_3.CaregiverID = nested_query_1.CaregiverID 
+  ON DUPLICATE KEY UPDATE 
+   ShiftLogs.ClockOutTime = NOW();
+  )",
+  caregiver_id,
+  caregiver_id,
+  patient_id,
+  caregiver_id,
+  caregiver_id,
+  caregiver_id);
+ auto const connection = resource->get_remote_connection();
+ if (connection.connection() == nullptr) [[unlikely]] { return; }
+ else [[unlikely]] { net::db_exec(connection.connection(), remote::database, query); }
+}
+
 db_objects::user_info fetch_user_info(webserver_resource* resource, std::string_view const userid) {
  static constexpr auto mysql_str = net::mysql_field_type::str;
  auto const query = std::format(
@@ -243,7 +358,7 @@ db_objects::minimal_user_info fetch_minimal_user_info(webserver_resource* webser
 std::vector<db_objects::shift_info> fetch_caregiver_shifts(webserver_resource* resource, std::string_view const user_id) noexcept {
  static constexpr auto str = net::mysql_field_type::str;
  auto const query = std::format(
-  "SELECT Users.Name, Users.Surname, Users.Address, CaregiverShifts.ShiftStart, CaregiverShifts.ShiftEnd "
+  "SELECT CaregiverShifts.CaregiverShiftID, Users.Name, Users.Surname, Users.Address, CaregiverShifts.ShiftStart, CaregiverShifts.ShiftEnd "
   "FROM Users INNER JOIN CaregiverShifts "
   "ON Users.UserID = CaregiverShifts.PatientID "
   "WHERE Users.UserID IN ("
@@ -253,14 +368,14 @@ std::vector<db_objects::shift_info> fetch_caregiver_shifts(webserver_resource* r
   user_id);
  auto const connection = resource->get_remote_connection();
  if (connection.connection() == nullptr) [[unlikely]] { return {}; }
- auto patient_infos = net::db_fetch<str, str, str, str, str>(connection.connection(), remote::database, query);
+ auto patient_infos = net::db_fetch<str, str, str, str, str, str>(connection.connection(), remote::database, query);
  if (std::size(patient_infos) == NULL) [[unlikely]] { return {}; }
  else [[likely]] { return stl::cvt::move_vector<decltype(patient_infos)::value_type, db_objects::shift_info>(patient_infos); }
 }
 std::vector<db_objects::patient_medication_info> fetch_patient_medications(webserver_resource* resource, std::string_view const caregiver_id) noexcept {
  static constexpr auto str = net::mysql_field_type::str;
  auto const query = std::format(
-  "SELECT Users.UserID, Users.Name, Users.Surname, MedicationDays.Day, MedicationDays.Frequency, PatientMedications.StartDate, PatientMedications.EndDate, Medications.MedicationName, Medications.Description, Medications.Interactions, MedicationDays.Dosage " 
+  "SELECT Users.UserID, Users.Name, Users.Surname, MedicationDays.Day, MedicationDays.Frequency, PatientMedications.PatientMedicationID, PatientMedications.StartDate, PatientMedications.EndDate, Medications.MedicationName, Medications.Description, Medications.Interactions, MedicationDays.Dosage " 
   "FROM AssignedPatients "
   " INNER JOIN Users "
   "  ON AssignedPatients.PatientID = Users.UserID "
@@ -274,7 +389,7 @@ std::vector<db_objects::patient_medication_info> fetch_patient_medications(webse
   caregiver_id);
  auto const connection = resource->get_remote_connection();
  if (connection.connection() == nullptr) [[unlikely]] { return {}; }
- auto patient_medications = net::db_fetch<str, str, str, str, str, str, str, str, str, str, str>(connection.connection(), remote::database, query);
+ auto patient_medications = net::db_fetch<str, str, str, str, str, str, str, str, str, str, str, str>(connection.connection(), remote::database, query);
  if (std::size(patient_medications) == NULL) [[unlikely]] { return {}; }
  else [[likely]] { return stl::cvt::move_vector<decltype(patient_medications)::value_type, db_objects::patient_medication_info>(patient_medications); }
 }
@@ -329,6 +444,8 @@ std::vector<db_objects::task_info> fetch_caregiver_patient_tasks(webserver_resou
    AssignedPatients.CaregiverID = '{}'
     AND
    AssignedPatients.PatientID = '{}'
+    AND
+   Tasks.IsCompleted = 0
   )",
   caregiver_id,
   patient_id);
@@ -364,6 +481,56 @@ void add_task(webserver_resource *const resource, std::string_view const date_du
   patient_id);
  auto const connection = resource->get_remote_connection();
  if (connection.connection() != nullptr) [[likely]] { net::db_exec(connection.connection(), remote::database, query); }
+}
+void update_task(webserver_resource *const resource, std::string_view const caregiver_id, std::string_view const task_id) noexcept {
+ auto const query = std::format(
+  R"(
+  UPDATE
+   Tasks 
+    INNER JOIN 
+   AssignedPatients 
+    ON AssignedPatients.PatientID = Tasks.PatientID 
+  SET Tasks.IsCompleted = 1 
+  WHERE
+   AssignedPatients.CaregiverID = '{}' 
+    AND 
+   Tasks.TaskID = '{}';
+  )",
+  caregiver_id,
+  task_id);
+ auto const connection = resource->get_remote_connection();
+ if (connection.connection() != nullptr) [[likely]] { net::db_exec(connection.connection(), remote::database, query); }
+}
+
+void add_medlog(webserver_resource *const resource, std::string_view const caregiver_id, std::string_view const patient_medication_id) noexcept {
+ auto const query = std::format(
+  R"(
+  INSERT INTO MedLogs (
+   PatientMedicationID,
+   CaregiverID
+  )
+  SELECT
+   PatientMedications.PatientMedicationID, 
+   '{}'
+  FROM
+   AssignedPatients
+    INNER JOIN
+   PatientMedications
+    ON AssignedPatients.PatientID = PatientMedications.PatientID
+  WHERE
+   AssignedPatients.CaregiverID = '{}'
+    AND
+   PatientMedications.PatientMedicationID = '{}'
+  )",
+  caregiver_id,
+  caregiver_id,
+  patient_medication_id);
+ auto const connection = resource->get_remote_connection();
+ if (connection.connection() == nullptr) [[unlikely]] { return; }
+ else [[likely]] {
+  net::db_exec(connection.connection(), remote::database, query);
+  return;
+ }
 }
 
 webserver::webserver() noexcept : m_server{std::invoke([] () noexcept {
@@ -526,11 +693,11 @@ void handle_client_callback(net::http_socket *const client) noexcept {
 }
 void webserver::handle_client_callable(::webserver_resource* webserver_resource, net::http_socket* client, std::mutex* mtx) noexcept {
  timing::scoped_timer timer([&](auto&& location, auto&& time) { 
-   SPDLOG_INFO("{}at {}:{} line {} ran for {}ms",
-   pid_client_prefix(client), 
-   std::filesystem::path(location.file_name).filename().string(), location.function_name, location.line,
-   std::chrono::duration_cast<std::chrono::milliseconds>(time).count()); 
-  });
+  SPDLOG_INFO("{}at {}:{} line {} ran for {}ms",
+  pid_client_prefix(client), 
+  std::filesystem::path(location.file_name).filename().string(), location.function_name, location.line,
+  std::chrono::duration_cast<std::chrono::milliseconds>(time).count()); 
+ });
  
  SPDLOG_INFO("{}Started Client Interaction", pid_client_prefix(client));
 
@@ -556,6 +723,7 @@ void webserver::handle_client_callable(::webserver_resource* webserver_resource,
   auto const send_response = client->send_response(response).status;
   if (send_response != net::socket_error_code::success) [[unlikely]] {
    SPDLOG_ERROR("Client ({}:{}) Failed to Send Response", net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port);
+   handle_client_callback(client);
    mtx->unlock();
    return;
   }
@@ -564,6 +732,18 @@ void webserver::handle_client_callable(::webserver_resource* webserver_resource,
   return;
  }
  if (resource == "/medlog") {
+  [[maybe_unused]] auto const success = webserver::process_medlog(webserver_resource, request);
+  if constexpr (LOG_API_STATUS) {
+   if (success) [[likely]] { SPDLOG_INFO("{}\"/medlog\" API Call Success", pid_client_prefix(client)); }
+   else [[unlikely]] { SPDLOG_WARN("{}\"/medlog\" API Call Failure", pid_client_prefix(client)); }
+  }
+  mtx->lock();
+  auto const send_status = client->send_response().status;
+  if (send_status != net::socket_error_code::success) [[unlikely]] {
+   SPDLOG_WARN("{}Failed Sending HTTP Response", pid_client_prefix(client));
+  }
+  handle_client_callback(client); 
+  mtx->unlock();
   return;
  }
  if (resource == "/shifts") {
@@ -577,6 +757,7 @@ void webserver::handle_client_callable(::webserver_resource* webserver_resource,
   auto const send_status = client->send_response(response).status;
   if (send_status != net::socket_error_code::success) [[unlikely]] {
    SPDLOG_ERROR("Client ({}:{}) Failed to Send Response", net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port);
+   handle_client_callback(client);
    mtx->unlock();
    return;
   }
@@ -591,6 +772,10 @@ void webserver::handle_client_callable(::webserver_resource* webserver_resource,
    else [[unlikely]] { SPDLOG_WARN("{}\"/addtask\" API Call Failure", pid_client_prefix(client)); }
   }
   mtx->lock();
+  auto const send_status = client->send_response().status;
+  if (send_status != net::socket_error_code::success) [[unlikely]] {
+   SPDLOG_WARN("{}Failed Sending HTTP Response", pid_client_prefix(client));
+  }
   handle_client_callback(client);
   mtx->unlock();
   return;
@@ -606,6 +791,7 @@ void webserver::handle_client_callable(::webserver_resource* webserver_resource,
   auto const send_status = client->send_response(response).status;
   if (send_status != net::socket_error_code::success) [[unlikely]] {
    SPDLOG_ERROR("Client ({}:{}) Failed to Send Response", net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port);
+   handle_client_callback(client);
    mtx->unlock();
    return;
   }
@@ -614,6 +800,18 @@ void webserver::handle_client_callable(::webserver_resource* webserver_resource,
   return;
  }
  if (resource == "/tasklog") {
+  [[maybe_unused]] auto const success = webserver::process_tasklog(webserver_resource, request);
+  if constexpr (LOG_API_STATUS) {
+   if (success) [[likely]] { SPDLOG_INFO("{}\"/tasklog\" API Call Success", pid_client_prefix(client)); }
+   else [[unlikely]] { SPDLOG_WARN("{}\"/tasklog\" API Call Failure", pid_client_prefix(client)); }
+  }
+  mtx->lock();
+  auto const send_status = client->send_response().status;
+  if (send_status != net::socket_error_code::success) [[unlikely]] {
+   SPDLOG_WARN("{}Failed Sending HTTP Response", pid_client_prefix(client));
+  }
+  handle_client_callback(client);
+  mtx->unlock();
   return;
  }
  if (resource == "/medicine") {
@@ -627,6 +825,7 @@ void webserver::handle_client_callable(::webserver_resource* webserver_resource,
   auto const send_status = client->send_response(response).status;
   if (send_status != net::socket_error_code::success) [[unlikely]] {
    SPDLOG_ERROR("Client ({}:{}) Failed to Send Response: {}", net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port, net::lookup_enum_verbose(send_status));
+   handle_client_callback(client);
    mtx->unlock();
    return;
   }
@@ -645,6 +844,7 @@ void webserver::handle_client_callable(::webserver_resource* webserver_resource,
   auto const send_status = client->send_response(response).status;
   if (send_status != net::socket_error_code::success) [[unlikely]] {
    SPDLOG_ERROR("Client ({}:{}) Failed to Send Response: ", net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port, net::lookup_enum_verbose(send_status));
+   handle_client_callback(client);
    mtx->unlock();
    return;
   }
@@ -653,6 +853,18 @@ void webserver::handle_client_callable(::webserver_resource* webserver_resource,
   return;
  }
  if (resource == "/shiftlog") {
+  auto const success = webserver::process_shiftlog(webserver_resource, request);
+  if constexpr (LOG_API_STATUS) {
+   if (success) [[likely]] { SPDLOG_INFO("{}\"/shiftlog\" API Call Success", pid_client_prefix(client)); }
+   else [[unlikely]] { SPDLOG_WARN("{}\"/shiftlog\" API Call Failure", pid_client_prefix(client)); }
+  }
+  mtx->lock();
+  auto const send_status = client->send_response().status;
+  if (send_status != net::socket_error_code::success) [[unlikely]] {
+   SPDLOG_WARN("{}Failed Sending HTTP Response", pid_client_prefix(client));
+  }
+  handle_client_callback(client);
+  mtx->unlock();
   return;
  }
  if (resource == "/userinfo") {
@@ -666,6 +878,7 @@ void webserver::handle_client_callable(::webserver_resource* webserver_resource,
   auto const send_status = client->send_response(response).status;
   if (send_status != net::socket_error_code::success) [[unlikely]] {
    SPDLOG_ERROR("Client ({}:{}) Failed to Send Response: {}", net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port, net::lookup_enum_verbose(send_status));
+   handle_client_callback(client);
    mtx->unlock();
    return;
   }
@@ -684,6 +897,7 @@ void webserver::handle_client_callable(::webserver_resource* webserver_resource,
   auto const send_status = client->send_response(response).status;
   if (send_status != net::socket_error_code::success) [[unlikely]] {
    SPDLOG_ERROR("Client ({}:{}) Failed to Send Response: {}", net::convert_ipv4_u32_to_string(client->socket().host), client->socket().port, net::lookup_enum_verbose(send_status));
+   handle_client_callback(client);
    mtx->unlock();
    return;
   }
@@ -733,8 +947,23 @@ db_objects::login_user_info                      webserver::process_login(webser
 
  return db_objects::login_user_info{std::move(user_info), std::move(token)};
 }
-void                                             webserver::process_medlog(webserver_resource* resource, net::http_request const& request) noexcept {
-
+bool                                             webserver::process_medlog(webserver_resource* resource, net::http_request const& request) noexcept {
+ auto const [token_status, token] = get_token_from_request(request);
+ if (token_status != request_status::success) [[unlikely]] {
+  SPDLOG_ERROR("Invalid Request: {}", ::lookup_enum(token_status));
+  return false;
+ }
+ auto const [patient_medication_id_status, patient_medication_id] = get_patient_medication_id_from_request(request);
+ if (patient_medication_id_status != request_status::success) [[unlikely]] {
+  SPDLOG_ERROR("Invalid Request: {}", ::lookup_enum(patient_medication_id_status));
+  return false;
+ }
+ auto const caregiver_id = fetch_session_userid(resource, token);
+ if (std::size(caregiver_id) == NULL) [[unlikely]] { return false; }
+ else [[likely]] {
+  add_medlog(resource, caregiver_id, patient_medication_id);
+  return true;
+ }
 }
 std::vector<db_objects::shift_info>              webserver::process_shifts(webserver_resource* resource, net::http_request const& request) noexcept { 
  auto const maybe_token = get_token_from_request(request);
@@ -781,8 +1010,23 @@ bool                                             webserver::process_addtask(webs
   return true;
  }
 }
-void                                             webserver::process_tasklog(webserver_resource* resource, net::http_request const& request) noexcept {
-
+bool                                             webserver::process_tasklog(webserver_resource* resource, net::http_request const& request) noexcept {
+ auto const [token_status, token] = get_token_from_request(request);
+ if (token_status != request_status::success) [[unlikely]] {
+  SPDLOG_ERROR("Invalid Request: {}", ::lookup_enum(token_status));
+  return false;
+ }
+ auto const [task_id_status, task_id] = get_task_id_from_request(request);
+ if (task_id_status != request_status::success) [[unlikely]] {
+  SPDLOG_ERROR("Invalid Request: {}", ::lookup_enum(task_id_status));
+  return false;
+ }
+ auto const caregiver_id = fetch_session_userid(resource, token);
+ if (std::size(caregiver_id) == NULL) [[unlikely]] { return false; }
+ else [[likely]] {
+  update_task(resource, caregiver_id, task_id);
+  return true;
+ }
 }
 std::vector<db_objects::task_info>               webserver::process_gettasks(webserver_resource* resource, net::http_request const& request) noexcept {
  auto const [token_status, token] = get_token_from_request(request);
@@ -823,8 +1067,23 @@ bool                                             webserver::process_prelogin(web
  auto const& token = maybe_token.value;
  return std::size(fetch_session_userid(resource, token)) != 0;
 }
-void                                             webserver::process_shiftlog(webserver_resource* resource, net::http_request const& request) noexcept {
-
+bool                                             webserver::process_shiftlog(webserver_resource* resource, net::http_request const& request) noexcept {
+ auto const [token_status, token] = get_token_from_request(request);
+ if (token_status != request_status::success) [[unlikely]] {
+  SPDLOG_ERROR("Invalid Request: {}", ::lookup_enum(token_status));
+  return false;
+ }
+ auto const [caregiver_id_status, caregiver_id] = get_token_from_request(request);
+ if (caregiver_id_status != request_status::success) [[unlikely]] {
+  SPDLOG_ERROR("Invalid Request: {}", ::lookup_enum(caregiver_id_status));
+  return false;
+ }
+ auto const patient_id = fetch_session_userid(resource, token);
+ if (std::size(patient_id) == NULL) [[unlikely]] { return false; }
+ else [[likely]] {
+  create_or_update_shiftlog(resource, caregiver_id, patient_id);
+  return true;
+ }
 }
 db_objects::user_info                            webserver::process_userinfo(webserver_resource* resource, net::http_request const& request) noexcept { 
  auto const maybe_token = get_token_from_request(request);
@@ -929,6 +1188,7 @@ stl::status_type<bool, nlohmann::json> webserver::generate_shifts_response(std::
   nlohmann::json response;
   for (auto&& entry : data) {
    response["data"].push_back(nlohmann::json({
+    { "ShiftID"   , std::move(entry.shift_id)    },
     { "Name"      , std::move(entry.name)        },
     { "Surname"   , std::move(entry.surname)     },
     { "Address"   , std::move(entry.address)     },
@@ -966,14 +1226,15 @@ stl::status_type<bool, nlohmann::json> webserver::generate_medicine_response(std
     };
    }
    user_data["Medication"].push_back({
-    { "Day",            std::move(entry.day) },
-    { "Frequency",      std::move(entry.frequency) },
-    { "StartDate",      std::move(entry.start_date) },
-    { "EndDate",        std::move(entry.end_date) },
-    { "MedicationName", std::move(entry.name) },
-    { "Description",    std::move(entry.description) },
-    { "Interactions",   std::move(entry.interactions) },
-    { "Dosage",         std::move(entry.dosage) }
+    { "PatientMedicationID", std::move(entry.patient_medication_id) },
+    { "Day"                , std::move(entry.day)                   },
+    { "Frequency"          , std::move(entry.frequency)             },
+    { "StartDate"          , std::move(entry.start_date)            },
+    { "EndDate"            , std::move(entry.end_date)              },
+    { "MedicationName"     , std::move(entry.name)                  },
+    { "Description"        , std::move(entry.description)           },
+    { "Interactions"       , std::move(entry.interactions)          },
+    { "Dosage"             , std::move(entry.dosage)                }
    });
   }
   return stl::status_type<bool, nlohmann::json>{ true, std::move(response) };
