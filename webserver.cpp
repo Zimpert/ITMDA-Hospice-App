@@ -1073,7 +1073,7 @@ bool                                             webserver::process_shiftlog(web
   SPDLOG_ERROR("Invalid Request: {}", ::lookup_enum(token_status));
   return false;
  }
- auto const [caregiver_id_status, caregiver_id] = get_token_from_request(request);
+ auto const [caregiver_id_status, caregiver_id] = get_userid_from_request(request);
  if (caregiver_id_status != request_status::success) [[unlikely]] {
   SPDLOG_ERROR("Invalid Request: {}", ::lookup_enum(caregiver_id_status));
   return false;
