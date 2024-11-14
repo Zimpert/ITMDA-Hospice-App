@@ -54,20 +54,13 @@
             </Grid>
 
             <!-- Profile Picture -->
-            <Frame HeightRequest="100"
+
+            <Image Source="profile.png"
+                   Aspect="Fill"
+                   HeightRequest="100"
                    WidthRequest="100"
-                   CornerRadius="50"
-                   BorderColor="#9b59b6"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center"
-                   Padding="0"
-                   Margin="0,20,0,10">
-                <Image Source="placeholder.png"
-                       Aspect="AspectFill"
-                       HeightRequest="100"
-                       WidthRequest="100"
-                       AutomationId="ProfileImage" />
-            </Frame>
+                   AutomationId="ProfileImage" 
+                   Margin="0,20,0,20"/>
 
             <!-- Name and Role -->
             <Label Text="Alexa Williams"
@@ -84,36 +77,18 @@
                    AutomationId="UserRole" />
 
             <!-- Description Text -->
-            <StackLayout Padding="20,0">
+            <StackLayout Padding="20,0" HorizontalOptions="Center">
                 <Label Text="Your personal QR code."
                        TextColor="Black"
                        FontSize="Medium"
-                       AutomationId="DescriptionText1" />
+                       AutomationId="DescriptionText1" 
+                       HorizontalOptions="Center"/>
                 <Label Text="Patients will scan this code to clock you in and out."
                        TextColor="Black"
                        FontSize="Small"
                        Margin="0,0,0,20"
-                       AutomationId="DescriptionText2" />
-            </StackLayout>
-
-            <!-- Clock In/Out Radio Buttons -->
-            <StackLayout Orientation="Horizontal"
-                         HorizontalOptions="Center"
-                         Margin="0,0,0,20">
-                <StackLayout Orientation="Horizontal"
-                             VerticalOptions="Center">
-                    <RadioButton Content="Clocked In"
-                                 IsChecked="{Binding IsClockedIn}"
-                                 TextColor="Black"
-                                 GroupName="ClockStatus"
-                                 Margin="0,0,10,0"
-                                 AutomationId="ClockedInRadioButton" />
-                    <RadioButton Content="Clocked Out"
-                                 IsChecked="{Binding IsClockedOut}"
-                                 TextColor="Black"
-                                 GroupName="ClockStatus"
-                                 AutomationId="ClockedOutRadioButton" />
-                </StackLayout>
+                       AutomationId="DescriptionText2" 
+                       HorizontalOptions="Center"/>
             </StackLayout>
 
             <!-- QR Code Image -->
