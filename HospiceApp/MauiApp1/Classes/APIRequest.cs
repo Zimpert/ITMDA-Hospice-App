@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Newtonsoft.Json;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 
@@ -66,6 +67,7 @@ namespace MauiApp1.Classes
                 Debug.WriteLine($"Response Status Code: {response.StatusCode}");
 
                 string responseContent = await response.Content.ReadAsStringAsync();
+
                 Debug.WriteLine($"Response Content: {responseContent}");
 
                 return responseContent;

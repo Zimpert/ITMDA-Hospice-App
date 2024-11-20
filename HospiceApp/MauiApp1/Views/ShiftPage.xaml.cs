@@ -8,7 +8,6 @@ namespace MauiApp1.Views
         {
             InitializeComponent();
             BindingContext = csvm;
-            Task.Run(async () => await csvm.GetData());
         }
         private async void OnBackButtonTapped(object sender, EventArgs e)
         {
