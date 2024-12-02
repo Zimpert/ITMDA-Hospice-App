@@ -50,6 +50,7 @@ namespace MauiApp1.Classes
                     try
                     {
                       await client.SendAsync(request);
+                        Debug.WriteLine("It was sent");
                         return "Sent";
                     } catch (HttpRequestException e)
                     {

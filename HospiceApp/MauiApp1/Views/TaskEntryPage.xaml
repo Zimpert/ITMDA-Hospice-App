@@ -3,38 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:MauiApp1.ViewModels"
              x:Class="MauiApp1.Views.TaskEntryPage"
-             BackgroundColor="White"
-             Padding="20"
+             BackgroundColor="#F5F3FF" 
              Title="Add New Task">
 
-
-
     <VerticalStackLayout Spacing="20">
-        <Label Text="Add New Task" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" />
+        <Label Text="Add New Task" 
+               FontSize="Large" 
+               FontAttributes="Bold" 
+               HorizontalOptions="Center" 
+               TextColor="#6A0DAD" />
+        <!-- Deep Purple -->
 
         <!-- DateDue Entry -->
-        <Label Text="Due Date:" />
-        <DatePicker Date="{Binding DateDue}" />
+        <Label Text="Due Date:" 
+               TextColor="#8A2BE2" />
+        <!-- Blue Violet -->
+        <DatePicker Date="{Binding DateDue, Mode=TwoWay}" 
+                    BackgroundColor="#E6E6FA" 
+            TextColor="#6A0DAD" />
 
-        <!-- Description Entry -->
-        <Label Text="Description:" />
-        <Editor Text="{Binding Description}" 
+            <!-- Description Entry -->
+            <Label Text="Description:" 
+               TextColor="#8A2BE2" />
+            <!-- Blue Violet -->
+            <Editor Text="{Binding Description, Mode=TwoWay}" 
                 Placeholder="Enter task description here..." 
-                AutoSize="TextChanges" />
+                AutoSize="TextChanges" 
+                BackgroundColor="#E6E6FA" 
+                TextColor="#6A0DAD" 
+                PlaceholderColor="#D8BFD8" />
+                <!-- Thistle -->
 
-        <!-- Buttons to Save or Close Modal -->
-        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
-            <Button Text="Save" 
+                <!-- Buttons to Save or Close Modal -->
+                <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                    <Button Text="Save" 
                     Command="{Binding SaveTaskCommand}" 
-                    BackgroundColor="#4CAF50" 
-                    TextColor="White" 
-                    FontAttributes="Bold" />
+                    BackgroundColor="#6A0DAD" 
+                        TextColor="White" 
+                    FontAttributes="Bold" 
+                            />
 
-            <Button Text="Cancel" 
+                        <Button Text="Cancel" 
                     Clicked="OnCancelButtonClicked" 
-                    BackgroundColor="Red" 
-                    TextColor="White" 
+                    BackgroundColor="#BA55D3" 
+                            TextColor="White" 
                     FontAttributes="Bold" />
-        </HorizontalStackLayout>
+                </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

@@ -70,9 +70,7 @@ namespace MauiApp1.ViewModels
 
             // Close the modal after saving
             //await Application.Current.MainPage.Navigation.PopModalAsync();
-            var Token = await SecureStorage.GetAsync("Token");
-            await _requestManager.AddPatientTasks(dateDue, description, Token, targetID);
-            LoadTasks();
+
         }
 
         public async Task UpdateValues(string DueDateS, string Desc, string UserID)
@@ -80,18 +78,15 @@ namespace MauiApp1.ViewModels
             dateDue = DueDateS;
             description = Desc;
             targetID = UserID;
-            await SaveTask();
+            var Token = await SecureStorage.GetAsync("Token");
+            await _requestManager.AddPatientTasks(dateDue, description, Token, targetID);
+            LoadTasks();
         }
 
         [RelayCommand]
         public async void AddTask()
         {
-            // no challenge because targetID will be loaded in here so it's easy actually 
-            // we just need to present a popup to add a task, then refresh the tasks page by calling it again?
-            // need to call a modal pop up
-            // need to make the modal pop up, let's work on the medication tracker so long
-
-
+            
             var Token = await SecureStorage.GetAsync("Token");
             await _requestManager.AddPatientTasks("2024-03-01 12:15:00", "Just added per jano request", Token, targetID);
             LoadTasks();

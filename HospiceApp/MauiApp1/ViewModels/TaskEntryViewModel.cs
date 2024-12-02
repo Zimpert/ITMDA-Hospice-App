@@ -26,12 +26,13 @@ namespace MauiApp1.ViewModels
         }
 
         [RelayCommand]
-        private async void OnSaveTask()
+        private async void SaveTask()
         {
             // Logic to save the task (e.g., call a service, update a shared list, etc.)
-            await _viewModel.UpdateValues(DateDue.ToString().Replace("/", "-"), Description, userID);
+            await _viewModel.UpdateValues(DateDue.ToString("yyyy-MM-dd HH:mm:ss").Replace("/", "-"), Description, userID);
             // Close the modal after saving
             await Application.Current.MainPage.Navigation.PopModalAsync();
+            
             
         }
     }

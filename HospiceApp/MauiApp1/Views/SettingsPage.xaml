@@ -125,11 +125,15 @@
 
                         <!-- Action Text Column -->
                         <Label Text="Sign out"
-                               FontSize="Small"
-                               TextColor="{DynamicResource TextColor}"
-                               VerticalOptions="Center"
-                               HorizontalOptions="End"
-                               Grid.Column="2" />
+                           FontSize="Small"
+                           TextColor="{DynamicResource TextColor}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="End"
+                           Grid.Column="2">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnSignOutTapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
                     </Grid>
                 </Frame>
             </StackLayout>

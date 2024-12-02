@@ -64,7 +64,7 @@
                             <TapGestureRecognizer Tapped="OnViewCarerClicked" />
                         </StackLayout.GestureRecognizers>
                         <Image Source="care.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit" />
-                        <Label Text="View Carer" TextColor="White" HorizontalOptions="Center"
+                        <Label Text="Contacts" TextColor="White" HorizontalOptions="Center"
                                FontAttributes="Bold" FontSize="16" Margin="0,10,0,0" />
                     </StackLayout>
                 </Frame>

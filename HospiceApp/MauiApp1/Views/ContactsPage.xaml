@@ -52,13 +52,7 @@
                 </StackLayout>
             </ScrollView>
 
-            <!-- Add New Contact Button -->
-            <Button Text="Request New Contact"
-                    BackgroundColor="Green"
-                    TextColor="White"
-                    Margin="20,10"
-                    CornerRadius="10"
-                    HeightRequest="50" />
+
         </StackLayout>
     </ScrollView>
 </ContentPage>
